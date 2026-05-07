@@ -1230,3 +1230,204 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   .topbar { gap: 10px; }
   .quiz-prompt { font-size: 44px; }
 }
+
+/* ───────────────────────────────────────────────────────────────────
+   Fine-grained mobile adaptation. Two breakpoints:
+   ≤720px = tablet / large phone landscape
+   ≤480px = phone portrait
+   ─────────────────────────────────────────────────────────────────── */
+
+/* universal touch ergonomics — applies on every screen but matters on phones */
+button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
+.convo-turn, .quiz-opt, .struct-bd-row, .chapter, .chapter-head,
+.legend-head, .legend-toggle, .struct-toggle, .chapter-toggle, .learn {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* iPhone notch / Android navigation gesture zone */
+@supports (padding: env(safe-area-inset-top)) {
+  .topbar {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (max-width: 720px) {
+  /* tighter outer padding */
+  main { padding: 12px; }
+
+  /* topbar: scroll tabs horizontally instead of wrapping awkwardly,
+     stack controls onto their own row */
+  .topbar { padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+  .brand { width: auto; }
+  .brand-jp { font-size: 18px; }
+  .brand-en { font-size: 11px; }
+  .tabs {
+    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-right: 0;
+    padding-bottom: 2px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 8px 14px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .controls {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    justify-content: flex-start;
+  }
+  .ctrl { font-size: 12.5px; }
+
+  /* iOS auto-zooms text inputs with font < 16px on focus — prevent that */
+  .search, .ctrl select, input[type="text"], input[type="search"] {
+    font-size: 16px;
+  }
+  .ctrl input[type="range"] { width: 110px; }
+
+  /* sub-tabs: tighter on phones */
+  .subtab { padding: 6px 12px; font-size: 12.5px; }
+
+  /* word / sentence grids — slightly smaller min so 1-col flows naturally */
+  .word-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+  .word { padding: 12px; }
+  .word .jp { font-size: 18px; }
+
+  /* conversation bubbles use more screen width */
+  .convo-bubble { max-width: 86%; }
+  .convo { padding: 12px; }
+
+  /* category headers tighten */
+  .struct-cat-header {
+    margin: 14px 12px 4px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .struct-cat-header .cat-num { width: 24px; height: 24px; font-size: 12px; }
+  .struct-cat-header .cat-label { font-size: 11.5px; }
+
+  /* legend: single column on phones for readability */
+  .legend { margin: 10px 12px 4px; padding: 10px 12px; }
+  .legend.is-open .legend-body { grid-template-columns: 1fr; gap: 10px; }
+  .legend-swatch { min-width: 76px; min-height: 30px; }
+  .legend-swatch .jt { font-size: 14.5px; }
+
+  /* tooltip — clamp to viewport with breathing room */
+  .info-tip {
+    max-width: calc(100vw - 24px);
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .tip-jp { font-size: 17px; }
+
+  /* structure card head + body */
+  .struct-head { padding: 10px 12px; gap: 8px; }
+  .struct-title { font-size: 15px; }
+  .struct-body { padding: 4px 12px 14px; }
+  .struct-meta { padding: 8px 10px; }
+  .struct-formula code { font-size: 12.5px; }
+
+  /* chapter list */
+  .chapter-head {
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .chapter-day .num { font-size: 16px; }
+  .chapter-title h3 { font-size: 14px; }
+  .chapter-meta { font-size: 11px; }
+}
+
+@media (max-width: 480px) {
+  /* phone portrait — squeeze a bit more out of every pixel */
+  main { padding: 8px; }
+  .topbar { padding: 8px 10px; gap: 6px; }
+  .brand-jp { font-size: 17px; }
+  .brand-en { display: none; } /* save horizontal space */
+
+  .tab { padding: 7px 11px; font-size: 13px; }
+  .ctrl span { display: none; }              /* show only the controls themselves */
+  .ctrl-toggle span:last-child { display: inline; }   /* keep the toggle label */
+
+  /* panel headers smaller */
+  .panel-head h1 { font-size: 19px; line-height: 1.2; }
+  .panel-head .muted { font-size: 12.5px; }
+
+  /* sub-tabs use less padding */
+  .subtab { padding: 5px 10px; font-size: 12px; }
+
+  /* kana cells slightly smaller (the kana-grid template uses fixed sizes —
+     scale them down with a CSS var if the existing rules use one; otherwise
+     these settings still keep cells touch-friendly) */
+  .kana { padding: 8px 6px; min-height: 56px; }
+  .kana .ch { font-size: 26px; }
+  .kana .ro { font-size: 11px; }
+
+  /* word cards a bit smaller */
+  .word .jp { font-size: 17px; }
+  .word .ro { font-size: 12px; }
+  .word .en { font-size: 12px; }
+
+  /* sentence cards */
+  .sentence .jp { font-size: 16px; }
+
+  /* conversation bubbles — give nearly full width on tiny phones */
+  .convo-bubble { max-width: 92%; padding: 10px 12px; }
+  .convo-avatar { width: 28px; height: 28px; font-size: 13px; }
+  .convo-bubble .jp { font-size: 15px; }
+
+  /* structure grid card content */
+  .struct-grid .struct-sent { padding: 9px 11px; }
+  .struct-grid .struct-sent-jp { font-size: 17px; }
+  .struct-grid .struct-sent.is-main .struct-sent-jp { font-size: 18px; }
+  .struct-grid .bd-jp { font-size: 14px; }
+  .struct-grid .struct-bd-head,
+  .struct-grid .struct-bd-row {
+    /* on tiny phones reflow to 2 col so role / meaning wrap below word/romaji */
+    grid-template-columns: 1fr 1fr;
+    font-size: 11.5px;
+  }
+  .struct-grid .struct-bd-head span:nth-child(3),
+  .struct-grid .struct-bd-head span:nth-child(4) { display: none; }
+  .struct-grid .struct-bd-row .bd-role,
+  .struct-grid .struct-bd-row .bd-mean {
+    grid-column: 1 / -1;
+    border-top: 1px dashed var(--line);
+    border-right: 0;
+  }
+  .struct-grid .struct-bd-row .bd-role::before {
+    content: "Role · ";
+    color: var(--fg-dim);
+    font-size: 9.5px;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .struct-grid .struct-bd-row .bd-mean::before {
+    content: "Meaning · ";
+    color: var(--fg-dim);
+    font-size: 9.5px;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
+  /* quiz */
+  .quiz-prompt { font-size: 36px; }
+  .quiz-card { padding: 14px; }
+
+  /* footer — keep readable at the bottom */
+  .footer { font-size: 11px; padding: 16px 12px 24px; }
+}
