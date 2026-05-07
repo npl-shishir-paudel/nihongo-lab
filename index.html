@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>日本語 Lab — Interactive Japanese</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-jp">日本語</span>
+      <span class="brand-en">Lab</span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab is-active" data-tab="chapters">Chapters</button>
+      <button class="tab" data-tab="kana">Kana</button>
+      <button class="tab" data-tab="phrases">Phrases</button>
+      <button class="tab" data-tab="structures">Structure</button>
+      <button class="tab" data-tab="quiz">Quiz</button>
+    </nav>
+    <div class="controls">
+      <label class="ctrl">
+        <span>Voice</span>
+        <select id="voice"></select>
+      </label>
+      <label class="ctrl">
+        <span>Rate</span>
+        <input id="rate" type="range" min="0.5" max="1.4" step="0.05" value="0.95" />
+        <span class="rate-val" id="rateVal">0.95</span>
+      </label>
+      <label class="ctrl ctrl-toggle">
+        <input id="hoverInfo" type="checkbox" checked />
+        <span>Hover info</span>
+      </label>
+      <button id="theme" class="ghost" title="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- CHAPTERS -->
+    <section class="panel is-active" id="panel-chapters">
+      <div class="panel-head">
+        <h1>30-Day Curriculum 課程</h1>
+        <p class="muted">Each day mixes letters, vocabulary, grammar, and sentences. Click a chapter to expand its plan, hover any item inside to hear it. Mark a day complete to track your streak.</p>
+        <div class="filters">
+          <span class="score" id="chapStreak">Completed: 0 / 30</span>
+          <button class="ghost" id="chapReset" title="Clear all completed marks">Reset progress</button>
+        </div>
+      </div>
+      <div class="chapter-list" id="chapList"></div>
+    </section>
+
+    <!-- KANA — Hiragana + Katakana (sub-tabs) -->
+    <section class="panel" id="panel-kana">
+      <div class="panel-head">
+        <h1>Kana 仮名</h1>
+        <p class="muted">Japan's two phonetic syllabaries. <b>Hiragana</b> for native words and grammar; <b>Katakana</b> for loan-words, names, and IT terms (コンピュータ, バグ, レビュー). Hover any cell to see info, click to hear it.</p>
+        <div class="subtabs" data-panel="kana">
+          <button class="subtab is-active" data-subtab="hira">ひらがな Hiragana</button>
+          <button class="subtab" data-subtab="kata">カタカナ Katakana</button>
+        </div>
+      </div>
+
+      <div class="subpanel is-active" id="subpanel-hira">
+        <input class="search" id="searchHira" placeholder="Search hiragana, romaji, group…" />
+        <div class="kana-grid" id="hiraGrid"></div>
+      </div>
+
+      <div class="subpanel" id="subpanel-kata">
+        <input class="search" id="searchKata" placeholder="Search katakana, romaji, group…" />
+        <div class="kana-grid" id="kataGrid"></div>
+      </div>
+    </section>
+
+    <!-- PHRASES — Conversations + Sentences + Words (sub-tabs) -->
+    <section class="panel" id="panel-phrases">
+      <div class="panel-head">
+        <h1>Phrases 会話・文・単語</h1>
+        <p class="muted">Everything you can speak. <b>Conversations</b> are full multi-turn dialogues; the <b>Sentences</b> and <b>Words</b> tabs collect the building blocks — useful when a phrase isn't in any conversation, or you want to drill it alone.</p>
+        <div class="subtabs" data-panel="phrases">
+          <button class="subtab is-active" data-subtab="convo">💬 Conversations</button>
+          <button class="subtab" data-subtab="sent">📝 Sentences</button>
+          <button class="subtab" data-subtab="word">📚 Words</button>
+        </div>
+      </div>
+
+      <div class="subpanel is-active" id="subpanel-convo">
+        <p class="muted small">Multi-turn dialogues for real situations. Click a line to hear it, or use <b>▶ Play all</b> to listen end-to-end. Toggle <b>Hide JP</b> to test your listening before reading.</p>
+        <div class="convo-list" id="convoList"></div>
+      </div>
+
+      <div class="subpanel" id="subpanel-sent">
+        <p class="muted small">Real, natural standalone phrases. Click a sentence to hear it; click any individual word inside to play just that word.</p>
+        <div class="filters">
+          <input class="search" id="searchSent" placeholder="Search sentence, scene, meaning…" />
+          <div class="chips" id="sentChips"></div>
+        </div>
+        <div class="sentence-list" id="sentList"></div>
+      </div>
+
+      <div class="subpanel" id="subpanel-word">
+        <p class="muted small">Daily-life + IT/workplace vocabulary. Click a card to hear it and reveal usage notes.</p>
+        <div class="filters">
+          <input class="search" id="searchWord" placeholder="Search word, meaning, romaji…" />
+          <div class="chips" id="wordChips"></div>
+        </div>
+        <div class="word-grid" id="wordGrid"></div>
+      </div>
+    </section>
+
+    <!-- SENTENCE STRUCTURES -->
+    <section class="panel" id="panel-structures">
+      <div class="panel-head">
+        <h1>Sentence Structure 文の構造</h1>
+        <p class="muted">Beginner-friendly chart of every essential Japanese sentence pattern. Each structure has a <b>formula</b>, full <b>token-by-token breakdown</b> (role · pronunciation · meaning), and 5–6 example sentences. Hover any line to hear it; click any example token to play it alone. Each sentence shows: 日本語 · romaji · English · नेपाली.</p>
+        <div class="filters">
+          <input class="search" id="searchStruct" placeholder="Search formula, role, pattern, meaning…" />
+          <div class="chips" id="structChips"></div>
+        </div>
+      </div>
+      <div class="struct-list" id="structList"></div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="panel" id="panel-quiz">
+      <div class="panel-head">
+        <h1>Quiz クイズ</h1>
+        <p class="muted">Listen, read, and pick the right answer. Score is saved locally.</p>
+        <div class="filters">
+          <label class="ctrl">
+            <span>Mode</span>
+            <select id="quizMode">
+              <option value="hira">Hiragana → romaji</option>
+              <option value="kata">Katakana → romaji</option>
+              <option value="word">Listen → meaning</option>
+              <option value="sent">Listen → sentence meaning</option>
+            </select>
+          </label>
+          <button id="quizNew" class="primary">New question</button>
+          <span class="score" id="quizScore">Score: 0 / 0</span>
+        </div>
+      </div>
+      <div class="quiz-card" id="quizCard">
+        <p class="muted">Press <b>New question</b> to begin.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span><b>Hover</b> any card to see grammar info · <b>Click</b> any card or word to hear it. ⓘ Sound uses your system's Japanese voice — install one in Windows Settings → Time &amp; Language → Speech if silent.</span>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
