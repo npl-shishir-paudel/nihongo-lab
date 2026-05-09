@@ -433,7 +433,193 @@ const NEPALI = {
   "うん、元気だよ。": "हो, सञ्चै छु। (ho, sanchai chhu) — casual",
   "週末、何する？": "विकेन्डमा के गर्ने? (weekend ma k garne?)",
   "映画を見たい。": "मुभी हेर्न मन छ। (movie hernā man chha)",
-  "いいね！一緒に行こう。": "ठीक छ! सँगै जाऔं। (thik chha! sangai jaaauñ)"
+  "いいね！一緒に行こう。": "ठीक छ! सँगै जाऔं। (thik chha! sangai jaaauñ)",
+  // ── Mega expansion: plain forms / potential / volitional / conditionals / comparison / preferences / giving-receiving / quotations ──
+  "私はコーヒーを飲む。": "म कफी पिउँछु। (ma coffee piuchhu) — casual",
+  "毎朝パンを食べる。": "हरेक बिहान रोटी खान्छु। (harek bihana roti khanchhu)",
+  "友達と会う。": "साथीसँग भेट्छु। (sathi sanga bhetchhu)",
+  "本を読む。": "किताब पढ्छु। (kitab padhchhu)",
+  "明日、東京へ行く。": "भोलि टोकियो जान्छु। (bholi Tokyo jaanchhu)",
+  "テストをする。": "टेस्ट गर्छु। (test garchhu)",
+  "明日、来る？": "भोलि आउँछौ? (bholi aaunchhau?)",
+  "彼はコードを書く。": "ऊ कोड लेख्छ। (u code lekhchha)",
+  "コーヒーを飲まない。": "कफी पिउँदिन। (coffee piudina)",
+  "肉を食べない。": "मासु खान्न। (masu khadina)",
+  "今日は行かない。": "आज जाँदिन। (aja jadina)",
+  "わからない。": "बुझ्दिन। (bujhdina)",
+  "彼は来ない。": "ऊ आउँदैन। (u aaudaina)",
+  "宿題をしない。": "गृहकार्य गर्दिन। (grihakarya gardina)",
+  "テレビを見ない。": "टिभी हेर्दिन। (TV herdina)",
+  "彼女は話さない。": "उनी बोल्दिनन्। (uni boldinan)",
+  "昨日、コーヒーを飲んだ。": "हिजो कफी पिएँ। (hijo coffee pieñ)",
+  "もう食べた。": "खाइसकेँ। (khaaisakeñ)",
+  "昨日、東京に行った。": "हिजो टोकियो गएँ। (hijo Tokyo gaeñ)",
+  "本を読んだ。": "किताब पढेँ। (kitab padheñ)",
+  "彼が来た。": "ऊ आयो। (u aayo)",
+  "宿題をした。": "गृहकार्य गरेँ। (grihakarya gareñ)",
+  "テストを書いた。": "टेस्ट लेखेँ। (test lekheñ)",
+  "急いだ。": "हतार गरेँ। (hatar gareñ)",
+  "日本語が話せます。": "जापानी भाषा बोल्न सक्छु। (japanese bhasha bolna sakchhu)",
+  "刺身が食べられます。": "साशिमी खान सक्छु। (sashimi khana sakchhu)",
+  "コードが書けます。": "कोड लेख्न सक्छु। (code lekhna sakchhu)",
+  "明日、来られます。": "भोलि आउन सक्छु। (bholi aauna sakchhu)",
+  "これはできます。": "यो गर्न सक्छु। (yo garna sakchhu)",
+  "車が運転できません。": "गाडी चलाउन सक्दिन। (gadi chalauna sakdina)",
+  "漢字が読めません。": "खान्जी पढ्न सक्दिन। (kanji padhna sakdina)",
+  "今、行けません。": "अहिले जान सक्दिन। (ahile jaana sakdina)",
+  "一緒に行こう。": "सँगै जाउँ। (sangai jaau) — casual",
+  "コーヒーを飲もう。": "कफी पिउँ। (coffee piau)",
+  "明日、何を食べよう？": "भोलि के खाउँ? (bholi k khaau?)",
+  "ちょっと休もう。": "अलि आराम गरौं। (ali aaram garaau)",
+  "テストを書こう。": "टेस्ट लेखौं। (test lekhaau)",
+  "宿題をしよう。": "गृहकार्य गरौं। (grihakarya garaau)",
+  "新しいパソコンを買おう。": "नयाँ ल्यापटप किनौं। (naya laptop kinaau)",
+  "もう寝よう。": "अब सुतौं। (aba sutaau)",
+  "雨が降ったら、家にいます。": "पानी पर्‍यो भने घरमै बस्छु। (pani paryo bhane gharmai baschhu)",
+  "時間があれば、行きます。": "समय भयो भने जान्छु। (samaya bhayo bhane jaanchhu)",
+  "東京に行くなら、新幹線がいいよ。": "टोकियो जाने हो भने सिङ्कान्सेन राम्रो। (Tokyo jaane ho bhane shinkansen ramro)",
+  "春になると、桜が咲く。": "वसन्त आउँदा साकुरा फुल्छ। (basanta aaunda sakura phulchha)",
+  "安ければ、買います。": "सस्तो भयो भने किन्छु। (sasto bhayo bhane kinchhu)",
+  "終わったら、教えてください。": "सकेपछि भन्नुहोस्। (sakepachhi bhannuhos)",
+  "急がないと、遅刻するよ。": "हतार नगरे ढिलो हुन्छ। (hatar nagare dhilo hunchha)",
+  "コードがバグっていたら、直してください。": "कोडमा बग छ भने ठीक गर्नुहोस्। (code ma bug chha bhane thik garnuhos)",
+  "犬より猫のほうが好きです。": "कुकुर भन्दा बिरालो बढी मन पर्छ। (kukur bhanda biralo badhi man parchha)",
+  "東京は大阪より大きいです。": "टोकियो ओसाका भन्दा ठूलो छ। (Tokyo Osaka bhanda thulo chha)",
+  "寿司が一番好きです。": "सुसी सबैभन्दा मन पर्छ। (sushi sabaibhanda man parchha)",
+  "コーヒーよりお茶のほうがいい。": "कफी भन्दा चिया राम्रो। (coffee bhanda chiya ramro)",
+  "クラスで誰が一番背が高いですか？": "क्लासमा कस्ले सबैभन्दा अग्लो हो? (class ma kaslé sabaibhanda aglo ho?)",
+  "夏より冬のほうが好きです。": "गर्मी भन्दा जाडो बढी मन पर्छ। (garmi bhanda jado badhi man parchha)",
+  "このコードが一番速いです。": "यो कोड सबैभन्दा छिटो छ। (yo code sabaibhanda chhito chha)",
+  "新幹線は車より速い。": "सिङ्कान्सेन कार भन्दा छिटो छ। (shinkansen car bhanda chhito chha)",
+  "私は寿司が好きです。": "मलाई सुसी मन पर्छ। (ma lai sushi man parchha)",
+  "コーヒーが嫌いです。": "मलाई कफी मन पर्दैन। (ma lai coffee man pardaina)",
+  "彼は日本語が上手です。": "ऊ जापानीमा निपुण छ। (u japanese ma nipun chha)",
+  "私は料理が下手です。": "मलाई पकाउन आउँदैन। (ma lai pakauna aaudaina)",
+  "ラーメンが大好きです。": "मलाई रामेन धेरै मन पर्छ। (ma lai ramen dherai man parchha)",
+  "猫より犬のほうが好きです。": "बिरालो भन्दा कुकुर बढी मन पर्छ। (biralo bhanda kukur badhi man parchha)",
+  "野菜があまり好きじゃない。": "तरकारी खासै मन पर्दैन। (tarkari khasai man pardaina)",
+  "彼女はギターが上手です。": "उनी गिटारमा निपुण छिन्। (uni guitar ma nipun chhin)",
+  "田中さんに本をあげました。": "तानाका जीलाई किताब दिएँ। (Tanaka-ji lai kitab dieñ)",
+  "田中さんから本をもらいました。": "तानाका जीबाट किताब पाएँ। (Tanaka-ji bata kitab paaeñ)",
+  "母がプレゼントをくれました。": "आमाले उपहार दिनुभयो। (aama le upahar dinubhayo)",
+  "彼女に花をあげる。": "प्रेमिकालाई फूल दिन्छु। (premika lai phul dinchhu)",
+  "友達からチョコをもらった。": "साथीबाट चकलेट पाएँ। (sathi bata chocolate paaeñ)",
+  "上司がアドバイスをくれた。": "हाकिमले सल्लाह दिनुभयो। (hakim le sallah dinubhayo)",
+  "弟にお小遣いをあげる。": "भाइलाई पकेट खर्च दिन्छु। (bhai lai pocket kharcha dinchhu)",
+  "山田さんが助けてくれました。": "यामादा जीले सहयोग गरिदिनुभयो। (Yamada-ji le sahayog garidinubhayo)",
+  "雨が降ると思います。": "पानी पर्छ जस्तो लाग्छ। (pani parchha jasto laagchha)",
+  "田中さんは「行きます」と言いました。": "तानाका जीले 'जान्छु' भन्नुभयो। (Tanaka-ji le 'jaanchhu' bhannubhayo)",
+  "面白いと思った。": "रोचक छ जस्तो लाग्यो। (rochak chha jasto laagyo)",
+  "彼女は綺麗だと思います。": "उनी सुन्दर छिन् जस्तो लाग्छ। (uni sundar chhin jasto laagchha)",
+  "明日休みだって。": "भोलि बिदा रे। (bholi bida re)",
+  "「お疲れさま」と言ってください。": "'धन्यवाद, मेहनत गर्नुभयो' भन्नुहोस्। ('otsukaresama' bhannuhos)",
+  "テストは難しいと聞きました。": "टेस्ट गाह्रो छ रे। (test garho chha re)",
+  "そうじゃないと思う。": "त्यस्तो होइन जस्तो लाग्छ। (tyasto hoina jasto laagchha)",
+  // ── Phase 2: permission/obligation/experience/while/listing/advice/intent/relative/yasui-nikui/sugiru/shika/hearsay/keigo ──
+  "ここで写真を撮ってもいいですか？": "यहाँ फोटो खिच्न मिल्छ? (yahaa photo khichna milchha?)",
+  "食べてもいいですよ。": "खाए हुन्छ। (khaae hunchha)",
+  "ここでタバコを吸ってはいけません。": "यहाँ चुरोट खान मिल्दैन। (yahaa churot khana mildaina)",
+  "コードを見てもいいですか？": "कोड हेर्न मिल्छ? (code herna milchha?)",
+  "授業中にスマホを使ってはいけません。": "क्लासमा मोबाइल चलाउन मिल्दैन। (class ma mobile chalauna mildaina)",
+  "明日休んでもいいですか？": "भोलि बिदा लिन मिल्छ? (bholi bida lina milchha?)",
+  "本番環境を直接いじってはいけません。": "प्रोडक्सन सिधै छुन मिल्दैन। (production sidhai chhuna mildaina)",
+  "もう帰ってもいい？": "अब घर जान मिल्छ? (aba ghar jaana milchha?)",
+  "宿題をしなければなりません。": "गृहकार्य गर्नैपर्छ। (grihakarya garnaiparchha)",
+  "明日早く起きなければなりません。": "भोलि चाँडै उठ्नुपर्छ। (bholi chaadai uthnuparchha)",
+  "薬を飲まなきゃ。": "औषधि खानुपर्छ। (aushadhi khanuparchha — casual)",
+  "この問題を直さないといけない。": "यो समस्या मिलाउनैपर्छ। (yo samasya milaaunaiparchha)",
+  "電車に乗らなければなりません。": "ट्रेन चढ्नुपर्छ। (train chadhnuparchha)",
+  "テストを書かなくちゃ。": "टेस्ट लेख्नैपर्छ। (test lekhnaiparchha — casual)",
+  "デプロイ前にチェックしなければなりません。": "डिप्लोय अघि जाँच्नुपर्छ। (deploy aghi jaanchnuparchha)",
+  "もう寝なきゃ。": "अब सुत्नैपर्छ। (aba sutnaiparchha)",
+  "日本に行ったことがあります。": "जापान गएको छु। (japan gaako chhu)",
+  "寿司を食べたことがあります。": "सुसी खाएको छु। (sushi khaaeko chhu)",
+  "富士山を見たことがあります。": "फूजी पहाड देखेको छु। (Fuji pahad dekheko chhu)",
+  "ラーメンを作ったことがありません。": "रामेन बनाएको छैन। (ramen banaaeko chhain)",
+  "本番でバグを直したことがあります。": "प्रोडक्सनमा बग मिलाएको छु। (production ma bug milaaeko chhu)",
+  "彼に会ったことはない。": "उसलाई कहिल्यै भेटेको छैन। (uslai kahilyai bheteko chhain)",
+  "京都に行ったことがありますか？": "क्योतो गएको छ? (Kyoto gaaeko chha?)",
+  "プログラミングを勉強したことがあります。": "प्रोग्रामिङ पढेको छु। (programming padheko chhu)",
+  "音楽を聞きながら勉強します。": "संगीत सुन्दै पढ्छु। (sangit sundai padhchhu)",
+  "コーヒーを飲みながらコードを書きます。": "कफी पिउँदै कोड लेख्छु। (coffee piudai code lekhchhu)",
+  "テレビを見ながらご飯を食べる。": "टिभी हेर्दै भात खान्छु। (TV herdai bhat khanchhu)",
+  "歩きながら話します。": "हिँड्दै कुरा गर्छु। (hidḍai kura garchhu)",
+  "電話しながら運転してはいけません。": "फोन गर्दै गाडी चलाउन मिल्दैन। (phone gardai gadi chalauna mildaina)",
+  "働きながら大学に通っています。": "काम गर्दै कलेज पढ्दैछु। (kaam gardai college padhdai chhu)",
+  "笑いながら言いました。": "हाँस्दै भन्यो। (haasdai bhanyo)",
+  "考えながら答えてください。": "सोच्दै जवाफ दिनुहोस्। (sochdai jawaf dinuhos)",
+  "週末は本を読んだり、映画を見たりします。": "विकेन्डमा किताब पढ्ने, मुभी हेर्ने जस्ता काम गर्छु। (weekend ma kitab padhne, movie herne jasta kaam garchhu)",
+  "コードを書いたり、レビューしたりします。": "कोड लेख्ने, रिभ्यु गर्ने जस्ता काम गर्छु। (code lekhne, review garne jasta kaam garchhu)",
+  "公園で遊んだり、走ったりした。": "पार्कमा खेल्ने, दौडने जस्ता काम गरेँ। (park ma khelne, daudne jasta kaam gareñ)",
+  "土曜日は寝たり、ゲームをしたりしたい。": "शनिबार सुत्ने, गेम खेल्ने जस्ता काम मन छ। (shanibar sutne, game khelne jasta kaam man chha)",
+  "東京で寿司を食べたり、お寺を見たりしました。": "टोकियोमा सुसी खाने, मन्दिर हेर्ने जस्ता काम गरेँ। (Tokyo ma sushi khane, mandir herne jasta kaam gareñ)",
+  "歌ったり、踊ったりしましょう。": "गाउने, नाच्ने जस्ता काम गरौं। (gaaune, naachne jasta kaam garaau)",
+  "雨が降ったり、止んだりしている。": "पानी पर्ने, रोकिने भइरहेको छ। (pani parne, rokine bhairaheko chha)",
+  "メールを送ったり、電話したりしました。": "इमेल पठाउने, फोन गर्ने जस्ता काम गरेँ। (email pathaaune, phone garne jasta kaam gareñ)",
+  "早く寝たほうがいいですよ。": "चाँडै सुत्दा राम्रो। (chaadai sutda ramro)",
+  "薬を飲んだほうがいいです。": "औषधि खाँदा राम्रो। (aushadhi khanda ramro)",
+  "タバコは吸わないほうがいいです。": "चुरोट नखाँदा राम्रो। (churot nakhanda ramro)",
+  "テストの前に勉強したほうがいい。": "टेस्ट अघि पढ्दा राम्रो। (test aghi padhda ramro)",
+  "傘を持ってきたほうがいいですよ。": "छाता ल्याउँदा राम्रो। (chhata lyaaunda ramro)",
+  "コードをテストしたほうがいい。": "कोड टेस्ट गर्दा राम्रो। (code test garda ramro)",
+  "急いだほうがいいですよ。": "हतार गर्दा राम्रो। (hatar garda ramro)",
+  "電車で行ったほうがいいです。": "ट्रेनमा जाँदा राम्रो। (train ma janda ramro)",
+  "来週、日本に行くつもりです。": "अर्को हप्ता जापान जाने योजना छ। (arko hapta japan jaane yojana chha)",
+  "明日、早く起きるつもりです。": "भोलि चाँडै उठ्ने सोच छ। (bholi chaadai uthne soch chha)",
+  "今日は飲まないつもりです。": "आज नपिउने सोच छ। (aja napiune soch chha)",
+  "新しいパソコンを買うつもりです。": "नयाँ ल्यापटप किन्ने योजना छ। (naya laptop kinne yojana chha)",
+  "週末はゆっくりするつもりです。": "विकेन्डमा आराम गर्ने सोच छ। (weekend ma aaram garne soch chha)",
+  "プルリクを今日中に送るつもりです。": "आजसम्म पुल रिक्वेस्ट पठाउने योजना छ। (aja samma pull request pathaaune yojana chha)",
+  "彼に会うつもりはありません。": "उसलाई भेट्ने सोच छैन। (uslai bhetne soch chhain)",
+  "毎日勉強するつもりです。": "हरेक दिन पढ्ने सोच छ। (harek din padhne soch chha)",
+  "私が書いた本": "मैले लेखेको किताब (maile lekheko kitab)",
+  "昨日食べたラーメンは美味しかった。": "हिजो खाएको रामेन मीठो थियो। (hijo khaaeko ramen mitho thiyo)",
+  "田中さんが住んでいる町は静かです。": "तानाका जी बस्ने सहर शान्त छ। (Tanaka-ji basne sahar shanta chha)",
+  "私が好きな食べ物は寿司です。": "मलाई मन पर्ने खाना सुसी हो। (ma lai man parne khana sushi ho)",
+  "彼が書いたコードはきれいです。": "उसले लेखेको कोड सफा छ। (us le lekheko code safa chha)",
+  "今読んでいる本は面白い。": "अहिले पढिरहेको किताब रोचक छ। (ahile padhiraheko kitab rochak chha)",
+  "新幹線で行く人は田中さんです。": "सिङ्कान्सेनबाट जाने मान्छे तानाका जी हो। (shinkansen bata jaane manchhe Tanaka-ji ho)",
+  "山田さんが直したバグは難しかった。": "यामादा जीले मिलाएको बग गाह्रो थियो। (Yamada-ji le milaaeko bug garho thiyo)",
+  "この本は読みやすいです。": "यो किताब पढ्न सजिलो छ। (yo kitab padhna sajilo chha)",
+  "この字は読みにくい。": "यो अक्षर पढ्न गाह्रो छ। (yo akshar padhna garho chha)",
+  "このコードは理解しやすい。": "यो कोड बुझ्न सजिलो छ। (yo code bujhna sajilo chha)",
+  "この靴は歩きやすい。": "यो जुत्ता हिँड्न सजिलो छ। (yo jutta hidna sajilo chha)",
+  "この漢字は覚えにくいです。": "यो खान्जी सम्झन गाह्रो छ। (yo kanji samjhana garho chha)",
+  "彼の説明はわかりやすかった。": "उसको व्याख्या बुझ्न सजिलो थियो। (us ko vyakhya bujhna sajilo thiyo)",
+  "このバグは見つけにくい。": "यो बग भेट्न गाह्रो छ। (yo bug bhetna garho chha)",
+  "このアプリは使いやすいです。": "यो एप चलाउन सजिलो छ। (yo app chalauna sajilo chha)",
+  "このコーヒーは熱すぎる。": "यो कफी धेरै तातो छ। (yo coffee dherai tato chha)",
+  "食べすぎました。": "धेरै खाएँ। (dherai khaaeñ)",
+  "この問題は難しすぎる。": "यो समस्या धेरै गाह्रो छ। (yo samasya dherai garho chha)",
+  "高すぎて買えません。": "धेरै महँगो भएकोले किन्न सक्दिन। (dherai mahango bhaekole kinna sakdina)",
+  "彼は働きすぎです。": "ऊ धेरै काम गर्छ। (u dherai kaam garchha)",
+  "昨日、飲みすぎた。": "हिजो धेरै पिएँ। (hijo dherai pieñ)",
+  "このコードは複雑すぎます。": "यो कोड धेरै जटिल छ। (yo code dherai jatil chha)",
+  "テストが多すぎる！": "टेस्ट धेरै भयो! (test dherai bhayo!)",
+  "千円しかありません。": "एक हजार येन मात्र छ। (ek hajar yen matra chha)",
+  "一つだけください。": "एक मात्र दिनुहोस्। (ek matra dinuhos)",
+  "私しかわかりません。": "मात्र मैले बुझ्छु। (matra maile bujhchhu)",
+  "彼だけが来ました。": "ऊ मात्र आयो। (u matra aayo)",
+  "今日しか時間がない。": "आज मात्र समय छ। (aja matra samaya chha)",
+  "コーヒーだけを飲みます。": "कफी मात्र पिउँछु। (coffee matra piuchhu)",
+  "二人しか来なかった。": "दुई जना मात्र आए। (dui jana matra aae)",
+  "テストだけ受けます。": "टेस्ट मात्र दिन्छु। (test matra dinchhu)",
+  "明日、雨が降るそうです。": "भोलि पानी पर्छ रे। (bholi pani parchha re)",
+  "田中さんは病気らしい。": "तानाका जी बिरामी हुनुहुन्छ रे। (Tanaka-ji birami hunuhunchha re)",
+  "新しいゲームが面白いそうです。": "नयाँ गेम रोचक छ रे। (naya game rochak chha re)",
+  "彼女は来ないらしい。": "उनी आउँदिनन् रे। (uni aaudinan re)",
+  "山田さんは結婚したそうです。": "यामादा जीले बिहे गर्नुभयो रे। (Yamada-ji le bihe garnubhayo re)",
+  "本番で問題があったそうです。": "प्रोडक्सनमा समस्या आएको थियो रे। (production ma samasya aaeko thiyo re)",
+  "今日はテストがあるらしいよ。": "आज टेस्ट हुने रहेछ। (aja test hune rahechha)",
+  "彼は元気だそうです。": "ऊ सञ्चै छ रे। (u sanchai chha re)",
+  "社長がいらっしゃいました。": "साहु जी आइपुग्नुभयो। (sahu-ji aaipugnubhayo) — formal",
+  "私が参ります。": "म आउँछु। (ma aaunchhu) — humble",
+  "社長は何をおっしゃいましたか？": "साहु जीले के भन्नुभयो? (sahu-ji le k bhannubhayo?)",
+  "私は申します。": "म भन्छु। (ma bhanchhu) — humble",
+  "お客様が召し上がります。": "ग्राहक खानुहुन्छ। (grahak khanuhunchha) — honorific",
+  "私はいただきます。": "म ग्रहण गर्छु। (ma grahan garchhu) — humble (also said before meals)",
+  "ご存じですか？": "तपाईंलाई थाहा छ? (tapaiñ lai thaha chha?) — formal",
+  "存じております。": "मलाई थाहा छ। (ma lai thaha chha) — humble"
 };
 
 const DATA = {
@@ -4319,6 +4505,1813 @@ const DATA = {
             { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
             { t: "綺麗な", ro: "kirei na", role: "na-adjective + な (attributive)", meaning: "pretty (before noun)" },
             { t: "部屋", ro: "heya", role: "Noun", meaning: "room" }
+          ] }
+      ]
+    },
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 12 — PLAIN FORMS (the casual "non-polite" verb forms)
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Plain forms (casual)",
+      title: "Plain dictionary form — the verb's base shape (飲む / 食べる / する)",
+      formula: "Group 1: ends in -u sound (飲む / 書く / 行く)  ·  Group 2: ends in -る with -e/-i (食べる / 見る)  ·  Group 3: する / 来る",
+      description: "The plain (dictionary) form is what you find in dictionaries and what friends use casually. It's also the BUILDING BLOCK for almost every other conjugation: negative, past, potential, conditional, etc. — they all derive from this.",
+      person: "Any (casual register)",
+      tense: "Present / future plain",
+      main: {
+        jp: "私はコーヒーを飲む。",
+        ro: "watashi wa kōhī o nomu.",
+        en: "I drink coffee. (casual / plain)",
+        tokens: [
+          { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+          { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "飲む", ro: "nomu", role: "Verb (plain present, godan)", meaning: "drink" }
+        ]
+      },
+      examples: [
+        { jp: "毎朝パンを食べる。", ro: "maiasa pan o taberu.", en: "I eat bread every morning. (plain)",
+          tokens: [
+            { t: "毎朝", ro: "maiasa", role: "Time noun", meaning: "every morning" },
+            { t: "パン", ro: "pan", role: "Noun", meaning: "bread" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べる", ro: "taberu", role: "Verb (plain present, ichidan)", meaning: "eat" }
+          ] },
+        { jp: "友達と会う。", ro: "tomodachi to au.", en: "I'm meeting a friend.",
+          tokens: [
+            { t: "友達", ro: "tomodachi", role: "Noun", meaning: "friend" },
+            { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with" },
+            { t: "会う", ro: "au", role: "Verb (plain, godan)", meaning: "meet" }
+          ] },
+        { jp: "本を読む。", ro: "hon o yomu.", en: "I read a book.",
+          tokens: [
+            { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "読む", ro: "yomu", role: "Verb (plain, godan)", meaning: "read" }
+          ] },
+        { jp: "明日、東京へ行く。", ro: "ashita, tōkyō e iku.", en: "Tomorrow I go to Tokyo.",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "to" },
+            { t: "行く", ro: "iku", role: "Verb (plain, godan)", meaning: "go" }
+          ] },
+        { jp: "テストをする。", ro: "tesuto o suru.", en: "I do the test.",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "する", ro: "suru", role: "Verb (plain, irregular)", meaning: "do" }
+          ] },
+        { jp: "明日、来る？", ro: "ashita, kuru?", en: "Coming tomorrow? (casual question)",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "来る", ro: "kuru", role: "Verb (plain, irregular)", meaning: "come" }
+          ] },
+        { jp: "彼はコードを書く。", ro: "kare wa kōdo o kaku.", en: "He writes code.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun (3rd)", meaning: "he" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書く", ro: "kaku", role: "Verb (plain, godan)", meaning: "write" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Plain forms (casual)",
+      title: "Plain negative — 〜ない (casual 'don't')",
+      formula: "Group 1: -u → -anai (飲む → 飲まない)  ·  Group 2: drop -ru, add -ない (食べる → 食べない)  ·  Group 3: しない / 来ない",
+      description: "Casual / plain version of ません. Used in friend talk, internal monologue, plain-form sentences. Conjugates like an i-adjective for past forms (〜なかった).",
+      person: "Any (casual)",
+      tense: "Present negative plain",
+      main: {
+        jp: "コーヒーを飲まない。",
+        ro: "kōhī o nomanai.",
+        en: "I don't drink coffee. (casual)",
+        tokens: [
+          { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "飲まない", ro: "nomanai", role: "Verb (plain negative, godan)", meaning: "do not drink" }
+        ]
+      },
+      examples: [
+        { jp: "肉を食べない。", ro: "niku o tabenai.", en: "I don't eat meat.",
+          tokens: [
+            { t: "肉", ro: "niku", role: "Noun", meaning: "meat" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べない", ro: "tabenai", role: "Verb (plain negative, ichidan)", meaning: "do not eat" }
+          ] },
+        { jp: "今日は行かない。", ro: "kyō wa ikanai.", en: "I'm not going today.",
+          tokens: [
+            { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "行かない", ro: "ikanai", role: "Verb (plain negative)", meaning: "do not go" }
+          ] },
+        { jp: "わからない。", ro: "wakaranai.", en: "I don't get it.",
+          tokens: [
+            { t: "わからない", ro: "wakaranai", role: "Verb (plain negative)", meaning: "don't understand" }
+          ] },
+        { jp: "彼は来ない。", ro: "kare wa konai.", en: "He's not coming.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun (3rd)", meaning: "he" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "来ない", ro: "konai", role: "Verb (plain negative, irregular)", meaning: "doesn't come" }
+          ] },
+        { jp: "宿題をしない。", ro: "shukudai o shinai.", en: "I don't do homework.",
+          tokens: [
+            { t: "宿題", ro: "shukudai", role: "Noun", meaning: "homework" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "しない", ro: "shinai", role: "Verb (plain negative, irregular)", meaning: "don't do" }
+          ] },
+        { jp: "テレビを見ない。", ro: "terebi o minai.", en: "I don't watch TV.",
+          tokens: [
+            { t: "テレビ", ro: "terebi", role: "Noun (loanword)", meaning: "TV" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "見ない", ro: "minai", role: "Verb (plain negative, ichidan)", meaning: "don't watch" }
+          ] },
+        { jp: "彼女は話さない。", ro: "kanojo wa hanasanai.", en: "She doesn't talk.",
+          tokens: [
+            { t: "彼女", ro: "kanojo", role: "Pronoun (3rd)", meaning: "she" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "話さない", ro: "hanasanai", role: "Verb (plain negative)", meaning: "doesn't speak" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Plain forms (casual)",
+      title: "Plain past — 〜た / 〜だ (casual 'did')",
+      formula: "Group 1: depends on ending — く→いた, す→した, つ/る/う→った, ぬ/ぶ/む→んだ, ぐ→いだ  ·  Group 2: drop -る + -た  ·  Group 3: した / 来た (きた)",
+      description: "Casual past, building block for many compound expressions (〜たことがある, 〜たほうがいい, 〜たら). Same set of changes as the て-form, just ending in た/だ instead of て/で.",
+      person: "Any (casual)",
+      tense: "Past affirmative plain",
+      main: {
+        jp: "昨日、コーヒーを飲んだ。",
+        ro: "kinō, kōhī o nonda.",
+        en: "Yesterday I drank coffee. (casual)",
+        tokens: [
+          { t: "昨日", ro: "kinō", role: "Time noun", meaning: "yesterday" },
+          { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "飲んだ", ro: "nonda", role: "Verb (plain past, godan -m → -nda)", meaning: "drank" }
+        ]
+      },
+      examples: [
+        { jp: "もう食べた。", ro: "mō tabeta.", en: "I already ate.",
+          tokens: [
+            { t: "もう", ro: "mō", role: "Adverb", meaning: "already" },
+            { t: "食べた", ro: "tabeta", role: "Verb (plain past, ichidan)", meaning: "ate" }
+          ] },
+        { jp: "昨日、東京に行った。", ro: "kinō, tōkyō ni itta.", en: "I went to Tokyo yesterday.",
+          tokens: [
+            { t: "昨日", ro: "kinō", role: "Time noun", meaning: "yesterday" },
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+            { t: "行った", ro: "itta", role: "Verb (plain past, irregular -ku→-itta)", meaning: "went" }
+          ] },
+        { jp: "本を読んだ。", ro: "hon o yonda.", en: "I read a book.",
+          tokens: [
+            { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "読んだ", ro: "yonda", role: "Verb (plain past, godan -m→-nda)", meaning: "read (past)" }
+          ] },
+        { jp: "彼が来た。", ro: "kare ga kita.", en: "He came.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun (3rd)", meaning: "he" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "来た", ro: "kita", role: "Verb (plain past, irregular)", meaning: "came" }
+          ] },
+        { jp: "宿題をした。", ro: "shukudai o shita.", en: "I did the homework.",
+          tokens: [
+            { t: "宿題", ro: "shukudai", role: "Noun", meaning: "homework" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "した", ro: "shita", role: "Verb (plain past, irregular)", meaning: "did" }
+          ] },
+        { jp: "テストを書いた。", ro: "tesuto o kaita.", en: "I wrote the test.",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書いた", ro: "kaita", role: "Verb (plain past, godan -k→-ita)", meaning: "wrote" }
+          ] },
+        { jp: "急いだ。", ro: "isoida.", en: "I hurried.",
+          tokens: [
+            { t: "急いだ", ro: "isoida", role: "Verb (plain past, godan -g→-ida)", meaning: "hurried" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 13 — POTENTIAL / VOLITIONAL / IMPERATIVE
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Potential / Volitional",
+      title: "Potential form — 'can do' / 'be able to do'",
+      formula: "Group 1: -u → -eru (飲む → 飲める, 書く → 書ける)  ·  Group 2: drop -る, add -られる (食べる → 食べられる)  ·  Group 3: できる / 来られる",
+      description: "Says someone CAN do something. Important: with potential verbs the object particle changes from を to が (日本語が話せます — I can speak Japanese, NOT 日本語を話せます).",
+      person: "Any",
+      tense: "Present (negative: -ない, past: -た etc.)",
+      main: {
+        jp: "日本語が話せます。",
+        ro: "nihongo ga hanasemasu.",
+        en: "I can speak Japanese.",
+        tokens: [
+          { t: "日本語", ro: "nihongo", role: "Noun", meaning: "Japanese language" },
+          { t: "が", ro: "ga", role: "Particle — subject (with potential)", meaning: "(replaces を with potential verbs)" },
+          { t: "話せます", ro: "hanasemasu", role: "Verb (potential polite)", meaning: "can speak" }
+        ]
+      },
+      examples: [
+        { jp: "刺身が食べられます。", ro: "sashimi ga taberaremasu.", en: "I can eat sashimi.",
+          tokens: [
+            { t: "刺身", ro: "sashimi", role: "Noun", meaning: "sashimi" },
+            { t: "が", ro: "ga", role: "Particle — subject (potential)", meaning: "marks 'what can be eaten'" },
+            { t: "食べられます", ro: "taberaremasu", role: "Verb (potential polite, ichidan)", meaning: "can eat" }
+          ] },
+        { jp: "コードが書けます。", ro: "kōdo ga kakemasu.", en: "I can write code.",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "が", ro: "ga", role: "Particle — subject (potential)", meaning: "subject of skill" },
+            { t: "書けます", ro: "kakemasu", role: "Verb (potential polite)", meaning: "can write" }
+          ] },
+        { jp: "明日、来られます。", ro: "ashita, koraremasu.", en: "I can come tomorrow.",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "来られます", ro: "koraremasu", role: "Verb (potential polite, irregular)", meaning: "can come" }
+          ] },
+        { jp: "これはできます。", ro: "kore wa dekimasu.", en: "I can do this.",
+          tokens: [
+            { t: "これ", ro: "kore", role: "Demonstrative", meaning: "this" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "できます", ro: "dekimasu", role: "Verb (potential of する, polite)", meaning: "can do" }
+          ] },
+        { jp: "車が運転できません。", ro: "kuruma ga unten dekimasen.", en: "I can't drive a car.",
+          tokens: [
+            { t: "車", ro: "kuruma", role: "Noun", meaning: "car" },
+            { t: "が", ro: "ga", role: "Particle — subject (potential)", meaning: "subject" },
+            { t: "運転", ro: "unten", role: "Noun (verbal)", meaning: "driving" },
+            { t: "できません", ro: "dekimasen", role: "Verb (potential negative)", meaning: "cannot do" }
+          ] },
+        { jp: "漢字が読めません。", ro: "kanji ga yomemasen.", en: "I can't read kanji.",
+          tokens: [
+            { t: "漢字", ro: "kanji", role: "Noun", meaning: "kanji" },
+            { t: "が", ro: "ga", role: "Particle — subject (potential)", meaning: "subject" },
+            { t: "読めません", ro: "yomemasen", role: "Verb (potential negative)", meaning: "cannot read" }
+          ] },
+        { jp: "今、行けません。", ro: "ima, ikemasen.", en: "I can't go now.",
+          tokens: [
+            { t: "今", ro: "ima", role: "Time noun", meaning: "now" },
+            { t: "行けません", ro: "ikemasen", role: "Verb (potential negative, polite)", meaning: "cannot go" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Potential / Volitional",
+      title: "Plain volitional — 'let's' / 'I will' (casual)",
+      formula: "Group 1: -u → -ō (飲む → 飲もう, 行く → 行こう)  ·  Group 2: drop -る, add -よう (食べる → 食べよう)  ·  Group 3: しよう / 来よう",
+      description: "Casual version of ましょう. Used between friends, in self-talk ('I will…'), and as 'let's'. Often combined with か for soft suggestions: 行こうか? = 'shall we go?'.",
+      person: "1st person + listener (we)",
+      tense: "Volitional (intent)",
+      main: {
+        jp: "一緒に行こう。",
+        ro: "issho ni ikō.",
+        en: "Let's go together. (casual)",
+        tokens: [
+          { t: "一緒に", ro: "issho ni", role: "Adverb phrase", meaning: "together" },
+          { t: "行こう", ro: "ikō", role: "Verb (plain volitional, godan)", meaning: "let's go" }
+        ]
+      },
+      examples: [
+        { jp: "コーヒーを飲もう。", ro: "kōhī o nomō.", en: "Let's drink coffee.",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "飲もう", ro: "nomō", role: "Verb (plain volitional)", meaning: "let's drink" }
+          ] },
+        { jp: "明日、何を食べよう？", ro: "ashita, nani o tabeyō?", en: "What shall we eat tomorrow?",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "何", ro: "nani", role: "Question word", meaning: "what" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べよう", ro: "tabeyō", role: "Verb (plain volitional, ichidan)", meaning: "shall (we) eat" }
+          ] },
+        { jp: "ちょっと休もう。", ro: "chotto yasumō.", en: "Let's take a short break.",
+          tokens: [
+            { t: "ちょっと", ro: "chotto", role: "Adverb", meaning: "a little / briefly" },
+            { t: "休もう", ro: "yasumō", role: "Verb (plain volitional)", meaning: "let's rest" }
+          ] },
+        { jp: "テストを書こう。", ro: "tesuto o kakō.", en: "Let's write the test.",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書こう", ro: "kakō", role: "Verb (plain volitional)", meaning: "let's write" }
+          ] },
+        { jp: "宿題をしよう。", ro: "shukudai o shiyō.", en: "Let's do the homework.",
+          tokens: [
+            { t: "宿題", ro: "shukudai", role: "Noun", meaning: "homework" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "しよう", ro: "shiyō", role: "Verb (plain volitional, irregular)", meaning: "let's do" }
+          ] },
+        { jp: "新しいパソコンを買おう。", ro: "atarashii pasokon o kaō.", en: "Let's buy a new PC.",
+          tokens: [
+            { t: "新しい", ro: "atarashii", role: "i-adjective", meaning: "new" },
+            { t: "パソコン", ro: "pasokon", role: "Noun", meaning: "PC" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "買おう", ro: "kaō", role: "Verb (plain volitional)", meaning: "let's buy" }
+          ] },
+        { jp: "もう寝よう。", ro: "mō neyō.", en: "Let's go to sleep already.",
+          tokens: [
+            { t: "もう", ro: "mō", role: "Adverb", meaning: "already / now" },
+            { t: "寝よう", ro: "neyō", role: "Verb (plain volitional, ichidan)", meaning: "let's sleep" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 14 — CONDITIONALS / COMPARISON
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Conditionals / Comparison",
+      title: "Conditionals — ば / たら / なら / と (four ways to say 'if')",
+      formula: "[Verb-ば] | [Verb-たら] | [Verb-なら] | [Verb-と] + result clause",
+      description: "Four conditionals with subtle differences. ば — general 'if A then B' (often hypothetical). たら — 'when/once A happens, then B' (concrete result, common in speech). なら — 'if it's the case that A' (presumes A is being discussed). と — 'whenever A, B' (automatic result, recipes / mechanical).",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "雨が降ったら、家にいます。",
+        ro: "ame ga futtara, ie ni imasu.",
+        en: "If/when it rains, I'll stay home. (たら)",
+        tokens: [
+          { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+          { t: "降ったら", ro: "futtara", role: "Verb (plain past + ら = conditional)", meaning: "if/when (it) falls" },
+          { t: "家", ro: "ie", role: "Noun", meaning: "home" },
+          { t: "に", ro: "ni", role: "Particle — location", meaning: "at" },
+          { t: "います", ro: "imasu", role: "Verb (existence)", meaning: "stay" }
+        ]
+      },
+      examples: [
+        { jp: "時間があれば、行きます。", ro: "jikan ga areba, ikimasu.", en: "If I have time, I'll go. (ば)",
+          tokens: [
+            { t: "時間", ro: "jikan", role: "Noun", meaning: "time" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あれば", ro: "areba", role: "Verb (plain + ば = conditional)", meaning: "if (I) have" },
+            { t: "行きます", ro: "ikimasu", role: "Verb (polite)", meaning: "go" }
+          ] },
+        { jp: "東京に行くなら、新幹線がいいよ。", ro: "tōkyō ni iku nara, shinkansen ga ii yo.", en: "If you're going to Tokyo, the bullet train is best. (なら)",
+          tokens: [
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+            { t: "行く", ro: "iku", role: "Verb (plain)", meaning: "go" },
+            { t: "なら", ro: "nara", role: "Particle — conditional (presumed)", meaning: "if it's the case" },
+            { t: "新幹線", ro: "shinkansen", role: "Noun", meaning: "bullet train" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "春になると、桜が咲く。", ro: "haru ni naru to, sakura ga saku.", en: "When spring comes, cherry blossoms bloom. (と — automatic)",
+          tokens: [
+            { t: "春", ro: "haru", role: "Noun", meaning: "spring" },
+            { t: "に", ro: "ni", role: "Particle — target", meaning: "to" },
+            { t: "なる", ro: "naru", role: "Verb (plain)", meaning: "become" },
+            { t: "と", ro: "to", role: "Particle — conditional (automatic)", meaning: "when / whenever" },
+            { t: "桜", ro: "sakura", role: "Noun", meaning: "cherry blossom" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "咲く", ro: "saku", role: "Verb (plain)", meaning: "bloom" }
+          ] },
+        { jp: "安ければ、買います。", ro: "yasukereba, kaimasu.", en: "If it's cheap, I'll buy it. (i-adj + ば)",
+          tokens: [
+            { t: "安ければ", ro: "yasukereba", role: "i-adjective + ば conditional", meaning: "if (it's) cheap" },
+            { t: "買います", ro: "kaimasu", role: "Verb (polite)", meaning: "buy" }
+          ] },
+        { jp: "終わったら、教えてください。", ro: "owattara, oshiete kudasai.", en: "When you finish, please tell me.",
+          tokens: [
+            { t: "終わったら", ro: "owattara", role: "Verb (たら conditional)", meaning: "when (it) ends" },
+            { t: "教えて", ro: "oshiete", role: "Verb (て-form)", meaning: "tell" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] },
+        { jp: "急がないと、遅刻するよ。", ro: "isoganai to, chikoku suru yo.", en: "If you don't hurry, you'll be late.",
+          tokens: [
+            { t: "急がない", ro: "isoganai", role: "Verb (plain negative)", meaning: "not hurry" },
+            { t: "と", ro: "to", role: "Particle — conditional", meaning: "if / when" },
+            { t: "遅刻する", ro: "chikoku suru", role: "Verb (plain)", meaning: "be late" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(warning)" }
+          ] },
+        { jp: "コードがバグっていたら、直してください。", ro: "kōdo ga bagutte itara, naoshite kudasai.", en: "If the code is buggy, please fix it.",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "バグっていたら", ro: "bagutte itara", role: "Verb (continuous + たら)", meaning: "if (it) is buggy" },
+            { t: "直して", ro: "naoshite", role: "Verb (て-form)", meaning: "fix" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Conditionals / Comparison",
+      title: "Comparison — より / ほうが / 一番 (more, more-of-the-two, most)",
+      formula: "A は B より [adjective]   ·   A の ほうが [adjective]   ·   [Group] で 一番 [adjective]",
+      description: "Three core comparison patterns. A は B より = 'A is more X than B'. A の ほうが [adj] = 'A is the more X (of the two)'. 一番 [adj] = 'the most X / the best'.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "犬より猫のほうが好きです。",
+        ro: "inu yori neko no hō ga suki desu.",
+        en: "I like cats more than dogs.",
+        tokens: [
+          { t: "犬", ro: "inu", role: "Noun", meaning: "dog" },
+          { t: "より", ro: "yori", role: "Particle — comparison ('than')", meaning: "than" },
+          { t: "猫", ro: "neko", role: "Noun", meaning: "cat" },
+          { t: "の", ro: "no", role: "Particle — possessive/connector", meaning: "of" },
+          { t: "ほうが", ro: "hō ga", role: "Phrase — 'the side / direction'", meaning: "more (the cat-side)" },
+          { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+          { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+        ]
+      },
+      examples: [
+        { jp: "東京は大阪より大きいです。", ro: "tōkyō wa ōsaka yori ōkii desu.", en: "Tokyo is bigger than Osaka.",
+          tokens: [
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "大阪", ro: "ōsaka", role: "Proper noun", meaning: "Osaka" },
+            { t: "より", ro: "yori", role: "Particle — comparison", meaning: "than" },
+            { t: "大きい", ro: "ōkii", role: "i-adjective", meaning: "big" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "寿司が一番好きです。", ro: "sushi ga ichiban suki desu.", en: "I like sushi the best.",
+          tokens: [
+            { t: "寿司", ro: "sushi", role: "Noun", meaning: "sushi" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "一番", ro: "ichiban", role: "Adverb (most)", meaning: "the most / best" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "コーヒーよりお茶のほうがいい。", ro: "kōhī yori ocha no hō ga ii.", en: "Tea is better than coffee.",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+            { t: "より", ro: "yori", role: "Particle — comparison", meaning: "than" },
+            { t: "お茶", ro: "ocha", role: "Noun", meaning: "tea" },
+            { t: "の", ro: "no", role: "Particle — connector", meaning: "of" },
+            { t: "ほうが", ro: "hō ga", role: "Phrase — direction/side", meaning: "the side of" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" }
+          ] },
+        { jp: "クラスで誰が一番背が高いですか？", ro: "kurasu de dare ga ichiban se ga takai desu ka?", en: "Who is tallest in the class?",
+          tokens: [
+            { t: "クラス", ro: "kurasu", role: "Noun (loanword)", meaning: "class" },
+            { t: "で", ro: "de", role: "Particle — scope", meaning: "in/within" },
+            { t: "誰", ro: "dare", role: "Question word", meaning: "who" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "一番", ro: "ichiban", role: "Adverb", meaning: "most" },
+            { t: "背", ro: "se", role: "Noun", meaning: "stature/back" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "高い", ro: "takai", role: "i-adjective", meaning: "tall" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "夏より冬のほうが好きです。", ro: "natsu yori fuyu no hō ga suki desu.", en: "I prefer winter over summer.",
+          tokens: [
+            { t: "夏", ro: "natsu", role: "Noun", meaning: "summer" },
+            { t: "より", ro: "yori", role: "Particle — comparison", meaning: "than" },
+            { t: "冬", ro: "fuyu", role: "Noun", meaning: "winter" },
+            { t: "の", ro: "no", role: "Particle — connector", meaning: "of" },
+            { t: "ほうが", ro: "hō ga", role: "Phrase", meaning: "more" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "このコードが一番速いです。", ro: "kono kōdo ga ichiban hayai desu.", en: "This code is the fastest.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "一番", ro: "ichiban", role: "Adverb", meaning: "most" },
+            { t: "速い", ro: "hayai", role: "i-adjective", meaning: "fast" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "新幹線は車より速い。", ro: "shinkansen wa kuruma yori hayai.", en: "The bullet train is faster than a car.",
+          tokens: [
+            { t: "新幹線", ro: "shinkansen", role: "Noun", meaning: "bullet train" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "車", ro: "kuruma", role: "Noun", meaning: "car" },
+            { t: "より", ro: "yori", role: "Particle — comparison", meaning: "than" },
+            { t: "速い", ro: "hayai", role: "i-adjective", meaning: "fast" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 15 — PREFERENCES / GIVING-RECEIVING / QUOTATIONS
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Preferences / Quotations",
+      title: "〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)",
+      formula: "[Topic は] [Object が] 好き / 嫌い / 上手 / 下手 です",
+      description: "Liking, hating, being skilled or poor at something uses **が**, NOT を. The thing you like is treated as the SUBJECT of being-liked, not as a direct object of an action.",
+      person: "1st person primarily; for others, often softened",
+      tense: "Present (negative: 〜じゃありません)",
+      main: {
+        jp: "私は寿司が好きです。",
+        ro: "watashi wa sushi ga suki desu.",
+        en: "I like sushi.",
+        tokens: [
+          { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+          { t: "寿司", ro: "sushi", role: "Noun (object of preference)", meaning: "sushi" },
+          { t: "が", ro: "ga", role: "Particle — subject (preference)", meaning: "marks the thing liked" },
+          { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+          { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+        ]
+      },
+      examples: [
+        { jp: "コーヒーが嫌いです。", ro: "kōhī ga kirai desu.", en: "I hate coffee.",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+            { t: "が", ro: "ga", role: "Particle — subject (preference)", meaning: "marks the thing hated" },
+            { t: "嫌い", ro: "kirai", role: "na-adjective", meaning: "hated / disliked" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "彼は日本語が上手です。", ro: "kare wa nihongo ga jōzu desu.", en: "He is good at Japanese.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun (3rd)", meaning: "he" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "日本語", ro: "nihongo", role: "Noun", meaning: "Japanese" },
+            { t: "が", ro: "ga", role: "Particle — subject (skill)", meaning: "marks the skill" },
+            { t: "上手", ro: "jōzu", role: "na-adjective", meaning: "skilled" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "私は料理が下手です。", ro: "watashi wa ryōri ga heta desu.", en: "I'm bad at cooking.",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "料理", ro: "ryōri", role: "Noun", meaning: "cooking" },
+            { t: "が", ro: "ga", role: "Particle — subject (skill)", meaning: "marks the skill" },
+            { t: "下手", ro: "heta", role: "na-adjective", meaning: "unskilled" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "ラーメンが大好きです。", ro: "rāmen ga daisuki desu.", en: "I love ramen.",
+          tokens: [
+            { t: "ラーメン", ro: "rāmen", role: "Noun", meaning: "ramen" },
+            { t: "が", ro: "ga", role: "Particle — subject (preference)", meaning: "marks the thing loved" },
+            { t: "大好き", ro: "daisuki", role: "na-adjective (intensified)", meaning: "loved" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "猫より犬のほうが好きです。", ro: "neko yori inu no hō ga suki desu.", en: "I prefer dogs to cats.",
+          tokens: [
+            { t: "猫", ro: "neko", role: "Noun", meaning: "cat" },
+            { t: "より", ro: "yori", role: "Particle — comparison", meaning: "than" },
+            { t: "犬", ro: "inu", role: "Noun", meaning: "dog" },
+            { t: "の", ro: "no", role: "Particle — connector", meaning: "of" },
+            { t: "ほうが", ro: "hō ga", role: "Phrase", meaning: "more" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "野菜があまり好きじゃない。", ro: "yasai ga amari suki ja nai.", en: "I don't really like vegetables.",
+          tokens: [
+            { t: "野菜", ro: "yasai", role: "Noun", meaning: "vegetable" },
+            { t: "が", ro: "ga", role: "Particle — subject (preference)", meaning: "subject" },
+            { t: "あまり", ro: "amari", role: "Adverb (with negative)", meaning: "not much" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+            { t: "じゃない", ro: "ja nai", role: "Casual negative copula", meaning: "is not" }
+          ] },
+        { jp: "彼女はギターが上手です。", ro: "kanojo wa gitā ga jōzu desu.", en: "She's good at guitar.",
+          tokens: [
+            { t: "彼女", ro: "kanojo", role: "Pronoun (3rd)", meaning: "she" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "ギター", ro: "gitā", role: "Noun (loanword)", meaning: "guitar" },
+            { t: "が", ro: "ga", role: "Particle — subject (skill)", meaning: "subject" },
+            { t: "上手", ro: "jōzu", role: "na-adjective", meaning: "skilled" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Preferences / Quotations",
+      title: "Giving / receiving — あげる / もらう / くれる (direction matters!)",
+      formula: "I → others: あげる   ·   I receive: もらう   ·   Others → me: くれる",
+      description: "Three different verbs depending on the DIRECTION of giving. あげる — I give to someone (or 3rd party gives to 3rd party). もらう — I receive. くれる — someone gives TO ME (in-group). This distinction is unique to Japanese and required for politeness.",
+      person: "Direction-sensitive (1st vs others matters!)",
+      tense: "Any",
+      main: {
+        jp: "田中さんに本をあげました。",
+        ro: "tanaka-san ni hon o agemashita.",
+        en: "I gave Tanaka a book.",
+        tokens: [
+          { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+          { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+          { t: "に", ro: "ni", role: "Particle — recipient", meaning: "to" },
+          { t: "本", ro: "hon", role: "Noun (gift)", meaning: "book" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "あげました", ro: "agemashita", role: "Verb (polite past — give to others)", meaning: "gave" }
+        ]
+      },
+      examples: [
+        { jp: "田中さんから本をもらいました。", ro: "tanaka-san kara hon o moraimashita.", en: "I received a book from Tanaka.",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "から", ro: "kara", role: "Particle — origin", meaning: "from" },
+            { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "もらいました", ro: "moraimashita", role: "Verb (polite past — receive)", meaning: "received" }
+          ] },
+        { jp: "母がプレゼントをくれました。", ro: "haha ga purezento o kuremashita.", en: "Mom gave me a present.",
+          tokens: [
+            { t: "母", ro: "haha", role: "Noun", meaning: "mother" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "プレゼント", ro: "purezento", role: "Noun (loanword)", meaning: "present" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "くれました", ro: "kuremashita", role: "Verb (polite past — give to me)", meaning: "gave (to me)" }
+          ] },
+        { jp: "彼女に花をあげる。", ro: "kanojo ni hana o ageru.", en: "I'll give flowers to my girlfriend.",
+          tokens: [
+            { t: "彼女", ro: "kanojo", role: "Pronoun", meaning: "girlfriend" },
+            { t: "に", ro: "ni", role: "Particle — recipient", meaning: "to" },
+            { t: "花", ro: "hana", role: "Noun", meaning: "flower" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "あげる", ro: "ageru", role: "Verb (plain — give to others)", meaning: "give" }
+          ] },
+        { jp: "友達からチョコをもらった。", ro: "tomodachi kara choko o moratta.", en: "I got chocolate from a friend.",
+          tokens: [
+            { t: "友達", ro: "tomodachi", role: "Noun", meaning: "friend" },
+            { t: "から", ro: "kara", role: "Particle — origin", meaning: "from" },
+            { t: "チョコ", ro: "choko", role: "Noun (loanword)", meaning: "chocolate" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "もらった", ro: "moratta", role: "Verb (plain past — receive)", meaning: "received" }
+          ] },
+        { jp: "上司がアドバイスをくれた。", ro: "jōshi ga adobaisu o kureta.", en: "My boss gave me advice.",
+          tokens: [
+            { t: "上司", ro: "jōshi", role: "Noun", meaning: "boss" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "アドバイス", ro: "adobaisu", role: "Noun (loanword)", meaning: "advice" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "くれた", ro: "kureta", role: "Verb (plain past — give to me)", meaning: "gave (to me)" }
+          ] },
+        { jp: "弟にお小遣いをあげる。", ro: "otōto ni okozukai o ageru.", en: "I give my younger brother an allowance.",
+          tokens: [
+            { t: "弟", ro: "otōto", role: "Noun", meaning: "younger brother" },
+            { t: "に", ro: "ni", role: "Particle — recipient", meaning: "to" },
+            { t: "お小遣い", ro: "okozukai", role: "Noun", meaning: "allowance / pocket money" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "あげる", ro: "ageru", role: "Verb (plain — give to others)", meaning: "give" }
+          ] },
+        { jp: "山田さんが助けてくれました。", ro: "yamada-san ga tasukete kuremashita.", en: "Yamada helped me. (lit. did me the favor of helping)",
+          tokens: [
+            { t: "山田", ro: "yamada", role: "Proper noun", meaning: "Yamada" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "助けて", ro: "tasukete", role: "Verb (て-form)", meaning: "helping" },
+            { t: "くれました", ro: "kuremashita", role: "Auxiliary (favor done for me)", meaning: "did (for me)" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Preferences / Quotations",
+      title: "Quotations — 〜と言う / 〜と思う / 〜って (saying & thinking)",
+      formula: "[Quoted text in plain form] と + 言う / 思う / 聞く ...   |   casual: 〜って",
+      description: "と marks the end of a quotation. Use plain form inside the quote, then と + verb of speech/thought. Casual conversation often uses って instead of と.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "雨が降ると思います。",
+        ro: "ame ga furu to omoimasu.",
+        en: "I think it will rain.",
+        tokens: [
+          { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+          { t: "降る", ro: "furu", role: "Verb (plain — quoted)", meaning: "fall (it rains)" },
+          { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote ends)" },
+          { t: "思います", ro: "omoimasu", role: "Verb (polite — think)", meaning: "think" }
+        ]
+      },
+      examples: [
+        { jp: "田中さんは「行きます」と言いました。", ro: "tanaka-san wa 'ikimasu' to iimashita.", en: "Tanaka said 'I'll go.'",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "「行きます」", ro: "ikimasu", role: "Direct quote", meaning: "'I'll go'" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(end of quote)" },
+            { t: "言いました", ro: "iimashita", role: "Verb (polite past — say)", meaning: "said" }
+          ] },
+        { jp: "面白いと思った。", ro: "omoshiroi to omotta.", en: "I thought it was interesting.",
+          tokens: [
+            { t: "面白い", ro: "omoshiroi", role: "i-adjective (quoted)", meaning: "interesting" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote)" },
+            { t: "思った", ro: "omotta", role: "Verb (plain past — think)", meaning: "thought" }
+          ] },
+        { jp: "彼女は綺麗だと思います。", ro: "kanojo wa kirei da to omoimasu.", en: "I think she's pretty. (note: な-adj needs だ before と)",
+          tokens: [
+            { t: "彼女", ro: "kanojo", role: "Pronoun", meaning: "she" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "綺麗", ro: "kirei", role: "na-adjective", meaning: "pretty" },
+            { t: "だ", ro: "da", role: "Plain copula (required before と)", meaning: "is" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote)" },
+            { t: "思います", ro: "omoimasu", role: "Verb (polite — think)", meaning: "think" }
+          ] },
+        { jp: "明日休みだって。", ro: "ashita yasumi datte.", en: "I heard tomorrow's a day off. (って casual)",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "休み", ro: "yasumi", role: "Noun", meaning: "day off" },
+            { t: "だって", ro: "datte", role: "Casual quotation marker", meaning: "(I heard / it's said)" }
+          ] },
+        { jp: "「お疲れさま」と言ってください。", ro: "'otsukaresama' to itte kudasai.", en: "Please say 'good work.'",
+          tokens: [
+            { t: "「お疲れさま」", ro: "otsukaresama", role: "Direct quote", meaning: "'good work'" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote end)" },
+            { t: "言って", ro: "itte", role: "Verb (て-form of 言う)", meaning: "say" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] },
+        { jp: "テストは難しいと聞きました。", ro: "tesuto wa muzukashii to kikimashita.", en: "I heard the test is difficult.",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "難しい", ro: "muzukashii", role: "i-adjective", meaning: "difficult" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote)" },
+            { t: "聞きました", ro: "kikimashita", role: "Verb (polite past — hear)", meaning: "heard" }
+          ] },
+        { jp: "そうじゃないと思う。", ro: "sō ja nai to omou.", en: "I don't think that's the case.",
+          tokens: [
+            { t: "そう", ro: "sō", role: "Adverb", meaning: "so / that way" },
+            { t: "じゃない", ro: "ja nai", role: "Casual negative copula", meaning: "is not" },
+            { t: "と", ro: "to", role: "Particle — quotation", meaning: "(quote)" },
+            { t: "思う", ro: "omou", role: "Verb (plain — think)", meaning: "think" }
+          ] }
+      ]
+    },
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 16 — PERMISSION / OBLIGATION / PROHIBITION
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Permission / Obligation",
+      title: "〜てもいい / 〜てはいけない — May / Must not",
+      formula: "[Verb-て] もいいです (may, OK to) ↔ [Verb-て] はいけません (must not)",
+      description: "Both are formed from the て-form. もいい = permission (may, allowed to). はいけない = prohibition (must not). Casual versions: 〜てもいい / 〜ちゃダメ.",
+      person: "Often 1st (asking) or 2nd (telling)",
+      tense: "Present",
+      main: {
+        jp: "ここで写真を撮ってもいいですか？",
+        ro: "koko de shashin o totte mo ii desu ka?",
+        en: "May I take a photo here?",
+        tokens: [
+          { t: "ここ", ro: "koko", role: "Demonstrative (place)", meaning: "here" },
+          { t: "で", ro: "de", role: "Particle — action location", meaning: "at" },
+          { t: "写真", ro: "shashin", role: "Noun", meaning: "photo" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "撮って", ro: "totte", role: "Verb (て-form of 撮る)", meaning: "taking" },
+          { t: "も", ro: "mo", role: "Particle — also/even", meaning: "even" },
+          { t: "いい", ro: "ii", role: "i-adjective", meaning: "good / OK" },
+          { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+          { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+        ]
+      },
+      examples: [
+        { jp: "食べてもいいですよ。", ro: "tabete mo ii desu yo.", en: "You may eat it.",
+          tokens: [
+            { t: "食べて", ro: "tabete", role: "Verb (て-form)", meaning: "eating" },
+            { t: "も", ro: "mo", role: "Particle — even", meaning: "even" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "OK" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "ここでタバコを吸ってはいけません。", ro: "koko de tabako o sutte wa ikemasen.", en: "You must not smoke here.",
+          tokens: [
+            { t: "ここ", ro: "koko", role: "Demonstrative", meaning: "here" },
+            { t: "で", ro: "de", role: "Particle — action location", meaning: "at" },
+            { t: "タバコ", ro: "tabako", role: "Noun", meaning: "cigarette" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "吸って", ro: "sutte", role: "Verb (て-form)", meaning: "smoking" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "いけません", ro: "ikemasen", role: "Verb (polite negative)", meaning: "must not / not allowed" }
+          ] },
+        { jp: "コードを見てもいいですか？", ro: "kōdo o mite mo ii desu ka?", en: "May I see the code?",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "見て", ro: "mite", role: "Verb (て-form)", meaning: "seeing" },
+            { t: "も", ro: "mo", role: "Particle", meaning: "even" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "OK" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "授業中にスマホを使ってはいけません。", ro: "jugyō-chū ni sumaho o tsukatte wa ikemasen.", en: "You must not use your smartphone during class.",
+          tokens: [
+            { t: "授業中", ro: "jugyō-chū", role: "Noun (during)", meaning: "during class" },
+            { t: "に", ro: "ni", role: "Particle — time/period", meaning: "in / at" },
+            { t: "スマホ", ro: "sumaho", role: "Noun (loanword)", meaning: "smartphone" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "使って", ro: "tsukatte", role: "Verb (て-form)", meaning: "using" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "いけません", ro: "ikemasen", role: "Verb (polite neg)", meaning: "not allowed" }
+          ] },
+        { jp: "明日休んでもいいですか？", ro: "ashita yasunde mo ii desu ka?", en: "May I take tomorrow off?",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "休んで", ro: "yasunde", role: "Verb (て-form of 休む)", meaning: "rest / take off" },
+            { t: "も", ro: "mo", role: "Particle", meaning: "even" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "OK" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "本番環境を直接いじってはいけません。", ro: "honban kankyō o chokusetsu ijitte wa ikemasen.", en: "You must not directly touch the production environment.",
+          tokens: [
+            { t: "本番環境", ro: "honban kankyō", role: "Noun (compound)", meaning: "production environment" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "直接", ro: "chokusetsu", role: "Adverb", meaning: "directly" },
+            { t: "いじって", ro: "ijitte", role: "Verb (て-form of いじる)", meaning: "touching" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "いけません", ro: "ikemasen", role: "Verb (polite neg)", meaning: "not allowed" }
+          ] },
+        { jp: "もう帰ってもいい？", ro: "mō kaette mo ii?", en: "Can I go home now? (casual)",
+          tokens: [
+            { t: "もう", ro: "mō", role: "Adverb", meaning: "already" },
+            { t: "帰って", ro: "kaette", role: "Verb (て-form)", meaning: "returning home" },
+            { t: "も", ro: "mo", role: "Particle", meaning: "even" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "OK" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Permission / Obligation",
+      title: "〜なければなりません — Must do (obligation)",
+      formula: "[Verb-plain negative drop -い] + ければなりません  (casual: 〜なきゃ / 〜なくちゃ)",
+      description: "Says you MUST do something. Take the verb's plain negative (飲ま-ない), drop the い, add ければなりません. Casual contractions: 〜なきゃ (informal must) and 〜なくちゃ. Also: 〜ないといけない is equivalent.",
+      person: "Any",
+      tense: "Present obligation",
+      main: {
+        jp: "宿題をしなければなりません。",
+        ro: "shukudai o shinakereba narimasen.",
+        en: "I have to do my homework.",
+        tokens: [
+          { t: "宿題", ro: "shukudai", role: "Noun", meaning: "homework" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "しなければ", ro: "shinakereba", role: "Verb (negative-conditional)", meaning: "if not do…" },
+          { t: "なりません", ro: "narimasen", role: "Verb (polite negative — 'won't become')", meaning: "won't do (= must do)" }
+        ]
+      },
+      examples: [
+        { jp: "明日早く起きなければなりません。", ro: "ashita hayaku okinakereba narimasen.", en: "I have to wake up early tomorrow.",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "早く", ro: "hayaku", role: "Adverb", meaning: "early" },
+            { t: "起きなければ", ro: "okinakereba", role: "Verb (neg-conditional)", meaning: "if not wake up" },
+            { t: "なりません", ro: "narimasen", role: "Auxiliary (must)", meaning: "must" }
+          ] },
+        { jp: "薬を飲まなきゃ。", ro: "kusuri o nomanakya.", en: "I gotta take my medicine. (casual)",
+          tokens: [
+            { t: "薬", ro: "kusuri", role: "Noun", meaning: "medicine" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "飲まなきゃ", ro: "nomanakya", role: "Verb (casual must)", meaning: "gotta drink" }
+          ] },
+        { jp: "この問題を直さないといけない。", ro: "kono mondai o naosanai to ikenai.", en: "I have to fix this problem.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "問題", ro: "mondai", role: "Noun", meaning: "problem" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "直さない", ro: "naosanai", role: "Verb (plain negative)", meaning: "not fix" },
+            { t: "と", ro: "to", role: "Particle — conditional", meaning: "if" },
+            { t: "いけない", ro: "ikenai", role: "Verb (plain negative)", meaning: "not OK (= must)" }
+          ] },
+        { jp: "電車に乗らなければなりません。", ro: "densha ni noranakereba narimasen.", en: "I have to take the train.",
+          tokens: [
+            { t: "電車", ro: "densha", role: "Noun", meaning: "train" },
+            { t: "に", ro: "ni", role: "Particle — target", meaning: "(get on)" },
+            { t: "乗らなければ", ro: "noranakereba", role: "Verb (neg-conditional)", meaning: "if not ride" },
+            { t: "なりません", ro: "narimasen", role: "Auxiliary (must)", meaning: "must" }
+          ] },
+        { jp: "テストを書かなくちゃ。", ro: "tesuto o kakanakucha.", en: "I gotta write the test. (casual)",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書かなくちゃ", ro: "kakanakucha", role: "Verb (casual must)", meaning: "gotta write" }
+          ] },
+        { jp: "デプロイ前にチェックしなければなりません。", ro: "depuroi mae ni chekku shinakereba narimasen.", en: "I must check before deploying.",
+          tokens: [
+            { t: "デプロイ", ro: "depuroi", role: "Noun", meaning: "deploy" },
+            { t: "前", ro: "mae", role: "Noun", meaning: "before" },
+            { t: "に", ro: "ni", role: "Particle — time", meaning: "at/on" },
+            { t: "チェック", ro: "chekku", role: "Noun (loanword)", meaning: "check" },
+            { t: "しなければ", ro: "shinakereba", role: "Verb (neg-conditional)", meaning: "if not do" },
+            { t: "なりません", ro: "narimasen", role: "Auxiliary (must)", meaning: "must" }
+          ] },
+        { jp: "もう寝なきゃ。", ro: "mō nenakya.", en: "Gotta sleep now. (casual)",
+          tokens: [
+            { t: "もう", ro: "mō", role: "Adverb", meaning: "already / now" },
+            { t: "寝なきゃ", ro: "nenakya", role: "Verb (casual must)", meaning: "gotta sleep" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 17 — EXPERIENCE / WHILE / LISTING / ADVICE / INTENT
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Time / Experience / Plans",
+      title: "〜たことがある — Have done X before (experience)",
+      formula: "[Verb plain past] + ことがあります",
+      description: "Says you HAVE EXPERIENCED X (at least once in your life). Take the plain past form (〜た / 〜だ) and add ことがあります. Negative: 〜たことがありません = haven't done X.",
+      person: "Any",
+      tense: "Past experience",
+      main: {
+        jp: "日本に行ったことがあります。",
+        ro: "nihon ni itta koto ga arimasu.",
+        en: "I have been to Japan (before).",
+        tokens: [
+          { t: "日本", ro: "nihon", role: "Proper noun", meaning: "Japan" },
+          { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+          { t: "行った", ro: "itta", role: "Verb (plain past)", meaning: "went" },
+          { t: "こと", ro: "koto", role: "Noun (formal 'thing/fact')", meaning: "experience" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+          { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "exists (= have)" }
+        ]
+      },
+      examples: [
+        { jp: "寿司を食べたことがあります。", ro: "sushi o tabeta koto ga arimasu.", en: "I have eaten sushi before.",
+          tokens: [
+            { t: "寿司", ro: "sushi", role: "Noun", meaning: "sushi" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べた", ro: "tabeta", role: "Verb (plain past)", meaning: "ate" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "have" }
+          ] },
+        { jp: "富士山を見たことがあります。", ro: "fujisan o mita koto ga arimasu.", en: "I've seen Mt. Fuji.",
+          tokens: [
+            { t: "富士山", ro: "fujisan", role: "Proper noun", meaning: "Mt. Fuji" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "見た", ro: "mita", role: "Verb (plain past)", meaning: "saw" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "have" }
+          ] },
+        { jp: "ラーメンを作ったことがありません。", ro: "rāmen o tsukutta koto ga arimasen.", en: "I have never made ramen.",
+          tokens: [
+            { t: "ラーメン", ro: "rāmen", role: "Noun", meaning: "ramen" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "作った", ro: "tsukutta", role: "Verb (plain past)", meaning: "made" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "ありません", ro: "arimasen", role: "Verb (negative existence)", meaning: "don't have" }
+          ] },
+        { jp: "本番でバグを直したことがあります。", ro: "honban de bagu o naoshita koto ga arimasu.", en: "I have fixed bugs in production.",
+          tokens: [
+            { t: "本番", ro: "honban", role: "Noun (IT)", meaning: "production" },
+            { t: "で", ro: "de", role: "Particle — action location", meaning: "in" },
+            { t: "バグ", ro: "bagu", role: "Noun", meaning: "bug" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "直した", ro: "naoshita", role: "Verb (plain past)", meaning: "fixed" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "have" }
+          ] },
+        { jp: "彼に会ったことはない。", ro: "kare ni atta koto wa nai.", en: "I haven't met him before. (plain casual)",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "に", ro: "ni", role: "Particle — target", meaning: "to" },
+            { t: "会った", ro: "atta", role: "Verb (plain past)", meaning: "met" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "ない", ro: "nai", role: "Verb (plain neg existence)", meaning: "don't have" }
+          ] },
+        { jp: "京都に行ったことがありますか？", ro: "kyōto ni itta koto ga arimasu ka?", en: "Have you been to Kyoto?",
+          tokens: [
+            { t: "京都", ro: "kyōto", role: "Proper noun", meaning: "Kyoto" },
+            { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+            { t: "行った", ro: "itta", role: "Verb (plain past)", meaning: "went" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "have" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "プログラミングを勉強したことがあります。", ro: "puroguramingu o benkyō shita koto ga arimasu.", en: "I have studied programming.",
+          tokens: [
+            { t: "プログラミング", ro: "puroguramingu", role: "Noun (loanword)", meaning: "programming" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "勉強した", ro: "benkyō shita", role: "Verb (plain past)", meaning: "studied" },
+            { t: "こと", ro: "koto", role: "Noun", meaning: "experience" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "have" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Time / Experience / Plans",
+      title: "〜ながら — While doing X (simultaneous actions)",
+      formula: "[Verb-stem] + ながら + [main action]",
+      description: "Two things at the same time, with the same person doing both. Take the verb stem (drop ます from 飲み + ます) and add ながら. The main action is the second verb. Note: only works for verbs with the same subject.",
+      person: "Same person doing both actions",
+      tense: "Any",
+      main: {
+        jp: "音楽を聞きながら勉強します。",
+        ro: "ongaku o kikinagara benkyō shimasu.",
+        en: "I study while listening to music.",
+        tokens: [
+          { t: "音楽", ro: "ongaku", role: "Noun", meaning: "music" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "聞き", ro: "kiki", role: "Verb stem (of 聞く)", meaning: "listen" },
+          { t: "ながら", ro: "nagara", role: "Conjunction — while", meaning: "while" },
+          { t: "勉強します", ro: "benkyō shimasu", role: "Verb (polite — main)", meaning: "study" }
+        ]
+      },
+      examples: [
+        { jp: "コーヒーを飲みながらコードを書きます。", ro: "kōhī o nominagara kōdo o kakimasu.", en: "I write code while drinking coffee.",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "飲み", ro: "nomi", role: "Verb stem", meaning: "drink" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書きます", ro: "kakimasu", role: "Verb (polite — main)", meaning: "write" }
+          ] },
+        { jp: "テレビを見ながらご飯を食べる。", ro: "terebi o minagara gohan o taberu.", en: "I eat while watching TV.",
+          tokens: [
+            { t: "テレビ", ro: "terebi", role: "Noun", meaning: "TV" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "見", ro: "mi", role: "Verb stem (of 見る)", meaning: "watch" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "ご飯", ro: "gohan", role: "Noun", meaning: "rice / meal" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べる", ro: "taberu", role: "Verb (plain — main)", meaning: "eat" }
+          ] },
+        { jp: "歩きながら話します。", ro: "arukinagara hanashimasu.", en: "I talk while walking.",
+          tokens: [
+            { t: "歩き", ro: "aruki", role: "Verb stem (of 歩く)", meaning: "walk" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "話します", ro: "hanashimasu", role: "Verb (polite — main)", meaning: "talk" }
+          ] },
+        { jp: "電話しながら運転してはいけません。", ro: "denwa shinagara unten shite wa ikemasen.", en: "You must not drive while on the phone.",
+          tokens: [
+            { t: "電話し", ro: "denwa shi", role: "Verb stem", meaning: "phoning" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "運転して", ro: "unten shite", role: "Verb (て-form)", meaning: "driving" },
+            { t: "は", ro: "wa", role: "Particle", meaning: "as for" },
+            { t: "いけません", ro: "ikemasen", role: "Auxiliary (prohibition)", meaning: "must not" }
+          ] },
+        { jp: "働きながら大学に通っています。", ro: "hatarakinagara daigaku ni kayotte imasu.", en: "I attend university while working.",
+          tokens: [
+            { t: "働き", ro: "hataraki", role: "Verb stem", meaning: "work" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "大学", ro: "daigaku", role: "Noun", meaning: "university" },
+            { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+            { t: "通って", ro: "kayotte", role: "Verb (て-form)", meaning: "attending" },
+            { t: "います", ro: "imasu", role: "Auxiliary (continuous)", meaning: "am" }
+          ] },
+        { jp: "笑いながら言いました。", ro: "warainagara iimashita.", en: "He said it while laughing.",
+          tokens: [
+            { t: "笑い", ro: "warai", role: "Verb stem", meaning: "laugh" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "言いました", ro: "iimashita", role: "Verb (polite past)", meaning: "said" }
+          ] },
+        { jp: "考えながら答えてください。", ro: "kangaenagara kotaete kudasai.", en: "Please answer while thinking.",
+          tokens: [
+            { t: "考え", ro: "kangae", role: "Verb stem (of 考える)", meaning: "think" },
+            { t: "ながら", ro: "nagara", role: "Conjunction", meaning: "while" },
+            { t: "答えて", ro: "kotaete", role: "Verb (て-form)", meaning: "answering" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Time / Experience / Plans",
+      title: "〜たり〜たり する — Doing things like X and Y",
+      formula: "[Verb-plain past] り + [Verb-plain past] り します",
+      description: "Used to list a sample of activities (not exhaustive) — 'doing things like X and Y, etc.'. Take the plain past form (〜た) and add り. Usually two or more in a row, then します at the end.",
+      person: "Any",
+      tense: "Any (set by final します)",
+      main: {
+        jp: "週末は本を読んだり、映画を見たりします。",
+        ro: "shūmatsu wa hon o yondari, eiga o mitari shimasu.",
+        en: "On weekends I do things like read books and watch movies.",
+        tokens: [
+          { t: "週末", ro: "shūmatsu", role: "Time noun", meaning: "weekend" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+          { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "読んだり", ro: "yondari", role: "Verb (たり-form)", meaning: "things like reading" },
+          { t: "映画", ro: "eiga", role: "Noun", meaning: "movie" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "見たり", ro: "mitari", role: "Verb (たり-form)", meaning: "things like watching" },
+          { t: "します", ro: "shimasu", role: "Verb (polite — closes)", meaning: "do" }
+        ]
+      },
+      examples: [
+        { jp: "コードを書いたり、レビューしたりします。", ro: "kōdo o kaitari, rebyū shitari shimasu.", en: "I do things like writing code and reviewing.",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "書いたり", ro: "kaitari", role: "Verb (たり)", meaning: "things like writing" },
+            { t: "レビューしたり", ro: "rebyū shitari", role: "Verb (たり)", meaning: "things like reviewing" },
+            { t: "します", ro: "shimasu", role: "Verb (polite — closes)", meaning: "do" }
+          ] },
+        { jp: "公園で遊んだり、走ったりした。", ro: "kōen de asondari, hashittari shita.", en: "I played and ran (etc.) at the park.",
+          tokens: [
+            { t: "公園", ro: "kōen", role: "Noun", meaning: "park" },
+            { t: "で", ro: "de", role: "Particle — action location", meaning: "at" },
+            { t: "遊んだり", ro: "asondari", role: "Verb (たり)", meaning: "things like playing" },
+            { t: "走ったり", ro: "hashittari", role: "Verb (たり)", meaning: "things like running" },
+            { t: "した", ro: "shita", role: "Verb (plain past — closes)", meaning: "did" }
+          ] },
+        { jp: "土曜日は寝たり、ゲームをしたりしたい。", ro: "doyōbi wa netari, gēmu o shitari shitai.", en: "On Saturday I want to do things like sleep and play games.",
+          tokens: [
+            { t: "土曜日", ro: "doyōbi", role: "Time noun", meaning: "Saturday" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "寝たり", ro: "netari", role: "Verb (たり)", meaning: "things like sleeping" },
+            { t: "ゲーム", ro: "gēmu", role: "Noun", meaning: "game" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "したり", ro: "shitari", role: "Verb (たり)", meaning: "things like doing" },
+            { t: "したい", ro: "shitai", role: "Verb stem + たい", meaning: "want to do" }
+          ] },
+        { jp: "東京で寿司を食べたり、お寺を見たりしました。", ro: "tōkyō de sushi o tabetari, otera o mitari shimashita.", en: "In Tokyo I did things like eat sushi and see temples.",
+          tokens: [
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "で", ro: "de", role: "Particle — action location", meaning: "in" },
+            { t: "寿司", ro: "sushi", role: "Noun", meaning: "sushi" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べたり", ro: "tabetari", role: "Verb (たり)", meaning: "things like eating" },
+            { t: "お寺", ro: "otera", role: "Noun", meaning: "temple" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "見たり", ro: "mitari", role: "Verb (たり)", meaning: "things like seeing" },
+            { t: "しました", ro: "shimashita", role: "Verb (polite past — closes)", meaning: "did" }
+          ] },
+        { jp: "歌ったり、踊ったりしましょう。", ro: "utattari, odottari shimashō.", en: "Let's do things like sing and dance.",
+          tokens: [
+            { t: "歌ったり", ro: "utattari", role: "Verb (たり)", meaning: "things like singing" },
+            { t: "踊ったり", ro: "odottari", role: "Verb (たり)", meaning: "things like dancing" },
+            { t: "しましょう", ro: "shimashō", role: "Verb (volitional polite)", meaning: "let's do" }
+          ] },
+        { jp: "雨が降ったり、止んだりしている。", ro: "ame ga futtari, yandari shite iru.", en: "It's raining and stopping (intermittently).",
+          tokens: [
+            { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "降ったり", ro: "futtari", role: "Verb (たり)", meaning: "things like falling" },
+            { t: "止んだり", ro: "yandari", role: "Verb (たり)", meaning: "things like stopping" },
+            { t: "して", ro: "shite", role: "Verb (て-form)", meaning: "doing" },
+            { t: "いる", ro: "iru", role: "Auxiliary (continuous, plain)", meaning: "is" }
+          ] },
+        { jp: "メールを送ったり、電話したりしました。", ro: "mēru o okuttari, denwa shitari shimashita.", en: "I did things like send emails and make calls.",
+          tokens: [
+            { t: "メール", ro: "mēru", role: "Noun", meaning: "email" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "送ったり", ro: "okuttari", role: "Verb (たり)", meaning: "things like sending" },
+            { t: "電話したり", ro: "denwa shitari", role: "Verb (たり)", meaning: "things like calling" },
+            { t: "しました", ro: "shimashita", role: "Verb (polite past — closes)", meaning: "did" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Time / Experience / Plans",
+      title: "〜たほうがいい — You should do X (advice)",
+      formula: "[Verb plain past] ほうがいいです  (negative: [Verb plain neg] ほうがいいです)",
+      description: "Soft advice — 'it's better if you do X' / 'you should do X'. Use plain past form for affirmative advice (drink → 飲んだほうがいい), plain negative for 'shouldn't' (飲まないほうがいい).",
+      person: "Usually directed at 2nd person (advising)",
+      tense: "Present",
+      main: {
+        jp: "早く寝たほうがいいですよ。",
+        ro: "hayaku neta hō ga ii desu yo.",
+        en: "You should sleep early.",
+        tokens: [
+          { t: "早く", ro: "hayaku", role: "Adverb", meaning: "early" },
+          { t: "寝た", ro: "neta", role: "Verb (plain past)", meaning: "slept" },
+          { t: "ほう", ro: "hō", role: "Noun ('side / direction')", meaning: "(better)" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+          { t: "いい", ro: "ii", role: "i-adjective", meaning: "good (= better)" },
+          { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+          { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+        ]
+      },
+      examples: [
+        { jp: "薬を飲んだほうがいいです。", ro: "kusuri o nonda hō ga ii desu.", en: "You should take medicine.",
+          tokens: [
+            { t: "薬", ro: "kusuri", role: "Noun", meaning: "medicine" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "飲んだ", ro: "nonda", role: "Verb (plain past)", meaning: "took" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "タバコは吸わないほうがいいです。", ro: "tabako wa suwanai hō ga ii desu.", en: "You shouldn't smoke.",
+          tokens: [
+            { t: "タバコ", ro: "tabako", role: "Noun", meaning: "cigarette" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "吸わない", ro: "suwanai", role: "Verb (plain negative)", meaning: "not smoke" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "テストの前に勉強したほうがいい。", ro: "tesuto no mae ni benkyō shita hō ga ii.", en: "You should study before the test. (plain)",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "の", ro: "no", role: "Particle — connector", meaning: "of" },
+            { t: "前", ro: "mae", role: "Noun", meaning: "before" },
+            { t: "に", ro: "ni", role: "Particle — time", meaning: "at" },
+            { t: "勉強した", ro: "benkyō shita", role: "Verb (plain past)", meaning: "studied" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" }
+          ] },
+        { jp: "傘を持ってきたほうがいいですよ。", ro: "kasa o motte kita hō ga ii desu yo.", en: "You should bring an umbrella.",
+          tokens: [
+            { t: "傘", ro: "kasa", role: "Noun", meaning: "umbrella" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "持って", ro: "motte", role: "Verb (て-form)", meaning: "having" },
+            { t: "きた", ro: "kita", role: "Auxiliary (came — plain past)", meaning: "came" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "コードをテストしたほうがいい。", ro: "kōdo o tesuto shita hō ga ii.", en: "You should test the code.",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "テストした", ro: "tesuto shita", role: "Verb (plain past)", meaning: "tested" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" }
+          ] },
+        { jp: "急いだほうがいいですよ。", ro: "isoida hō ga ii desu yo.", en: "You'd better hurry.",
+          tokens: [
+            { t: "急いだ", ro: "isoida", role: "Verb (plain past)", meaning: "hurried" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(warning)" }
+          ] },
+        { jp: "電車で行ったほうがいいです。", ro: "densha de itta hō ga ii desu.", en: "You should go by train.",
+          tokens: [
+            { t: "電車", ro: "densha", role: "Noun", meaning: "train" },
+            { t: "で", ro: "de", role: "Particle — means", meaning: "by" },
+            { t: "行った", ro: "itta", role: "Verb (plain past)", meaning: "went" },
+            { t: "ほう", ro: "hō", role: "Noun", meaning: "side/way" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Time / Experience / Plans",
+      title: "〜つもり — Intend to / Plan to",
+      formula: "[Verb plain] + つもりです  (negative: [Verb plain neg] つもりです  or  〜つもりはない)",
+      description: "States intent or plan (stronger than 〜たい which is just desire). The verb stays in plain (dictionary) form. Negative versions: '〜ない つもり' = intend NOT to; '〜つもり はない' = have no intention to.",
+      person: "Usually 1st person (your own plans)",
+      tense: "Present (about future)",
+      main: {
+        jp: "来週、日本に行くつもりです。",
+        ro: "raishū, nihon ni iku tsumori desu.",
+        en: "I plan to go to Japan next week.",
+        tokens: [
+          { t: "来週", ro: "raishū", role: "Time noun", meaning: "next week" },
+          { t: "日本", ro: "nihon", role: "Proper noun", meaning: "Japan" },
+          { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+          { t: "行く", ro: "iku", role: "Verb (plain)", meaning: "go" },
+          { t: "つもり", ro: "tsumori", role: "Noun ('intention')", meaning: "intention / plan" },
+          { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+        ]
+      },
+      examples: [
+        { jp: "明日、早く起きるつもりです。", ro: "ashita, hayaku okiru tsumori desu.", en: "I plan to wake up early tomorrow.",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "早く", ro: "hayaku", role: "Adverb", meaning: "early" },
+            { t: "起きる", ro: "okiru", role: "Verb (plain)", meaning: "wake up" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "plan" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "今日は飲まないつもりです。", ro: "kyō wa nomanai tsumori desu.", en: "I don't intend to drink today.",
+          tokens: [
+            { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "飲まない", ro: "nomanai", role: "Verb (plain negative)", meaning: "not drink" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "intention" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "新しいパソコンを買うつもりです。", ro: "atarashii pasokon o kau tsumori desu.", en: "I'm planning to buy a new PC.",
+          tokens: [
+            { t: "新しい", ro: "atarashii", role: "i-adjective", meaning: "new" },
+            { t: "パソコン", ro: "pasokon", role: "Noun", meaning: "PC" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "買う", ro: "kau", role: "Verb (plain)", meaning: "buy" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "plan" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "週末はゆっくりするつもりです。", ro: "shūmatsu wa yukkuri suru tsumori desu.", en: "I'm planning to relax on the weekend.",
+          tokens: [
+            { t: "週末", ro: "shūmatsu", role: "Time noun", meaning: "weekend" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "ゆっくり", ro: "yukkuri", role: "Adverb", meaning: "slowly / leisurely" },
+            { t: "する", ro: "suru", role: "Verb (plain)", meaning: "do" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "plan" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "プルリクを今日中に送るつもりです。", ro: "pururiku o kyō-jū ni okuru tsumori desu.", en: "I plan to send the PR by today.",
+          tokens: [
+            { t: "プルリク", ro: "pururiku", role: "Noun", meaning: "pull request" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "今日中", ro: "kyō-jū", role: "Noun", meaning: "by today" },
+            { t: "に", ro: "ni", role: "Particle — time deadline", meaning: "by" },
+            { t: "送る", ro: "okuru", role: "Verb (plain)", meaning: "send" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "plan" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "彼に会うつもりはありません。", ro: "kare ni au tsumori wa arimasen.", en: "I have no intention of meeting him.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "に", ro: "ni", role: "Particle — target", meaning: "to" },
+            { t: "会う", ro: "au", role: "Verb (plain)", meaning: "meet" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "intention" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "as for" },
+            { t: "ありません", ro: "arimasen", role: "Verb (negative existence)", meaning: "doesn't exist" }
+          ] },
+        { jp: "毎日勉強するつもりです。", ro: "mainichi benkyō suru tsumori desu.", en: "I plan to study every day.",
+          tokens: [
+            { t: "毎日", ro: "mainichi", role: "Time noun", meaning: "every day" },
+            { t: "勉強する", ro: "benkyō suru", role: "Verb (plain)", meaning: "study" },
+            { t: "つもり", ro: "tsumori", role: "Noun (intention)", meaning: "plan" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 18 — RELATIVE CLAUSES / EASY-HARD / EXCESS / ONLY
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Modifying & nuance",
+      title: "Relative clauses — modifying nouns with verbs (私が読んだ本)",
+      formula: "[Plain-form clause] + [Noun]   (the clause directly attaches BEFORE the noun)",
+      description: "In Japanese, an entire clause modifies a noun by sitting in front of it (no 'that' / 'which'). The clause uses PLAIN forms (not polite). The 'subject' inside the clause is often marked with が. This is one of the most powerful sentence-building tools in Japanese.",
+      person: "Any",
+      tense: "Inner clause stays plain; outer sentence sets the tense",
+      main: {
+        jp: "私が書いた本",
+        ro: "watashi ga kaita hon",
+        en: "The book I wrote (lit. 'I-wrote book')",
+        tokens: [
+          { t: "私", ro: "watashi", role: "Pronoun (subject of inner clause)", meaning: "I" },
+          { t: "が", ro: "ga", role: "Particle — subject (inside relative clause)", meaning: "subject marker" },
+          { t: "書いた", ro: "kaita", role: "Verb (plain past, modifies 本)", meaning: "wrote" },
+          { t: "本", ro: "hon", role: "Noun (head)", meaning: "book" }
+        ]
+      },
+      examples: [
+        { jp: "昨日食べたラーメンは美味しかった。", ro: "kinō tabeta rāmen wa oishikatta.", en: "The ramen I ate yesterday was delicious.",
+          tokens: [
+            { t: "昨日", ro: "kinō", role: "Time noun (inside clause)", meaning: "yesterday" },
+            { t: "食べた", ro: "tabeta", role: "Verb (plain past, modifies ラーメン)", meaning: "ate" },
+            { t: "ラーメン", ro: "rāmen", role: "Noun (head)", meaning: "ramen" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "美味しかった", ro: "oishikatta", role: "i-adjective past", meaning: "was tasty" }
+          ] },
+        { jp: "田中さんが住んでいる町は静かです。", ro: "tanaka-san ga sunde iru machi wa shizuka desu.", en: "The town where Tanaka lives is quiet.",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "が", ro: "ga", role: "Particle — subject (inside)", meaning: "subject" },
+            { t: "住んで", ro: "sunde", role: "Verb (て-form)", meaning: "living" },
+            { t: "いる", ro: "iru", role: "Auxiliary (continuous, plain)", meaning: "is" },
+            { t: "町", ro: "machi", role: "Noun (head)", meaning: "town" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "静か", ro: "shizuka", role: "na-adjective", meaning: "quiet" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "私が好きな食べ物は寿司です。", ro: "watashi ga suki na tabemono wa sushi desu.", en: "The food I like is sushi.",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "が", ro: "ga", role: "Particle — subject (inside)", meaning: "subject" },
+            { t: "好きな", ro: "suki na", role: "na-adjective + な (modifies noun)", meaning: "liked" },
+            { t: "食べ物", ro: "tabemono", role: "Noun (head)", meaning: "food" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "寿司", ro: "sushi", role: "Noun", meaning: "sushi" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "彼が書いたコードはきれいです。", ro: "kare ga kaita kōdo wa kirei desu.", en: "The code he wrote is clean.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun (inside)", meaning: "he" },
+            { t: "が", ro: "ga", role: "Particle — subject (inside)", meaning: "subject" },
+            { t: "書いた", ro: "kaita", role: "Verb (plain past)", meaning: "wrote" },
+            { t: "コード", ro: "kōdo", role: "Noun (head)", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "きれい", ro: "kirei", role: "na-adjective", meaning: "clean / pretty" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "今読んでいる本は面白い。", ro: "ima yonde iru hon wa omoshiroi.", en: "The book I'm reading now is interesting.",
+          tokens: [
+            { t: "今", ro: "ima", role: "Time noun", meaning: "now" },
+            { t: "読んで", ro: "yonde", role: "Verb (て-form)", meaning: "reading" },
+            { t: "いる", ro: "iru", role: "Auxiliary (continuous, plain)", meaning: "is" },
+            { t: "本", ro: "hon", role: "Noun (head)", meaning: "book" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "面白い", ro: "omoshiroi", role: "i-adjective", meaning: "interesting" }
+          ] },
+        { jp: "新幹線で行く人は田中さんです。", ro: "shinkansen de iku hito wa tanaka-san desu.", en: "The person going by bullet train is Tanaka.",
+          tokens: [
+            { t: "新幹線", ro: "shinkansen", role: "Noun", meaning: "bullet train" },
+            { t: "で", ro: "de", role: "Particle — means", meaning: "by" },
+            { t: "行く", ro: "iku", role: "Verb (plain)", meaning: "go" },
+            { t: "人", ro: "hito", role: "Noun (head)", meaning: "person" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "山田さんが直したバグは難しかった。", ro: "yamada-san ga naoshita bagu wa muzukashikatta.", en: "The bug Yamada fixed was difficult.",
+          tokens: [
+            { t: "山田", ro: "yamada", role: "Proper noun (inside)", meaning: "Yamada" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "が", ro: "ga", role: "Particle — subject (inside)", meaning: "subject" },
+            { t: "直した", ro: "naoshita", role: "Verb (plain past)", meaning: "fixed" },
+            { t: "バグ", ro: "bagu", role: "Noun (head)", meaning: "bug" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "難しかった", ro: "muzukashikatta", role: "i-adjective past", meaning: "was difficult" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Modifying & nuance",
+      title: "〜やすい / 〜にくい — Easy / Hard to do",
+      formula: "[Verb-stem] + やすい (easy to ~) | + にくい (hard to ~)",
+      description: "Attaches to verb stems and acts as an i-adjective. Says how easy or hard it is to perform the action — about the THING, not the doer.",
+      person: "Describes the object",
+      tense: "Any",
+      main: {
+        jp: "この本は読みやすいです。",
+        ro: "kono hon wa yomiyasui desu.",
+        en: "This book is easy to read.",
+        tokens: [
+          { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+          { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+          { t: "読み", ro: "yomi", role: "Verb stem (of 読む)", meaning: "read" },
+          { t: "やすい", ro: "yasui", role: "Suffix — easy to", meaning: "easy to" },
+          { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+        ]
+      },
+      examples: [
+        { jp: "この字は読みにくい。", ro: "kono ji wa yominikui.", en: "This handwriting is hard to read.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "字", ro: "ji", role: "Noun", meaning: "character / writing" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "読み", ro: "yomi", role: "Verb stem", meaning: "read" },
+            { t: "にくい", ro: "nikui", role: "Suffix — hard to", meaning: "hard to" }
+          ] },
+        { jp: "このコードは理解しやすい。", ro: "kono kōdo wa rikai shiyasui.", en: "This code is easy to understand.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "理解し", ro: "rikai shi", role: "Verb stem", meaning: "understand" },
+            { t: "やすい", ro: "yasui", role: "Suffix", meaning: "easy to" }
+          ] },
+        { jp: "この靴は歩きやすい。", ro: "kono kutsu wa arukiyasui.", en: "These shoes are easy to walk in.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "靴", ro: "kutsu", role: "Noun", meaning: "shoes" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "歩き", ro: "aruki", role: "Verb stem", meaning: "walk" },
+            { t: "やすい", ro: "yasui", role: "Suffix", meaning: "easy to" }
+          ] },
+        { jp: "この漢字は覚えにくいです。", ro: "kono kanji wa oboenikui desu.", en: "This kanji is hard to memorize.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "漢字", ro: "kanji", role: "Noun", meaning: "kanji" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "覚え", ro: "oboe", role: "Verb stem (of 覚える)", meaning: "memorize" },
+            { t: "にくい", ro: "nikui", role: "Suffix", meaning: "hard to" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "彼の説明はわかりやすかった。", ro: "kare no setsumei wa wakariyasukatta.", en: "His explanation was easy to understand.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "の", ro: "no", role: "Particle — possessive", meaning: "'s" },
+            { t: "説明", ro: "setsumei", role: "Noun", meaning: "explanation" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "わかり", ro: "wakari", role: "Verb stem", meaning: "understand" },
+            { t: "やすかった", ro: "yasukatta", role: "Suffix past (i-adj past)", meaning: "was easy to" }
+          ] },
+        { jp: "このバグは見つけにくい。", ro: "kono bagu wa mitsukenikui.", en: "This bug is hard to find.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "バグ", ro: "bagu", role: "Noun", meaning: "bug" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "見つけ", ro: "mitsuke", role: "Verb stem", meaning: "find" },
+            { t: "にくい", ro: "nikui", role: "Suffix", meaning: "hard to" }
+          ] },
+        { jp: "このアプリは使いやすいです。", ro: "kono apuri wa tsukaiyasui desu.", en: "This app is easy to use.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "アプリ", ro: "apuri", role: "Noun (loanword)", meaning: "app" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "使い", ro: "tsukai", role: "Verb stem", meaning: "use" },
+            { t: "やすい", ro: "yasui", role: "Suffix", meaning: "easy to" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Modifying & nuance",
+      title: "〜すぎる — Too much / Excessively",
+      formula: "[Verb stem] / [i-adj drop い] / [na-adj] + すぎる",
+      description: "Says something is EXCESSIVE — too much / too many / overdoing. Drop the い from i-adjectives, drop the ます from verbs, na-adjectives use bare form. Conjugates as a regular ichidan verb (すぎます / すぎた).",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "このコーヒーは熱すぎる。",
+        ro: "kono kōhī wa atsusugiru.",
+        en: "This coffee is too hot.",
+        tokens: [
+          { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+          { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+          { t: "熱", ro: "atsu", role: "i-adjective stem (of 熱い)", meaning: "hot" },
+          { t: "すぎる", ro: "sugiru", role: "Verb (excess, ichidan)", meaning: "is too much" }
+        ]
+      },
+      examples: [
+        { jp: "食べすぎました。", ro: "tabesugimashita.", en: "I ate too much.",
+          tokens: [
+            { t: "食べ", ro: "tabe", role: "Verb stem (of 食べる)", meaning: "eat" },
+            { t: "すぎました", ro: "sugimashita", role: "Verb (excess, polite past)", meaning: "did too much" }
+          ] },
+        { jp: "この問題は難しすぎる。", ro: "kono mondai wa muzukashisugiru.", en: "This problem is too difficult.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "問題", ro: "mondai", role: "Noun", meaning: "problem" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "難し", ro: "muzukashi", role: "i-adjective stem", meaning: "difficult" },
+            { t: "すぎる", ro: "sugiru", role: "Verb (excess)", meaning: "is too much" }
+          ] },
+        { jp: "高すぎて買えません。", ro: "takasugite kaemasen.", en: "It's too expensive — I can't buy it.",
+          tokens: [
+            { t: "高", ro: "taka", role: "i-adjective stem", meaning: "expensive" },
+            { t: "すぎて", ro: "sugite", role: "Verb (excess, て-form)", meaning: "being too much" },
+            { t: "買えません", ro: "kaemasen", role: "Verb (potential negative)", meaning: "cannot buy" }
+          ] },
+        { jp: "彼は働きすぎです。", ro: "kare wa hatarakisugi desu.", en: "He works too much.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "働き", ro: "hataraki", role: "Verb stem", meaning: "work" },
+            { t: "すぎ", ro: "sugi", role: "Noun (from すぎる)", meaning: "excess" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "昨日、飲みすぎた。", ro: "kinō, nomisugita.", en: "I drank too much yesterday.",
+          tokens: [
+            { t: "昨日", ro: "kinō", role: "Time noun", meaning: "yesterday" },
+            { t: "飲み", ro: "nomi", role: "Verb stem", meaning: "drink" },
+            { t: "すぎた", ro: "sugita", role: "Verb (excess, plain past)", meaning: "did too much" }
+          ] },
+        { jp: "このコードは複雑すぎます。", ro: "kono kōdo wa fukuzatsu sugimasu.", en: "This code is too complex.",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "複雑", ro: "fukuzatsu", role: "na-adjective", meaning: "complex" },
+            { t: "すぎます", ro: "sugimasu", role: "Verb (excess, polite)", meaning: "is too much" }
+          ] },
+        { jp: "テストが多すぎる！", ro: "tesuto ga ōsugiru!", en: "There are too many tests!",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "多", ro: "ō", role: "i-adjective stem (of 多い)", meaning: "many" },
+            { t: "すぎる", ro: "sugiru", role: "Verb (excess)", meaning: "is too much" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Modifying & nuance",
+      title: "〜しか〜ない / 〜だけ — Only X (restriction)",
+      formula: "X + しか + [verb negative]   (only)   |   X + だけ + [verb]   (only / just)",
+      description: "Two ways to say 'only X'. しか REQUIRES a negative verb afterwards (しか〜ない literally 'nothing but X'). だけ is more neutral, works with any verb. しか has a negative connotation ('only that and no more'); だけ is neutral.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "千円しかありません。",
+        ro: "sen-en shika arimasen.",
+        en: "I only have 1000 yen.",
+        tokens: [
+          { t: "千円", ro: "sen-en", role: "Noun (number + counter)", meaning: "1000 yen" },
+          { t: "しか", ro: "shika", role: "Particle — only (with negative)", meaning: "only" },
+          { t: "ありません", ro: "arimasen", role: "Verb (negative existence)", meaning: "don't have" }
+        ]
+      },
+      examples: [
+        { jp: "一つだけください。", ro: "hitotsu dake kudasai.", en: "Just one, please.",
+          tokens: [
+            { t: "一つ", ro: "hitotsu", role: "Counter", meaning: "one (thing)" },
+            { t: "だけ", ro: "dake", role: "Particle — only", meaning: "just" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] },
+        { jp: "私しかわかりません。", ro: "watashi shika wakarimasen.", en: "Only I understand.",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "しか", ro: "shika", role: "Particle — only (with negative)", meaning: "only" },
+            { t: "わかりません", ro: "wakarimasen", role: "Verb (polite negative)", meaning: "don't understand" }
+          ] },
+        { jp: "彼だけが来ました。", ro: "kare dake ga kimashita.", en: "Only he came.",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "だけ", ro: "dake", role: "Particle — only", meaning: "only" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "来ました", ro: "kimashita", role: "Verb (polite past)", meaning: "came" }
+          ] },
+        { jp: "今日しか時間がない。", ro: "kyō shika jikan ga nai.", en: "Today is the only day I have time.",
+          tokens: [
+            { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+            { t: "しか", ro: "shika", role: "Particle — only", meaning: "only" },
+            { t: "時間", ro: "jikan", role: "Noun", meaning: "time" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "ない", ro: "nai", role: "Verb (plain neg existence)", meaning: "not have" }
+          ] },
+        { jp: "コーヒーだけを飲みます。", ro: "kōhī dake o nomimasu.", en: "I drink only coffee.",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun", meaning: "coffee" },
+            { t: "だけ", ro: "dake", role: "Particle — only", meaning: "only" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "飲みます", ro: "nomimasu", role: "Verb (polite)", meaning: "drink" }
+          ] },
+        { jp: "二人しか来なかった。", ro: "futari shika konakatta.", en: "Only two people came.",
+          tokens: [
+            { t: "二人", ro: "futari", role: "Counter (people)", meaning: "two people" },
+            { t: "しか", ro: "shika", role: "Particle — only", meaning: "only" },
+            { t: "来なかった", ro: "konakatta", role: "Verb (plain past negative)", meaning: "didn't come" }
+          ] },
+        { jp: "テストだけ受けます。", ro: "tesuto dake ukemasu.", en: "I'll only take the test (nothing else).",
+          tokens: [
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "だけ", ro: "dake", role: "Particle — only", meaning: "only" },
+            { t: "受けます", ro: "ukemasu", role: "Verb (polite)", meaning: "take / receive" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Modifying & nuance",
+      title: "そうです / らしい — Hearsay (I heard / it seems)",
+      formula: "[Plain-form clause] + そうです (I heard …)  |  + らしい ((apparently) it seems …)",
+      description: "Both convey 'I heard' or 'apparently'. そうです (after a plain clause) = direct hearsay 'I heard X'. らしい = inference based on evidence 'it seems X'. Different from そう です (looks like) which uses a verb stem (e.g. 美味しそう = looks tasty).",
+      person: "Speaker reporting / inferring",
+      tense: "Inner clause sets the tense",
+      main: {
+        jp: "明日、雨が降るそうです。",
+        ro: "ashita, ame ga furu sō desu.",
+        en: "I heard it will rain tomorrow.",
+        tokens: [
+          { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+          { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+          { t: "降る", ro: "furu", role: "Verb (plain)", meaning: "fall" },
+          { t: "そう", ro: "sō", role: "Hearsay marker", meaning: "I heard" },
+          { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+        ]
+      },
+      examples: [
+        { jp: "田中さんは病気らしい。", ro: "tanaka-san wa byōki rashii.", en: "It seems Tanaka is sick.",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "病気", ro: "byōki", role: "Noun", meaning: "sick" },
+            { t: "らしい", ro: "rashii", role: "Suffix — apparently", meaning: "seems / apparently" }
+          ] },
+        { jp: "新しいゲームが面白いそうです。", ro: "atarashii gēmu ga omoshiroi sō desu.", en: "I heard the new game is interesting.",
+          tokens: [
+            { t: "新しい", ro: "atarashii", role: "i-adjective", meaning: "new" },
+            { t: "ゲーム", ro: "gēmu", role: "Noun", meaning: "game" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "面白い", ro: "omoshiroi", role: "i-adjective", meaning: "interesting" },
+            { t: "そう", ro: "sō", role: "Hearsay marker", meaning: "I heard" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "彼女は来ないらしい。", ro: "kanojo wa konai rashii.", en: "It seems she's not coming.",
+          tokens: [
+            { t: "彼女", ro: "kanojo", role: "Pronoun", meaning: "she" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "来ない", ro: "konai", role: "Verb (plain negative)", meaning: "doesn't come" },
+            { t: "らしい", ro: "rashii", role: "Suffix — apparently", meaning: "seems" }
+          ] },
+        { jp: "山田さんは結婚したそうです。", ro: "yamada-san wa kekkon shita sō desu.", en: "I heard Yamada got married.",
+          tokens: [
+            { t: "山田", ro: "yamada", role: "Proper noun", meaning: "Yamada" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "結婚した", ro: "kekkon shita", role: "Verb (plain past)", meaning: "got married" },
+            { t: "そう", ro: "sō", role: "Hearsay marker", meaning: "I heard" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "本番で問題があったそうです。", ro: "honban de mondai ga atta sō desu.", en: "I heard there was a problem in production.",
+          tokens: [
+            { t: "本番", ro: "honban", role: "Noun", meaning: "production" },
+            { t: "で", ro: "de", role: "Particle — action location", meaning: "in" },
+            { t: "問題", ro: "mondai", role: "Noun", meaning: "problem" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "あった", ro: "atta", role: "Verb (plain past)", meaning: "existed" },
+            { t: "そう", ro: "sō", role: "Hearsay marker", meaning: "I heard" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "今日はテストがあるらしいよ。", ro: "kyō wa tesuto ga aru rashii yo.", en: "Apparently there's a test today.",
+          tokens: [
+            { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "ある", ro: "aru", role: "Verb (plain existence)", meaning: "exists" },
+            { t: "らしい", ro: "rashii", role: "Suffix — apparently", meaning: "seems" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "彼は元気だそうです。", ro: "kare wa genki da sō desu.", en: "I heard he's doing well. (note: な-adj/noun + だ before そう)",
+          tokens: [
+            { t: "彼", ro: "kare", role: "Pronoun", meaning: "he" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "元気", ro: "genki", role: "na-adjective", meaning: "well" },
+            { t: "だ", ro: "da", role: "Plain copula (required)", meaning: "is" },
+            { t: "そう", ro: "sō", role: "Hearsay marker", meaning: "I heard" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 19 — KEIGO BASICS (尊敬語 / 謙譲語)
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Keigo basics",
+      title: "Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)",
+      formula: "Special verb forms used in business / formal contexts. 尊敬語 elevates others' actions; 謙譲語 humbles your own.",
+      description: "Japanese has THREE politeness levels: 丁寧語 (です/ます — covered everywhere), 尊敬語 (verbs that ELEVATE someone else's action), and 謙譲語 (verbs that HUMBLE your own). Used in customer service, business, formal occasions. The most-used pairs are listed below.",
+      person: "Speaker uses 謙譲語 for themselves; 尊敬語 for the other party",
+      tense: "Any",
+      main: {
+        jp: "社長がいらっしゃいました。",
+        ro: "shachō ga irasshaimashita.",
+        en: "The president has arrived. (尊敬語 for 来る = come)",
+        tokens: [
+          { t: "社長", ro: "shachō", role: "Noun", meaning: "company president" },
+          { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+          { t: "いらっしゃいました", ro: "irasshaimashita", role: "Verb (尊敬語 for 来る/行く/いる, polite past)", meaning: "came (honorific)" }
+        ]
+      },
+      examples: [
+        { jp: "私が参ります。", ro: "watashi ga mairimasu.", en: "I will come/go. (謙譲語 for 来る/行く)",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "参ります", ro: "mairimasu", role: "Verb (謙譲語 — humble for 行く/来る)", meaning: "go (humble)" }
+          ] },
+        { jp: "社長は何をおっしゃいましたか？", ro: "shachō wa nani o osshaimashita ka?", en: "What did the president say? (尊敬語 for 言う)",
+          tokens: [
+            { t: "社長", ro: "shachō", role: "Noun", meaning: "president" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "何", ro: "nani", role: "Question word", meaning: "what" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "おっしゃいました", ro: "osshaimashita", role: "Verb (尊敬語 for 言う, polite past)", meaning: "said (honorific)" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "私は申します。", ro: "watashi wa mōshimasu.", en: "I say (humble). (謙譲語 for 言う)",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "申します", ro: "mōshimasu", role: "Verb (謙譲語 — humble for 言う)", meaning: "say (humble)" }
+          ] },
+        { jp: "お客様が召し上がります。", ro: "okyaku-sama ga meshiagarimasu.", en: "The customer eats/drinks. (尊敬語 for 食べる/飲む)",
+          tokens: [
+            { t: "お客様", ro: "okyaku-sama", role: "Noun", meaning: "customer (respectful)" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject" },
+            { t: "召し上がります", ro: "meshiagarimasu", role: "Verb (尊敬語 for 食べる/飲む)", meaning: "eat/drink (honorific)" }
+          ] },
+        { jp: "私はいただきます。", ro: "watashi wa itadakimasu.", en: "I (humbly) eat / receive. (謙譲語; also said before meals)",
+          tokens: [
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic" },
+            { t: "いただきます", ro: "itadakimasu", role: "Verb (謙譲語 — humble for 食べる/もらう)", meaning: "humbly receive/eat" }
+          ] },
+        { jp: "ご存じですか？", ro: "go-zonji desu ka?", en: "Do you know? (尊敬語 for 知る)",
+          tokens: [
+            { t: "ご存じ", ro: "go-zonji", role: "Noun (尊敬語 for 知っている)", meaning: "knowing (honorific)" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "か", ro: "ka", role: "Particle — question", meaning: "?" }
+          ] },
+        { jp: "存じております。", ro: "zonjite orimasu.", en: "I know (humbly). (謙譲語 for 知っている)",
+          tokens: [
+            { t: "存じて", ro: "zonjite", role: "Verb (謙譲語 — humble for 知る, て-form)", meaning: "knowing (humble)" },
+            { t: "おります", ro: "orimasu", role: "Auxiliary (humble いる)", meaning: "(continuous, humble)" }
           ] }
       ]
     }
