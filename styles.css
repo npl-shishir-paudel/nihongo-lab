@@ -1206,16 +1206,11 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
 .bd-mean { color: var(--fg); font-size: 13px; }
 
 @media (max-width: 720px) {
-  .struct-bd-head, .struct-bd-row {
-    grid-template-columns: 1fr 1fr;
-  }
-  .struct-bd-head span:nth-child(3),
-  .struct-bd-head span:nth-child(4),
-  .struct-bd-row .bd-role,
-  .struct-bd-row .bd-mean {
-    grid-column: 1 / -1;
-    border-top: 1px dashed var(--line);
-  }
+  /* Keep breakdown as a single 4-column row even on mobile.
+     If cells get cramped on very narrow screens, allow horizontal scroll
+     instead of reflowing to multi-line (per user preference). */
+  .struct-bd { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .struct-bd-head, .struct-bd-row { min-width: 460px; }
   .struct-sent-jp { font-size: 18px; }
 }
 
@@ -1393,36 +1388,15 @@ button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
   .struct-grid .struct-sent-jp { font-size: 17px; }
   .struct-grid .struct-sent.is-main .struct-sent-jp { font-size: 18px; }
   .struct-grid .bd-jp { font-size: 14px; }
+  /* Breakdown stays a single 4-col row inside the compact card too —
+     scroll horizontally if it gets tight (NO multi-line reflow). */
   .struct-grid .struct-bd-head,
   .struct-grid .struct-bd-row {
-    /* on tiny phones reflow to 2 col so role / meaning wrap below word/romaji */
-    grid-template-columns: 1fr 1fr;
-    font-size: 11.5px;
+    font-size: 11px;
+    min-width: 420px;
   }
-  .struct-grid .struct-bd-head span:nth-child(3),
-  .struct-grid .struct-bd-head span:nth-child(4) { display: none; }
-  .struct-grid .struct-bd-row .bd-role,
-  .struct-grid .struct-bd-row .bd-mean {
-    grid-column: 1 / -1;
-    border-top: 1px dashed var(--line);
-    border-right: 0;
-  }
-  .struct-grid .struct-bd-row .bd-role::before {
-    content: "Role · ";
-    color: var(--fg-dim);
-    font-size: 9.5px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    margin-right: 4px;
-  }
-  .struct-grid .struct-bd-row .bd-mean::before {
-    content: "Meaning · ";
-    color: var(--fg-dim);
-    font-size: 9.5px;
-    letter-spacing: .4px;
-    text-transform: uppercase;
-    margin-right: 4px;
-  }
+  .struct-grid .struct-bd-head span,
+  .struct-grid .struct-bd-row span { padding: 4px 6px; }
 
   /* quiz */
   .quiz-prompt { font-size: 36px; }
