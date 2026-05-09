@@ -853,6 +853,93 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   color: #fff;
 }
 
+/* ---------- Kanji grid ---------- */
+.kanji-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  padding: 16px;
+}
+.kanji {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform .12s, border-color .12s, box-shadow .12s;
+  min-width: 0;
+}
+.kanji:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent-2);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+.kanji.is-hidden { display: none; }
+.kanji-ch {
+  font-size: 56px;
+  line-height: 1;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.kanji-meta { display: flex; flex-direction: column; gap: 4px; }
+.kanji-en {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--fg);
+  text-align: center;
+}
+.kanji-readings {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--fg-dim);
+}
+.kanji-readings b {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-right: 3px;
+  color: var(--accent-2);
+}
+.kanji-strokes {
+  font-size: 11px;
+  color: var(--fg-dim);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.kanji-words {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+.kanji-word {
+  font-size: 12.5px;
+  color: var(--fg);
+  line-height: 1.4;
+}
+@media (max-width: 480px) {
+  .kanji-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; padding: 10px; }
+  .kanji { padding: 10px; }
+  .kanji-ch { font-size: 44px; }
+  .kanji-en { font-size: 13.5px; }
+  .kanji-word { font-size: 11.5px; }
+}
+
 /* ---------- category header inside Structure list ---------- */
 .struct-cat-header {
   display: flex;

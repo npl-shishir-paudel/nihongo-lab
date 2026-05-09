@@ -626,12 +626,33 @@
       }
     });
   });
+  // Combined grammar / structure lookup. Chapters can reference EITHER an
+  // old grammar entry (title → {title, pattern, rule}) OR a new structure
+  // (title → {title, formula, description}). The renderer normalizes fields.
+  const gramLookup = new Map();
+  DATA.grammar.forEach(g => {
+    gramLookup.set(g.title, { title: g.title, pattern: g.pattern, rule: g.rule, source: "grammar" });
+  });
+  if (DATA.structures) {
+    DATA.structures.forEach(s => {
+      gramLookup.set(s.title, { title: s.title, pattern: s.formula, rule: s.description, source: "structure" });
+      // also surface main + example sentences so chapters can pull them
+      if (s.main && !sentLookup.has(s.main.jp)) {
+        sentLookup.set(s.main.jp, { jp: s.main.jp, ro: s.main.ro || "", en: s.main.en, scene: "structure" });
+      }
+      (s.examples || []).forEach(ex => {
+        if (!sentLookup.has(ex.jp)) {
+          sentLookup.set(ex.jp, { jp: ex.jp, ro: ex.ro || "", en: ex.en, scene: "structure" });
+        }
+      });
+    });
+  }
   const lookups = {
     hira: new Map(DATA.hiragana.map(k => [k.ch, k])),
     kata: new Map(DATA.katakana.map(k => [k.ch, k])),
     word: new Map(DATA.words.map(w => [w.jp, w])),
     sent: sentLookup,
-    gram: new Map(DATA.grammar.map(g => [g.title, g]))
+    gram: gramLookup
   };
 
   function buildChapters() {
@@ -795,6 +816,54 @@
     });
     sec.appendChild(row);
     return sec;
+  }
+
+  // ---------- kanji ----------
+  function buildKanji() {
+    if (!DATA.kanji) return;
+    const root = $("#kanjiGrid");
+    if (!root) return;
+    root.innerHTML = "";
+    DATA.kanji.forEach(k => {
+      const card = document.createElement("div");
+      card.className = "kanji";
+      card.dataset.search = `${k.ch} ${k.on} ${k.kun} ${k.en} ${(k.words || []).join(" ")}`.toLowerCase();
+      card.innerHTML = `
+        <div class="kanji-ch">${escapeHtml(k.ch)}</div>
+        <div class="kanji-meta">
+          <div class="kanji-en">${escapeHtml(k.en)}</div>
+          <div class="kanji-readings">
+            <span class="kanji-on"><b>on</b> ${escapeHtml(k.on)}</span>
+            <span class="kanji-kun"><b>kun</b> ${escapeHtml(k.kun)}</span>
+          </div>
+          <div class="kanji-strokes">${k.strokes} strokes</div>
+        </div>
+        <div class="kanji-words">
+          ${(k.words || []).map(w => `<div class="kanji-word">${escapeHtml(w)}</div>`).join("")}
+        </div>
+      `;
+      // Hover info, click plays the kanji using its on'yomi (first reading)
+      const onReading = (k.on || "").split(/[・、]/)[0];
+      bindHoverInfo(card, () => `
+        <div class="tip-jp">${escapeHtml(k.ch)}</div>
+        <div class="tip-mean">${escapeHtml(k.en)}</div>
+        <div class="tip-rows">
+          <div class="tip-row"><b>on</b> ${escapeHtml(k.on)}</div>
+          <div class="tip-row"><b>kun</b> ${escapeHtml(k.kun)}</div>
+          <div class="tip-row"><b>strokes</b> ${k.strokes}</div>
+          ${(k.words || []).map(w => `<div class="tip-row"><b>ex</b> ${escapeHtml(w)}</div>`).join("")}
+        </div>
+        ${tipFooter()}
+      `);
+      card.addEventListener("click", () => speak(k.ch, card));
+      root.appendChild(card);
+    });
+    $("#searchKanji").addEventListener("input", (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      $$(".kanji", root).forEach(el => {
+        el.classList.toggle("is-hidden", q && !el.dataset.search.includes(q));
+      });
+    });
   }
 
   // ---------- sentence structures ----------
@@ -1268,6 +1337,38 @@
   }
   refreshScore();
 
+  // Conjugation drill — each item presents a dictionary-form verb (or
+  // adjective) and asks for a target form (polite, past, negative, ~たい, ~て).
+  // Built from DATA.words to keep the data source single.
+  const CONJ_VERBS = [
+    // godan (Group 1) — drop -u, add -i + masu
+    { dict: "飲む", ro: "nomu", group: 1, masu: "飲みます",   nai: "飲みません",   ta: "飲みました",   te: "飲んで",   tai: "飲みたい",   en: "to drink" },
+    { dict: "書く", ro: "kaku", group: 1, masu: "書きます",   nai: "書きません",   ta: "書きました",   te: "書いて",   tai: "書きたい",   en: "to write" },
+    { dict: "話す", ro: "hanasu", group: 1, masu: "話します", nai: "話しません",  ta: "話しました", te: "話して", tai: "話したい", en: "to speak" },
+    { dict: "読む", ro: "yomu", group: 1, masu: "読みます", nai: "読みません", ta: "読みました", te: "読んで", tai: "読みたい", en: "to read" },
+    { dict: "聞く", ro: "kiku", group: 1, masu: "聞きます", nai: "聞きません", ta: "聞きました", te: "聞いて", tai: "聞きたい", en: "to listen" },
+    { dict: "買う", ro: "kau", group: 1, masu: "買います", nai: "買いません", ta: "買いました", te: "買って", tai: "買いたい", en: "to buy" },
+    { dict: "行く", ro: "iku", group: 1, masu: "行きます", nai: "行きません", ta: "行きました", te: "行って", tai: "行きたい", en: "to go (irreg. te)" },
+    { dict: "持つ", ro: "motsu", group: 1, masu: "持ちます", nai: "持ちません", ta: "持ちました", te: "持って", tai: "持ちたい", en: "to hold" },
+    { dict: "走る", ro: "hashiru", group: 1, masu: "走ります", nai: "走りません", ta: "走りました", te: "走って", tai: "走りたい", en: "to run" },
+    // ichidan (Group 2) — drop -ru, add -masu
+    { dict: "食べる", ro: "taberu", group: 2, masu: "食べます", nai: "食べません", ta: "食べました", te: "食べて", tai: "食べたい", en: "to eat" },
+    { dict: "見る", ro: "miru", group: 2, masu: "見ます", nai: "見ません", ta: "見ました", te: "見て", tai: "見たい", en: "to see" },
+    { dict: "起きる", ro: "okiru", group: 2, masu: "起きます", nai: "起きません", ta: "起きました", te: "起きて", tai: "起きたい", en: "to wake up" },
+    { dict: "寝る", ro: "neru", group: 2, masu: "寝ます", nai: "寝ません", ta: "寝ました", te: "寝て", tai: "寝たい", en: "to sleep" },
+    { dict: "教える", ro: "oshieru", group: 2, masu: "教えます", nai: "教えません", ta: "教えました", te: "教えて", tai: "教えたい", en: "to teach" },
+    // irregular (Group 3)
+    { dict: "する", ro: "suru", group: 3, masu: "します", nai: "しません", ta: "しました", te: "して", tai: "したい", en: "to do" },
+    { dict: "来る", ro: "kuru", group: 3, masu: "来ます", nai: "来ません", ta: "来ました", te: "来て", tai: "来たい", en: "to come" }
+  ];
+  const CONJ_FORMS = [
+    { key: "masu", label: "Polite present (~ます)" },
+    { key: "nai",  label: "Polite negative (~ません)" },
+    { key: "ta",   label: "Polite past (~ました)" },
+    { key: "te",   label: "て-form (connective / -ing)" },
+    { key: "tai",  label: "Want-form (~たい)" }
+  ];
+
   function newQuiz() {
     const mode = $("#quizMode").value;
     const card = $("#quizCard");
@@ -1283,6 +1384,40 @@
       prompt = `<div class="quiz-prompt">${correct.ch}</div>`;
       audio = correct.ch;
       options = opts.map(o => o.ro);
+    } else if (mode === "kanji") {
+      // Kanji → meaning. Show kanji + readings, ask for English meaning.
+      const pool = (DATA.kanji || []);
+      if (!pool.length) { card.innerHTML = "<p>No kanji data.</p>"; return; }
+      const correct = pool[Math.floor(Math.random() * pool.length)];
+      const wrong = pick(pool.filter(x => x.en !== correct.en), 3);
+      const opts = pick([correct, ...wrong], 4);
+      correctIdx = opts.indexOf(correct);
+      prompt = `<div class="quiz-prompt">${correct.ch}</div>
+                <div style="text-align:center;color:var(--fg-dim);font-size:13px;margin-bottom:14px">
+                  on: ${correct.on} · kun: ${correct.kun}
+                </div>`;
+      audio = correct.ch;
+      options = opts.map(o => o.en);
+    } else if (mode === "conj") {
+      // Conjugation drill: pick a verb and a target form, ask for the form.
+      const verb = CONJ_VERBS[Math.floor(Math.random() * CONJ_VERBS.length)];
+      const form = CONJ_FORMS[Math.floor(Math.random() * CONJ_FORMS.length)];
+      const correctAnswer = verb[form.key];
+      // Build 3 plausible distractors from other verbs' SAME form, plus
+      // sometimes from the SAME verb's OTHER form (forces real attention)
+      const sameFormOthers = CONJ_VERBS.filter(v => v.dict !== verb.dict).map(v => v[form.key]);
+      const sameVerbOthers = CONJ_FORMS.filter(f => f.key !== form.key).map(f => verb[f.key]);
+      const distractors = pick([...sameFormOthers, ...sameVerbOthers], 3);
+      const opts = pick([correctAnswer, ...distractors], 4);
+      correctIdx = opts.indexOf(correctAnswer);
+      const groupBadge = verb.group === 1 ? "Group 1 godan" : verb.group === 2 ? "Group 2 ichidan" : "Group 3 irregular";
+      prompt = `<div class="quiz-prompt small">${verb.dict} <span style="color:var(--fg-dim);font-size:13px">(${verb.ro} — ${verb.en})</span></div>
+                <div style="text-align:center;color:var(--accent-2);font-size:14px;margin-bottom:6px">
+                  Conjugate to: <b>${form.label}</b>
+                </div>
+                <div style="text-align:center;color:var(--fg-dim);font-size:11.5px;margin-bottom:14px">${groupBadge}</div>`;
+      audio = correctAnswer;
+      options = opts;
     } else if (mode === "word") {
       const correct = DATA.words[Math.floor(Math.random() * DATA.words.length)];
       const wrong = pick(DATA.words.filter(x => x.en !== correct.en), 3);
@@ -1350,6 +1485,7 @@
   buildWords();
   buildSentences();
   buildStructures();
+  buildKanji();
   buildChapters();
   buildConversations();
   // redirect old saved tab names to the new consolidated tabs

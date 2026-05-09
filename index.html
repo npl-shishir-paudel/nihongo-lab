@@ -17,6 +17,7 @@
       <button class="tab" data-tab="kana">Kana</button>
       <button class="tab" data-tab="phrases">Phrases</button>
       <button class="tab" data-tab="structures">Structure</button>
+      <button class="tab" data-tab="kanji">Kanji</button>
       <button class="tab" data-tab="quiz">Quiz</button>
     </nav>
     <div class="controls">
@@ -122,6 +123,16 @@
       <div class="struct-list" id="structList"></div>
     </section>
 
+    <!-- KANJI -->
+    <section class="panel" id="panel-kanji">
+      <div class="panel-head">
+        <h1>Kanji 漢字</h1>
+        <p class="muted">Top ~60 high-utility kanji with <b>on'yomi</b> (Chinese-derived reading), <b>kun'yomi</b> (native Japanese reading), English meaning, stroke count, and 1–2 example compound words. Click any card to hear the kanji pronounced (uses on'yomi).</p>
+        <input class="search" id="searchKanji" placeholder="Search kanji, reading, meaning…" />
+      </div>
+      <div class="kanji-grid" id="kanjiGrid"></div>
+    </section>
+
     <!-- QUIZ -->
     <section class="panel" id="panel-quiz">
       <div class="panel-head">
@@ -133,8 +144,10 @@
             <select id="quizMode">
               <option value="hira">Hiragana → romaji</option>
               <option value="kata">Katakana → romaji</option>
+              <option value="kanji">Kanji → meaning</option>
               <option value="word">Listen → meaning</option>
               <option value="sent">Listen → sentence meaning</option>
+              <option value="conj">Conjugation drill</option>
             </select>
           </label>
           <button id="quizNew" class="primary">New question</button>

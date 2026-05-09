@@ -296,7 +296,144 @@ const NEPALI = {
   "山田さんの仕事": "यामादा जीको काम (Yamada-ji ko kaam)",
   "図書館で勉強します。": "पुस्तकालयमा पढ्छु। (pustakalaya ma padhchhu)",
   "寒いから、コートを着ます。": "जाडो भएकोले कोट लगाउँछु। (jado bhaekole coat lagaauchhu)",
-  "スーパーに行って、肉を買いました。": "सुपरमार्केटमा गएर मासु किनेँ। (supermarket ma gaaera masu kineñ)"
+  "スーパーに行って、肉を買いました。": "सुपरमार्केटमा गएर मासु किनेँ। (supermarket ma gaaera masu kineñ)",
+  // ── Expansion: more particles + counters + conjugation refs ──
+  "友達と昼ご飯を食べました。": "साथीसँग खाजा खाएँ। (sathi sanga khaja khaae)",
+  "田中さんと話しました。": "तानाका जीसँग कुरा गरेँ। (Tanaka-ji sanga kura gareñ)",
+  "パンと牛乳を買いました。": "रोटी र दूध किनेँ। (roti ra dudh kineñ)",
+  "妻と子供がいます。": "श्रीमती र छोराछोरी छन्। (shrimati ra chhoraachhori chhan)",
+  "母と買い物に行きます。": "आमासँग किनमेलमा जान्छु। (aama sanga kinmel ma jaanchhu)",
+  "同僚と会議をします。": "सहकर्मीसँग मिटिङ गर्छु। (sahakarmi sanga meeting garchhu)",
+  "犬と猫が好きです。": "कुकुर र बिरालो मन पर्छ। (kukur ra biralo man parchha)",
+  "先生と一緒に勉強します。": "गुरुसँग सँगै पढ्छु। (guru sanga sangai padhchhu)",
+  "東京へ行きます。": "टोकियो तर्फ जान्छु। (Tokyo tarpha jaanchhu)",
+  "学校へ向かいます。": "स्कूलतिर लाग्छु। (school tira laagchhu)",
+  "家へ帰ります。": "घरतिर फर्कन्छु। (ghar tira farkanchhu)",
+  "海外へ旅行します。": "विदेशतिर यात्रा गर्छु। (videsh tira yatra garchhu)",
+  "日本へようこそ。": "जापानमा स्वागत छ। (Japan ma swagat chha)",
+  "友達への手紙": "साथीलाई पठाइने पत्र (sathi lai pathaaine patra)",
+  "駅へ走ります。": "स्टेसनतिर दौडन्छु। (station tira daudanchhu)",
+  "オフィスへ来てください。": "अफिसमा आउनुहोस्। (office ma aaunuhos)",
+  "りんごやバナナを買いました。": "स्याउ, केरा (आदि) किनेँ। (syau, kera aadi kineñ)",
+  "東京や大阪に行きました。": "टोकियो, ओसाका (आदि) गएँ। (Tokyo Osaka aadi gaeñ)",
+  "ペンや紙が必要です。": "कलम कागज (आदि) चाहिन्छ। (kalam kagaj aadi chahinchha)",
+  "犬や猫などが好きです。": "कुकुर बिरालो आदि मन पर्छ। (kukur biralo aadi man parchha)",
+  "寿司やラーメンを食べました。": "सुसी, रामेन (आदि) खाएँ। (sushi ramen aadi khaaeñ)",
+  "田中さんや山田さんが来ました。": "तानाका, यामादा जी (आदि) आए। (Tanaka Yamada-ji aadi aae)",
+  "ノートやペンを持ってきます。": "कापी कलम (आदि) लिएर आउँछु। (kapi kalam aadi lieyera aaunchhu)",
+  "サーバーやデータベースを管理します。": "सर्भर डाटाबेस आदि व्यवस्थापन गर्छु। (server database aadi vyavasthapan garchhu)",
+  "もう十時ですよ。": "अहिले १० बज्यो नि! (ahile 10 bajyo ni!)",
+  "これは私の本ですよ。": "यो मेरो किताब हो नि! (yo mero kitab ho ni!)",
+  "バグじゃないですよ。": "बग होइन नि! (bug hoina ni!)",
+  "会議は明日ですよ。": "मिटिङ भोलि हो नि! (meeting bholi ho ni!)",
+  "大丈夫ですよ。": "ठीक छ नि! (thik chha ni!)",
+  "このコードは正しいですよ。": "यो कोड सही हो नि! (yo code sahi ho ni!)",
+  "サーバーは落ちてますよ。": "सर्भर डाउन छ नि! (server down chha ni!)",
+  "それは違いますよ。": "त्यो गलत हो नि! (tyo galat ho ni!)",
+  "今日はいい天気ですね。": "आज मौसम राम्रो छ, होइन र? (aja mausam ramro chha, hoina ra?)",
+  "美味しいですね。": "स्वादिलो छ, होइन र? (swadilo chha, hoina ra?)",
+  "そうですね。": "हो, त्यस्तै हो। (ho, tyastai ho)",
+  "このコードは難しいですね。": "यो कोड गाह्रो छ, होइन र? (yo code garho chha, hoina ra?)",
+  "田中さんは親切ですね。": "तानाका जी दयालु हुनुहुन्छ, होइन र? (Tanaka-ji dayalu hunuhunchha, hoina ra?)",
+  "もう遅いですね。": "अब ढिलो भयो, होइन र? (aba dhilo bhayo, hoina ra?)",
+  "疲れましたね。": "थकाइ लाग्यो, होइन र? (thakai laagyo, hoina ra?)",
+  "いい天気ですね、今日は。": "आज मौसम राम्रो छ है। (aja mausam ramro chha hai)",
+  "忙しいので、行けません。": "व्यस्त भएकोले जान सक्दिन। (byasta bhaekole jaana sakdina)",
+  "雨が降っているので、家にいます。": "पानी परिरहेकोले घरमै छु। (pani pariraheko le ghar mai chhu)",
+  "風邪を引いたので、休みます。": "रुघा लागेकोले बिदा बस्छु। (rugha laagekole bida baschhu)",
+  "電車が遅れたので、遅刻しました。": "ट्रेन ढिलो भएकोले ढिलो भएँ। (train dhilo bhaekole dhilo bhaeñ)",
+  "時間がないので、急ぎます。": "समय नभएकोले हतारिन्छु। (samaya nabhaekole hataarinchhu)",
+  "明日は休みなので、ゆっくりします。": "भोलि बिदा भएकोले आराम गर्छु। (bholi bida bhaekole aaram garchhu)",
+  "バグがあるので、リリースできません。": "बग भएकोले रिलिज गर्न सकिन्न। (bug bhaekole release garna sakinna)",
+  "会議があるので、早く来ました。": "मिटिङ भएकोले चाँडै आएँ। (meeting bhaekole chhito aaeñ)",
+  "寒いけど、行きます。": "जाडो छ तर पनि जान्छु। (jado chha tara pani jaanchhu)",
+  "高いけど、買います。": "महँगो छ तर पनि किन्छु। (mahango chha tara pani kinchhu)",
+  "難しいけど、面白いです。": "गाह्रो छ तर रोचक छ। (garho chha tara rochak chha)",
+  "行きたいけど、忙しいです。": "जान मन छ तर व्यस्त छु। (jaana man chha tara byasta chhu)",
+  "雨ですが、出かけます。": "पानी परिरहेको छ तर निस्कन्छु। (pani pariraheko chha tara niskanchhu)",
+  "簡単ですが、時間がかかります。": "सजिलो छ तर समय लाग्छ। (sajilo chha tara samaya laagchha)",
+  "コードはできたけど、テストはまだです。": "कोड त भयो तर टेस्ट बाँकी छ। (code ta bhayo tara test baaki chha)",
+  "わかったけど、ちょっと違います。": "बुझेँ तर अलि फरक छ। (bujheñ tara ali farak chha)",
+  "りんごを一つください。": "एउटा स्याउ दिनुहोस्। (euta syau dinuhos)",
+  "子供が二人います。": "दुई जना छोराछोरी छन्। (dui jana chhoraachhori chhan)",
+  "紙を三枚ください。": "तीन पाना कागज दिनुहोस्। (teen paana kagaj dinuhos)",
+  "ペンが五本あります。": "पाँच ओटा कलम छ। (paach ota kalam chha)",
+  "りんごを四個買いました。": "चार ओटा स्याउ किनेँ। (chaar ota syau kineñ)",
+  "二時間勉強しました。": "दुई घन्टा पढेँ। (dui ghanta padheñ)",
+  "三十分待ちました。": "तीस मिनेट कुरेँ। (tees minute kureñ)",
+  "コーヒーを一杯お願いします。": "एक कप कफी कृपया। (ek cup coffee kripaya)",
+  "飲む → 飲みます (drink, present polite)": "पिउनु → पिउँछु (नम्र) — Group 1",
+  "食べる → 食べます": "खानु → खान्छु (नम्र) — Group 2",
+  "する → します": "गर्नु → गर्छु (अनियमित) — Group 3",
+  "来る → 来ます": "आउनु → आउँछु (अनियमित) — Group 3",
+  "書く → 書きます": "लेख्नु → लेख्छु — Group 1",
+  "見る → 見ます": "हेर्नु → हेर्छु — Group 2",
+  "行く → 行きました (past)": "जानु → गएँ (विगत)",
+  "話す → 話しません (negative)": "बोल्नु → बोल्दिन (नकारात्मक)",
+  "大きい → 大きくない (negative)": "ठूलो → सानो होइन (नकारात्मक)",
+  "高い → 高かった (past)": "महँगो → महँगो थियो (विगत)",
+  "難しい → 難しくなかった (past neg)": "गाह्रो → गाह्रो थिएन (विगत नकारात्मक)",
+  "静か → 静かじゃない (negative)": "शान्त → शान्त होइन (नकारात्मक)",
+  "元気 → 元気でした (past)": "सञ्चै → सञ्चै थिएँ (विगत)",
+  "親切 → 親切じゃなかった (past neg)": "दयालु → दयालु थिएन (विगत नकारात्मक)",
+  "いい → よくない (irregular negative)": "राम्रो → राम्रो छैन (अनियमित नकारात्मक)",
+  "綺麗 → 綺麗な部屋 (modifying noun)": "सफा → सफा कोठा (नाम संशोधन)",
+  // ── Expansion: words/sentences/conversations ──
+  "もしもし、田中です。": "हेलो, तानाका हुँ। (hello, Tanaka hu)",
+  "今、お時間よろしいですか？": "अहिले समय छ? (ahile samaya chha?)",
+  "後でかけ直します。": "पछि फेरि फोन गर्छु। (pachhi pheri phone garchhu)",
+  "お世話になっております。": "सधैं सहयोगको लागि धन्यवाद। (formal email opener)",
+  "よろしくお願いいたします。": "धन्यवाद। (kripaya — formal closer)",
+  "確認お願いします。": "कृपया हेरिदिनुहोस्। (kripaya heridinuhos)",
+  "これをください。": "यो दिनुहोस्। (yo dinuhos)",
+  "袋はいりません。": "झोला चाहिँदैन। (jhola chaahidaina)",
+  "クレジットカードで払います。": "क्रेडिट कार्डले तिर्छु। (credit card le tirchhu)",
+  "頭が痛いです。": "टाउको दुख्छ। (taauko dukhchha)",
+  "熱があります。": "ज्वरो आएको छ। (jworo aaeko chha)",
+  "病院はどこですか？": "अस्पताल कहाँ छ? (aspatal kahaa chha?)",
+  "ご迷惑をおかけしました。": "दुख दिएकोमा माफ चाहन्छु। (formal apology)",
+  "申し訳ございません。": "धेरै माफी चाहन्छु। (very formal apology)",
+  "本当にすみません。": "साँच्चिकै माफ गर्नुहोस्। (saachchikai maaf garnuhos)",
+  "やった！": "भयो! / मिलियो! (bhayo! / miliyo!)",
+  "本当？": "साँच्चै? (saachchai?)",
+  "なるほど。": "ए, बुझेँ। (e, bujheñ)",
+  "そうそう。": "हो हो। (ho ho)",
+  "切符を一枚ください。": "एक टिकट दिनुहोस्। (ek ticket dinuhos)",
+  "次の電車は何時ですか？": "अर्को ट्रेन कति बजे छ? (arko train kati baje chha?)",
+  "ホテルを予約しました。": "होटल बुक गरेँ। (hotel book gareñ)",
+  "確認します。": "हेर्छु / जाँच्छु। (herchhu / jaanchhu)",
+  "デプロイしました。": "डिप्लोय गरेँ। (deploy gareñ)",
+  "本番環境で問題が起きています。": "प्रोडक्सनमा समस्या आइरहेको छ। (production ma samasya aairaheko chha)",
+  "もしもし、ABC会社です。": "हेलो, ABC कम्पनी हो। (hello, ABC company ho)",
+  "田中ですが、山田さんお願いします。": "तानाका हुँ, यामादा जीसँग कुरा गर्न पाऊँ? (Tanaka hu, Yamada-ji sanga kura garna paauñ?)",
+  "少々お待ちください。": "एक छिन पर्खनुहोस्। (ek chhin parkhanuhos)",
+  "すみません、山田は今、席を外しております。": "माफ गर्नुहोस्, यामादा अहिले डेस्कमा हुनुहुन्न। (humble form)",
+  "では、後でかけ直します。": "त्यसो भए पछि फोन गर्छु। (tyaso bhae pachhi phone garchhu)",
+  "ありがとうございます。失礼いたします。": "धन्यवाद। नमस्कार। (formal phone close)",
+  "山田様": "श्रीयामादा (Shree Yamada — formal recipient)",
+  "ABC会社のシシルです。": "ABC कम्पनीको शिशिर हुँ। (ABC company ko Shishir hu)",
+  "プルリクを送りましたので、ご確認お願いいたします。": "पुल रिक्वेस्ट पठाएकोले कृपया हेरिदिनुहोस्। (pull request pathaaekole kripaya heridinuhos)",
+  "シシル": "शिशिर (Shishir)",
+  "いらっしゃいませ。": "स्वागत छ। (swagat chha)",
+  "これとこれをお願いします。": "यो र यो दिनुहोस्। (yo ra yo dinuhos)",
+  "お弁当を温めますか？": "ओबेन्तो तातो पारिदिऊँ? (obento taato paaridiauñ?)",
+  "はい、お願いします。": "हो, कृपया। (ho, kripaya)",
+  "袋は要りますか？": "झोला चाहिन्छ? (jhola chahinchha?)",
+  "いいえ、大丈夫です。": "होइन, ठीक छ। (hoina, thik chha)",
+  "六百円になります。": "६०० येन हुन्छ। (600 yen hunchha)",
+  "クレジットカードで。": "क्रेडिट कार्डले। (credit card le)",
+  "どうしましたか？": "के भयो? (k bhayo?)",
+  "頭がとても痛いです。": "टाउको धेरै दुख्छ। (taauko dherai dukhchha)",
+  "いつからですか？": "कहिलेदेखि? (kahile dekhi?)",
+  "昨日からです。": "हिजोदेखि। (hijo dekhi)",
+  "熱はありますか？": "ज्वरो आएको छ? (jworo aaeko chha?)",
+  "はい、少し。": "हो, अलिकति। (ho, alikati)",
+  "薬を出します。": "औषधि दिन्छु। (aushadi dinchhu)",
+  "おっす！元気？": "हे! सञ्चै? (he! sanchai?)",
+  "うん、元気だよ。": "हो, सञ्चै छु। (ho, sanchai chhu) — casual",
+  "週末、何する？": "विकेन्डमा के गर्ने? (weekend ma k garne?)",
+  "映画を見たい。": "मुभी हेर्न मन छ। (movie hernā man chha)",
+  "いいね！一緒に行こう。": "ठीक छ! सँगै जाऔं। (thik chha! sangai jaaauñ)"
 };
 
 const DATA = {
@@ -342,6 +479,74 @@ const DATA = {
     { ch: "ダ", ro: "da", group: "d" }, { ch: "ヂ", ro: "ji", group: "d" }, { ch: "ヅ", ro: "zu", group: "d" }, { ch: "デ", ro: "de", group: "d" }, { ch: "ド", ro: "do", group: "d" },
     { ch: "バ", ro: "ba", group: "b" }, { ch: "ビ", ro: "bi", group: "b" }, { ch: "ブ", ro: "bu", group: "b" }, { ch: "ベ", ro: "be", group: "b" }, { ch: "ボ", ro: "bo", group: "b" },
     { ch: "パ", ro: "pa", group: "p" }, { ch: "ピ", ro: "pi", group: "p" }, { ch: "プ", ro: "pu", group: "p" }, { ch: "ペ", ro: "pe", group: "p" }, { ch: "ポ", ro: "po", group: "p" }
+  ],
+
+  // ──────────────────────────────────────────────────────────────────
+  // Kanji — top ~60 high-utility characters with on/kun readings,
+  // English meaning, stroke count, and 1-2 example compound words.
+  // ──────────────────────────────────────────────────────────────────
+  kanji: [
+    { ch: "人", on: "ジン・ニン", kun: "ひと", en: "person", strokes: 2, words: ["三人 (sannin) — three people","日本人 (nihonjin) — Japanese person"] },
+    { ch: "日", on: "ニチ・ジツ", kun: "ひ・び・か", en: "day / sun", strokes: 4, words: ["今日 (kyō) — today","日本 (nihon) — Japan"] },
+    { ch: "月", on: "ゲツ・ガツ", kun: "つき", en: "month / moon", strokes: 4, words: ["月曜日 (getsuyōbi) — Monday","一月 (ichigatsu) — January"] },
+    { ch: "本", on: "ホン", kun: "もと", en: "book / origin", strokes: 5, words: ["本 (hon) — book","日本 (nihon) — Japan"] },
+    { ch: "山", on: "サン", kun: "やま", en: "mountain", strokes: 3, words: ["富士山 (fujisan) — Mt. Fuji","山田 (yamada) — Yamada (surname)"] },
+    { ch: "川", on: "セン", kun: "かわ", en: "river", strokes: 3, words: ["川 (kawa) — river","石川 (ishikawa) — Ishikawa"] },
+    { ch: "大", on: "ダイ・タイ", kun: "おお(きい)", en: "big / large", strokes: 3, words: ["大きい (ōkii) — big","大人 (otona) — adult"] },
+    { ch: "小", on: "ショウ", kun: "ちい(さい)・こ", en: "small", strokes: 3, words: ["小さい (chiisai) — small","小学校 (shōgakkō) — elementary school"] },
+    { ch: "上", on: "ジョウ", kun: "うえ・あ(がる)", en: "up / above", strokes: 3, words: ["上司 (jōshi) — boss","上 (ue) — above"] },
+    { ch: "下", on: "カ・ゲ", kun: "した・さ(がる)", en: "down / below", strokes: 3, words: ["下 (shita) — below","地下 (chika) — underground"] },
+    { ch: "中", on: "チュウ", kun: "なか", en: "middle / inside", strokes: 4, words: ["会議中 (kaigichū) — in a meeting","中国 (chūgoku) — China"] },
+    { ch: "右", on: "ウ", kun: "みぎ", en: "right (direction)", strokes: 5, words: ["右 (migi) — right","右手 (migite) — right hand"] },
+    { ch: "左", on: "サ", kun: "ひだり", en: "left", strokes: 5, words: ["左 (hidari) — left","左手 (hidarite) — left hand"] },
+    { ch: "前", on: "ゼン", kun: "まえ", en: "before / front", strokes: 9, words: ["前 (mae) — before/front","午前 (gozen) — AM"] },
+    { ch: "後", on: "ゴ・コウ", kun: "あと・うし(ろ)", en: "after / behind", strokes: 9, words: ["午後 (gogo) — PM","後で (atode) — later"] },
+    { ch: "今", on: "コン", kun: "いま", en: "now", strokes: 4, words: ["今 (ima) — now","今日 (kyō) — today"] },
+    { ch: "時", on: "ジ", kun: "とき", en: "time / hour", strokes: 10, words: ["時間 (jikan) — time","三時 (sanji) — 3 o'clock"] },
+    { ch: "分", on: "フン・ブン", kun: "わ(かる)", en: "minute / part", strokes: 4, words: ["三十分 (sanjuppun) — 30 min","分かる (wakaru) — understand"] },
+    { ch: "年", on: "ネン", kun: "とし", en: "year", strokes: 6, words: ["今年 (kotoshi) — this year","二年 (ninen) — two years"] },
+    { ch: "新", on: "シン", kun: "あたら(しい)", en: "new", strokes: 13, words: ["新しい (atarashii) — new","新聞 (shinbun) — newspaper"] },
+    { ch: "古", on: "コ", kun: "ふる(い)", en: "old (things)", strokes: 5, words: ["古い (furui) — old","古本 (furuhon) — used book"] },
+    { ch: "高", on: "コウ", kun: "たか(い)", en: "high / expensive", strokes: 10, words: ["高い (takai) — high/expensive","最高 (saikō) — best"] },
+    { ch: "安", on: "アン", kun: "やす(い)", en: "cheap / peaceful", strokes: 6, words: ["安い (yasui) — cheap","安全 (anzen) — safety"] },
+    { ch: "見", on: "ケン", kun: "み(る)", en: "see / look", strokes: 7, words: ["見る (miru) — see","意見 (iken) — opinion"] },
+    { ch: "聞", on: "ブン・モン", kun: "き(く)", en: "hear / ask", strokes: 14, words: ["聞く (kiku) — listen/ask","新聞 (shinbun) — newspaper"] },
+    { ch: "言", on: "ゲン", kun: "い(う)", en: "say / word", strokes: 7, words: ["言う (iu) — say","言語 (gengo) — language"] },
+    { ch: "話", on: "ワ", kun: "はな(す)", en: "talk / story", strokes: 13, words: ["話す (hanasu) — talk","電話 (denwa) — phone"] },
+    { ch: "読", on: "ドク", kun: "よ(む)", en: "read", strokes: 14, words: ["読む (yomu) — read","読書 (dokusho) — reading"] },
+    { ch: "書", on: "ショ", kun: "か(く)", en: "write", strokes: 10, words: ["書く (kaku) — write","辞書 (jisho) — dictionary"] },
+    { ch: "行", on: "コウ・ギョウ", kun: "い(く)・おこな(う)", en: "go", strokes: 6, words: ["行く (iku) — go","銀行 (ginkō) — bank"] },
+    { ch: "来", on: "ライ", kun: "く(る)", en: "come", strokes: 7, words: ["来る (kuru) — come","来週 (raishū) — next week"] },
+    { ch: "出", on: "シュツ", kun: "で(る)・だ(す)", en: "exit / put out", strokes: 5, words: ["出る (deru) — exit","出張 (shutchō) — biz trip"] },
+    { ch: "入", on: "ニュウ", kun: "い(る)・はい(る)", en: "enter", strokes: 2, words: ["入る (hairu) — enter","入学 (nyūgaku) — school entrance"] },
+    { ch: "食", on: "ショク", kun: "た(べる)", en: "eat / food", strokes: 9, words: ["食べる (taberu) — eat","食事 (shokuji) — meal"] },
+    { ch: "飲", on: "イン", kun: "の(む)", en: "drink", strokes: 12, words: ["飲む (nomu) — drink","飲み物 (nomimono) — drink"] },
+    { ch: "学", on: "ガク", kun: "まな(ぶ)", en: "learn / study", strokes: 8, words: ["学校 (gakkō) — school","学生 (gakusei) — student"] },
+    { ch: "校", on: "コウ", kun: "—", en: "school", strokes: 10, words: ["学校 (gakkō) — school","高校 (kōkō) — high school"] },
+    { ch: "生", on: "セイ", kun: "う(まれる)・い(きる)", en: "life / birth", strokes: 5, words: ["先生 (sensei) — teacher","学生 (gakusei) — student"] },
+    { ch: "先", on: "セン", kun: "さき", en: "previous / ahead", strokes: 6, words: ["先生 (sensei) — teacher","先週 (senshū) — last week"] },
+    { ch: "私", on: "シ", kun: "わたし", en: "I / private", strokes: 7, words: ["私 (watashi) — I","私立 (shiritsu) — private (school)"] },
+    { ch: "名", on: "メイ", kun: "な", en: "name", strokes: 6, words: ["名前 (namae) — name","有名 (yūmei) — famous"] },
+    { ch: "国", on: "コク", kun: "くに", en: "country", strokes: 8, words: ["中国 (chūgoku) — China","国 (kuni) — country"] },
+    { ch: "家", on: "カ・ケ", kun: "いえ・うち", en: "house / family", strokes: 10, words: ["家 (ie) — house","家族 (kazoku) — family"] },
+    { ch: "車", on: "シャ", kun: "くるま", en: "car / vehicle", strokes: 7, words: ["車 (kuruma) — car","電車 (densha) — train"] },
+    { ch: "電", on: "デン", kun: "—", en: "electric", strokes: 13, words: ["電車 (densha) — train","電気 (denki) — electricity"] },
+    { ch: "話", on: "ワ", kun: "はな(す)", en: "talk / phone", strokes: 13, words: ["電話 (denwa) — phone","会話 (kaiwa) — conversation"] },
+    { ch: "水", on: "スイ", kun: "みず", en: "water", strokes: 4, words: ["水 (mizu) — water","水曜日 (suiyōbi) — Wed"] },
+    { ch: "火", on: "カ", kun: "ひ", en: "fire", strokes: 4, words: ["火 (hi) — fire","火曜日 (kayōbi) — Tuesday"] },
+    { ch: "金", on: "キン", kun: "かね", en: "gold / money", strokes: 8, words: ["お金 (okane) — money","金曜日 (kinyōbi) — Friday"] },
+    { ch: "土", on: "ド", kun: "つち", en: "earth / soil", strokes: 3, words: ["土 (tsuchi) — soil","土曜日 (doyōbi) — Saturday"] },
+    { ch: "木", on: "モク", kun: "き", en: "tree / wood", strokes: 4, words: ["木 (ki) — tree","木曜日 (mokuyōbi) — Thursday"] },
+    { ch: "好", on: "コウ", kun: "す(き)", en: "like / love", strokes: 6, words: ["好き (suki) — like","大好き (daisuki) — love"] },
+    { ch: "会", on: "カイ", kun: "あ(う)", en: "meet / association", strokes: 6, words: ["会議 (kaigi) — meeting","会社 (kaisha) — company"] },
+    { ch: "社", on: "シャ", kun: "やしろ", en: "company / shrine", strokes: 7, words: ["会社 (kaisha) — company","社長 (shachō) — president"] },
+    { ch: "仕", on: "シ", kun: "つか(える)", en: "serve / job", strokes: 5, words: ["仕事 (shigoto) — work","仕方 (shikata) — way"] },
+    { ch: "事", on: "ジ", kun: "こと", en: "thing / matter", strokes: 8, words: ["仕事 (shigoto) — work","大事 (daiji) — important"] },
+    { ch: "問", on: "モン", kun: "と(う)", en: "question / problem", strokes: 11, words: ["問題 (mondai) — problem","質問 (shitsumon) — question"] },
+    { ch: "題", on: "ダイ", kun: "—", en: "topic / problem", strokes: 18, words: ["問題 (mondai) — problem","宿題 (shukudai) — homework"] },
+    { ch: "間", on: "カン", kun: "あいだ", en: "interval / between", strokes: 12, words: ["時間 (jikan) — time","人間 (ningen) — human"] },
+    { ch: "気", on: "キ", kun: "—", en: "spirit / feeling", strokes: 6, words: ["元気 (genki) — energetic","天気 (tenki) — weather"] },
+    { ch: "元", on: "ゲン", kun: "もと", en: "origin / well", strokes: 4, words: ["元気 (genki) — energetic","元 (moto) — origin"] }
   ],
 
   words: [
@@ -519,7 +724,104 @@ const DATA = {
     { jp: "本", ro: "hon", en: "book", tag: "basic" },
     { jp: "名前", ro: "namae", en: "name", tag: "basic", ex: "名前は何ですか？— What is your name?" },
     { jp: "日本語", ro: "nihongo", en: "Japanese language", tag: "basic" }
-  ],
+,
+    // ── Expansion: counters, time, food, body, transport, more verbs/adj/IT ──
+    { jp: "一つ", ro: "hitotsu", en: "one (general)", tag: "counter" },
+    { jp: "二つ", ro: "futatsu", en: "two (general)", tag: "counter" },
+    { jp: "三つ", ro: "mittsu", en: "three (general)", tag: "counter" },
+    { jp: "四つ", ro: "yottsu", en: "four (general)", tag: "counter" },
+    { jp: "五つ", ro: "itsutsu", en: "five (general)", tag: "counter" },
+    { jp: "一人", ro: "hitori", en: "one person (also: alone)", tag: "counter" },
+    { jp: "二人", ro: "futari", en: "two people", tag: "counter" },
+    { jp: "三人", ro: "sannin", en: "three people", tag: "counter" },
+    { jp: "一枚", ro: "ichimai", en: "one (flat thing)", tag: "counter" },
+    { jp: "一本", ro: "ippon", en: "one (long thin thing)", tag: "counter" },
+    { jp: "一個", ro: "ikko", en: "one (small/round)", tag: "counter" },
+    { jp: "一杯", ro: "ippai", en: "one cup / one full", tag: "counter" },
+    { jp: "一回", ro: "ikkai", en: "one time", tag: "counter" },
+    { jp: "一時", ro: "ichiji", en: "1 o'clock", tag: "time" },
+    { jp: "二時", ro: "niji", en: "2 o'clock", tag: "time" },
+    { jp: "三時", ro: "sanji", en: "3 o'clock", tag: "time" },
+    { jp: "半", ro: "han", en: "half (~thirty as in 2:30 = 二時半)", tag: "time" },
+    { jp: "午前", ro: "gozen", en: "AM / morning", tag: "time" },
+    { jp: "午後", ro: "gogo", en: "PM / afternoon", tag: "time" },
+    { jp: "朝", ro: "asa", en: "morning", tag: "time" },
+    { jp: "昼", ro: "hiru", en: "noon / daytime", tag: "time" },
+    { jp: "夕方", ro: "yūgata", en: "evening", tag: "time" },
+    { jp: "夜", ro: "yoru", en: "night", tag: "time" },
+    { jp: "今週", ro: "konshū", en: "this week", tag: "time" },
+    { jp: "来週", ro: "raishū", en: "next week", tag: "time" },
+    { jp: "先週", ro: "senshū", en: "last week", tag: "time" },
+    { jp: "毎日", ro: "mainichi", en: "every day", tag: "time" },
+    { jp: "毎朝", ro: "maiasa", en: "every morning", tag: "time" },
+    { jp: "今朝", ro: "kesa", en: "this morning", tag: "time" },
+    { jp: "買う", ro: "kau", en: "to buy", tag: "verb" },
+    { jp: "売る", ro: "uru", en: "to sell", tag: "verb" },
+    { jp: "持つ", ro: "motsu", en: "to hold / have", tag: "verb" },
+    { jp: "使う", ro: "tsukau", en: "to use", tag: "verb" },
+    { jp: "起きる", ro: "okiru", en: "to wake up", tag: "verb" },
+    { jp: "寝る", ro: "neru", en: "to sleep", tag: "verb" },
+    { jp: "入る", ro: "hairu", en: "to enter", tag: "verb" },
+    { jp: "出る", ro: "deru", en: "to exit / leave", tag: "verb" },
+    { jp: "会う", ro: "au", en: "to meet", tag: "verb", ex: "友達に会います。— I meet a friend." },
+    { jp: "待つ", ro: "matsu", en: "to wait", tag: "verb" },
+    { jp: "歩く", ro: "aruku", en: "to walk", tag: "verb" },
+    { jp: "走る", ro: "hashiru", en: "to run", tag: "verb" },
+    { jp: "帰る", ro: "kaeru", en: "to return (home)", tag: "verb" },
+    { jp: "始める", ro: "hajimeru", en: "to start", tag: "verb" },
+    { jp: "終わる", ro: "owaru", en: "to end", tag: "verb" },
+    { jp: "デプロイする", ro: "depuroi suru", en: "to deploy", tag: "IT" },
+    { jp: "コミットする", ro: "komitto suru", en: "to commit (git)", tag: "IT" },
+    { jp: "暑い", ro: "atsui", en: "hot (weather)", tag: "adjective" },
+    { jp: "寒い", ro: "samui", en: "cold (weather)", tag: "adjective" },
+    { jp: "暖かい", ro: "atatakai", en: "warm", tag: "adjective" },
+    { jp: "涼しい", ro: "suzushii", en: "cool / refreshing", tag: "adjective" },
+    { jp: "高い", ro: "takai", en: "expensive / tall / high", tag: "adjective" },
+    { jp: "安い", ro: "yasui", en: "cheap", tag: "adjective" },
+    { jp: "長い", ro: "nagai", en: "long", tag: "adjective" },
+    { jp: "短い", ro: "mijikai", en: "short", tag: "adjective" },
+    { jp: "美味しい", ro: "oishii", en: "tasty", tag: "adjective" },
+    { jp: "綺麗", ro: "kirei", en: "pretty / clean (na-adj)", tag: "adjective" },
+    { jp: "静か", ro: "shizuka", en: "quiet (na-adj)", tag: "adjective" },
+    { jp: "親切", ro: "shinsetsu", en: "kind (na-adj)", tag: "adjective" },
+    { jp: "便利", ro: "benri", en: "convenient (na-adj)", tag: "adjective" },
+    { jp: "好き", ro: "suki", en: "liked / favorite (na-adj)", tag: "adjective" },
+    { jp: "大丈夫", ro: "daijōbu", en: "fine / okay (na-adj)", tag: "adjective" },
+    { jp: "正しい", ro: "tadashii", en: "correct", tag: "adjective" },
+    { jp: "寿司", ro: "sushi", en: "sushi", tag: "food" },
+    { jp: "ラーメン", ro: "rāmen", en: "ramen", tag: "food" },
+    { jp: "パン", ro: "pan", en: "bread", tag: "food" },
+    { jp: "卵", ro: "tamago", en: "egg", tag: "food" },
+    { jp: "魚", ro: "sakana", en: "fish", tag: "food" },
+    { jp: "肉", ro: "niku", en: "meat", tag: "food" },
+    { jp: "野菜", ro: "yasai", en: "vegetable", tag: "food" },
+    { jp: "果物", ro: "kudamono", en: "fruit", tag: "food" },
+    { jp: "りんご", ro: "ringo", en: "apple", tag: "food" },
+    { jp: "牛乳", ro: "gyūnyū", en: "milk", tag: "food" },
+    { jp: "頭", ro: "atama", en: "head", tag: "body" },
+    { jp: "目", ro: "me", en: "eye", tag: "body" },
+    { jp: "口", ro: "kuchi", en: "mouth", tag: "body" },
+    { jp: "耳", ro: "mimi", en: "ear", tag: "body" },
+    { jp: "手", ro: "te", en: "hand", tag: "body" },
+    { jp: "足", ro: "ashi", en: "leg / foot", tag: "body" },
+    { jp: "車", ro: "kuruma", en: "car", tag: "daily" },
+    { jp: "バス", ro: "basu", en: "bus", tag: "daily" },
+    { jp: "タクシー", ro: "takushī", en: "taxi", tag: "daily" },
+    { jp: "自転車", ro: "jitensha", en: "bicycle", tag: "daily" },
+    { jp: "部長", ro: "buchō", en: "department head", tag: "workplace" },
+    { jp: "課長", ro: "kachō", en: "section chief", tag: "workplace" },
+    { jp: "社長", ro: "shachō", en: "company president", tag: "workplace" },
+    { jp: "出張", ro: "shutchō", en: "business trip", tag: "workplace" },
+    { jp: "残業", ro: "zangyō", en: "overtime work", tag: "workplace" },
+    { jp: "休み", ro: "yasumi", en: "day off / vacation", tag: "workplace" },
+    { jp: "クラウド", ro: "kuraudo", en: "cloud", tag: "IT" },
+    { jp: "データベース", ro: "dētabēsu", en: "database", tag: "IT" },
+    { jp: "セキュリティ", ro: "sekyuriti", en: "security", tag: "IT" },
+    { jp: "デプロイ", ro: "depuroi", en: "deploy / deployment", tag: "IT" },
+    { jp: "プルリク", ro: "pururiku", en: "pull request (PR)", tag: "IT" },
+    { jp: "リポジトリ", ro: "ripojitori", en: "repository (repo)", tag: "IT" },
+    { jp: "本番", ro: "honban", en: "production (env)", tag: "IT" }
+    ],
 
   sentences: [
     { jp: "私はシシルです。", ro: "watashi wa shishiru desu.", en: "I am Shishir.", scene: "intro",
@@ -570,7 +872,34 @@ const DATA = {
     { jp: "このバグは難しいです。", ro: "kono bagu wa muzukashii desu.", en: "This bug is hard.", scene: "IT" },
     { jp: "水を飲みます。", ro: "mizu o nomimasu.", en: "I drink water.", scene: "daily" },
     { jp: "ありがとうございます。", ro: "arigatō gozaimasu.", en: "Thank you (polite).", scene: "greeting" }
-  ],
+,
+    // ── Expansion: phone, email, shopping, medical, apology, casual, travel, IT ──
+    { jp: "もしもし、田中です。", ro: "moshi moshi, tanaka desu.", en: "Hello (phone), this is Tanaka.", scene: "phone" },
+    { jp: "今、お時間よろしいですか？", ro: "ima, ojikan yoroshii desu ka?", en: "Do you have a moment now?", scene: "phone" },
+    { jp: "後でかけ直します。", ro: "ato de kakenaoshimasu.", en: "I'll call back later.", scene: "phone" },
+    { jp: "お世話になっております。", ro: "osewa ni natte orimasu.", en: "Thank you for your continued support. (formal email opener)", scene: "email" },
+    { jp: "よろしくお願いいたします。", ro: "yoroshiku onegai itashimasu.", en: "Best regards. (formal email closer)", scene: "email" },
+    { jp: "確認お願いします。", ro: "kakunin onegaishimasu.", en: "Please confirm.", scene: "email" },
+    { jp: "これをください。", ro: "kore o kudasai.", en: "I'll take this.", scene: "shopping" },
+    { jp: "袋はいりません。", ro: "fukuro wa irimasen.", en: "I don't need a bag.", scene: "shopping" },
+    { jp: "クレジットカードで払います。", ro: "kurejitto kādo de haraimasu.", en: "I'll pay by credit card.", scene: "shopping" },
+    { jp: "頭が痛いです。", ro: "atama ga itai desu.", en: "My head hurts.", scene: "medical" },
+    { jp: "熱があります。", ro: "netsu ga arimasu.", en: "I have a fever.", scene: "medical" },
+    { jp: "病院はどこですか？", ro: "byōin wa doko desu ka?", en: "Where is the hospital?", scene: "medical" },
+    { jp: "ご迷惑をおかけしました。", ro: "go-meiwaku o okake shimashita.", en: "I'm sorry for the trouble (formal).", scene: "workplace" },
+    { jp: "申し訳ございません。", ro: "mōshiwake gozaimasen.", en: "I sincerely apologize. (very formal)", scene: "workplace" },
+    { jp: "本当にすみません。", ro: "hontō ni sumimasen.", en: "I'm really sorry.", scene: "daily" },
+    { jp: "やった！", ro: "yatta!", en: "Yes! / I did it!", scene: "casual" },
+    { jp: "本当？", ro: "hontō?", en: "Really?", scene: "casual" },
+    { jp: "なるほど。", ro: "naruhodo.", en: "I see / makes sense.", scene: "casual" },
+    { jp: "そうそう。", ro: "sō sō.", en: "Yeah yeah / that's right.", scene: "casual" },
+    { jp: "切符を一枚ください。", ro: "kippu o ichimai kudasai.", en: "One ticket, please.", scene: "travel" },
+    { jp: "次の電車は何時ですか？", ro: "tsugi no densha wa nanji desu ka?", en: "What time is the next train?", scene: "travel" },
+    { jp: "ホテルを予約しました。", ro: "hoteru o yoyaku shimashita.", en: "I booked the hotel.", scene: "travel" },
+    { jp: "確認します。", ro: "kakunin shimasu.", en: "I'll check.", scene: "workplace" },
+    { jp: "デプロイしました。", ro: "depuroi shimashita.", en: "I deployed.", scene: "IT" },
+    { jp: "本番環境で問題が起きています。", ro: "honban kankyō de mondai ga okite imasu.", en: "There's a problem in production.", scene: "IT" }
+    ],
 
   grammar: [
     {
@@ -689,7 +1018,7 @@ const DATA = {
       goal: "Learn the 5 vowels あいうえお and say hello / thank you naturally.",
       kana: { hira: ["あ","い","う","え","お"] },
       words: ["こんにちは","ありがとうございます","すみません","はい","いいえ"],
-      grammar: [],
+      grammar: ["🧠 です-family vs ます-family — the two sentence types"],
       sentences: ["おはようございます！","また明日。","おやすみなさい。"],
       practice: "Hover each vowel 3× until you can sing them in a row. On a whiteboard, write each vowel 5 times. Record yourself saying them and compare to the audio."
     },
@@ -709,7 +1038,7 @@ const DATA = {
       goal: "Add さしすせそ and turn statements into questions with か.",
       kana: { hira: ["さ","し","す","せ","そ"] },
       words: ["はい","いいえ","そうです","違います"],
-      grammar: ["Question with か"],
+      grammar: ["Question with か","🧠 Confusing particles cheat sheet — は を の が に で から も"],
       sentences: ["お元気ですか？","はい、元気です。","学生ですか？"],
       practice: "Ask Claude 3 yes/no questions about yourself in Japanese. Get them all right before moving on."
     },
@@ -739,7 +1068,7 @@ const DATA = {
       goal: "Add はひふへほ and feel the は = 'wa' rule in real sentences.",
       kana: { hira: ["は","ひ","ふ","へ","ほ"] },
       words: ["今日","明日","昨日"],
-      grammar: ["Aは Bです — A is B"],
+      grammar: ["Aは Bです — A is B","🧠 ません vs ありません vs ではありません — the three negatives"],
       sentences: ["今日は月曜日です。","今日は楽しかったです。"],
       practice: "Read each sentence aloud paying attention to は → 'wa'. Record yourself."
     },
@@ -761,7 +1090,7 @@ const DATA = {
       goal: "Add まみむめも and count 1 through 10.",
       kana: { hira: ["ま","み","む","め","も"] },
       words: ["一","二","三","四","五","六","七","八","九","十"],
-      grammar: [],
+      grammar: ["Counters — counting things, people, time"],
       sentences: ["今、何時ですか？","少し遅れます。"],
       practice: "Count 1→10 out loud, then count backwards. Quiz yourself on prices: いくらですか？— answer in yen."
     },
@@ -791,7 +1120,7 @@ const DATA = {
       goal: "Add the voiced rows がぎぐげご・ざじずぜぞ and basic verbs.",
       kana: { hira: ["が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ"] },
       words: ["食べる","飲む","行く","来る","する"],
-      grammar: [],
+      grammar: ["Verb groups — godan, ichidan, irregular"],
       sentences: ["お昼ごはんを食べに行きませんか？"],
       practice: "On the Hiragana chart, click each ★voiced★ kana once and say the unvoiced parent (が→か, ざ→さ…)."
     },
@@ -811,7 +1140,7 @@ const DATA = {
       goal: "Learn the small-ゃゅょ contractions and use ます for polite present tense.",
       kana: { hira: ["きゃ","きゅ","きょ","しゃ","しゅ","しょ","ちゃ","ちゅ","ちょ"] },
       words: ["書く","読む","話す","聞く"],
-      grammar: ["Object marker を"],
+      grammar: ["Object marker を","と (to) — With (companion) / and (listing)","へ (e) — Direction marker (formal alternative to に)"],
       sentences: ["メールを書きます。","コードをレビューします。","毎日、コードを書きます。"],
       practice: "Take 3 dictionary-form verbs (食べる, 飲む, 書く) and rewrite in ます form. Say them aloud."
     },
@@ -853,7 +1182,7 @@ const DATA = {
       goal: "Add ハヒフヘホ・マミムメモ・ヤユヨ and learn negative ません.",
       kana: { kata: ["ハ","ヒ","フ","ヘ","ホ","マ","ミ","ム","メ","モ","ヤ","ユ","ヨ"] },
       words: ["分かる","話す"],
-      grammar: ["Negation with ません"],
+      grammar: ["Negation with ません","Adjective conjugation — i-adj vs na-adj"],
       sentences: ["すみません、ちょっと分かりません。","コーヒーを飲みません。"],
       practice: "Take 3 ます verbs from yesterday and flip each to ません. Say each pair aloud."
     },
@@ -883,7 +1212,7 @@ const DATA = {
       goal: "Solidify ongoing-action ています with workplace IT phrases.",
       kana: { kata: [] },
       words: ["サーバー","テスト","メール"],
-      grammar: ["て-form + います = ongoing / state"],
+      grammar: ["て-form + います = ongoing / state","ので (node) — Because (politer than から)"],
       sentences: ["サーバーが落ちています。","テストが失敗しています。","コードを書いています。"],
       practice: "Voice-record yourself describing 3 things happening at work right now using ています."
     },
@@ -905,7 +1234,7 @@ const DATA = {
       goal: "Use で for action-location and に for destination / existence.",
       kana: {},
       words: ["駅","電車","家","学校","働く"],
-      grammar: ["Location with で and に"],
+      grammar: ["Location with で and に","や (ya) — And (non-exhaustive 'and others')"],
       sentences: ["駅はどこですか？","会議は何時からですか？"],
       practice: "Make 3 sentences: one with X で work, one with に go, one with に exist."
     },
@@ -925,7 +1254,7 @@ const DATA = {
       goal: "Express your own wishes with たいです.",
       kana: {},
       words: ["勉強する","食べる","飲む"],
-      grammar: ["Want to do — たい"],
+      grammar: ["Want to do — たい","よ (yo) — Sentence-end emphasis (informing / asserting)","ね (ne) — Sentence-end agreement-seeking"],
       sentences: ["コーヒーを飲みたいです。","日本語を話したいです。","早く帰りたいです。"],
       practice: "Tell Claude 5 things you want to do this weekend in Japanese."
     },
@@ -945,7 +1274,7 @@ const DATA = {
       goal: "Run a 60-second mock standup in Japanese.",
       kana: {},
       words: ["会議","上司","同僚","バグ"],
-      grammar: ["て-form + います = ongoing / state","Past tense with ました / でした"],
+      grammar: ["て-form + います = ongoing / state","Past tense with ました / でした","けど / が — But / however (contrast)"],
       sentences: ["お疲れさまでした。","お先に失礼します。","コードレビューをお願いします。","バグを直しました。","少し遅れます。"],
       practice: "Roleplay with Claude: standup update — 'yesterday I…, today I'm working on…, blocked by…'"
     },
@@ -1126,6 +1455,95 @@ const DATA = {
         { s: "A", jp: "ありがとうございます。助かりました。", ro: "arigatō gozaimasu. tasukarimashita.", en: "Thank you, that helped." }
       ],
       notes: "まっすぐ = 'straight ahead'. 〜くらい = 'about / approximately'."
+    },
+    // ── Expansion: phone, email, shopping, medical, casual ──
+    {
+      title: "Phone call — taking a message",
+      scene: "phone",
+      level: "beginner",
+      summary: "A coworker calls; you answer the office phone.",
+      a: {"name":"Caller","role":"外部の人 / outside caller"},
+      b: {"name":"Shishir","role":"あなた / you (answering)"},
+      turns: [
+        { s: "B", jp: "もしもし、ABC会社です。", ro: "moshi moshi, ABC kaisha desu.", en: "Hello, this is ABC Company." },
+        { s: "A", jp: "田中ですが、山田さんお願いします。", ro: "tanaka desu ga, yamada-san onegaishimasu.", en: "This is Tanaka — may I speak with Yamada?" },
+        { s: "B", jp: "少々お待ちください。", ro: "shōshō omachi kudasai.", en: "Please hold a moment." },
+        { s: "B", jp: "すみません、山田は今、席を外しております。", ro: "sumimasen, yamada wa ima, seki o hazushite orimasu.", en: "I'm sorry, Yamada is away from his desk right now." },
+        { s: "A", jp: "では、後でかけ直します。", ro: "dewa, ato de kakenaoshimasu.", en: "Then I'll call back later." },
+        { s: "B", jp: "ありがとうございます。失礼いたします。", ro: "arigatō gozaimasu. shitsurei itashimasu.", en: "Thank you. Goodbye." }
+      ],
+      notes: "もしもし is ONLY used on phone. 席を外しております = humble for 'is away from seat'. 失礼いたします = formal phone goodbye."
+    },
+    {
+      title: "Sending an email — formal opener and closer",
+      scene: "email",
+      level: "beginner",
+      summary: "Standard structure for a workplace email in Japanese.",
+      a: {"name":"Email","role":"メール本文 / email body"},
+      b: {"name":"Notes","role":"解説 / commentary"},
+      turns: [
+        { s: "A", jp: "山田様", ro: "yamada-sama", en: "Dear Mr. Yamada (formal recipient)" },
+        { s: "A", jp: "お世話になっております。", ro: "osewa ni natte orimasu.", en: "Thank you for your continued support. (standard opener)" },
+        { s: "A", jp: "ABC会社のシシルです。", ro: "ABC kaisha no shishiru desu.", en: "I am Shishir from ABC Company." },
+        { s: "A", jp: "プルリクを送りましたので、ご確認お願いいたします。", ro: "pururiku o okurimashita node, go-kakunin onegai itashimasu.", en: "Because I sent the pull request, please confirm it." },
+        { s: "A", jp: "よろしくお願いいたします。", ro: "yoroshiku onegai itashimasu.", en: "Best regards. (closer)" },
+        { s: "A", jp: "シシル", ro: "shishiru", en: "Shishir (signature)" }
+      ],
+      notes: "様 = -sama, the most respectful suffix (recipient). ご確認 = humble form of 確認 (confirmation). The opener お世話になっております is mandatory in business email."
+    },
+    {
+      title: "Convenience store — buying lunch",
+      scene: "shopping",
+      level: "beginner",
+      summary: "Quick exchange at the register at a 7-Eleven / FamilyMart.",
+      a: {"name":"Staff","role":"店員 / clerk"},
+      b: {"name":"Shishir","role":"あなた / you"},
+      turns: [
+        { s: "A", jp: "いらっしゃいませ。", ro: "irasshaimase.", en: "Welcome." },
+        { s: "B", jp: "これとこれをお願いします。", ro: "kore to kore o onegaishimasu.", en: "I'll take this and this." },
+        { s: "A", jp: "お弁当を温めますか？", ro: "obentō o atatamemasu ka?", en: "Should I warm the bento?" },
+        { s: "B", jp: "はい、お願いします。", ro: "hai, onegaishimasu.", en: "Yes, please." },
+        { s: "A", jp: "袋は要りますか？", ro: "fukuro wa irimasu ka?", en: "Do you need a bag?" },
+        { s: "B", jp: "いいえ、大丈夫です。", ro: "iie, daijōbu desu.", en: "No, I'm fine." },
+        { s: "A", jp: "六百円になります。", ro: "roppyaku-en ni narimasu.", en: "That comes to 600 yen." },
+        { s: "B", jp: "クレジットカードで。", ro: "kurejitto kādo de.", en: "By credit card." }
+      ],
+      notes: "温めますか is the universal 'should I warm it?' question for cold lunches. 〜になります is restaurant/retail-speak for 'it is'. 〜で = 'with / by means of'."
+    },
+    {
+      title: "At the doctor — describing pain",
+      scene: "medical",
+      level: "beginner",
+      summary: "Quick clinic visit; describe symptoms.",
+      a: {"name":"Doctor","role":"医者"},
+      b: {"name":"Shishir","role":"あなた / you (patient)"},
+      turns: [
+        { s: "A", jp: "どうしましたか？", ro: "dō shimashita ka?", en: "What's the matter?" },
+        { s: "B", jp: "頭がとても痛いです。", ro: "atama ga totemo itai desu.", en: "My head hurts a lot." },
+        { s: "A", jp: "いつからですか？", ro: "itsu kara desu ka?", en: "Since when?" },
+        { s: "B", jp: "昨日からです。", ro: "kinō kara desu.", en: "Since yesterday." },
+        { s: "A", jp: "熱はありますか？", ro: "netsu wa arimasu ka?", en: "Do you have a fever?" },
+        { s: "B", jp: "はい、少し。", ro: "hai, sukoshi.", en: "Yes, a little." },
+        { s: "A", jp: "薬を出します。", ro: "kusuri o dashimasu.", en: "I'll prescribe medicine." }
+      ],
+      notes: "どうしましたか = the universal 'what happened / what's wrong?'. 〜痛い = 'X hurts' (頭が痛い = headache, お腹が痛い = stomach hurts)."
+    },
+    {
+      title: "Casual chat with a friend",
+      scene: "casual",
+      level: "beginner",
+      summary: "Casual くだけた forms — what friends actually say.",
+      a: {"name":"Friend","role":"友達"},
+      b: {"name":"Shishir","role":"あなた / you"},
+      turns: [
+        { s: "A", jp: "おっす！元気？", ro: "ossu! genki?", en: "Yo! How's it going?" },
+        { s: "B", jp: "うん、元気だよ。", ro: "un, genki da yo.", en: "Yeah, I'm good." },
+        { s: "A", jp: "週末、何する？", ro: "shūmatsu, nani suru?", en: "What're you doing this weekend?" },
+        { s: "B", jp: "映画を見たい。", ro: "eiga o mitai.", en: "I want to watch a movie." },
+        { s: "A", jp: "いいね！一緒に行こう。", ro: "ii ne! issho ni ikō.", en: "Nice! Let's go together." },
+        { s: "B", jp: "やった！", ro: "yatta!", en: "Yay!" }
+      ],
+      notes: "おっす is masculine casual greeting. うん = casual はい. 〜だよ = casual 〜です. 行こう = volitional, casual 'let's go'. やった = 'I did it / yes!'"
     }
   ],
 
@@ -3146,6 +3564,746 @@ const DATA = {
             { t: "肉", ro: "niku", role: "Noun", meaning: "meat" },
             { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
             { t: "買いました", ro: "kaimashita", role: "Verb (polite past)", meaning: "bought" }
+          ] }
+      ]
+    },
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 9 — MORE PARTICLES (へ・と・や・よ・ね・ので・けど)
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "More particles",
+      title: "と (to) — With (companion) / and (listing)",
+      formula: "[Person/Thing] と + [verb / noun]",
+      description: "と attaches to a noun to mean 'with' (doing something together) or 'and' (when listing two specific things). Don't confuse with や — と is exhaustive (these and ONLY these).",
+      person: "Any",
+      tense: "Tense-neutral (attaches to nouns)",
+      main: {
+        jp: "友達と昼ご飯を食べました。",
+        ro: "tomodachi to hirugohan o tabemashita.",
+        en: "I ate lunch with a friend.",
+        tokens: [
+          { t: "友達", ro: "tomodachi", role: "Noun (companion)", meaning: "friend" },
+          { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with (together)" },
+          { t: "昼ご飯", ro: "hirugohan", role: "Noun (object)", meaning: "lunch" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "食べました", ro: "tabemashita", role: "Verb (polite past)", meaning: "ate" }
+        ]
+      },
+      examples: [
+        { jp: "田中さんと話しました。", ro: "tanaka-san to hanashimashita.", en: "I talked with Tanaka.",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with" },
+            { t: "話しました", ro: "hanashimashita", role: "Verb (polite past)", meaning: "talked" }
+          ] },
+        { jp: "パンと牛乳を買いました。", ro: "pan to gyūnyū o kaimashita.", en: "I bought bread AND milk.",
+          tokens: [
+            { t: "パン", ro: "pan", role: "Noun (loanword)", meaning: "bread" },
+            { t: "と", ro: "to", role: "Particle — and (exhaustive list)", meaning: "and" },
+            { t: "牛乳", ro: "gyūnyū", role: "Noun", meaning: "milk" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "買いました", ro: "kaimashita", role: "Verb (polite past)", meaning: "bought" }
+          ] },
+        { jp: "妻と子供がいます。", ro: "tsuma to kodomo ga imasu.", en: "I have a wife and a child.",
+          tokens: [
+            { t: "妻", ro: "tsuma", role: "Noun", meaning: "wife" },
+            { t: "と", ro: "to", role: "Particle — and", meaning: "and" },
+            { t: "子供", ro: "kodomo", role: "Noun", meaning: "child" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "います", ro: "imasu", role: "Verb (existence — animate)", meaning: "exist" }
+          ] },
+        { jp: "母と買い物に行きます。", ro: "haha to kaimono ni ikimasu.", en: "I'll go shopping with my mom.",
+          tokens: [
+            { t: "母", ro: "haha", role: "Noun", meaning: "mother (own)" },
+            { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with" },
+            { t: "買い物", ro: "kaimono", role: "Noun", meaning: "shopping" },
+            { t: "に", ro: "ni", role: "Particle — purpose", meaning: "for" },
+            { t: "行きます", ro: "ikimasu", role: "Verb (polite)", meaning: "go" }
+          ] },
+        { jp: "同僚と会議をします。", ro: "dōryō to kaigi o shimasu.", en: "I'll have a meeting with colleagues.",
+          tokens: [
+            { t: "同僚", ro: "dōryō", role: "Noun", meaning: "colleague" },
+            { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with" },
+            { t: "会議", ro: "kaigi", role: "Noun", meaning: "meeting" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "します", ro: "shimasu", role: "Verb (polite)", meaning: "do" }
+          ] },
+        { jp: "犬と猫が好きです。", ro: "inu to neko ga suki desu.", en: "I like dogs and cats.",
+          tokens: [
+            { t: "犬", ro: "inu", role: "Noun", meaning: "dog" },
+            { t: "と", ro: "to", role: "Particle — and", meaning: "and" },
+            { t: "猫", ro: "neko", role: "Noun", meaning: "cat" },
+            { t: "が", ro: "ga", role: "Particle — subject (with skill/preference)", meaning: "subject marker" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked / favorite" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "先生と一緒に勉強します。", ro: "sensei to issho ni benkyō shimasu.", en: "I'll study together with the teacher.",
+          tokens: [
+            { t: "先生", ro: "sensei", role: "Noun", meaning: "teacher" },
+            { t: "と", ro: "to", role: "Particle — accompaniment", meaning: "with" },
+            { t: "一緒に", ro: "issho ni", role: "Adverb phrase", meaning: "together" },
+            { t: "勉強します", ro: "benkyō shimasu", role: "Verb (polite)", meaning: "study" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "へ (e) — Direction marker (formal alternative to に)",
+      formula: "[Destination] へ + [movement verb]",
+      description: "へ marks direction toward a destination. Written へ but pronounced 'e'. Used with movement verbs (行く・来る・帰る・向かう). Often interchangeable with に for destination, but へ emphasizes direction/journey while に emphasizes arrival point. へ is slightly more formal.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "東京へ行きます。",
+        ro: "tōkyō e ikimasu.",
+        en: "I go toward Tokyo.",
+        tokens: [
+          { t: "東京", ro: "tōkyō", role: "Proper noun (destination)", meaning: "Tokyo" },
+          { t: "へ", ro: "e", role: "Particle — direction (written he, said e)", meaning: "to / toward" },
+          { t: "行きます", ro: "ikimasu", role: "Verb (polite)", meaning: "go" }
+        ]
+      },
+      examples: [
+        { jp: "学校へ向かいます。", ro: "gakkō e mukaimasu.", en: "I'm headed to school.",
+          tokens: [
+            { t: "学校", ro: "gakkō", role: "Noun (destination)", meaning: "school" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "toward" },
+            { t: "向かいます", ro: "mukaimasu", role: "Verb (polite)", meaning: "head toward" }
+          ] },
+        { jp: "家へ帰ります。", ro: "ie e kaerimasu.", en: "I return home.",
+          tokens: [
+            { t: "家", ro: "ie", role: "Noun (destination)", meaning: "home" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "toward" },
+            { t: "帰ります", ro: "kaerimasu", role: "Verb (polite)", meaning: "return" }
+          ] },
+        { jp: "海外へ旅行します。", ro: "kaigai e ryokō shimasu.", en: "I'll travel abroad.",
+          tokens: [
+            { t: "海外", ro: "kaigai", role: "Noun (destination)", meaning: "overseas / abroad" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "toward" },
+            { t: "旅行します", ro: "ryokō shimasu", role: "Verb (polite)", meaning: "travel" }
+          ] },
+        { jp: "日本へようこそ。", ro: "nihon e yōkoso.", en: "Welcome to Japan.",
+          tokens: [
+            { t: "日本", ro: "nihon", role: "Proper noun", meaning: "Japan" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "to" },
+            { t: "ようこそ", ro: "yōkoso", role: "Interjection", meaning: "welcome" }
+          ] },
+        { jp: "友達への手紙", ro: "tomodachi e no tegami", en: "a letter TO a friend",
+          tokens: [
+            { t: "友達", ro: "tomodachi", role: "Noun", meaning: "friend" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "to" },
+            { t: "の", ro: "no", role: "Particle — possessive/connector", meaning: "of" },
+            { t: "手紙", ro: "tegami", role: "Noun (head)", meaning: "letter" }
+          ] },
+        { jp: "駅へ走ります。", ro: "eki e hashirimasu.", en: "I run to the station.",
+          tokens: [
+            { t: "駅", ro: "eki", role: "Noun (destination)", meaning: "station" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "toward" },
+            { t: "走ります", ro: "hashirimasu", role: "Verb (polite)", meaning: "run" }
+          ] },
+        { jp: "オフィスへ来てください。", ro: "ofisu e kite kudasai.", en: "Please come to the office.",
+          tokens: [
+            { t: "オフィス", ro: "ofisu", role: "Noun (destination)", meaning: "office" },
+            { t: "へ", ro: "e", role: "Particle — direction", meaning: "to" },
+            { t: "来て", ro: "kite", role: "Verb (て-form of 来る)", meaning: "come" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "や (ya) — And (non-exhaustive 'and others')",
+      formula: "A や B (や C) など",
+      description: "や lists examples but implies 'and others / among other things'. Different from と which lists ALL items. Often paired with など ('etc.') at the end to make the implication explicit.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "りんごやバナナを買いました。",
+        ro: "ringo ya banana o kaimashita.",
+        en: "I bought apples, bananas (and other things).",
+        tokens: [
+          { t: "りんご", ro: "ringo", role: "Noun", meaning: "apple" },
+          { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and (etc.)" },
+          { t: "バナナ", ro: "banana", role: "Noun (loanword)", meaning: "banana" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "買いました", ro: "kaimashita", role: "Verb (polite past)", meaning: "bought" }
+        ]
+      },
+      examples: [
+        { jp: "東京や大阪に行きました。", ro: "tōkyō ya ōsaka ni ikimashita.", en: "I went to Tokyo, Osaka (and others).",
+          tokens: [
+            { t: "東京", ro: "tōkyō", role: "Proper noun", meaning: "Tokyo" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and (etc.)" },
+            { t: "大阪", ro: "ōsaka", role: "Proper noun", meaning: "Osaka" },
+            { t: "に", ro: "ni", role: "Particle — destination", meaning: "to" },
+            { t: "行きました", ro: "ikimashita", role: "Verb (polite past)", meaning: "went" }
+          ] },
+        { jp: "ペンや紙が必要です。", ro: "pen ya kami ga hitsuyō desu.", en: "I need pen and paper (etc.).",
+          tokens: [
+            { t: "ペン", ro: "pen", role: "Noun (loanword)", meaning: "pen" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and (etc.)" },
+            { t: "紙", ro: "kami", role: "Noun", meaning: "paper" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "必要", ro: "hitsuyō", role: "na-adjective", meaning: "necessary" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "犬や猫などが好きです。", ro: "inu ya neko nado ga suki desu.", en: "I like dogs, cats, and so on.",
+          tokens: [
+            { t: "犬", ro: "inu", role: "Noun", meaning: "dog" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and (etc.)" },
+            { t: "猫", ro: "neko", role: "Noun", meaning: "cat" },
+            { t: "など", ro: "nado", role: "Particle — etc.", meaning: "and so on" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "好き", ro: "suki", role: "na-adjective", meaning: "liked" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "寿司やラーメンを食べました。", ro: "sushi ya rāmen o tabemashita.", en: "I ate sushi, ramen (and others).",
+          tokens: [
+            { t: "寿司", ro: "sushi", role: "Noun", meaning: "sushi" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and" },
+            { t: "ラーメン", ro: "rāmen", role: "Noun (loanword)", meaning: "ramen" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "食べました", ro: "tabemashita", role: "Verb (polite past)", meaning: "ate" }
+          ] },
+        { jp: "田中さんや山田さんが来ました。", ro: "tanaka-san ya yamada-san ga kimashita.", en: "Tanaka, Yamada (and others) came.",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and" },
+            { t: "山田", ro: "yamada", role: "Proper noun", meaning: "Yamada" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "来ました", ro: "kimashita", role: "Verb (polite past)", meaning: "came" }
+          ] },
+        { jp: "ノートやペンを持ってきます。", ro: "nōto ya pen o motte kimasu.", en: "I'll bring a notebook, pen, etc.",
+          tokens: [
+            { t: "ノート", ro: "nōto", role: "Noun (loanword)", meaning: "notebook" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and" },
+            { t: "ペン", ro: "pen", role: "Noun (loanword)", meaning: "pen" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "持って", ro: "motte", role: "Verb (て-form of 持つ)", meaning: "having / holding" },
+            { t: "きます", ro: "kimasu", role: "Auxiliary (will come)", meaning: "bring" }
+          ] },
+        { jp: "サーバーやデータベースを管理します。", ro: "sābā ya dētabēsu o kanri shimasu.", en: "I manage servers, databases, etc.",
+          tokens: [
+            { t: "サーバー", ro: "sābā", role: "Noun (loanword)", meaning: "server" },
+            { t: "や", ro: "ya", role: "Particle — non-exhaustive 'and'", meaning: "and" },
+            { t: "データベース", ro: "dētabēsu", role: "Noun (loanword)", meaning: "database" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "管理します", ro: "kanri shimasu", role: "Verb (polite)", meaning: "manage" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "よ (yo) — Sentence-end emphasis (informing / asserting)",
+      formula: "[Statement] + よ",
+      description: "よ at the end of a sentence asserts new information to the listener — like adding 'you know' or '!' to your sentence. Use when telling someone something they don't know yet. Don't overuse; can sound pushy.",
+      person: "Any speaker",
+      tense: "Any",
+      main: {
+        jp: "もう十時ですよ。",
+        ro: "mō jūji desu yo.",
+        en: "It's already 10 o'clock, you know!",
+        tokens: [
+          { t: "もう", ro: "mō", role: "Adverb", meaning: "already" },
+          { t: "十時", ro: "jūji", role: "Time noun", meaning: "10 o'clock" },
+          { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+          { t: "よ", ro: "yo", role: "Particle — emphasis (informing)", meaning: "(you know / !)" }
+        ]
+      },
+      examples: [
+        { jp: "これは私の本ですよ。", ro: "kore wa watashi no hon desu yo.", en: "This is my book (you know).",
+          tokens: [
+            { t: "これ", ro: "kore", role: "Demonstrative", meaning: "this" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "私", ro: "watashi", role: "Pronoun", meaning: "I" },
+            { t: "の", ro: "no", role: "Particle — possessive", meaning: "'s" },
+            { t: "本", ro: "hon", role: "Noun", meaning: "book" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(informing)" }
+          ] },
+        { jp: "バグじゃないですよ。", ro: "bagu ja nai desu yo.", en: "It's not a bug, I'm telling you!",
+          tokens: [
+            { t: "バグ", ro: "bagu", role: "Noun (loanword)", meaning: "bug" },
+            { t: "じゃない", ro: "ja nai", role: "Casual negative copula", meaning: "is not" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "会議は明日ですよ。", ro: "kaigi wa ashita desu yo.", en: "The meeting is tomorrow!",
+          tokens: [
+            { t: "会議", ro: "kaigi", role: "Noun", meaning: "meeting" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(reminding)" }
+          ] },
+        { jp: "大丈夫ですよ。", ro: "daijōbu desu yo.", en: "It's fine, don't worry.",
+          tokens: [
+            { t: "大丈夫", ro: "daijōbu", role: "na-adjective", meaning: "fine / okay" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis (reassuring)", meaning: "(reassurance)" }
+          ] },
+        { jp: "このコードは正しいですよ。", ro: "kono kōdo wa tadashii desu yo.", en: "This code is correct (I'm telling you).",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "コード", ro: "kōdo", role: "Noun (loanword)", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "正しい", ro: "tadashii", role: "i-adjective", meaning: "correct" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] },
+        { jp: "サーバーは落ちてますよ。", ro: "sābā wa ochite masu yo.", en: "The server is down (FYI).",
+          tokens: [
+            { t: "サーバー", ro: "sābā", role: "Noun (loanword)", meaning: "server" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "落ちて", ro: "ochite", role: "Verb (て-form of 落ちる)", meaning: "fallen / down" },
+            { t: "ます", ro: "masu", role: "Auxiliary (polite, ています contracted)", meaning: "is (state)" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(informing)" }
+          ] },
+        { jp: "それは違いますよ。", ro: "sore wa chigaimasu yo.", en: "That's wrong, you know.",
+          tokens: [
+            { t: "それ", ro: "sore", role: "Demonstrative", meaning: "that" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "違います", ro: "chigaimasu", role: "Verb (polite)", meaning: "is different / wrong" },
+            { t: "よ", ro: "yo", role: "Particle — emphasis", meaning: "(asserting)" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "ね (ne) — Sentence-end agreement-seeking",
+      formula: "[Statement] + ね",
+      description: "ね at the end seeks agreement — 'right? / isn't it?'. Used when both speakers presumably already share the info. Different from よ which informs new info. Together as ですね = 'that's right'.",
+      person: "Any speaker",
+      tense: "Any",
+      main: {
+        jp: "今日はいい天気ですね。",
+        ro: "kyō wa ii tenki desu ne.",
+        en: "Nice weather today, isn't it?",
+        tokens: [
+          { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+          { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+          { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+          { t: "天気", ro: "tenki", role: "Noun", meaning: "weather" },
+          { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+          { t: "ね", ro: "ne", role: "Particle — agreement (right?)", meaning: "(isn't it?)" }
+        ]
+      },
+      examples: [
+        { jp: "美味しいですね。", ro: "oishii desu ne.", en: "Tasty, isn't it?",
+          tokens: [
+            { t: "美味しい", ro: "oishii", role: "i-adjective", meaning: "tasty" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(isn't it?)" }
+          ] },
+        { jp: "そうですね。", ro: "sō desu ne.", en: "That's right (agreeing softly).",
+          tokens: [
+            { t: "そう", ro: "sō", role: "Adverb", meaning: "so / that way" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(right?)" }
+          ] },
+        { jp: "このコードは難しいですね。", ro: "kono kōdo wa muzukashii desu ne.", en: "This code is hard, right?",
+          tokens: [
+            { t: "この", ro: "kono", role: "Demonstrative", meaning: "this" },
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "難しい", ro: "muzukashii", role: "i-adjective", meaning: "difficult" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(isn't it?)" }
+          ] },
+        { jp: "田中さんは親切ですね。", ro: "tanaka-san wa shinsetsu desu ne.", en: "Tanaka is kind, isn't he?",
+          tokens: [
+            { t: "田中", ro: "tanaka", role: "Proper noun", meaning: "Tanaka" },
+            { t: "さん", ro: "san", role: "Honorific", meaning: "Mr/Ms" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "親切", ro: "shinsetsu", role: "na-adjective", meaning: "kind" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(isn't he?)" }
+          ] },
+        { jp: "もう遅いですね。", ro: "mō osoi desu ne.", en: "It's already late, isn't it?",
+          tokens: [
+            { t: "もう", ro: "mō", role: "Adverb", meaning: "already" },
+            { t: "遅い", ro: "osoi", role: "i-adjective", meaning: "late" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(isn't it?)" }
+          ] },
+        { jp: "疲れましたね。", ro: "tsukaremashita ne.", en: "(We're) tired, aren't we?",
+          tokens: [
+            { t: "疲れました", ro: "tsukaremashita", role: "Verb (polite past = state of being tired)", meaning: "got tired" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(aren't we?)" }
+          ] },
+        { jp: "いい天気ですね、今日は。", ro: "ii tenki desu ne, kyō wa.", en: "Nice weather today, no?",
+          tokens: [
+            { t: "いい", ro: "ii", role: "i-adjective", meaning: "good" },
+            { t: "天気", ro: "tenki", role: "Noun", meaning: "weather" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "ね", ro: "ne", role: "Particle — agreement", meaning: "(no?)" },
+            { t: "今日", ro: "kyō", role: "Time noun", meaning: "today" },
+            { t: "は", ro: "wa", role: "Particle — topic (afterthought)", meaning: "topic marker" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "ので (node) — Because (politer than から)",
+      formula: "[Reason clause] ので、[Result clause]。",
+      description: "ので gives a reason like から, but is softer / more polite / more 'objective'. Prefer ので in formal contexts (work, customer service). から is more direct, more personal-feeling. Plain forms attach directly to ので; for です-noun-sentences use なので.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "忙しいので、行けません。",
+        ro: "isogashii node, ikemasen.",
+        en: "Because I'm busy, I can't go.",
+        tokens: [
+          { t: "忙しい", ro: "isogashii", role: "i-adjective (reason)", meaning: "busy" },
+          { t: "ので", ro: "node", role: "Particle — reason (formal)", meaning: "because (formal)" },
+          { t: "行けません", ro: "ikemasen", role: "Verb (potential negative)", meaning: "cannot go" }
+        ]
+      },
+      examples: [
+        { jp: "雨が降っているので、家にいます。", ro: "ame ga futte iru node, ie ni imasu.", en: "Because it's raining, I'm staying home.",
+          tokens: [
+            { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "降っている", ro: "futte iru", role: "Verb (continuous, plain)", meaning: "is falling" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "家", ro: "ie", role: "Noun", meaning: "home" },
+            { t: "に", ro: "ni", role: "Particle — location", meaning: "at" },
+            { t: "います", ro: "imasu", role: "Verb (existence)", meaning: "am" }
+          ] },
+        { jp: "風邪を引いたので、休みます。", ro: "kaze o hiita node, yasumimasu.", en: "Because I caught a cold, I'll rest.",
+          tokens: [
+            { t: "風邪", ro: "kaze", role: "Noun", meaning: "cold (illness)" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "引いた", ro: "hiita", role: "Verb (plain past)", meaning: "caught" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "休みます", ro: "yasumimasu", role: "Verb (polite)", meaning: "rest / take off" }
+          ] },
+        { jp: "電車が遅れたので、遅刻しました。", ro: "densha ga okureta node, chikoku shimashita.", en: "Because the train was late, I was late.",
+          tokens: [
+            { t: "電車", ro: "densha", role: "Noun", meaning: "train" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "遅れた", ro: "okureta", role: "Verb (plain past)", meaning: "got late" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "遅刻しました", ro: "chikoku shimashita", role: "Verb (polite past)", meaning: "was late" }
+          ] },
+        { jp: "時間がないので、急ぎます。", ro: "jikan ga nai node, isogimasu.", en: "Because there's no time, I'm hurrying.",
+          tokens: [
+            { t: "時間", ro: "jikan", role: "Noun", meaning: "time" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "ない", ro: "nai", role: "Verb (plain negative existence)", meaning: "doesn't exist" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "急ぎます", ro: "isogimasu", role: "Verb (polite)", meaning: "hurry" }
+          ] },
+        { jp: "明日は休みなので、ゆっくりします。", ro: "ashita wa yasumi na node, yukkuri shimasu.", en: "Because tomorrow is a day off, I'll relax.",
+          tokens: [
+            { t: "明日", ro: "ashita", role: "Time noun", meaning: "tomorrow" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "休み", ro: "yasumi", role: "Noun", meaning: "day off" },
+            { t: "な", ro: "na", role: "Copula 'da' before ので", meaning: "is (linking)" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "ゆっくり", ro: "yukkuri", role: "Adverb", meaning: "slowly / leisurely" },
+            { t: "します", ro: "shimasu", role: "Verb (polite)", meaning: "do" }
+          ] },
+        { jp: "バグがあるので、リリースできません。", ro: "bagu ga aru node, rirīsu dekimasen.", en: "Because there's a bug, we can't release.",
+          tokens: [
+            { t: "バグ", ro: "bagu", role: "Noun", meaning: "bug" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "ある", ro: "aru", role: "Verb (plain, existence)", meaning: "exists" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "リリース", ro: "rirīsu", role: "Noun (loanword)", meaning: "release" },
+            { t: "できません", ro: "dekimasen", role: "Verb (polite negative)", meaning: "cannot do" }
+          ] },
+        { jp: "会議があるので、早く来ました。", ro: "kaigi ga aru node, hayaku kimashita.", en: "Because there's a meeting, I came early.",
+          tokens: [
+            { t: "会議", ro: "kaigi", role: "Noun", meaning: "meeting" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "ある", ro: "aru", role: "Verb (plain existence)", meaning: "exists" },
+            { t: "ので", ro: "node", role: "Particle — reason", meaning: "because" },
+            { t: "早く", ro: "hayaku", role: "Adverb", meaning: "early" },
+            { t: "来ました", ro: "kimashita", role: "Verb (polite past)", meaning: "came" }
+          ] }
+      ]
+    },
+
+    {
+      category: "More particles",
+      title: "けど / が — But / however (contrast)",
+      formula: "[Clause A] けど / が、[Clause B]",
+      description: "Both mean 'but / however'. けど is conversational; が is more formal (also means 'but' in writing — same kana as the subject particle が, but used after a verb/adjective it's the conjunction). They contrast two clauses. Often used softly to introduce contrasting info without sounding harsh.",
+      person: "Any",
+      tense: "Any",
+      main: {
+        jp: "寒いけど、行きます。",
+        ro: "samui kedo, ikimasu.",
+        en: "It's cold, but I'll go.",
+        tokens: [
+          { t: "寒い", ro: "samui", role: "i-adjective", meaning: "cold" },
+          { t: "けど", ro: "kedo", role: "Particle — but (casual)", meaning: "but" },
+          { t: "行きます", ro: "ikimasu", role: "Verb (polite)", meaning: "go" }
+        ]
+      },
+      examples: [
+        { jp: "高いけど、買います。", ro: "takai kedo, kaimasu.", en: "It's expensive, but I'll buy it.",
+          tokens: [
+            { t: "高い", ro: "takai", role: "i-adjective", meaning: "expensive / high" },
+            { t: "けど", ro: "kedo", role: "Particle — but", meaning: "but" },
+            { t: "買います", ro: "kaimasu", role: "Verb (polite)", meaning: "buy" }
+          ] },
+        { jp: "難しいけど、面白いです。", ro: "muzukashii kedo, omoshiroi desu.", en: "It's hard, but interesting.",
+          tokens: [
+            { t: "難しい", ro: "muzukashii", role: "i-adjective", meaning: "difficult" },
+            { t: "けど", ro: "kedo", role: "Particle — but", meaning: "but" },
+            { t: "面白い", ro: "omoshiroi", role: "i-adjective", meaning: "interesting" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "行きたいけど、忙しいです。", ro: "ikitai kedo, isogashii desu.", en: "I want to go, but I'm busy.",
+          tokens: [
+            { t: "行きたい", ro: "ikitai", role: "Verb stem + たい (desire)", meaning: "want to go" },
+            { t: "けど", ro: "kedo", role: "Particle — but", meaning: "but" },
+            { t: "忙しい", ro: "isogashii", role: "i-adjective", meaning: "busy" },
+            { t: "です", ro: "desu", role: "Politeness", meaning: "(polite)" }
+          ] },
+        { jp: "雨ですが、出かけます。", ro: "ame desu ga, dekakemasu.", en: "It's raining, but I'm going out.",
+          tokens: [
+            { t: "雨", ro: "ame", role: "Noun", meaning: "rain" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "が", ro: "ga", role: "Conjunction — but (formal)", meaning: "but" },
+            { t: "出かけます", ro: "dekakemasu", role: "Verb (polite)", meaning: "go out" }
+          ] },
+        { jp: "簡単ですが、時間がかかります。", ro: "kantan desu ga, jikan ga kakarimasu.", en: "It's easy, but takes time.",
+          tokens: [
+            { t: "簡単", ro: "kantan", role: "na-adjective", meaning: "easy" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" },
+            { t: "が", ro: "ga", role: "Conjunction — but (formal)", meaning: "but" },
+            { t: "時間", ro: "jikan", role: "Noun", meaning: "time" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "かかります", ro: "kakarimasu", role: "Verb (polite)", meaning: "takes" }
+          ] },
+        { jp: "コードはできたけど、テストはまだです。", ro: "kōdo wa dekita kedo, tesuto wa mada desu.", en: "Code is done, but tests aren't yet.",
+          tokens: [
+            { t: "コード", ro: "kōdo", role: "Noun", meaning: "code" },
+            { t: "は", ro: "wa", role: "Particle — topic", meaning: "topic marker" },
+            { t: "できた", ro: "dekita", role: "Verb (plain past)", meaning: "got done" },
+            { t: "けど", ro: "kedo", role: "Particle — but", meaning: "but" },
+            { t: "テスト", ro: "tesuto", role: "Noun", meaning: "test" },
+            { t: "は", ro: "wa", role: "Particle — contrast topic", meaning: "as for ~" },
+            { t: "まだ", ro: "mada", role: "Adverb", meaning: "still / not yet" },
+            { t: "です", ro: "desu", role: "Copula", meaning: "is" }
+          ] },
+        { jp: "わかったけど、ちょっと違います。", ro: "wakatta kedo, chotto chigaimasu.", en: "I understood, but it's a bit different.",
+          tokens: [
+            { t: "わかった", ro: "wakatta", role: "Verb (plain past)", meaning: "understood" },
+            { t: "けど", ro: "kedo", role: "Particle — but", meaning: "but" },
+            { t: "ちょっと", ro: "chotto", role: "Adverb", meaning: "a little" },
+            { t: "違います", ro: "chigaimasu", role: "Verb (polite)", meaning: "is different" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 10 — COUNTERS (~つ・~人・~枚・~本・~個・~時間・~分)
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Counters",
+      title: "Counters — counting things, people, time",
+      formula: "[Number] + [Counter]   (different counter per type of thing)",
+      description: "Japanese uses counters depending on WHAT you're counting. ~つ for general/abstract, ~人 for people, ~枚 for flat thin things (paper, plates), ~本 for long thin things (pens, bottles), ~個 for small round/uncountable things, ~時間 for hours, ~分 for minutes. Some numbers change pronunciation with certain counters.",
+      person: "Any",
+      tense: "Tense-neutral",
+      main: {
+        jp: "りんごを一つください。",
+        ro: "ringo o hitotsu kudasai.",
+        en: "One apple, please.",
+        tokens: [
+          { t: "りんご", ro: "ringo", role: "Noun", meaning: "apple" },
+          { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+          { t: "一つ", ro: "hitotsu", role: "Counter (general, ~つ)", meaning: "one (thing)" },
+          { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+        ]
+      },
+      examples: [
+        { jp: "子供が二人います。", ro: "kodomo ga futari imasu.", en: "I have two children. (~人 for people)",
+          tokens: [
+            { t: "子供", ro: "kodomo", role: "Noun", meaning: "child" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "二人", ro: "futari", role: "Counter (people, ~人)", meaning: "two people (special: 1人=hitori, 2人=futari)" },
+            { t: "います", ro: "imasu", role: "Verb (existence — animate)", meaning: "exist" }
+          ] },
+        { jp: "紙を三枚ください。", ro: "kami o sanmai kudasai.", en: "Three sheets of paper, please. (~枚 for flat things)",
+          tokens: [
+            { t: "紙", ro: "kami", role: "Noun", meaning: "paper" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "三枚", ro: "sanmai", role: "Counter (flat thin, ~枚)", meaning: "three sheets" },
+            { t: "ください", ro: "kudasai", role: "Polite request", meaning: "please" }
+          ] },
+        { jp: "ペンが五本あります。", ro: "pen ga gohon arimasu.", en: "There are 5 pens. (~本 for long thin things)",
+          tokens: [
+            { t: "ペン", ro: "pen", role: "Noun (loanword)", meaning: "pen" },
+            { t: "が", ro: "ga", role: "Particle — subject", meaning: "subject marker" },
+            { t: "五本", ro: "gohon", role: "Counter (long thin, ~本)", meaning: "five sticks (1本=ippon, 3本=sanbon)" },
+            { t: "あります", ro: "arimasu", role: "Verb (existence)", meaning: "exist" }
+          ] },
+        { jp: "りんごを四個買いました。", ro: "ringo o yonko kaimashita.", en: "I bought 4 apples. (~個 for small/round things)",
+          tokens: [
+            { t: "りんご", ro: "ringo", role: "Noun", meaning: "apple" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "四個", ro: "yonko", role: "Counter (small, ~個)", meaning: "four (small things)" },
+            { t: "買いました", ro: "kaimashita", role: "Verb (polite past)", meaning: "bought" }
+          ] },
+        { jp: "二時間勉強しました。", ro: "nijikan benkyō shimashita.", en: "I studied for 2 hours.",
+          tokens: [
+            { t: "二時間", ro: "nijikan", role: "Counter (hours, ~時間)", meaning: "2 hours" },
+            { t: "勉強しました", ro: "benkyō shimashita", role: "Verb (polite past)", meaning: "studied" }
+          ] },
+        { jp: "三十分待ちました。", ro: "sanjuppun machimashita.", en: "I waited 30 minutes.",
+          tokens: [
+            { t: "三十分", ro: "sanjuppun", role: "Counter (minutes, ~分)", meaning: "30 minutes" },
+            { t: "待ちました", ro: "machimashita", role: "Verb (polite past)", meaning: "waited" }
+          ] },
+        { jp: "コーヒーを一杯お願いします。", ro: "kōhī o ippai onegaishimasu.", en: "One cup of coffee, please. (~杯 for cups/bowls)",
+          tokens: [
+            { t: "コーヒー", ro: "kōhī", role: "Noun (loanword)", meaning: "coffee" },
+            { t: "を", ro: "o", role: "Particle — object", meaning: "object marker" },
+            { t: "一杯", ro: "ippai", role: "Counter (cups/bowls, ~杯)", meaning: "one cup (1杯=ippai)" },
+            { t: "お願いします", ro: "onegaishimasu", role: "Verb (humble polite)", meaning: "please" }
+          ] }
+      ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // CATEGORY 11 — VERB & ADJECTIVE CONJUGATION REFERENCES
+    // ═══════════════════════════════════════════════════════════════
+    {
+      category: "Conjugation references",
+      title: "Verb groups — godan, ichidan, irregular",
+      formula: "Group 1 (godan): consonant-stem ~う → ~います  |  Group 2 (ichidan): vowel-stem ~る → ~ます  |  Group 3 (irregular): する→します, 来る→来ます",
+      description: "Japanese verbs come in three groups. Group 1 (godan) ends in -u sound (除く -ru with a/u/o vowel before): 飲む, 書く, 行く. Group 2 (ichidan) ends in -eru/-iru: 食べる, 見る. Group 3 = only する (to do) and 来る (to come). Conjugations differ per group.",
+      person: "Any",
+      tense: "Reference (covers all tenses)",
+      main: {
+        jp: "飲む → 飲みます (drink, present polite)",
+        ro: "nomu → nomimasu",
+        en: "Group 1 (godan): drop final -u, add -imasu.",
+        tokens: [
+          { t: "飲む", ro: "nomu", role: "Verb (plain, godan)", meaning: "drink (dictionary form)" },
+          { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+          { t: "飲みます", ro: "nomimasu", role: "Verb (polite, godan)", meaning: "drink (polite)" }
+        ]
+      },
+      examples: [
+        { jp: "食べる → 食べます", ro: "taberu → tabemasu", en: "Group 2 (ichidan): drop -ru, add -masu. (eat)",
+          tokens: [
+            { t: "食べる", ro: "taberu", role: "Verb (plain, ichidan)", meaning: "eat (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "食べます", ro: "tabemasu", role: "Verb (polite, ichidan)", meaning: "eat (polite)" }
+          ] },
+        { jp: "する → します", ro: "suru → shimasu", en: "Group 3 (irregular, do): completely changes. する → します.",
+          tokens: [
+            { t: "する", ro: "suru", role: "Verb (plain, irregular)", meaning: "do (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "します", ro: "shimasu", role: "Verb (polite, irregular)", meaning: "do (polite)" }
+          ] },
+        { jp: "来る → 来ます", ro: "kuru → kimasu", en: "Group 3 (irregular, come): vowel changes. 来る (kuru) → 来ます (kimasu).",
+          tokens: [
+            { t: "来る", ro: "kuru", role: "Verb (plain, irregular)", meaning: "come (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "来ます", ro: "kimasu", role: "Verb (polite, irregular)", meaning: "come (polite)" }
+          ] },
+        { jp: "書く → 書きます", ro: "kaku → kakimasu", en: "Group 1 (godan, -ku ending): -u → -i + masu.",
+          tokens: [
+            { t: "書く", ro: "kaku", role: "Verb (plain, godan)", meaning: "write (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "書きます", ro: "kakimasu", role: "Verb (polite, godan)", meaning: "write (polite)" }
+          ] },
+        { jp: "見る → 見ます", ro: "miru → mimasu", en: "Group 2 (ichidan, -iru): drop -ru, add -masu.",
+          tokens: [
+            { t: "見る", ro: "miru", role: "Verb (plain, ichidan)", meaning: "see (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "見ます", ro: "mimasu", role: "Verb (polite, ichidan)", meaning: "see (polite)" }
+          ] },
+        { jp: "行く → 行きました (past)", ro: "iku → ikimashita", en: "Past polite: -ます → -ました.",
+          tokens: [
+            { t: "行く", ro: "iku", role: "Verb (plain)", meaning: "go (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "行きました", ro: "ikimashita", role: "Verb (polite past)", meaning: "went" }
+          ] },
+        { jp: "話す → 話しません (negative)", ro: "hanasu → hanashimasen", en: "Negative polite: -ます → -ません.",
+          tokens: [
+            { t: "話す", ro: "hanasu", role: "Verb (plain, godan)", meaning: "speak (dict)" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "話しません", ro: "hanashimasen", role: "Verb (polite negative)", meaning: "do not speak" }
+          ] }
+      ]
+    },
+
+    {
+      category: "Conjugation references",
+      title: "Adjective conjugation — i-adj vs na-adj",
+      formula: "i-adj: い → くない (neg) → かった (past) → くなかった (past neg)   |   na-adj: + です/じゃない/でした/じゃなかった",
+      description: "Two adjective types behave differently. **i-adjectives** (end in い) conjugate themselves: 大きい→大きくない. **na-adjectives** (don't end in い) use the copula like nouns: 静か+です. Drop the final い for i-adj forms; for na-adj, just change the copula. The exception: いい (good) becomes よかった in past, よくない in negative.",
+      person: "Any",
+      tense: "Reference (all forms)",
+      main: {
+        jp: "大きい → 大きくない (negative)",
+        ro: "ōkii → ōkikunai",
+        en: "i-adjective negative: い → くない.",
+        tokens: [
+          { t: "大きい", ro: "ōkii", role: "i-adjective", meaning: "big" },
+          { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+          { t: "大きくない", ro: "ōkikunai", role: "i-adjective negative", meaning: "not big" }
+        ]
+      },
+      examples: [
+        { jp: "高い → 高かった (past)", ro: "takai → takakatta", en: "i-adj past: い → かった.",
+          tokens: [
+            { t: "高い", ro: "takai", role: "i-adjective", meaning: "expensive / high" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "高かった", ro: "takakatta", role: "i-adjective past", meaning: "was expensive" }
+          ] },
+        { jp: "難しい → 難しくなかった (past neg)", ro: "muzukashii → muzukashikunakatta", en: "i-adj past negative: い → くなかった.",
+          tokens: [
+            { t: "難しい", ro: "muzukashii", role: "i-adjective", meaning: "difficult" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "難しくなかった", ro: "muzukashikunakatta", role: "i-adjective past negative", meaning: "wasn't difficult" }
+          ] },
+        { jp: "静か → 静かじゃない (negative)", ro: "shizuka → shizuka ja nai", en: "na-adj negative: just add じゃない.",
+          tokens: [
+            { t: "静か", ro: "shizuka", role: "na-adjective", meaning: "quiet" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "静かじゃない", ro: "shizuka ja nai", role: "na-adjective casual negative", meaning: "not quiet" }
+          ] },
+        { jp: "元気 → 元気でした (past)", ro: "genki → genki deshita", en: "na-adj past: just add でした (was).",
+          tokens: [
+            { t: "元気", ro: "genki", role: "na-adjective", meaning: "energetic / well" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "元気でした", ro: "genki deshita", role: "na-adjective past", meaning: "was well" }
+          ] },
+        { jp: "親切 → 親切じゃなかった (past neg)", ro: "shinsetsu → shinsetsu ja nakatta", en: "na-adj past neg: じゃなかった.",
+          tokens: [
+            { t: "親切", ro: "shinsetsu", role: "na-adjective", meaning: "kind" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "親切じゃなかった", ro: "shinsetsu ja nakatta", role: "na-adjective past negative", meaning: "wasn't kind" }
+          ] },
+        { jp: "いい → よくない (irregular negative)", ro: "ii → yokunai", en: "Irregular: いい (good) uses よ- stem in conjugation.",
+          tokens: [
+            { t: "いい", ro: "ii", role: "i-adjective (irregular)", meaning: "good" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "よくない", ro: "yokunai", role: "i-adjective negative (irregular)", meaning: "not good" }
+          ] },
+        { jp: "綺麗 → 綺麗な部屋 (modifying noun)", ro: "kirei → kirei na heya", en: "na-adj before a noun needs な: 綺麗 → 綺麗な部屋.",
+          tokens: [
+            { t: "綺麗", ro: "kirei", role: "na-adjective", meaning: "pretty / clean" },
+            { t: "→", ro: "→", role: "Symbol", meaning: "becomes" },
+            { t: "綺麗な", ro: "kirei na", role: "na-adjective + な (attributive)", meaning: "pretty (before noun)" },
+            { t: "部屋", ro: "heya", role: "Noun", meaning: "room" }
           ] }
       ]
     }
