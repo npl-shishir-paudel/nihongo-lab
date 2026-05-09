@@ -913,6 +913,10 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
 /* ---------- sentence structures ---------- */
 .struct-list {
   display: grid;
+  /* Explicit column constraint. Without this, the implicit column auto-sizes
+     to the widest descendant (e.g. the 600px breakdown table), pushing the
+     entire card past the screen edge on phones. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 14px;
   padding: 16px;
 }
@@ -922,6 +926,8 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  /* Belt-and-suspenders: the card itself never grows wider than its column. */
+  min-width: 0;
   transition: border-color .15s;
 }
 .struct:hover { border-color: color-mix(in srgb, var(--accent-2) 40%, var(--line)); }
@@ -1226,10 +1232,10 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
 .bd-mean { color: var(--fg); font-size: 13px; }
 
 @media (max-width: 720px) {
-  /* Breakdown stays a single 4-col row everywhere; container scroll is
-     defined on .struct-bd universally. Just bump min-width a touch so
-     each column has comfortable space on phones. */
-  .struct-bd-head, .struct-bd-row { min-width: 600px; }
+  /* On phones, let the breakdown row fit the card width — no horizontal
+     scroll needed. Long Role / Meaning text truncates with `…` and the
+     full text is always available in the hover tooltip. */
+  .struct-bd-head, .struct-bd-row { min-width: 0; }
   .struct-sent-jp { font-size: 18px; }
 }
 
@@ -1407,11 +1413,12 @@ button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
   .struct-grid .struct-sent-jp { font-size: 17px; }
   .struct-grid .struct-sent.is-main .struct-sent-jp { font-size: 18px; }
   .struct-grid .bd-jp { font-size: 14px; }
-  /* Breakdown rows stay single-line; container scrolls horizontally. */
+  /* Breakdown rows stay single-line; truncate to fit the card width
+     instead of horizontal scroll. Tooltip on hover/tap shows full content. */
   .struct-grid .struct-bd-head,
   .struct-grid .struct-bd-row {
     font-size: 11px;
-    min-width: 540px;
+    min-width: 0;
   }
   .struct-grid .struct-bd-head span,
   .struct-grid .struct-bd-row span { padding: 4px 6px; }
