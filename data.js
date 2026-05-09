@@ -1043,7 +1043,7 @@ const DATA = {
       goal: "Add かきくけこ and introduce yourself as 'I am Shishir'.",
       kana: { hira: ["か","き","く","け","こ"] },
       words: ["私","僕","学生","先生","エンジニア"],
-      grammar: ["Aは Bです — A is B"],
+      grammar: ["Aは Bです — A is B","1st person — 私 / 僕 / 自分","A は B です — Present affirmative identity"],
       sentences: ["私はシシルです。","私はエンジニアです。","はじめまして、よろしくお願いします。"],
       practice: "Roleplay: introduce yourself in 3 sentences. Use one new K-row kana in your speech ('こんにちは')."
     },
@@ -1053,7 +1053,7 @@ const DATA = {
       goal: "Add さしすせそ and turn statements into questions with か.",
       kana: { hira: ["さ","し","す","せ","そ"] },
       words: ["はい","いいえ","そうです","違います"],
-      grammar: ["Question with か","🧠 Confusing particles cheat sheet — は を の が に で から も"],
+      grammar: ["Question with か","🧠 Confusing particles cheat sheet — は を の が に で から も","[Statement] か？— Yes/No question","はい / いいえ — Affirmative & negative answers"],
       sentences: ["お元気ですか？","はい、元気です。","学生ですか？"],
       practice: "Ask Claude 3 yes/no questions about yourself in Japanese. Get them all right before moving on."
     },
@@ -1073,7 +1073,7 @@ const DATA = {
       goal: "Add なにぬねの and ask 何ですか about anything.",
       kana: { hira: ["な","に","ぬ","ね","の"] },
       words: ["何","名前","友達","家族"],
-      grammar: ["Possessive / connecting の"],
+      grammar: ["Possessive / connecting の","A の B — Possession & noun connector","Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)","2nd person — [Name]さん (avoid あなた)"],
       sentences: ["これは何ですか？","名前は何ですか？","私の名前はシシルです。"],
       practice: "Build 5 'X の Y' phrases (e.g. 私の会社, 友達の名前). Hover each to confirm pronunciation."
     },
@@ -1083,7 +1083,7 @@ const DATA = {
       goal: "Add はひふへほ and feel the は = 'wa' rule in real sentences.",
       kana: { hira: ["は","ひ","ふ","へ","ほ"] },
       words: ["今日","明日","昨日"],
-      grammar: ["Aは Bです — A is B","🧠 ません vs ありません vs ではありません — the three negatives"],
+      grammar: ["Aは Bです — A is B","🧠 ません vs ありません vs ではありません — the three negatives","[Topic]は [i-adjective]です — i-adjective sentence"],
       sentences: ["今日は月曜日です。","今日は楽しかったです。"],
       practice: "Read each sentence aloud paying attention to は → 'wa'. Record yourself."
     },
@@ -1125,7 +1125,7 @@ const DATA = {
       goal: "Finish the last hiragana row わ・を・ん and learn を = direct object.",
       kana: { hira: ["わ","を","ん"] },
       words: ["コーヒー","お茶","水"],
-      grammar: ["Object marker を"],
+      grammar: ["Object marker を","[Subject]は [Object]を [Verb]ます — Present/Future action"],
       sentences: ["コーヒーを飲みますか？","水を飲みます。"],
       practice: "Make 3 sentences using を + a verb you know."
     },
@@ -1197,7 +1197,7 @@ const DATA = {
       goal: "Add ハヒフヘホ・マミムメモ・ヤユヨ and learn negative ません.",
       kana: { kata: ["ハ","ヒ","フ","ヘ","ホ","マ","ミ","ム","メ","モ","ヤ","ユ","ヨ"] },
       words: ["分かる","話す"],
-      grammar: ["Negation with ません","Adjective conjugation — i-adj vs na-adj"],
+      grammar: ["Negation with ません","Adjective conjugation — i-adj vs na-adj","[Verb]ません — Present/Future negative","A は B じゃありません — Present negative identity","[Topic]は [na-adjective]です — na-adjective sentence"],
       sentences: ["すみません、ちょっと分かりません。","コーヒーを飲みません。"],
       practice: "Take 3 ます verbs from yesterday and flip each to ません. Say each pair aloud."
     },
@@ -1207,7 +1207,7 @@ const DATA = {
       goal: "Add ラリルレロ・ワヲン and use ました for past actions.",
       kana: { kata: ["ラ","リ","ル","レ","ロ","ワ","ヲ","ン"] },
       words: ["直す","送る"],
-      grammar: ["Past tense with ました / でした"],
+      grammar: ["Past tense with ました / でした","[Verb]ました — Past affirmative","A は B でした — Past affirmative identity","[Verb]ませんでした — Past negative","3rd person — 彼 / 彼女 / あの人 / [Name]さん"],
       sentences: ["バグを直しました。","プルリクを送りました。","昨日は会議でした。"],
       practice: "Tell Claude (in Japanese) three things you did yesterday using ました."
     },
@@ -1227,7 +1227,7 @@ const DATA = {
       goal: "Solidify ongoing-action ています with workplace IT phrases.",
       kana: { kata: [] },
       words: ["サーバー","テスト","メール"],
-      grammar: ["て-form + います = ongoing / state","ので (node) — Because (politer than から)"],
+      grammar: ["て-form + います = ongoing / state","ので (node) — Because (politer than から)","[Verb-て]います — Ongoing / Continuous","[Reason]から、[Result] — Because (cause-and-effect)"],
       sentences: ["サーバーが落ちています。","テストが失敗しています。","コードを書いています。"],
       practice: "Voice-record yourself describing 3 things happening at work right now using ています."
     },
@@ -1249,7 +1249,7 @@ const DATA = {
       goal: "Use で for action-location and に for destination / existence.",
       kana: {},
       words: ["駅","電車","家","学校","働く"],
-      grammar: ["Location with で and に","や (ya) — And (non-exhaustive 'and others')"],
+      grammar: ["Location with で and に","や (ya) — And (non-exhaustive 'and others')","[Place]で / [Place]に — Action vs destination","あります / います — Existence ('there is')"],
       sentences: ["駅はどこですか？","会議は何時からですか？"],
       practice: "Make 3 sentences: one with X で work, one with に go, one with に exist."
     },
@@ -1259,7 +1259,7 @@ const DATA = {
       goal: "Chain nouns smoothly: 私の会社の同僚 (my company's colleague).",
       kana: {},
       words: ["私","会社","コード","同僚"],
-      grammar: ["Possessive / connecting の"],
+      grammar: ["Possessive / connecting の","A の B — Possession & noun connector"],
       sentences: ["私の名前はシシルです。"],
       practice: "Build a 3-noun chain about yourself (e.g. 私の家族の写真)."
     },
@@ -1269,7 +1269,7 @@ const DATA = {
       goal: "Express your own wishes with たいです.",
       kana: {},
       words: ["勉強する","食べる","飲む"],
-      grammar: ["Want to do — たい","よ (yo) — Sentence-end emphasis (informing / asserting)","ね (ne) — Sentence-end agreement-seeking"],
+      grammar: ["Want to do — たい","よ (yo) — Sentence-end emphasis (informing / asserting)","ね (ne) — Sentence-end agreement-seeking","[Verb-stem]たいです — 'I want to do'"],
       sentences: ["コーヒーを飲みたいです。","日本語を話したいです。","早く帰りたいです。"],
       practice: "Tell Claude 5 things you want to do this weekend in Japanese."
     },
@@ -1279,7 +1279,7 @@ const DATA = {
       goal: "Ask people to do things politely in real situations.",
       kana: {},
       words: ["送る","話す","直す"],
-      grammar: ["Polite request — てください"],
+      grammar: ["Polite request — てください","[Verb-て]ください — Polite request"],
       sentences: ["ゆっくり話してください。","もう一度説明してください。","このファイルを送ってください。"],
       practice: "Make 3 requests you'd actually use at work. Say each aloud."
     },
@@ -1289,7 +1289,7 @@ const DATA = {
       goal: "Run a 60-second mock standup in Japanese.",
       kana: {},
       words: ["会議","上司","同僚","バグ"],
-      grammar: ["て-form + います = ongoing / state","Past tense with ました / でした","けど / が — But / however (contrast)"],
+      grammar: ["て-form + います = ongoing / state","Past tense with ました / でした","けど / が — But / however (contrast)","[Verb-て]、[Verb] — Linking actions (and / then)"],
       sentences: ["お疲れさまでした。","お先に失礼します。","コードレビューをお願いします。","バグを直しました。","少し遅れます。"],
       practice: "Roleplay with Claude: standup update — 'yesterday I…, today I'm working on…, blocked by…'"
     },
@@ -1299,7 +1299,7 @@ const DATA = {
       goal: "Survive a café and a station entirely in Japanese.",
       kana: {},
       words: ["駅","コーヒー","お茶","ご飯"],
-      grammar: ["Question with か","Object marker を"],
+      grammar: ["Question with か","Object marker を","[Verb-stem]ませんか / ましょう — Invitation & 'let's'"],
       sentences: ["駅はどこですか？","これはいくらですか？","コーヒーを飲みますか？","ゆっくり話してください。","もう一度お願いします。"],
       practice: "Roleplay: order coffee + ask the way to the station. Switch roles."
     },
