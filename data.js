@@ -899,6 +899,21 @@ const DATA = {
     { jp: "確認します。", ro: "kakunin shimasu.", en: "I'll check.", scene: "workplace" },
     { jp: "デプロイしました。", ro: "depuroi shimashita.", en: "I deployed.", scene: "IT" },
     { jp: "本番環境で問題が起きています。", ro: "honban kankyō de mondai ga okite imasu.", en: "There's a problem in production.", scene: "IT" }
+  ,
+    // ── Imported from chapter references (previously orphan) ──
+    { jp: "学生ですか？", ro: "gakusei desu ka?", en: "Are you a student?", scene: "intro" },
+    { jp: "メールを書きます。", ro: "mēru o kakimasu.", en: "I write an email.", scene: "IT" },
+    { jp: "コードをレビューします。", ro: "kōdo o rebyū shimasu.", en: "I review the code.", scene: "IT" },
+    { jp: "コーヒーを飲みません。", ro: "kōhī o nomimasen.", en: "I don't drink coffee.", scene: "daily" },
+    { jp: "バグを直しました。", ro: "bagu o naoshimashita.", en: "I fixed the bug.", scene: "IT" },
+    { jp: "昨日は会議でした。", ro: "kinō wa kaigi deshita.", en: "Yesterday was the meeting.", scene: "workplace" },
+    { jp: "コードを書いています。", ro: "kōdo o kaite imasu.", en: "I'm writing code.", scene: "IT" },
+    { jp: "今、会議をしています。", ro: "ima, kaigi o shite imasu.", en: "I'm in a meeting now.", scene: "workplace" },
+    { jp: "コーヒーを飲みたいです。", ro: "kōhī o nomitai desu.", en: "I want to drink coffee.", scene: "daily" },
+    { jp: "日本語を話したいです。", ro: "nihongo o hanashitai desu.", en: "I want to speak Japanese.", scene: "intro" },
+    { jp: "早く帰りたいです。", ro: "hayaku kaeritai desu.", en: "I want to go home early.", scene: "workplace" },
+    { jp: "もう一度説明してください。", ro: "mō ichido setsumei shite kudasai.", en: "Please explain once more.", scene: "workplace" },
+    { jp: "このファイルを送ってください。", ro: "kono fairu o okutte kudasai.", en: "Please send this file.", scene: "IT" }
     ],
 
   grammar: [

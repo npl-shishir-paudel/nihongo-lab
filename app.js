@@ -628,13 +628,15 @@
   });
   // Combined grammar / structure lookup. Chapters can reference EITHER an
   // old grammar entry (title → {title, pattern, rule}) OR a new structure
-  // (title → {title, formula, description}). The renderer normalizes fields.
+  // (title → full {title, formula, description, main, examples, ...}).
   const gramLookup = new Map();
+  const structureByTitle = new Map();   // title → full structure object
   DATA.grammar.forEach(g => {
     gramLookup.set(g.title, { title: g.title, pattern: g.pattern, rule: g.rule, source: "grammar" });
   });
   if (DATA.structures) {
     DATA.structures.forEach(s => {
+      structureByTitle.set(s.title, s);
       gramLookup.set(s.title, { title: s.title, pattern: s.formula, rule: s.description, source: "structure" });
       // also surface main + example sentences so chapters can pull them
       if (s.main && !sentLookup.has(s.main.jp)) {
@@ -647,6 +649,15 @@
       });
     });
   }
+  // Reverse-lookup: which chapter day(s) reference each structure title.
+  // Used to render "Practiced on Day X, Y" backlinks inside Structure cards.
+  const structureUsage = new Map();
+  DATA.chapters.forEach(ch => {
+    (ch.grammar || []).forEach(title => {
+      if (!structureUsage.has(title)) structureUsage.set(title, []);
+      structureUsage.get(title).push(ch.day);
+    });
+  });
   const lookups = {
     hira: new Map(DATA.hiragana.map(k => [k.ch, k])),
     kata: new Map(DATA.katakana.map(k => [k.ch, k])),
@@ -654,6 +665,21 @@
     sent: sentLookup,
     gram: gramLookup
   };
+
+  // Cross-tab navigation — click a day badge inside Structure card to jump
+  // to that chapter (Chapters tab → open the day → smooth scroll into view).
+  function navigateToChapterDay(day) {
+    activateTab("chapters");
+    // Wait a tick so the panel is visible before scrolling
+    setTimeout(() => {
+      const chap = document.querySelector(`.chapter[data-day="${day}"]`);
+      if (!chap) return;
+      chap.classList.add("is-open");
+      chap.scrollIntoView({ behavior: "smooth", block: "start" });
+      chap.classList.add("flash");
+      setTimeout(() => chap.classList.remove("flash"), 1500);
+    }, 80);
+  }
 
   function buildChapters() {
     const root = $("#chapList");
@@ -730,15 +756,34 @@
         body.appendChild(sec);
       }
 
-      // grammar
-      const grams = (ch.grammar || []).map(t => lookups.gram.get(t)).filter(Boolean);
-      if (grams.length) {
-        const sec = mkSection("Grammar");
-        grams.forEach(g => {
-          const item = document.createElement("div");
-          item.className = "chapter-grammar";
-          item.innerHTML = `<b>${g.title}</b><div class="pat">${g.pattern}</div><div class="rule">${g.rule}</div>`;
-          sec.appendChild(item);
+      // grammar — render the FULL Structure card inline if a structure with
+      // that title exists; otherwise fall back to the thin (legacy) grammar
+      // entry. This is the chapter↔structure merge: you stay on the Chapters
+      // tab and get the rich token breakdown + 7 examples + color coding +
+      // hover info + Nepali, all in lesson context.
+      const gramTitles = ch.grammar || [];
+      if (gramTitles.length) {
+        const sec = mkSection("Grammar — full breakdown");
+        gramTitles.forEach(title => {
+          const fullStruct = structureByTitle.get(title);
+          if (fullStruct) {
+            // collapsed by default to keep chapter card compact;
+            // user clicks the header to expand into the full chart.
+            sec.appendChild(buildOneStructureCard(fullStruct, {
+              isOpen: false,
+              compact: true,
+              currentDay: ch.day
+            }));
+          } else {
+            const g = lookups.gram.get(title);
+            if (!g) return;
+            const item = document.createElement("div");
+            item.className = "chapter-grammar";
+            item.innerHTML = `<b>${escapeHtml(g.title)}</b>
+              <div class="pat">${escapeHtml(g.pattern || "")}</div>
+              <div class="rule">${escapeHtml(g.rule || "")}</div>`;
+            sec.appendChild(item);
+          }
         });
         body.appendChild(sec);
       }
@@ -1044,6 +1089,131 @@
     root.parentNode.insertBefore(wrap, root);
   }
 
+  // Reusable: build a single Structure card (used both in the Structure tab
+  // and inline inside chapters). Returns the DOM element with all event
+  // handlers wired. Optional opts: { isOpen, compact, currentDay }.
+  function buildOneStructureCard(s, opts) {
+    opts = opts || {};
+    const card = document.createElement("article");
+    card.className = "struct"
+      + (opts.isOpen ? " is-open" : "")
+      + (opts.compact ? " is-compact" : "");
+    card.dataset.cat = s.category;
+    const allText = [
+      s.title, s.formula, s.description, s.category, s.person, s.tense,
+      s.main?.jp, s.main?.ro, s.main?.en,
+      ...(s.examples || []).flatMap(e => [e.jp, e.ro, e.en]),
+      ...(s.main?.tokens || []).flatMap(t => [t.t, t.ro, t.role, t.meaning]),
+      ...((s.examples || []).flatMap(e => (e.tokens || []).flatMap(t => [t.t, t.ro, t.role, t.meaning])))
+    ].filter(Boolean).join(" ").toLowerCase();
+    card.dataset.search = allText;
+
+    // Render main + all examples as a single 2-column grid.
+    const gridParts = [];
+    if (s.main) gridParts.push(renderSentenceBlock(s.main, "📌 Main pattern", "is-main"));
+    (s.examples || []).forEach((ex, i) => {
+      gridParts.push(renderSentenceBlock(ex, `Example ${i + 1}`));
+    });
+
+    // "Practiced on Day X" backlinks. When viewed inline inside a chapter
+    // (currentDay set), the current day is omitted from the badge.
+    const usedDays = (structureUsage.get(s.title) || []).filter(d => d !== opts.currentDay);
+    const dayLinksHtml = usedDays.length
+      ? `<div class="struct-day-links">📅 Also practiced on ${
+          usedDays.map(d => `<button class="struct-day-link" data-day="${d}">Day ${d}</button>`).join(" ")
+        }</div>`
+      : "";
+
+    card.innerHTML = `
+      <header class="struct-head">
+        <span class="struct-cat">${escapeHtml(s.category || "")}</span>
+        <h3 class="struct-title">${escapeHtml(s.title || "")}</h3>
+        <button class="struct-toggle" title="Expand / collapse">▼</button>
+      </header>
+      <div class="struct-body">
+        <div class="struct-meta">
+          <div class="struct-formula"><b>Formula:</b> <code>${escapeHtml(s.formula || "")}</code></div>
+          <div class="struct-tags">
+            ${s.person ? `<span class="struct-tag"><b>Person:</b> ${escapeHtml(s.person)}</span>` : ""}
+            ${s.tense ? `<span class="struct-tag"><b>Tense:</b> ${escapeHtml(s.tense)}</span>` : ""}
+          </div>
+        </div>
+        ${s.description ? `<p class="struct-desc">${escapeHtml(s.description)}</p>` : ""}
+
+        <div class="struct-section-h">📌 Main pattern + 📚 Similar examples (compact chart)</div>
+        <div class="struct-grid">${gridParts.join("")}</div>
+
+        ${dayLinksHtml}
+      </div>
+    `;
+
+    // expand / collapse on header click
+    const head = $(".struct-head", card);
+    head.addEventListener("click", (e) => {
+      if (e.target.closest(".struct-toggle, .struct-cat")) {
+        card.classList.toggle("is-open");
+        return;
+      }
+      card.classList.toggle("is-open");
+    });
+
+    // each sentence: hover shows quick info, click plays the full sentence.
+    const allSents = (s.main ? [{ ...s.main, _label: "Main pattern" }] : []).concat(
+      (s.examples || []).map((e, i) => ({ ...e, _label: `Example ${i + 1}` }))
+    );
+    $$(".struct-sent", card).forEach((el, i) => {
+      const sentData = allSents[i];
+      const text = el.dataset.say;
+      bindHoverInfo(el, () => infoForSentence({ jp: text, ro: sentData?.ro, en: sentData?.en, scene: s.title }));
+      el.addEventListener("click", (e) => {
+        const tok = e.target.closest(".jt:not(.jt-punct)");
+        if (tok && tok.dataset.say) {
+          e.stopPropagation();
+          speak(tok.dataset.say, tok);
+          return;
+        }
+        const row = e.target.closest(".struct-bd-row");
+        if (row) {
+          e.stopPropagation();
+          speak(row.dataset.say, row);
+          return;
+        }
+        speak(text, el);
+      });
+    });
+
+    // hover-info on each colored JP token (rich grammar breakdown)
+    $$(".struct-sent-jp .jt:not(.jt-punct)", card).forEach(tok => {
+      if (!tok.dataset.say) return;
+      bindHoverInfo(tok, () => infoForToken({
+        t: tok.dataset.say, ro: tok.dataset.ro,
+        role: tok.dataset.role, meaning: tok.dataset.mean
+      }));
+    });
+
+    // hover-info on each breakdown row + click plays its single token
+    $$(".struct-bd-row", card).forEach(row => {
+      bindHoverInfo(row, () => infoForToken({
+        t: row.dataset.say, ro: row.dataset.ro,
+        role: row.dataset.role, meaning: row.dataset.mean
+      }));
+      row.addEventListener("click", (e) => {
+        e.stopPropagation();
+        speak(row.dataset.say, row);
+      });
+    });
+
+    // wire day backlinks
+    $$(".struct-day-link", card).forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navigateToChapterDay(parseInt(btn.dataset.day, 10));
+      });
+    });
+
+    return card;
+  }
+
   function buildStructures() {
     if (!DATA.structures) return;
     const root = $("#structList");
@@ -1079,8 +1249,7 @@
     let prevCat = null;
     let catNum = 0;
     DATA.structures.forEach((s, idx) => {
-      // Insert a category header whenever the category changes — gives visual
-      // grouping inside the Structure list (1 Foundation → 2 Declarative → …).
+      // Category header whenever category changes
       if (s.category !== prevCat) {
         catNum++;
         const count = DATA.structures.filter(x => x.category === s.category).length;
@@ -1095,111 +1264,7 @@
         root.appendChild(header);
         prevCat = s.category;
       }
-
-      const card = document.createElement("article");
-      card.className = "struct" + (idx === 0 ? " is-open" : "");
-      card.dataset.cat = s.category;
-      const allText = [
-        s.title, s.formula, s.description, s.category, s.person, s.tense,
-        s.main?.jp, s.main?.ro, s.main?.en,
-        ...(s.examples || []).flatMap(e => [e.jp, e.ro, e.en]),
-        ...(s.main?.tokens || []).flatMap(t => [t.t, t.ro, t.role, t.meaning]),
-        ...((s.examples || []).flatMap(e => (e.tokens || []).flatMap(t => [t.t, t.ro, t.role, t.meaning])))
-      ].filter(Boolean).join(" ").toLowerCase();
-      card.dataset.search = allText;
-
-      // Render main + all examples as a single 2-column grid; main gets
-      // an accent border so it stays visually distinct from examples.
-      const gridParts = [];
-      if (s.main) gridParts.push(renderSentenceBlock(s.main, "📌 Main pattern", "is-main"));
-      (s.examples || []).forEach((ex, i) => {
-        gridParts.push(renderSentenceBlock(ex, `Example ${i + 1}`));
-      });
-
-      card.innerHTML = `
-        <header class="struct-head">
-          <span class="struct-cat">${escapeHtml(s.category || "")}</span>
-          <h3 class="struct-title">${escapeHtml(s.title || "")}</h3>
-          <button class="struct-toggle" title="Expand / collapse">▼</button>
-        </header>
-        <div class="struct-body">
-          <div class="struct-meta">
-            <div class="struct-formula"><b>Formula:</b> <code>${escapeHtml(s.formula || "")}</code></div>
-            <div class="struct-tags">
-              ${s.person ? `<span class="struct-tag"><b>Person:</b> ${escapeHtml(s.person)}</span>` : ""}
-              ${s.tense ? `<span class="struct-tag"><b>Tense:</b> ${escapeHtml(s.tense)}</span>` : ""}
-            </div>
-          </div>
-          ${s.description ? `<p class="struct-desc">${escapeHtml(s.description)}</p>` : ""}
-
-          <div class="struct-section-h">📌 Main pattern + 📚 Similar examples (compact chart)</div>
-          <div class="struct-grid">${gridParts.join("")}</div>
-        </div>
-      `;
-
-      // expand / collapse on header click
-      const head = $(".struct-head", card);
-      head.addEventListener("click", (e) => {
-        if (e.target.closest(".struct-toggle, .struct-cat")) {
-          card.classList.toggle("is-open");
-          return;
-        }
-        card.classList.toggle("is-open");
-      });
-
-      // each sentence: hover shows quick info, click plays the full sentence.
-      // Hovering a colored word/breakdown row inside surfaces THAT word's
-      // role/tense/polarity. Clicking a word/row plays just that word.
-      const allSents = (s.main ? [{ ...s.main, _label: "Main pattern" }] : []).concat(
-        (s.examples || []).map((e, i) => ({ ...e, _label: `Example ${i + 1}` }))
-      );
-      $$(".struct-sent", card).forEach((el, idx) => {
-        const sentData = allSents[idx];
-        const text = el.dataset.say;
-        bindHoverInfo(el, () => infoForSentence({ jp: text, ro: sentData?.ro, en: sentData?.en, scene: s.title }));
-        el.addEventListener("click", (e) => {
-          const tok = e.target.closest(".jt:not(.jt-punct)");
-          if (tok && tok.dataset.say) {
-            e.stopPropagation();
-            speak(tok.dataset.say, tok);
-            return;
-          }
-          const row = e.target.closest(".struct-bd-row");
-          if (row) {
-            e.stopPropagation();
-            speak(row.dataset.say, row);
-            return;
-          }
-          speak(text, el);
-        });
-      });
-
-      // hover-info on each colored JP token (rich grammar breakdown)
-      $$(".struct-sent-jp .jt:not(.jt-punct)", card).forEach(tok => {
-        if (!tok.dataset.say) return;
-        bindHoverInfo(tok, () => infoForToken({
-          t: tok.dataset.say,
-          ro: tok.dataset.ro,
-          role: tok.dataset.role,
-          meaning: tok.dataset.mean
-        }));
-      });
-
-      // hover-info on each breakdown row (rich grammar breakdown)
-      $$(".struct-bd-row", card).forEach(row => {
-        bindHoverInfo(row, () => infoForToken({
-          t: row.dataset.say,
-          ro: row.dataset.ro,
-          role: row.dataset.role,
-          meaning: row.dataset.mean
-        }));
-        row.addEventListener("click", (e) => {
-          e.stopPropagation();
-          speak(row.dataset.say, row);
-        });
-      });
-
-      root.appendChild(card);
+      root.appendChild(buildOneStructureCard(s, { isOpen: idx === 0 }));
     });
 
     function applyFilter() {
