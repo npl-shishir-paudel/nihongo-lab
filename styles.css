@@ -1031,7 +1031,10 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   margin-bottom: 12px;
 }
 @media (max-width: 880px) {
-  .struct-grid { grid-template-columns: 1fr; }
+  /* Use minmax(0, 1fr) so a child with wide content (e.g. the breakdown
+     table's 600px min-width) stays inside the column and scrolls
+     internally instead of pushing the column past the screen edge. */
+  .struct-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* compact card styles when sentence is inside .struct-grid */
@@ -1041,6 +1044,7 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0;
 }
 .struct-grid .struct-sent-jp {
   font-size: 19px;
@@ -1169,7 +1173,15 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   margin-top: 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  overflow: hidden;
+  /* Allow horizontal scroll if the content can't fit (mobile / narrow cards),
+     but no vertical scroll — rows are always single-line.
+     min-width: 0 prevents the wide-content child from pushing this past
+     its parent's bounds when nested inside flex/grid layouts. */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  max-width: 100%;
   background: var(--bg-2);
 }
 .struct-bd-head, .struct-bd-row {
@@ -1178,6 +1190,9 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
   gap: 0;
   font-size: 13px;
   align-items: center;
+  /* Ensure the row is wide enough for its content. On wide screens (≥720px)
+     this is naturally satisfied. On mobile the parent scrolls horizontally. */
+  min-width: 560px;
 }
 .struct-bd-head {
   background: color-mix(in srgb, var(--accent-2) 14%, var(--bg-3));
@@ -1190,6 +1205,11 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
 .struct-bd-head span, .struct-bd-row span {
   padding: 7px 10px;
   border-right: 1px solid var(--line);
+  /* Single-line cells. Long content gets ellipsis; full text shows on hover
+     in the rich tooltip. Prevents the breakdown row from wrapping. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .struct-bd-head span:last-child, .struct-bd-row span:last-child { border-right: 0; }
 
@@ -1206,11 +1226,10 @@ main { padding: 22px; max-width: 1280px; margin: 0 auto; }
 .bd-mean { color: var(--fg); font-size: 13px; }
 
 @media (max-width: 720px) {
-  /* Keep breakdown as a single 4-column row even on mobile.
-     If cells get cramped on very narrow screens, allow horizontal scroll
-     instead of reflowing to multi-line (per user preference). */
-  .struct-bd { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .struct-bd-head, .struct-bd-row { min-width: 460px; }
+  /* Breakdown stays a single 4-col row everywhere; container scroll is
+     defined on .struct-bd universally. Just bump min-width a touch so
+     each column has comfortable space on phones. */
+  .struct-bd-head, .struct-bd-row { min-width: 600px; }
   .struct-sent-jp { font-size: 18px; }
 }
 
@@ -1388,12 +1407,11 @@ button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
   .struct-grid .struct-sent-jp { font-size: 17px; }
   .struct-grid .struct-sent.is-main .struct-sent-jp { font-size: 18px; }
   .struct-grid .bd-jp { font-size: 14px; }
-  /* Breakdown stays a single 4-col row inside the compact card too —
-     scroll horizontally if it gets tight (NO multi-line reflow). */
+  /* Breakdown rows stay single-line; container scrolls horizontally. */
   .struct-grid .struct-bd-head,
   .struct-grid .struct-bd-row {
     font-size: 11px;
-    min-width: 420px;
+    min-width: 540px;
   }
   .struct-grid .struct-bd-head span,
   .struct-grid .struct-bd-row span { padding: 4px 6px; }
