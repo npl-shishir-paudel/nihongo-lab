@@ -1232,29 +1232,30 @@
     return card;
   }
 
-  // Stable category-color palette — every card and category header in the
-  // Structure tab gets a --cat-color CSS variable derived from its category.
-  // Cards within the same category share the same color; categories cycle.
+  // Refined 19-color palette — each color is visually distinct from
+  // its neighbors (taken from the Tailwind 500/600-shade family which is
+  // designed for maximum mutual contrast). Categories assigned to colors
+  // by stable order so the same category always gets the same color.
   const CAT_PALETTE = [
-    { c: "#ff7a86", glow: "255,122,134" },   // red (foundation)
-    { c: "#7cc0ff", glow: "124,192,255" },   // sky blue (declarative)
-    { c: "#6fdba8", glow: "111,219,168" },   // mint (verb sentences)
-    { c: "#c084fc", glow: "192,132,252" },   // violet (adjective)
-    { c: "#fb923c", glow: "251,146,60" },    // orange (questions)
-    { c: "#f472b6", glow: "244,114,182" },   // pink (answers)
-    { c: "#3aa6d6", glow: "58,166,214" },    // ocean (person)
-    { c: "#a3e635", glow: "163,230,53" },    // lime (other essentials)
-    { c: "#fbbf24", glow: "251,191,36" },    // amber (more particles)
-    { c: "#e879f9", glow: "232,121,249" },   // magenta (counters)
-    { c: "#14b8a6", glow: "20,184,166" },    // teal (conjugation refs)
-    { c: "#ef4444", glow: "239,68,68" },     // bright red (plain forms)
-    { c: "#22d3ee", glow: "34,211,238" },    // cyan (potential / volitional)
-    { c: "#facc15", glow: "250,204,21" },    // yellow (conditionals)
-    { c: "#84cc16", glow: "132,204,22" },    // green (preferences)
-    { c: "#a855f7", glow: "168,85,247" },    // purple (permission)
-    { c: "#f59e0b", glow: "245,158,11" },    // dark amber (time/experience)
-    { c: "#06b6d4", glow: "6,182,212" },     // dark cyan (modifying)
-    { c: "#d4af37", glow: "212,175,55" }     // gold (keigo)
+    { c: "#ef4444", glow: "239,68,68" },     // red — foundation
+    { c: "#3b82f6", glow: "59,130,246" },    // blue — declarative
+    { c: "#22c55e", glow: "34,197,94" },     // green — verb sentences
+    { c: "#a855f7", glow: "168,85,247" },    // violet — adjective
+    { c: "#f97316", glow: "249,115,22" },    // orange — questions
+    { c: "#ec4899", glow: "236,72,153" },    // pink — answers
+    { c: "#06b6d4", glow: "6,182,212" },     // cyan — person
+    { c: "#84cc16", glow: "132,204,22" },    // lime — other essentials
+    { c: "#f59e0b", glow: "245,158,11" },    // amber — more particles
+    { c: "#d946ef", glow: "217,70,239" },    // fuchsia — counters
+    { c: "#14b8a6", glow: "20,184,166" },    // teal — conjugation refs
+    { c: "#f43f5e", glow: "244,63,94" },     // rose — plain forms
+    { c: "#0ea5e9", glow: "14,165,233" },    // sky — potential / volitional
+    { c: "#eab308", glow: "234,179,8" },     // yellow — conditionals
+    { c: "#10b981", glow: "16,185,129" },    // emerald — preferences
+    { c: "#7c3aed", glow: "124,58,237" },    // deep purple — permission
+    { c: "#6366f1", glow: "99,102,241" },    // indigo — time / experience
+    { c: "#0891b2", glow: "8,145,178" },     // dark cyan — modifying
+    { c: "#b45309", glow: "180,83,9" }       // bronze — keigo
   ];
   const catColorMap = new Map();
   function colorForCategory(cat) {
@@ -1264,6 +1265,29 @@
     }
     return catColorMap.get(cat);
   }
+
+  // One emoji per category for instant visual recognition in the header.
+  const CAT_EMOJI = {
+    "Foundation — read first":               "🧠",
+    "Declarative — Identity (A is B)":       "🆔",
+    "Verb sentences — Action (SOV)":         "⚡",
+    "Adjective sentences":                   "🎨",
+    "Question sentences":                    "❓",
+    "Answer sentences":                      "✅",
+    "Person — 1st / 2nd / 3rd":              "👥",
+    "Other essential structures":            "🔧",
+    "More particles":                        "🔗",
+    "Counters":                              "🔢",
+    "Conjugation references":                "📋",
+    "Plain forms (casual)":                  "💬",
+    "Potential / Volitional":                "💪",
+    "Conditionals / Comparison":             "🔀",
+    "Preferences / Quotations":              "❤️",
+    "Permission / Obligation":               "🚦",
+    "Time / Experience / Plans":             "⏳",
+    "Modifying & nuance":                    "🎯",
+    "Keigo basics":                          "🎩"
+  };
 
   function buildStructures() {
     if (!DATA.structures) return;
@@ -1300,32 +1324,49 @@
       return c;
     }
 
-    let prevCat = null;
+    // Group structures by category and render each as its own section
+    // (tinted background, header, then a 2-col grid of cards). This makes
+    // category boundaries unmistakable and keeps the user oriented.
+    const grouped = new Map();
+    DATA.structures.forEach(s => {
+      if (!grouped.has(s.category)) grouped.set(s.category, []);
+      grouped.get(s.category).push(s);
+    });
     let catNum = 0;
-    DATA.structures.forEach((s, idx) => {
-      // Category header whenever category changes
-      if (s.category !== prevCat) {
-        catNum++;
-        const count = DATA.structures.filter(x => x.category === s.category).length;
-        const header = document.createElement("div");
-        header.className = "struct-cat-header";
-        header.dataset.cat = s.category;
-        const palette = colorForCategory(s.category);
-        header.style.setProperty("--cat-color", palette.c);
-        header.style.setProperty("--cat-glow", palette.glow);
-        header.innerHTML = `
-          <span class="cat-num">${catNum}</span>
-          <span class="cat-label">${escapeHtml(s.category)}</span>
-          <span class="cat-count">${count} pattern${count > 1 ? "s" : ""}</span>
-        `;
-        root.appendChild(header);
-        prevCat = s.category;
-      }
-      const card = buildOneStructureCard(s, { isOpen: idx === 0 });
-      const palette = colorForCategory(s.category);
-      card.style.setProperty("--cat-color", palette.c);
-      card.style.setProperty("--cat-glow", palette.glow);
-      root.appendChild(card);
+    let firstCardSeen = false;
+    grouped.forEach((items, category) => {
+      catNum++;
+      const palette = colorForCategory(category);
+      const emoji = CAT_EMOJI[category] || "📚";
+
+      const section = document.createElement("section");
+      section.className = "struct-cat-section";
+      section.dataset.cat = category;
+      section.style.setProperty("--cat-color", palette.c);
+      section.style.setProperty("--cat-glow", palette.glow);
+
+      const header = document.createElement("div");
+      header.className = "struct-cat-header";
+      header.dataset.cat = category;
+      header.style.setProperty("--cat-color", palette.c);
+      header.style.setProperty("--cat-glow", palette.glow);
+      header.innerHTML = `
+        <span class="cat-num">${catNum}</span>
+        <span class="cat-emoji" aria-hidden="true">${emoji}</span>
+        <span class="cat-label">${escapeHtml(category)}</span>
+        <span class="cat-count">${items.length} pattern${items.length > 1 ? "s" : ""}</span>
+      `;
+      section.appendChild(header);
+
+      items.forEach(s => {
+        const card = buildOneStructureCard(s, { isOpen: !firstCardSeen });
+        firstCardSeen = true;
+        card.style.setProperty("--cat-color", palette.c);
+        card.style.setProperty("--cat-glow", palette.glow);
+        section.appendChild(card);
+      });
+
+      root.appendChild(section);
     });
 
     function applyFilter() {
@@ -1335,11 +1376,10 @@
         const matchQ = !q || (el.dataset.search || "").includes(q);
         el.classList.toggle("is-hidden", !(matchCat && matchQ));
       });
-      // Hide a category header if every structure in that category is hidden.
-      $$(".struct-cat-header", root).forEach(h => {
-        const cat = h.dataset.cat;
-        const anyVisible = $$(`.struct[data-cat="${cat}"]`, root).some(s => !s.classList.contains("is-hidden"));
-        h.classList.toggle("is-hidden", !anyVisible);
+      // Hide an entire category section (header + cards) if no card inside is visible.
+      $$(".struct-cat-section", root).forEach(section => {
+        const anyVisible = $$(".struct", section).some(s => !s.classList.contains("is-hidden"));
+        section.classList.toggle("is-hidden", !anyVisible);
       });
     }
     $("#searchStruct").addEventListener("input", applyFilter);
