@@ -1526,6 +1526,63 @@
             <span class="quiz-jump-sub">Random questions to drill what you know</span>
           </button>
         </div>
+
+        <!-- Daily reminder setup -->
+        <div class="today-section">
+          <div class="today-section-head">
+            <h3>🔔 Daily reminders to your phone</h3>
+            <span class="hint">Free, runs server-side, works when the app is closed</span>
+          </div>
+          <div class="reminder-card">
+            <p class="muted small" style="margin: 0 0 10px;">
+              We send a daily push to your phone via <b>ntfy.sh</b> — a free, open-source
+              push service. Install the ntfy app, subscribe to your private topic, and a
+              Cloudflare Worker fires once a day at the time you set.
+            </p>
+            <div class="reminder-step">
+              <span class="reminder-step-num">1</span>
+              <div class="reminder-step-body">
+                <b>Install ntfy on your phone</b>
+                <div class="reminder-links">
+                  <a href="https://play.google.com/store/apps/details?id=io.heckel.ntfy" target="_blank" rel="noopener">▷ Android (Play Store)</a>
+                  <a href="https://apps.apple.com/us/app/ntfy/id1625396347" target="_blank" rel="noopener">▷ iOS (App Store)</a>
+                  <a href="https://f-droid.org/en/packages/io.heckel.ntfy/" target="_blank" rel="noopener">▷ F-Droid (Android)</a>
+                </div>
+              </div>
+            </div>
+            <div class="reminder-step">
+              <span class="reminder-step-num">2</span>
+              <div class="reminder-step-body">
+                <b>Your private topic name</b>
+                <div class="reminder-topic">
+                  <code id="reminderTopic">${escapeHtml(getOrCreateNtfyTopic())}</code>
+                  <button class="ghost" id="copyTopicBtn" title="Copy to clipboard">📋 Copy</button>
+                  <button class="ghost" id="regenTopicBtn" title="Generate a new random topic">🎲 New</button>
+                </div>
+                <span class="muted small">In the ntfy app: tap <b>+ Subscribe</b>, paste this topic name, save.</span>
+              </div>
+            </div>
+            <div class="reminder-step">
+              <span class="reminder-step-num">3</span>
+              <div class="reminder-step-body">
+                <b>Test it</b>
+                <button class="primary" id="reminderTestBtn">🔔 Send test notification now</button>
+                <span class="muted small" id="reminderTestResult"></span>
+              </div>
+            </div>
+            <div class="reminder-step">
+              <span class="reminder-step-num">4</span>
+              <div class="reminder-step-body">
+                <b>Schedule the daily reminder</b>
+                <span class="muted small">Set the cron in <code>worker/wrangler.toml</code>, edit
+                <code>NTFY_TOPIC</code> to match the topic above, then deploy:</span>
+                <pre class="reminder-cmd">cd worker
+wrangler deploy</pre>
+                <span class="muted small">After deploy, the Worker fires daily at the time you configured.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       `;
 
       // Mount calendar grids
@@ -1573,6 +1630,48 @@
       }
       const quizBtn = $("#todayQuizJump");
       if (quizBtn) quizBtn.addEventListener("click", () => activateTab("quiz"));
+
+      // Reminder setup buttons
+      const copyBtn = $("#copyTopicBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(getOrCreateNtfyTopic());
+            copyBtn.textContent = "✓ Copied";
+            setTimeout(() => copyBtn.textContent = "📋 Copy", 1500);
+          } catch (_) {}
+        });
+      }
+      const regenBtn = $("#regenTopicBtn");
+      if (regenBtn) {
+        regenBtn.addEventListener("click", () => {
+          if (!confirm("Generate a new topic? You'll need to re-subscribe in the ntfy app and update wrangler.toml.")) return;
+          const newTopic = regenNtfyTopic();
+          $("#reminderTopic").textContent = newTopic;
+        });
+      }
+      const testBtn = $("#reminderTestBtn");
+      if (testBtn) {
+        testBtn.addEventListener("click", async () => {
+          const topic = getOrCreateNtfyTopic();
+          const result = $("#reminderTestResult");
+          result.textContent = "Sending…";
+          try {
+            const res = await fetch(`https://ntfy.sh/${topic}`, {
+              method: "POST",
+              body: "Test notification from Nihongo Lab. If you see this on your phone, the topic + ntfy app are correctly set up. 🎉",
+              headers: { "Title": "🧪 Test — Nihongo Lab", "Tags": "white_check_mark,jp" }
+            });
+            if (res.ok) {
+              result.innerHTML = `<span style="color: var(--good)">✓ Sent. Check your phone (allow up to ~30s).</span>`;
+            } else {
+              result.innerHTML = `<span style="color: var(--bad)">✗ Failed (${res.status}). Make sure your topic is set + ntfy server reachable.</span>`;
+            }
+          } catch (e) {
+            result.innerHTML = `<span style="color: var(--bad)">✗ Network error. Check your connection.</span>`;
+          }
+        });
+      }
     };
 
     // Expose for cross-component refresh (when day toggles elsewhere)
@@ -1723,6 +1822,27 @@
       structures: ["Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)"],
       practice: "Replace 5 polite-form sentences with their keigo equivalents. Practice the most-used pairs (来る / 行く / 言う / 食べる / 知る)." }
   ];
+
+  // ───────────────────────────────────────────────────────────
+  // NTFY topic — random per-user, kept in localStorage. Anyone who
+  // knows it can read your reminders, so we generate something
+  // unguessable. Used by the Daily Reminders setup section.
+  // ───────────────────────────────────────────────────────────
+  function getOrCreateNtfyTopic() {
+    const KEY = "jp.ntfyTopic";
+    let t = localStorage.getItem(KEY);
+    if (!t) {
+      // 24 chars of base36, prefixed for readability
+      const rand = (Math.random().toString(36) + Math.random().toString(36)).slice(2, 26);
+      t = "nihongo-lab-" + rand;
+      localStorage.setItem(KEY, t);
+    }
+    return t;
+  }
+  function regenNtfyTopic() {
+    localStorage.removeItem("jp.ntfyTopic");
+    return getOrCreateNtfyTopic();
+  }
 
   // ───────────────────────────────────────────────────────────
   // COMPLETION LOG — every time a day is marked complete, push a

@@ -1,0 +1,22 @@
+# Cloudflare Pages headers config
+# Sane caching defaults: HTML revalidates often, JS/CSS/data files
+# can be cached longer (browser will pick up updates via cache-busting).
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=300
+
+/*.css
+  Cache-Control: public, max-age=300
