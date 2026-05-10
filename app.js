@@ -685,7 +685,28 @@
     const root = $("#chapList");
     root.innerHTML = "";
     const done = new Set(JSON.parse(localStorage.getItem("jp.chapDone") || "[]"));
-    const refreshStreak = () => $("#chapStreak").textContent = `Completed: ${done.size} / ${DATA.chapters.length}`;
+    let chapTracker; // assigned below
+    const refreshStreak = () => {
+      $("#chapStreak").textContent = `Completed: ${done.size} / ${DATA.chapters.length}`;
+      if (chapTracker && chapTracker.refresh) chapTracker.refresh();
+    };
+
+    // Inject the progress tracker dashboard at the top of the chapters panel
+    const panel = root.parentNode;
+    const oldTracker = panel.querySelector(".progress-tracker");
+    if (oldTracker) oldTracker.remove();
+    chapTracker = buildProgressTracker({
+      kind: "chapters",
+      total: DATA.chapters.length,
+      items: DATA.chapters.map(c => ({ day: c.day, title: c.title })),
+      doneSet: done,
+      label: "30-Day Curriculum 課程",
+      emoji: "📚",
+      accent: "#ff7a86"
+    });
+    // Insert above the chapter-list (which is the snake timeline container)
+    panel.insertBefore(chapTracker, root);
+
     refreshStreak();
 
     DATA.chapters.forEach((ch, chIdx) => {
@@ -1289,6 +1310,352 @@
     "Keigo basics":                          "🎩"
   };
 
+  // ───────────────────────────────────────────────────────────
+  // STRUCTURE DAILY PLAN — 45-day curriculum focused PURELY on the
+  // 60 grammar structures. Each day references 1-3 closely-related
+  // structure titles + a practice prompt. Rendered as a snake-timeline
+  // mirroring the Chapters tab so users can work both tracks in parallel.
+  // ───────────────────────────────────────────────────────────
+  const STRUCT_CURRICULUM = [
+    { day: 1, week: 1, minutes: 20, title: "Foundation 1 — です vs ます families",
+      structures: ["🧠 です-family vs ます-family — the two sentence types"],
+      practice: "Identify whether each sentence in today's vocab is a NOUN sentence (です-family) or a VERB sentence (ます-family). Aim for 5 of each." },
+    { day: 2, week: 1, minutes: 20, title: "Foundation 2 — three negatives",
+      structures: ["🧠 ません vs ありません vs ではありません — the three negatives"],
+      practice: "Take 3 affirmative statements you know and produce ALL three negative versions: verb-ません, existence-ありません, identity-ではありません." },
+    { day: 3, week: 1, minutes: 25, title: "Foundation 3 — particles cheat sheet",
+      structures: ["🧠 Confusing particles cheat sheet — は を の が に で から も"],
+      practice: "Highlight every particle in 5 sentences from your phrasebook. Name what each one does." },
+    { day: 4, week: 1, minutes: 20, title: "Identity present + 1st person",
+      structures: ["A は B です — Present affirmative identity", "1st person — 私 / 僕 / 自分"],
+      practice: "Write 5 self-introductions with different details (name, job, nationality, hobby, where you live)." },
+    { day: 5, week: 1, minutes: 20, title: "Identity negative & past",
+      structures: ["A は B じゃありません — Present negative identity", "A は B でした — Past affirmative identity"],
+      practice: "Take 5 facts and write each as: present positive → present negative → past." },
+    { day: 6, week: 1, minutes: 25, title: "Verb sentences — present + verb groups",
+      structures: ["[Subject]は [Object]を [Verb]ます — Present/Future action", "Verb groups — godan, ichidan, irregular"],
+      practice: "Identify whether 5 verbs are Group 1, 2, or 3. Make a SOV sentence with each." },
+    { day: 7, week: 1, minutes: 20, title: "Verb negative + past",
+      structures: ["[Verb]ません — Present/Future negative", "[Verb]ました — Past affirmative"],
+      practice: "List 5 things you don't drink/eat/do, and 5 things you DID yesterday." },
+    { day: 8, week: 2, minutes: 20, title: "Past negative + continuous",
+      structures: ["[Verb]ませんでした — Past negative", "[Verb-て]います — Ongoing / Continuous"],
+      practice: "Describe 3 things you didn't do yesterday + 3 things happening RIGHT NOW (using ています)." },
+    { day: 9, week: 2, minutes: 30, title: "Adjective sentences (i + na)",
+      structures: ["[Topic]は [i-adjective]です — i-adjective sentence", "[Topic]は [na-adjective]です — na-adjective sentence", "Adjective conjugation — i-adj vs na-adj"],
+      practice: "Build i-adj and na-adj sentences with all four forms (positive, negative, past, past-negative)." },
+    { day: 10, week: 2, minutes: 20, title: "Questions — yes/no + Wh",
+      structures: ["[Statement] か？— Yes/No question", "Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)"],
+      practice: "Turn 3 statements into yes/no questions, then ask 5 wh-questions about objects on your desk." },
+    { day: 11, week: 2, minutes: 20, title: "Answers + 1st person revisit",
+      structures: ["はい / いいえ — Affirmative & negative answers"],
+      practice: "Answer your own questions from yesterday with both affirmative and negative responses (use はい / いいえ / そうです / 違います)." },
+    { day: 12, week: 2, minutes: 20, title: "2nd & 3rd person",
+      structures: ["2nd person — [Name]さん (avoid あなた)", "3rd person — 彼 / 彼女 / あの人 / [Name]さん"],
+      practice: "Address 3 people by name+さん. Then describe 3 third parties using 彼/彼女/あの人." },
+    { day: 13, week: 2, minutes: 20, title: "Want to do — たい",
+      structures: ["[Verb-stem]たいです — 'I want to do'"],
+      practice: "Tell Claude 5 things you want to do this weekend." },
+    { day: 14, week: 2, minutes: 20, title: "Polite request — てください",
+      structures: ["[Verb-て]ください — Polite request"],
+      practice: "Make 5 requests you'd actually use at work (review code, send file, explain again…)." },
+    { day: 15, week: 3, minutes: 20, title: "Invitation & let's — ませんか / ましょう",
+      structures: ["[Verb-stem]ませんか / ましょう — Invitation & 'let's'"],
+      practice: "Invite a friend to do 3 different things (lunch, movie, study). End with one ましょう." },
+    { day: 16, week: 3, minutes: 20, title: "Existence — あります / います",
+      structures: ["あります / います — Existence ('there is')"],
+      practice: "Describe what's in your room: 3 objects (あります) and 1 person/animal (います)." },
+    { day: 17, week: 3, minutes: 20, title: "Possessive — A の B",
+      structures: ["A の B — Possession & noun connector"],
+      practice: "Build 5 chained possessives like 私の友達の家." },
+    { day: 18, week: 3, minutes: 20, title: "Location — で vs に",
+      structures: ["[Place]で / [Place]に — Action vs destination"],
+      practice: "Make 3 sentences with で (where action happens) and 3 with に (destination/existence)." },
+    { day: 19, week: 3, minutes: 20, title: "Reason — から",
+      structures: ["[Reason]から、[Result] — Because (cause-and-effect)"],
+      practice: "Give 5 reasons for doing/not doing things using から." },
+    { day: 20, week: 3, minutes: 25, title: "Linking actions — て-form",
+      structures: ["[Verb-て]、[Verb] — Linking actions (and / then)"],
+      practice: "Describe your morning routine in one chain of て-form verbs (woke up て drank coffee て went to work)." },
+    { day: 21, week: 3, minutes: 25, title: "Particles と + へ",
+      structures: ["と (to) — With (companion) / and (listing)", "へ (e) — Direction marker (formal alternative to に)"],
+      practice: "3 sentences using と (with someone), 3 using へ (toward a place)." },
+    { day: 22, week: 4, minutes: 20, title: "Particle や (and others)",
+      structures: ["や (ya) — And (non-exhaustive 'and others')"],
+      practice: "List 3 collections of things using や + など (e.g. shopping list, foods you like)." },
+    { day: 23, week: 4, minutes: 25, title: "Sentence-end particles よ + ね",
+      structures: ["よ (yo) — Sentence-end emphasis (informing / asserting)", "ね (ne) — Sentence-end agreement-seeking"],
+      practice: "5 sentences with よ (telling someone something they don't know), 5 with ね (seeking agreement)." },
+    { day: 24, week: 4, minutes: 25, title: "Reasons & contrast — ので + けど/が",
+      structures: ["ので (node) — Because (politer than から)", "けど / が — But / however (contrast)"],
+      practice: "3 ので reasons in formal context + 3 けど contrasts." },
+    { day: 25, week: 4, minutes: 30, title: "Counters — ~つ ~人 ~枚 ~本 ~個 ~時間",
+      structures: ["Counters — counting things, people, time"],
+      practice: "Order 3 things at a restaurant with proper counters. Then count: 5 people, 3 sheets, 4 pens, 2 hours." },
+    { day: 26, week: 4, minutes: 25, title: "Plain dictionary form",
+      structures: ["Plain dictionary form — the verb's base shape (飲む / 食べる / する)"],
+      practice: "Take 5 ます-form verbs you know and convert each to plain form. Identify the group of each." },
+    { day: 27, week: 4, minutes: 20, title: "Plain negative — 〜ない",
+      structures: ["Plain negative — 〜ない (casual 'don't')"],
+      practice: "Convert the same 5 verbs to plain negative. Speak each pair (ます↔ない) aloud." },
+    { day: 28, week: 4, minutes: 25, title: "Plain past — 〜た / 〜だ",
+      structures: ["Plain past — 〜た / 〜だ (casual 'did')"],
+      practice: "Same 5 verbs to plain past. Now you can produce each in 4 forms: dict / neg / past / past-neg." },
+    { day: 29, week: 5, minutes: 25, title: "Potential — 'I can do'",
+      structures: ["Potential form — 'can do' / 'be able to do'"],
+      practice: "Tell Claude 5 things you CAN do and 3 you CANNOT — remember, particle becomes が, not を." },
+    { day: 30, week: 5, minutes: 20, title: "Plain volitional — let's (casual)",
+      structures: ["Plain volitional — 'let's' / 'I will' (casual)"],
+      practice: "3 casual let's-do invitations to a friend (eat, go, watch a movie)." },
+    { day: 31, week: 5, minutes: 30, title: "Conditionals — ば / たら / なら / と",
+      structures: ["Conditionals — ば / たら / なら / と (four ways to say 'if')"],
+      practice: "Make ONE sentence using each of the four conditionals (4 sentences total). Different one per particle." },
+    { day: 32, week: 5, minutes: 25, title: "Comparison — より / ほうが / 一番",
+      structures: ["Comparison — より / ほうが / 一番 (more, more-of-the-two, most)"],
+      practice: "3 comparisons (X is bigger/more X than Y) + 1 superlative (X is the best/most)." },
+    { day: 33, week: 5, minutes: 20, title: "Preferences — 〜が好き",
+      structures: ["〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)"],
+      practice: "5 preferences using が. Mix 好き / 嫌い / 上手 / 下手." },
+    { day: 34, week: 5, minutes: 25, title: "Giving / receiving — あげる / もらう / くれる",
+      structures: ["Giving / receiving — あげる / もらう / くれる (direction matters!)"],
+      practice: "Describe 3 gift exchanges: one you gave, one you received, one someone gave to you. Match the verb to direction." },
+    { day: 35, week: 5, minutes: 25, title: "Quotations — 〜と言う / 〜と思う",
+      structures: ["Quotations — 〜と言う / 〜と思う / 〜って (saying & thinking)"],
+      practice: "5 things you THINK + 3 things others SAID. Mix と思う and と言う/って." },
+    { day: 36, week: 6, minutes: 25, title: "Permission & prohibition — 〜てもいい / 〜てはいけない",
+      structures: ["〜てもいい / 〜てはいけない — May / Must not"],
+      practice: "3 permission requests (May I…?) + 3 prohibitions (You must not…)." },
+    { day: 37, week: 6, minutes: 25, title: "Obligation — 〜なければなりません",
+      structures: ["〜なければなりません — Must do (obligation)"],
+      practice: "List 5 things you MUST do this week. Practice the casual contractions (なきゃ / なくちゃ) on 2 of them." },
+    { day: 38, week: 6, minutes: 25, title: "Experience — 〜たことがある",
+      structures: ["〜たことがある — Have done X before (experience)"],
+      practice: "Make 5 statements about life experiences — 3 things you HAVE done, 2 things you HAVEN'T." },
+    { day: 39, week: 6, minutes: 25, title: "Simultaneous — 〜ながら",
+      structures: ["〜ながら — While doing X (simultaneous actions)"],
+      practice: "Describe 3 things you regularly do at the same time (study while listening to music, etc.)." },
+    { day: 40, week: 6, minutes: 25, title: "Listing — 〜たり〜たり",
+      structures: ["〜たり〜たり する — Doing things like X and Y"],
+      practice: "Describe a typical weekend with one たり sentence. Then a typical workday with another." },
+    { day: 41, week: 6, minutes: 25, title: "Advice — 〜たほうがいい",
+      structures: ["〜たほうがいい — You should do X (advice)"],
+      practice: "Give 5 pieces of advice. Mix positive (should) and negative (shouldn't)." },
+    { day: 42, week: 6, minutes: 25, title: "Intentions — 〜つもり",
+      structures: ["〜つもり — Intend to / Plan to"],
+      practice: "5 plans you have for next month. Vary the verbs." },
+    { day: 43, week: 7, minutes: 30, title: "Relative clauses — modifying nouns",
+      structures: ["Relative clauses — modifying nouns with verbs (私が読んだ本)"],
+      practice: "Build 5 relative-clause noun phrases (e.g. 'the book I read', 'the person who came yesterday')." },
+    { day: 44, week: 7, minutes: 30, title: "Nuance — やすい/にくい + すぎる + しか/だけ + そう/らしい",
+      structures: ["〜やすい / 〜にくい — Easy / Hard to do", "〜すぎる — Too much / Excessively", "〜しか〜ない / 〜だけ — Only X (restriction)", "そうです / らしい — Hearsay (I heard / it seems)"],
+      practice: "Build 1 sentence each using やすい/にくい, すぎる, しか, and そう/らしい. 4 sentences total mixing nuance." },
+    { day: 45, week: 7, minutes: 35, title: "Keigo basics — 尊敬語 / 謙譲語",
+      structures: ["Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)"],
+      practice: "Replace 5 polite-form sentences with their keigo equivalents. Practice the most-used pairs (来る / 行く / 言う / 食べる / 知る)." }
+  ];
+
+  // ───────────────────────────────────────────────────────────
+  // PROGRESS TRACKER — reusable dashboard component. Shows today's
+  // date, current focus day, fraction done, progress bar, and
+  // remaining count. Used at the top of Chapters AND of the
+  // Structure Daily plan so the user can track both in parallel.
+  // ───────────────────────────────────────────────────────────
+  function buildProgressTracker(opts) {
+    // opts: { kind: 'chapters' | 'struct-daily', total, items: [{day, title}], doneSet, label, emoji, accent }
+    const tracker = document.createElement("div");
+    tracker.className = "progress-tracker";
+    if (opts.accent) tracker.style.setProperty("--track-color", opts.accent);
+
+    const refresh = () => {
+      const done = opts.doneSet.size;
+      const total = opts.total;
+      const remaining = total - done;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      // current focus = lowest-numbered incomplete day, or last day if all done
+      const focusItem = opts.items.find(it => !opts.doneSet.has(it.day)) || opts.items[opts.items.length - 1];
+      const today = new Date();
+      const dateStr = today.toLocaleDateString(undefined, {
+        weekday: "long", year: "numeric", month: "short", day: "numeric"
+      });
+
+      tracker.innerHTML = `
+        <div class="track-head">
+          <div class="track-emoji">${opts.emoji || "📈"}</div>
+          <div class="track-title">
+            <h3>${escapeHtml(opts.label)}</h3>
+            <div class="track-date">📅 ${escapeHtml(dateStr)}</div>
+          </div>
+          <div class="track-pct">${pct}%</div>
+        </div>
+        <div class="track-bar">
+          <div class="track-bar-fill" style="width: ${pct}%"></div>
+        </div>
+        <div class="track-stats">
+          <div class="track-stat track-stat-done"><span class="n">${done}</span><span class="l">✓ Done</span></div>
+          <div class="track-stat track-stat-rem"><span class="n">${remaining}</span><span class="l">⏳ Remaining</span></div>
+          <div class="track-stat track-stat-tot"><span class="n">${total}</span><span class="l">🎯 Total</span></div>
+        </div>
+        <div class="track-focus">
+          <div class="track-focus-label">${done === total ? "🎉 All complete!" : "📍 Up next"}</div>
+          ${done < total ? `
+            <button class="track-focus-card" data-day="${focusItem.day}">
+              <span class="focus-num">Day ${focusItem.day}</span>
+              <span class="focus-title">${escapeHtml(focusItem.title)}</span>
+              <span class="focus-arrow">→</span>
+            </button>
+          ` : `<div class="track-focus-card is-complete">All ${total} days complete. Time to celebrate 🎊</div>`}
+        </div>
+      `;
+
+      const focusBtn = tracker.querySelector(".track-focus-card[data-day]");
+      if (focusBtn) {
+        focusBtn.addEventListener("click", () => {
+          const day = parseInt(focusBtn.dataset.day, 10);
+          const targetSelector = opts.kind === "chapters"
+            ? `.chapter[data-day="${day}"]`
+            : `.struct-day[data-day="${day}"]`;
+          const target = document.querySelector(targetSelector);
+          if (target) {
+            target.classList.add("is-open");
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            target.classList.add("flash");
+            setTimeout(() => target.classList.remove("flash"), 1400);
+          }
+        });
+      }
+    };
+
+    tracker.refresh = refresh;
+    refresh();
+    return tracker;
+  }
+
+  // ───────────────────────────────────────────────────────────
+  // STRUCTURE DAILY PLAN — render the snake-style timeline with the
+  // 45-day curriculum. Each day card shows the day number, title,
+  // meta pills, and a body that embeds the day's Structure cards
+  // inline + a practice prompt. Mirrors buildChapters() logic.
+  // ───────────────────────────────────────────────────────────
+  function buildStructDailyPlan() {
+    const root = $("#structDailyList");
+    if (!root) return;
+    root.innerHTML = "";
+
+    const done = new Set(JSON.parse(localStorage.getItem("jp.structDailyDone") || "[]"));
+    let tracker; // assigned below
+    const refreshAll = () => {
+      $("#structDailyStreak").textContent = `Completed: ${done.size} / ${STRUCT_CURRICULUM.length}`;
+      if (tracker && tracker.refresh) tracker.refresh();
+    };
+
+    // Inject tracker at top of the daily sub-panel
+    const subpanel = root.parentNode;
+    const oldTracker = subpanel.querySelector(".progress-tracker");
+    if (oldTracker) oldTracker.remove();
+    tracker = buildProgressTracker({
+      kind: "struct-daily",
+      total: STRUCT_CURRICULUM.length,
+      items: STRUCT_CURRICULUM.map(d => ({ day: d.day, title: d.title })),
+      doneSet: done,
+      label: "Structure Daily plan",
+      emoji: "🧠",
+      accent: "#a855f7"
+    });
+    subpanel.insertBefore(tracker, root.previousElementSibling); // insert above filter row
+
+    refreshAll();
+
+    STRUCT_CURRICULUM.forEach((d, idx) => {
+      const card = document.createElement("div");
+      const side = idx % 2 === 0 ? "is-left" : "is-right";
+      card.className = "chapter struct-day " + side + (done.has(d.day) ? " done" : "");
+      card.dataset.day = d.day;
+
+      // Pick an emoji from the FIRST referenced structure's category
+      const firstStruct = (d.structures || []).map(t => structureByTitle.get(t)).filter(Boolean)[0];
+      const dayEmoji = firstStruct
+        ? (CAT_EMOJI[firstStruct.category] || "🧠")
+        : "🧠";
+
+      const head = document.createElement("div");
+      head.className = "chapter-head";
+      head.innerHTML = `
+        <div class="chapter-day">
+          <span class="day-emoji" aria-hidden="true">${dayEmoji}</span>
+          <span class="num">${d.day}</span>
+          <span class="week">Week ${d.week}</span>
+        </div>
+        <div class="chapter-title">
+          <h3>${escapeHtml(d.title)}</h3>
+          <span class="goal">${escapeHtml((d.structures || []).join(" · "))}</span>
+        </div>
+        <div class="chapter-meta">
+          <span class="meta-pill">🧠 ${(d.structures || []).length} pattern${(d.structures || []).length > 1 ? "s" : ""}</span>
+          <span class="meta-pill min">⏱️ ${d.minutes} min</span>
+        </div>
+        <button class="chapter-toggle" title="Mark complete">${done.has(d.day) ? "✓" : "○"}</button>
+      `;
+      head.addEventListener("click", (e) => {
+        if (e.target.closest(".chapter-toggle")) return;
+        card.classList.toggle("is-open");
+      });
+      head.querySelector(".chapter-toggle").addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (done.has(d.day)) done.delete(d.day); else done.add(d.day);
+        localStorage.setItem("jp.structDailyDone", JSON.stringify([...done]));
+        card.classList.toggle("done");
+        e.currentTarget.textContent = done.has(d.day) ? "✓" : "○";
+        refreshAll();
+      });
+      card.appendChild(head);
+
+      const body = document.createElement("div");
+      body.className = "chapter-body";
+
+      // Embed Structure cards inline
+      const structSec = mkSection("Pattern" + ((d.structures || []).length > 1 ? "s" : ""));
+      (d.structures || []).forEach(title => {
+        const s = structureByTitle.get(title);
+        if (!s) return;
+        const inline = buildOneStructureCard(s, { isOpen: false, compact: true });
+        const palette = colorForCategory(s.category);
+        inline.style.setProperty("--cat-color", palette.c);
+        inline.style.setProperty("--cat-glow", palette.glow);
+        structSec.appendChild(inline);
+      });
+      body.appendChild(structSec);
+
+      // Practice
+      if (d.practice) {
+        const sec = mkSection("Practice");
+        const p = document.createElement("div");
+        p.className = "chapter-practice";
+        p.innerHTML = `<b>→</b> ${escapeHtml(d.practice)}`;
+        sec.appendChild(p);
+        body.appendChild(sec);
+      }
+
+      card.appendChild(body);
+      root.appendChild(card);
+    });
+
+    // Reset button
+    const resetBtn = $("#structDailyReset");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        if (!confirm("Clear all Structure Daily completion marks?")) return;
+        done.clear();
+        localStorage.setItem("jp.structDailyDone", "[]");
+        $$(".struct-day", root).forEach(c => {
+          c.classList.remove("done");
+          const t = c.querySelector(".chapter-toggle");
+          if (t) t.textContent = "○";
+        });
+        refreshAll();
+      });
+    }
+  }
+
   // Snake-style category quick-navigator. A row of cartoon badges (one per
   // category) you can click to smooth-scroll to that section. Highlights the
   // currently-visible section via IntersectionObserver. Mirrors the snake
@@ -1726,6 +2093,7 @@
   buildWords();
   buildSentences();
   buildStructures();
+  buildStructDailyPlan();
   buildKanji();
   buildChapters();
   buildConversations();
