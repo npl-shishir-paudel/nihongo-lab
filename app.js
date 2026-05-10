@@ -688,28 +688,38 @@
     const refreshStreak = () => $("#chapStreak").textContent = `Completed: ${done.size} / ${DATA.chapters.length}`;
     refreshStreak();
 
-    DATA.chapters.forEach(ch => {
+    DATA.chapters.forEach((ch, chIdx) => {
       const card = document.createElement("div");
-      card.className = "chapter" + (done.has(ch.day) ? " done" : "");
+      // Snake-timeline: alternate left/right by index for a winding path layout
+      const side = chIdx % 2 === 0 ? "is-left" : "is-right";
+      card.className = "chapter " + side + (done.has(ch.day) ? " done" : "");
       card.dataset.day = ch.day;
+      // Pick an emoji that hints at the day's theme — falls back to a star
+      const dayEmoji = ch.title.startsWith("★") ? "⭐"
+        : (ch.kana?.hira?.length ? "あ"
+          : ch.kana?.kata?.length ? "ア"
+          : (ch.grammar?.length ? "🧠"
+          : ch.words?.length ? "📚"
+          : "💬"));
 
       // ─ head ───────────────────────────
       const head = document.createElement("div");
       head.className = "chapter-head";
       head.innerHTML = `
         <div class="chapter-day">
+          <span class="day-emoji" aria-hidden="true">${dayEmoji}</span>
           <span class="num">${ch.day}</span>
-          <span class="week">W${ch.week}</span>
+          <span class="week">Week ${ch.week}</span>
         </div>
         <div class="chapter-title">
           <h3>${ch.title}</h3>
           <span class="goal">${ch.goal}</span>
         </div>
         <div class="chapter-meta">
-          ${(ch.kana?.hira?.length || 0) + (ch.kana?.kata?.length || 0)} kana ·
-          ${(ch.words?.length || 0)} words ·
-          ${(ch.sentences?.length || 0)} sentences
-          <span class="min">~${ch.minutes} min</span>
+          <span class="meta-pill">📖 ${(ch.kana?.hira?.length || 0) + (ch.kana?.kata?.length || 0)} kana</span>
+          <span class="meta-pill">🔤 ${(ch.words?.length || 0)} words</span>
+          <span class="meta-pill">💬 ${(ch.sentences?.length || 0)} sentences</span>
+          <span class="meta-pill min">⏱️ ${ch.minutes} min</span>
         </div>
         <button class="chapter-toggle" title="Mark complete">${done.has(ch.day) ? "✓" : "○"}</button>
       `;
