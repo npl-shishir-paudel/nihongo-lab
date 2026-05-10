@@ -17,7 +17,8 @@
       <span class="brand-en">Lab</span>
     </div>
     <nav class="tabs" id="tabs">
-      <button class="tab is-active" data-tab="chapters">Chapters</button>
+      <button class="tab is-active" data-tab="today">🏠 Today</button>
+      <button class="tab" data-tab="chapters">Chapters</button>
       <button class="tab" data-tab="kana">Kana</button>
       <button class="tab" data-tab="phrases">Phrases</button>
       <button class="tab" data-tab="structures">Structure</button>
@@ -43,8 +44,17 @@
   </header>
 
   <main>
+    <!-- TODAY — homepage / dashboard -->
+    <section class="panel is-active" id="panel-today">
+      <div class="panel-head">
+        <h1 id="todayGreeting">日本語 Lab — Today</h1>
+        <p class="muted" id="todaySubtitle">Your dashboard. See where you are, jump to your next lesson, review what you've already done.</p>
+      </div>
+      <div id="todayContent"></div>
+    </section>
+
     <!-- CHAPTERS -->
-    <section class="panel is-active" id="panel-chapters">
+    <section class="panel" id="panel-chapters">
       <div class="panel-head">
         <h1>30-Day Curriculum 課程</h1>
         <p class="muted">Each day mixes letters, vocabulary, grammar, and sentences. Click a chapter to expand its plan, hover any item inside to hear it. Mark a day complete to track your streak.</p>

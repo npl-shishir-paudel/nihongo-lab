@@ -408,6 +408,346 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 .score { color: var(--fg-dim); font-variant-numeric: tabular-nums; }
 
 /* ───────────────────────────────────────────────────────────
+   TODAY — homepage / dashboard panel
+   ─────────────────────────────────────────────────────────── */
+#panel-today { padding-bottom: 60px; }
+#todayContent { display: flex; flex-direction: column; gap: 24px; margin-top: 8px; }
+
+/* Streak / total strip */
+.today-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.streak-box {
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--accent) 25%, var(--bg-2)),
+    var(--bg-2) 80%);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+.streak-box.alt {
+  background: var(--bg-2);
+  border-color: var(--line);
+}
+.streak-num {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--accent);
+  line-height: 1;
+}
+.streak-box.alt .streak-num { color: var(--fg); }
+.streak-label {
+  font-size: 11px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 700;
+}
+
+/* Continue card — large CTA */
+.continue-card {
+  --ct-color: var(--accent);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--ct-color) 18%, var(--bg-2)),
+    var(--bg-2) 80%);
+  border: 2px solid var(--ct-color);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+}
+.continue-card.complete {
+  background: color-mix(in srgb, var(--good) 18%, var(--bg-2));
+  border-color: var(--good);
+}
+.continue-label {
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.continue-btn {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+  background: var(--ct-color);
+  color: #fff;
+  border: 0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--ct-color) 35%, transparent);
+}
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--ct-color) 45%, transparent);
+}
+.continue-track {
+  font-size: 11px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  font-weight: 800;
+  background: rgba(255,255,255,.22);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.continue-title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.2px;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.continue-arrow {
+  font-size: 22px;
+  font-weight: 900;
+}
+
+/* Dual stat cards (chapters + structures side by side) */
+.today-dual {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.today-stat {
+  --st-color: var(--accent);
+  background: var(--bg-2);
+  border: 1px solid color-mix(in srgb, var(--st-color) 30%, var(--line));
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.06);
+}
+.today-stat-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.today-stat-head .emoji { font-size: 22px; }
+.today-stat-head .title { flex: 1; font-size: 14px; font-weight: 700; color: var(--fg); }
+.today-stat-head .pct { font-size: 22px; font-weight: 900; color: var(--st-color); letter-spacing: -1px; }
+.today-stat-bar {
+  height: 8px;
+  background: color-mix(in srgb, var(--st-color) 12%, var(--bg-3));
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.today-stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--st-color) 70%, white),
+    var(--st-color));
+  border-radius: inherit;
+  transition: width .4s ease;
+}
+.today-stat-line {
+  font-size: 12px;
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+
+/* Sections (calendar, recent activity, quiz CTA) */
+.today-section {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px 18px 18px;
+}
+.today-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.today-section-head h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -.2px;
+  color: var(--fg);
+}
+.today-section-head .hint {
+  font-size: 11px;
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+
+/* Calendar week-view grid */
+.cal-grid {
+  --cal-color: var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cal-row {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 8px;
+  align-items: center;
+}
+.cal-week-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  text-align: right;
+  padding-right: 4px;
+}
+.cal-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cal-cell {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--fg-dim);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.cal-cell:hover {
+  transform: translateY(-1px) scale(1.05);
+  border-color: var(--cal-color);
+  color: var(--cal-color);
+}
+.cal-cell.is-done {
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--good) 75%, white),
+    var(--good));
+  border-color: var(--good);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+.cal-cell.is-focus {
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--cal-color) 75%, white),
+    var(--cal-color));
+  border-color: var(--cal-color);
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--cal-color) 25%, transparent),
+    0 4px 12px color-mix(in srgb, var(--cal-color) 40%, transparent);
+  /* gentle pulse to draw attention to "you are here" */
+  animation: cal-focus-pulse 2.4s ease-in-out infinite;
+}
+@keyframes cal-focus-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cal-color) 25%, transparent), 0 4px 12px color-mix(in srgb, var(--cal-color) 40%, transparent); }
+  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--cal-color) 18%, transparent), 0 6px 16px color-mix(in srgb, var(--cal-color) 50%, transparent); }
+}
+.cal-cell .cal-day-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.3px;
+}
+.cal-cell .cal-tick {
+  position: absolute;
+  top: 2px; right: 4px;
+  font-size: 10px;
+  opacity: .9;
+}
+
+/* Recent activity list */
+.recent-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.recent-item {
+  display: grid;
+  grid-template-columns: 60px auto 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 12.5px;
+}
+.recent-when { color: var(--fg-dim); font-weight: 600; }
+.recent-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  color: #fff;
+}
+.recent-tag-chapter { background: #ff7a86; }
+.recent-tag-struct  { background: #a855f7; }
+.recent-title {
+  color: var(--fg);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.recent-empty { color: var(--fg-dim); font-style: italic; padding: 8px 4px; }
+
+/* Quick quiz CTA button */
+.quiz-jump-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background: linear-gradient(135deg, #6cb1ff, #4493ff);
+  color: #fff;
+  border: 0;
+  border-radius: 14px;
+  padding: 18px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 4px 14px rgba(68,147,255,.35);
+}
+.quiz-jump-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(68,147,255,.45);
+}
+.quiz-jump-sub {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+  opacity: .9;
+}
+
+@media (max-width: 720px) {
+  .today-strip { grid-template-columns: 1fr 1fr; }
+  .today-strip .streak-box:nth-child(3) { grid-column: 1 / -1; }
+  .today-dual { grid-template-columns: 1fr; }
+  .streak-num { font-size: 26px; }
+  .cal-cell { width: 36px; height: 36px; font-size: 11.5px; }
+  .recent-item { grid-template-columns: 56px 1fr; font-size: 11.5px; }
+  .recent-item .recent-tag { display: none; }
+}
+
+/* ───────────────────────────────────────────────────────────
    PROGRESS TRACKER — dashboard at the top of Chapters and of
    Structure Daily plan. Today's date, current focus day,
    percent + bar, completed/remaining/total stats, and a clickable

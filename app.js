@@ -14,7 +14,7 @@
     score: JSON.parse(localStorage.getItem("jp.score") || '{"right":0,"total":0}'),
     quiz: null,
     tipTimer: null,
-    lastTab: localStorage.getItem("jp.tab") || "chapters"
+    lastTab: localStorage.getItem("jp.tab") || "today"
   };
 
   // ---------- speech ----------
@@ -750,11 +750,13 @@
       });
       head.querySelector(".chapter-toggle").addEventListener("click", (e) => {
         e.stopPropagation();
-        if (done.has(ch.day)) done.delete(ch.day); else done.add(ch.day);
+        const wasDone = done.has(ch.day);
+        if (wasDone) done.delete(ch.day); else { done.add(ch.day); logCompletion("chapter", ch.day); }
         localStorage.setItem("jp.chapDone", JSON.stringify([...done]));
         card.classList.toggle("done");
         e.currentTarget.textContent = done.has(ch.day) ? "✓" : "○";
         refreshStreak();
+        if (typeof window.refreshTodayDashboard === "function") window.refreshTodayDashboard();
       });
       card.appendChild(head);
 
@@ -1311,6 +1313,274 @@
   };
 
   // ───────────────────────────────────────────────────────────
+  // TODAY — homepage dashboard. Shows today's date + greeting,
+  // study streak, dual progress (chapters + struct-daily),
+  // a "Continue" CTA jumping to your next incomplete day, and
+  // calendar week-view grids of both tracks (click any cell to
+  // jump to that day). Bird's-eye view of the whole journey.
+  // ───────────────────────────────────────────────────────────
+  function buildCalendarGrid(opts) {
+    // opts: { kind: 'chapter'|'struct', items: [{day, week, title}], doneSet, accent }
+    const wrap = document.createElement("div");
+    wrap.className = "cal-grid cal-" + opts.kind;
+    if (opts.accent) wrap.style.setProperty("--cal-color", opts.accent);
+
+    // Group items by week
+    const weeks = new Map();
+    opts.items.forEach(it => {
+      if (!weeks.has(it.week)) weeks.set(it.week, []);
+      weeks.get(it.week).push(it);
+    });
+
+    // The Up-next day = lowest-numbered incomplete
+    const focus = opts.items.find(it => !opts.doneSet.has(it.day));
+    const focusDay = focus ? focus.day : -1;
+
+    [...weeks.entries()].forEach(([week, items]) => {
+      const row = document.createElement("div");
+      row.className = "cal-row";
+      row.innerHTML = `<div class="cal-week-label">W${week}</div><div class="cal-cells"></div>`;
+      const cellsWrap = row.querySelector(".cal-cells");
+      items.forEach(it => {
+        const cell = document.createElement("button");
+        const isDone = opts.doneSet.has(it.day);
+        const isFocus = it.day === focusDay;
+        cell.className = "cal-cell"
+          + (isDone ? " is-done" : "")
+          + (isFocus ? " is-focus" : "");
+        cell.dataset.day = it.day;
+        cell.title = `Day ${it.day}: ${it.title}`;
+        cell.innerHTML = `
+          <span class="cal-day-num">${it.day}</span>
+          ${isDone ? '<span class="cal-tick">✓</span>' : ''}
+        `;
+        cell.addEventListener("click", () => {
+          // Navigate to the right tab + sub-tab + open the day
+          if (opts.kind === "chapter") {
+            activateTab("chapters");
+          } else {
+            activateTab("structures");
+            activateSubtab("structures", "daily");
+          }
+          // Wait a tick for the panel to be visible, then scroll + open
+          setTimeout(() => {
+            const sel = opts.kind === "chapter"
+              ? `.chapter[data-day="${it.day}"]`
+              : `.struct-day[data-day="${it.day}"]`;
+            const target = document.querySelector(sel);
+            if (target) {
+              target.classList.add("is-open");
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+              target.classList.add("flash");
+              setTimeout(() => target.classList.remove("flash"), 1300);
+            }
+          }, 100);
+        });
+        cellsWrap.appendChild(cell);
+      });
+      wrap.appendChild(row);
+    });
+
+    return wrap;
+  }
+
+  function buildToday() {
+    const root = $("#todayContent");
+    if (!root) return;
+
+    const refresh = () => {
+      const chapDone = new Set(JSON.parse(localStorage.getItem("jp.chapDone") || "[]"));
+      const structDone = new Set(JSON.parse(localStorage.getItem("jp.structDailyDone") || "[]"));
+      const totalChap = DATA.chapters.length;
+      const totalStruct = STRUCT_CURRICULUM.length;
+      const today = new Date();
+      const greetingHour = today.getHours();
+      const greeting = greetingHour < 5 ? "🌙 こんばんは"
+        : greetingHour < 11 ? "🌅 おはよう"
+        : greetingHour < 17 ? "☀️ こんにちは"
+        : greetingHour < 21 ? "🌆 こんばんは"
+        : "🌙 おやすみ前に";
+      const dateStr = today.toLocaleDateString(undefined, {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      });
+      const streak = computeStreak();
+      const totalCompletions = getCompletionLog().length;
+
+      const focusChap = DATA.chapters.find(c => !chapDone.has(c.day));
+      const focusStruct = STRUCT_CURRICULUM.find(s => !structDone.has(s.day));
+      // Pick the "Continue" target: prefer whichever track is BEHIND in % done.
+      // If both at same %, prefer chapter.
+      const chapPct = chapDone.size / totalChap;
+      const structPct = structDone.size / totalStruct;
+      const continueKind = focusStruct && (structPct < chapPct || !focusChap)
+        ? "struct" : "chapter";
+      const continueDay = continueKind === "struct" ? focusStruct : focusChap;
+      const continueAccent = continueKind === "struct" ? "#a855f7" : "#ff7a86";
+
+      // Greeting + date
+      const greetingEl = document.getElementById("todayGreeting");
+      if (greetingEl) greetingEl.textContent = `${greeting} Shishir`;
+      const subEl = document.getElementById("todaySubtitle");
+      if (subEl) subEl.textContent = `${dateStr} · Your dashboard for today's study.`;
+
+      const recent = getCompletionLog().slice(-5).reverse().map(e => {
+        const which = e.kind === "chapter" ? "Chapters" : "Structures";
+        const item = e.kind === "chapter"
+          ? DATA.chapters.find(c => c.day === e.day)
+          : STRUCT_CURRICULUM.find(c => c.day === e.day);
+        const when = new Date(e.ts).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+        return `<li class="recent-item">
+          <span class="recent-when">${escapeHtml(when)}</span>
+          <span class="recent-tag recent-tag-${e.kind}">${which} · Day ${e.day}</span>
+          <span class="recent-title">${escapeHtml(item ? item.title : "")}</span>
+        </li>`;
+      }).join("") || `<li class="recent-empty">Nothing yet — tick a day complete to see it here.</li>`;
+
+      root.innerHTML = `
+        <!-- Streak + total -->
+        <div class="today-strip">
+          <div class="streak-box">
+            <span class="streak-num">${streak}</span>
+            <span class="streak-label">🔥 day${streak === 1 ? "" : "s"} streak</span>
+          </div>
+          <div class="streak-box alt">
+            <span class="streak-num">${totalCompletions}</span>
+            <span class="streak-label">📒 total completions</span>
+          </div>
+          <div class="streak-box alt">
+            <span class="streak-num">${chapDone.size + structDone.size}</span>
+            <span class="streak-label">✓ unique days done</span>
+          </div>
+        </div>
+
+        <!-- CONTINUE CTA -->
+        ${continueDay ? `
+        <div class="continue-card" style="--ct-color: ${continueAccent}">
+          <div class="continue-label">📍 Continue learning</div>
+          <button class="continue-btn" data-kind="${continueKind}" data-day="${continueDay.day}">
+            <span class="continue-track">${continueKind === "struct" ? "🧠 Structure" : "📚 Chapter"} · Day ${continueDay.day}</span>
+            <span class="continue-title">${escapeHtml(continueDay.title)}</span>
+            <span class="continue-arrow">▶</span>
+          </button>
+        </div>` : `
+        <div class="continue-card complete">
+          <div class="continue-label">🎉 You've completed both curriculums!</div>
+        </div>`}
+
+        <!-- Dual stats -->
+        <div class="today-dual">
+          <div class="today-stat" style="--st-color: #ff7a86">
+            <div class="today-stat-head">
+              <span class="emoji">📚</span>
+              <span class="title">Chapters</span>
+              <span class="pct">${Math.round(chapPct * 100)}%</span>
+            </div>
+            <div class="today-stat-bar"><div class="today-stat-fill" style="width: ${Math.round(chapPct * 100)}%"></div></div>
+            <div class="today-stat-line">${chapDone.size} of ${totalChap} days complete · ${totalChap - chapDone.size} remaining</div>
+          </div>
+          <div class="today-stat" style="--st-color: #a855f7">
+            <div class="today-stat-head">
+              <span class="emoji">🧠</span>
+              <span class="title">Structure Daily</span>
+              <span class="pct">${Math.round(structPct * 100)}%</span>
+            </div>
+            <div class="today-stat-bar"><div class="today-stat-fill" style="width: ${Math.round(structPct * 100)}%"></div></div>
+            <div class="today-stat-line">${structDone.size} of ${totalStruct} days complete · ${totalStruct - structDone.size} remaining</div>
+          </div>
+        </div>
+
+        <!-- Calendar grids -->
+        <div class="today-section">
+          <div class="today-section-head">
+            <h3>📚 Chapters — bird's-eye view</h3>
+            <span class="hint">Click any day to jump there</span>
+          </div>
+          <div id="todayChapCal"></div>
+        </div>
+
+        <div class="today-section">
+          <div class="today-section-head">
+            <h3>🧠 Structure Daily — bird's-eye view</h3>
+            <span class="hint">Click any day to jump there</span>
+          </div>
+          <div id="todayStructCal"></div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="today-section">
+          <div class="today-section-head">
+            <h3>📒 Recent activity</h3>
+            <span class="hint">Last 5 completions</span>
+          </div>
+          <ul class="recent-list">${recent}</ul>
+        </div>
+
+        <!-- Quick quiz CTA -->
+        <div class="today-section">
+          <div class="today-section-head">
+            <h3>📝 Quick check</h3>
+            <span class="hint">Practice what you've studied</span>
+          </div>
+          <button class="quiz-jump-btn" id="todayQuizJump">
+            🎯 Open Quiz tab
+            <span class="quiz-jump-sub">Random questions to drill what you know</span>
+          </button>
+        </div>
+      `;
+
+      // Mount calendar grids
+      const chapCal = buildCalendarGrid({
+        kind: "chapter",
+        items: DATA.chapters.map(c => ({ day: c.day, week: c.week, title: c.title })),
+        doneSet: chapDone,
+        accent: "#ff7a86"
+      });
+      $("#todayChapCal").appendChild(chapCal);
+
+      const structCal = buildCalendarGrid({
+        kind: "struct",
+        items: STRUCT_CURRICULUM.map(c => ({ day: c.day, week: c.week, title: c.title })),
+        doneSet: structDone,
+        accent: "#a855f7"
+      });
+      $("#todayStructCal").appendChild(structCal);
+
+      // CTAs
+      const continueBtn = root.querySelector(".continue-btn");
+      if (continueBtn) {
+        continueBtn.addEventListener("click", () => {
+          const kind = continueBtn.dataset.kind;
+          const day = parseInt(continueBtn.dataset.day, 10);
+          if (kind === "struct") {
+            activateTab("structures");
+            activateSubtab("structures", "daily");
+          } else {
+            activateTab("chapters");
+          }
+          setTimeout(() => {
+            const sel = kind === "chapter"
+              ? `.chapter[data-day="${day}"]`
+              : `.struct-day[data-day="${day}"]`;
+            const target = document.querySelector(sel);
+            if (target) {
+              target.classList.add("is-open");
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+              target.classList.add("flash");
+              setTimeout(() => target.classList.remove("flash"), 1300);
+            }
+          }, 100);
+        });
+      }
+      const quizBtn = $("#todayQuizJump");
+      if (quizBtn) quizBtn.addEventListener("click", () => activateTab("quiz"));
+    };
+
+    // Expose for cross-component refresh (when day toggles elsewhere)
+    window.refreshTodayDashboard = refresh;
+    refresh();
+  }
+
+  // ───────────────────────────────────────────────────────────
   // STRUCTURE DAILY PLAN — 45-day curriculum focused PURELY on the
   // 60 grammar structures. Each day references 1-3 closely-related
   // structure titles + a practice prompt. Rendered as a snake-timeline
@@ -1453,6 +1723,44 @@
       structures: ["Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)"],
       practice: "Replace 5 polite-form sentences with their keigo equivalents. Practice the most-used pairs (来る / 行く / 言う / 食べる / 知る)." }
   ];
+
+  // ───────────────────────────────────────────────────────────
+  // COMPLETION LOG — every time a day is marked complete, push a
+  // {kind, day, ts} entry into jp.completionLog. Used by the streak
+  // counter and the Today dashboard's "recent activity" feed.
+  // ───────────────────────────────────────────────────────────
+  function logCompletion(kind, day) {
+    try {
+      const log = JSON.parse(localStorage.getItem("jp.completionLog") || "[]");
+      log.push({ kind, day, ts: Date.now() });
+      // keep last 500 entries (more than enough)
+      if (log.length > 500) log.shift();
+      localStorage.setItem("jp.completionLog", JSON.stringify(log));
+    } catch (_) {}
+  }
+  function getCompletionLog() {
+    try { return JSON.parse(localStorage.getItem("jp.completionLog") || "[]"); }
+    catch (_) { return []; }
+  }
+  // Compute consecutive-days streak from the completion log.
+  // A "day" is local-date YYYY-MM-DD; streak = consecutive days back from today.
+  function computeStreak() {
+    const log = getCompletionLog();
+    if (!log.length) return 0;
+    const dayKeys = new Set(log.map(e => new Date(e.ts).toLocaleDateString("en-CA")));
+    let streak = 0;
+    const cursor = new Date();
+    // Allow today OR yesterday as the starting day (you may not have studied yet today)
+    if (!dayKeys.has(cursor.toLocaleDateString("en-CA"))) {
+      cursor.setDate(cursor.getDate() - 1);
+      if (!dayKeys.has(cursor.toLocaleDateString("en-CA"))) return 0;
+    }
+    while (dayKeys.has(cursor.toLocaleDateString("en-CA"))) {
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    return streak;
+  }
 
   // ───────────────────────────────────────────────────────────
   // PROGRESS TRACKER — reusable dashboard component. Shows today's
@@ -1601,11 +1909,13 @@
       });
       head.querySelector(".chapter-toggle").addEventListener("click", (e) => {
         e.stopPropagation();
-        if (done.has(d.day)) done.delete(d.day); else done.add(d.day);
+        const wasDone = done.has(d.day);
+        if (wasDone) done.delete(d.day); else { done.add(d.day); logCompletion("struct", d.day); }
         localStorage.setItem("jp.structDailyDone", JSON.stringify([...done]));
         card.classList.toggle("done");
         e.currentTarget.textContent = done.has(d.day) ? "✓" : "○";
         refreshAll();
+        if (typeof window.refreshTodayDashboard === "function") window.refreshTodayDashboard();
       });
       card.appendChild(head);
 
@@ -2097,6 +2407,7 @@
   buildKanji();
   buildChapters();
   buildConversations();
+  buildToday();
   // redirect old saved tab names to the new consolidated tabs
   const TAB_REDIRECT = {
     "grammar": "structures",
