@@ -779,11 +779,17 @@
           if (fullStruct) {
             // collapsed by default to keep chapter card compact;
             // user clicks the header to expand into the full chart.
-            sec.appendChild(buildOneStructureCard(fullStruct, {
+            const inlineCard = buildOneStructureCard(fullStruct, {
               isOpen: false,
               compact: true,
               currentDay: ch.day
-            }));
+            });
+            // apply category color so the ribbon + accents match the
+            // colors used on the Structures tab
+            const palette = colorForCategory(fullStruct.category);
+            inlineCard.style.setProperty("--cat-color", palette.c);
+            inlineCard.style.setProperty("--cat-glow", palette.glow);
+            sec.appendChild(inlineCard);
           } else {
             const g = lookups.gram.get(title);
             if (!g) return;
@@ -1226,6 +1232,39 @@
     return card;
   }
 
+  // Stable category-color palette — every card and category header in the
+  // Structure tab gets a --cat-color CSS variable derived from its category.
+  // Cards within the same category share the same color; categories cycle.
+  const CAT_PALETTE = [
+    { c: "#ff7a86", glow: "255,122,134" },   // red (foundation)
+    { c: "#7cc0ff", glow: "124,192,255" },   // sky blue (declarative)
+    { c: "#6fdba8", glow: "111,219,168" },   // mint (verb sentences)
+    { c: "#c084fc", glow: "192,132,252" },   // violet (adjective)
+    { c: "#fb923c", glow: "251,146,60" },    // orange (questions)
+    { c: "#f472b6", glow: "244,114,182" },   // pink (answers)
+    { c: "#3aa6d6", glow: "58,166,214" },    // ocean (person)
+    { c: "#a3e635", glow: "163,230,53" },    // lime (other essentials)
+    { c: "#fbbf24", glow: "251,191,36" },    // amber (more particles)
+    { c: "#e879f9", glow: "232,121,249" },   // magenta (counters)
+    { c: "#14b8a6", glow: "20,184,166" },    // teal (conjugation refs)
+    { c: "#ef4444", glow: "239,68,68" },     // bright red (plain forms)
+    { c: "#22d3ee", glow: "34,211,238" },    // cyan (potential / volitional)
+    { c: "#facc15", glow: "250,204,21" },    // yellow (conditionals)
+    { c: "#84cc16", glow: "132,204,22" },    // green (preferences)
+    { c: "#a855f7", glow: "168,85,247" },    // purple (permission)
+    { c: "#f59e0b", glow: "245,158,11" },    // dark amber (time/experience)
+    { c: "#06b6d4", glow: "6,182,212" },     // dark cyan (modifying)
+    { c: "#d4af37", glow: "212,175,55" }     // gold (keigo)
+  ];
+  const catColorMap = new Map();
+  function colorForCategory(cat) {
+    if (!catColorMap.has(cat)) {
+      const p = CAT_PALETTE[catColorMap.size % CAT_PALETTE.length];
+      catColorMap.set(cat, p);
+    }
+    return catColorMap.get(cat);
+  }
+
   function buildStructures() {
     if (!DATA.structures) return;
     const root = $("#structList");
@@ -1236,6 +1275,9 @@
     const oldLegend = root.parentNode.querySelector(".legend");
     if (oldLegend) oldLegend.remove();
     buildLegend(root);
+
+    // Pre-compute category colors in declaration order so colors are stable
+    DATA.structures.forEach(s => colorForCategory(s.category));
 
     // category chips
     const cats = [...new Set(DATA.structures.map(s => s.category))];
@@ -1268,6 +1310,9 @@
         const header = document.createElement("div");
         header.className = "struct-cat-header";
         header.dataset.cat = s.category;
+        const palette = colorForCategory(s.category);
+        header.style.setProperty("--cat-color", palette.c);
+        header.style.setProperty("--cat-glow", palette.glow);
         header.innerHTML = `
           <span class="cat-num">${catNum}</span>
           <span class="cat-label">${escapeHtml(s.category)}</span>
@@ -1276,7 +1321,11 @@
         root.appendChild(header);
         prevCat = s.category;
       }
-      root.appendChild(buildOneStructureCard(s, { isOpen: idx === 0 }));
+      const card = buildOneStructureCard(s, { isOpen: idx === 0 });
+      const palette = colorForCategory(s.category);
+      card.style.setProperty("--cat-color", palette.c);
+      card.style.setProperty("--cat-glow", palette.glow);
+      root.appendChild(card);
     });
 
     function applyFilter() {

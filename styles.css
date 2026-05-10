@@ -1185,18 +1185,20 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 .chapter.flash { animation: chapter-flash 1.4s ease-out; }
 
 /* ---------- category header inside Structure list ---------- */
+/* ---------- category header inside Structure list ---------- */
 .struct-cat-header {
+  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin: 22px 16px 6px;
-  padding: 10px 16px;
-  background: linear-gradient(90deg,
-    color-mix(in srgb, var(--accent) 14%, var(--bg-2)),
-    var(--bg-2) 60%);
-  border-left: 4px solid var(--accent);
-  border-radius: 8px;
+  gap: 14px;
+  margin: 26px 0 4px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--cat-color, var(--accent)) 18%, var(--bg-2)) 0%,
+    var(--bg-2) 70%);
+  border-left: 5px solid var(--cat-color, var(--accent));
+  border-radius: 14px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: .3px;
@@ -1204,84 +1206,41 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
   position: sticky;
   top: 0;
   z-index: 5;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 10px rgba(var(--cat-glow, 0,0,0), .12);
 }
-.struct-cat-header:first-of-type { margin-top: 8px; }
+.struct-cat-header:first-of-type { margin-top: 12px; }
 .struct-cat-header.is-hidden { display: none; }
-/* Cartoon-style numbered badge — chunky, tilted, vibrant. Each consecutive
-   badge cycles through a small palette so the page feels playful, not flat. */
+
+/* Cartoon-style numbered badge — chunky, tilted, vibrant. Color from the
+   category-color CSS variable so each section is visually distinct. */
 .struct-cat-header .cat-num {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   background: linear-gradient(145deg,
-    color-mix(in srgb, var(--accent) 90%, white),
-    var(--accent));
+    color-mix(in srgb, var(--cat-color, var(--accent)) 75%, white),
+    var(--cat-color, var(--accent)));
   color: #fff;
   border: 3px solid #fff;
   border-radius: 16px;
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 900;
   font-variant-numeric: tabular-nums;
   letter-spacing: -.5px;
   flex-shrink: 0;
-  text-shadow: 0 2px 3px rgba(0,0,0,.25);
+  text-shadow: 0 2px 3px rgba(0,0,0,.3);
   transform: rotate(-4deg);
   box-shadow:
-    0 0 0 2px var(--accent),
-    0 6px 14px color-mix(in srgb, var(--accent) 40%, transparent),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-  transition: transform .2s ease;
+    0 0 0 2px var(--cat-color, var(--accent)),
+    0 6px 16px rgba(var(--cat-glow, 0,0,0), .5),
+    inset 0 -3px 0 rgba(0,0,0,.18);
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1);
 }
 .struct-cat-header:hover .cat-num {
-  transform: rotate(0deg) scale(1.08);
-}
-/* Cycle through accent → blue → green → purple → orange via :nth-of-type */
-.struct-cat-header:nth-of-type(8n+2) .cat-num {
-  background: linear-gradient(145deg,
-    color-mix(in srgb, var(--accent-2) 90%, white),
-    var(--accent-2));
-  box-shadow:
-    0 0 0 2px var(--accent-2),
-    0 6px 14px color-mix(in srgb, var(--accent-2) 40%, transparent),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-}
-.struct-cat-header:nth-of-type(8n+3) .cat-num {
-  background: linear-gradient(145deg, #6fdba8, #2faa72);
-  box-shadow:
-    0 0 0 2px #2faa72,
-    0 6px 14px rgba(47,170,114,.45),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-}
-.struct-cat-header:nth-of-type(8n+4) .cat-num {
-  background: linear-gradient(145deg, #d2a3ff, #a06bd6);
-  box-shadow:
-    0 0 0 2px #a06bd6,
-    0 6px 14px rgba(160,107,214,.45),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-}
-.struct-cat-header:nth-of-type(8n+5) .cat-num {
-  background: linear-gradient(145deg, #ffc77d, #ed8d22);
-  box-shadow:
-    0 0 0 2px #ed8d22,
-    0 6px 14px rgba(237,141,34,.45),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-}
-.struct-cat-header:nth-of-type(8n+6) .cat-num {
-  background: linear-gradient(145deg, #ff8da6, #e0507a);
-  box-shadow:
-    0 0 0 2px #e0507a,
-    0 6px 14px rgba(224,80,122,.45),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
-}
-.struct-cat-header:nth-of-type(8n+7) .cat-num {
-  background: linear-gradient(145deg, #97e1ff, #3aa6d6);
-  box-shadow:
-    0 0 0 2px #3aa6d6,
-    0 6px 14px rgba(58,166,214,.45),
-    inset 0 -3px 0 color-mix(in srgb, black 18%, transparent);
+  transform: rotate(0deg) scale(1.1);
 }
 .struct-cat-header .cat-label {
   flex: 1;
@@ -1291,37 +1250,66 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 }
 .struct-cat-header .cat-count {
   font-size: 11px;
-  font-weight: 600;
-  color: var(--fg-dim);
-  background: var(--bg-3);
-  border: 1px solid var(--line);
-  padding: 2px 9px;
+  font-weight: 700;
+  color: var(--cat-color, var(--fg-dim));
+  background: color-mix(in srgb, var(--cat-color, var(--accent)) 12%, var(--bg-3));
+  border: 1px solid color-mix(in srgb, var(--cat-color, var(--accent)) 30%, var(--line));
+  padding: 3px 10px;
   border-radius: 999px;
   text-transform: none;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
-/* ---------- sentence structures ---------- */
+/* ───────────────────────────────────────────────────────────
+   STRUCTURES — playful 2-column grid with per-category colors.
+   Each card defaults to half-width with a colored top ribbon
+   matching its category. Click a card to expand it to full
+   width (spanning both columns). Category headers always span
+   the full row.
+   ─────────────────────────────────────────────────────────── */
 .struct-list {
   display: grid;
-  /* Explicit column constraint. Without this, the implicit column auto-sizes
-     to the widest descendant (e.g. the 600px breakdown table), pushing the
-     entire card past the screen edge on phones. */
-  grid-template-columns: minmax(0, 1fr);
-  gap: 14px;
-  padding: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 18px 4px 32px;
 }
+@media (max-width: 880px) {
+  .struct-list { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 12px 4px 24px; }
+}
+
 .struct {
+  position: relative;
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  /* Belt-and-suspenders: the card itself never grows wider than its column. */
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
   min-width: 0;
-  transition: border-color .15s;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
-.struct:hover { border-color: color-mix(in srgb, var(--accent-2) 40%, var(--line)); }
+/* Decorative top ribbon in the category color (bigger when card is open) */
+.struct::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--cat-color, var(--accent));
+  z-index: 1;
+  pointer-events: none;
+}
+.struct:hover {
+  transform: translateY(-2px);
+  border-color: var(--cat-color, var(--accent-2));
+  box-shadow: 0 10px 24px rgba(var(--cat-glow, 0, 0, 0), .14);
+}
+.struct.is-open {
+  grid-column: 1 / -1;
+  border-color: var(--cat-color, var(--accent));
+  box-shadow: 0 10px 28px rgba(var(--cat-glow, 0, 0, 0), .22);
+  transform: none;
+}
+.struct.is-open::before { height: 8px; }
 .struct.is-hidden { display: none; }
 
 .struct-head {
@@ -1329,27 +1317,34 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 16px 18px 14px;  /* extra top padding to clear the ribbon */
   cursor: pointer;
   user-select: none;
-  background: linear-gradient(0deg, transparent, color-mix(in srgb, var(--accent) 6%, transparent));
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--cat-color) 8%, transparent),
+    transparent);
 }
 .struct-cat {
-  font-size: 11px;
-  letter-spacing: .4px;
+  font-size: 10.5px;
+  letter-spacing: .5px;
   text-transform: uppercase;
-  color: var(--accent-2);
-  background: color-mix(in srgb, var(--accent-2) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--line));
-  padding: 3px 9px;
+  font-weight: 700;
+  color: var(--cat-color, var(--accent-2));
+  background: color-mix(in srgb, var(--cat-color) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cat-color) 40%, var(--line));
+  padding: 4px 10px;
   border-radius: 999px;
+  white-space: nowrap;
 }
 .struct-title {
   margin: 0;
-  font-size: 17px;
+  font-size: 15.5px;
   font-weight: 700;
+  letter-spacing: -.2px;
+  line-height: 1.35;
   color: var(--fg);
 }
+.struct.is-open .struct-title { font-size: 17px; }
 .struct-toggle {
   background: transparent;
   border: 1px solid var(--line);
