@@ -1268,6 +1268,157 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 }
 
 /* ───────────────────────────────────────────────────────────
+   STRUCTURE — snake-style category navigator. Sits at the top
+   of the panel; shows one cartoon dot per category in a
+   playful zigzag. Click any dot to smooth-scroll to that
+   section. Currently-visible section's dot gets a glow ring.
+   ─────────────────────────────────────────────────────────── */
+.struct-nav {
+  margin: 14px 4px 18px;
+  padding: 14px 16px 16px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  position: relative;
+}
+.struct-nav-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.struct-nav-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: var(--fg);
+}
+.struct-nav-hint {
+  font-size: 11px;
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+
+/* The actual snake path — flex row, horizontal scroll, with a soft
+   dashed line behind the badges suggesting the snake's body */
+.struct-nav-path {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  padding: 16px 4px 18px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.struct-nav-path::-webkit-scrollbar { height: 6px; }
+.struct-nav-path::-webkit-scrollbar-track { background: transparent; }
+.struct-nav-path::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+.struct-nav-path::after {
+  /* dashed wavy line behind the dots */
+  content: "";
+  position: absolute;
+  left: 16px; right: 16px;
+  top: 50%;
+  height: 3px;
+  background: repeating-linear-gradient(
+    to right,
+    color-mix(in srgb, var(--accent) 30%, transparent) 0 8px,
+    transparent 8px 16px
+  );
+  border-radius: 2px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.struct-nav-dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--cat-color) 75%, white),
+    var(--cat-color));
+  border: 3px solid #fff;
+  border-radius: 18px;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0,0,0,.3);
+  box-shadow:
+    0 0 0 2px var(--cat-color),
+    0 5px 12px rgba(var(--cat-glow), .45),
+    inset 0 -3px 0 rgba(0,0,0,.18);
+  /* Snake-zigzag — alternate up/down + tilt */
+  transform: translateY(-7px) rotate(-5deg);
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .15s;
+}
+.struct-nav-dot:nth-child(even) {
+  transform: translateY(7px) rotate(5deg);
+}
+.struct-nav-dot:hover {
+  transform: translateY(0) rotate(0deg) scale(1.12);
+  z-index: 2;
+}
+.struct-nav-dot.is-active {
+  transform: translateY(-12px) rotate(0deg) scale(1.15);
+  box-shadow:
+    0 0 0 2px var(--cat-color),
+    0 0 0 6px color-mix(in srgb, var(--cat-color) 30%, transparent),
+    0 8px 18px rgba(var(--cat-glow), .55),
+    inset 0 -3px 0 rgba(0,0,0,.18);
+}
+.struct-nav-dot:nth-child(even).is-active {
+  transform: translateY(12px) rotate(0deg) scale(1.15);
+}
+.struct-nav-dot .dot-emoji {
+  font-size: 20px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
+}
+.struct-nav-dot .dot-num {
+  font-size: 10.5px;
+  font-weight: 800;
+  margin-top: 2px;
+  letter-spacing: .3px;
+}
+
+/* Section flash when user clicks a nav dot — bright outline pulse */
+@keyframes section-flash {
+  0%, 100% {
+    box-shadow: 0 4px 18px rgba(var(--cat-glow), .08);
+    border-color: color-mix(in srgb, var(--cat-color) 25%, var(--line));
+  }
+  30% {
+    box-shadow:
+      0 0 0 5px color-mix(in srgb, var(--cat-color) 50%, transparent),
+      0 10px 28px rgba(var(--cat-glow), .35);
+    border-color: var(--cat-color);
+  }
+}
+.struct-cat-section.flash {
+  animation: section-flash 1.3s ease-out;
+}
+
+@media (max-width: 720px) {
+  .struct-nav { margin: 8px 2px 14px; padding: 10px 12px 12px; }
+  .struct-nav-dot { width: 50px; height: 50px; }
+  .struct-nav-dot .dot-emoji { font-size: 18px; }
+  .struct-nav-hint { display: none; }
+}
+
+/* ───────────────────────────────────────────────────────────
    STRUCTURES — each category becomes its own tinted section
    containing a 2-col grid of cards. Sections are visually
    distinct via a per-category colored background tint, header

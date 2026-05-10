@@ -1289,6 +1289,61 @@
     "Keigo basics":                          "🎩"
   };
 
+  // Snake-style category quick-navigator. A row of cartoon badges (one per
+  // category) you can click to smooth-scroll to that section. Highlights the
+  // currently-visible section via IntersectionObserver. Mirrors the snake
+  // aesthetic of the Chapters timeline without disrupting the random-access
+  // nature of the Structure reference content.
+  function buildStructureNav(root) {
+    // remove any existing nav (rebuild safety)
+    const old = root.parentNode.querySelector(".struct-nav");
+    if (old) old.remove();
+
+    const grouped = new Map();
+    DATA.structures.forEach(s => {
+      if (!grouped.has(s.category)) grouped.set(s.category, []);
+      grouped.get(s.category).push(s);
+    });
+
+    const nav = document.createElement("nav");
+    nav.className = "struct-nav";
+    const dotsHtml = [...grouped.keys()].map((cat, i) => {
+      const palette = colorForCategory(cat);
+      const emoji = CAT_EMOJI[cat] || "📚";
+      const count = grouped.get(cat).length;
+      return `
+        <button class="struct-nav-dot" data-cat="${escapeHtml(cat)}"
+                style="--cat-color: ${palette.c}; --cat-glow: ${palette.glow}"
+                title="${escapeHtml(cat)} · ${count} pattern${count > 1 ? "s" : ""}">
+          <span class="dot-emoji">${emoji}</span>
+          <span class="dot-num">${i + 1}</span>
+        </button>`;
+    }).join("");
+    nav.innerHTML = `
+      <div class="struct-nav-head">
+        <span class="struct-nav-title">📌 Jump to category</span>
+        <span class="struct-nav-hint">click any badge to jump</span>
+      </div>
+      <div class="struct-nav-path">${dotsHtml}</div>
+    `;
+
+    nav.addEventListener("click", (e) => {
+      const btn = e.target.closest(".struct-nav-dot");
+      if (!btn) return;
+      const cat = btn.dataset.cat;
+      const target = document.querySelector(`.struct-cat-section[data-cat="${escapeHtml(cat).replace(/"/g, '\\"')}"]`)
+        || [...document.querySelectorAll(".struct-cat-section")].find(s => s.dataset.cat === cat);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.classList.add("flash");
+        setTimeout(() => target.classList.remove("flash"), 1300);
+      }
+    });
+
+    root.parentNode.insertBefore(nav, root);
+    return nav;
+  }
+
   function buildStructures() {
     if (!DATA.structures) return;
     const root = $("#structList");
@@ -1302,6 +1357,9 @@
 
     // Pre-compute category colors in declaration order so colors are stable
     DATA.structures.forEach(s => colorForCategory(s.category));
+
+    // Snake-style category navigator (sits between legend and content)
+    const nav = buildStructureNav(root);
 
     // category chips
     const cats = [...new Set(DATA.structures.map(s => s.category))];
@@ -1383,6 +1441,23 @@
       });
     }
     $("#searchStruct").addEventListener("input", applyFilter);
+
+    // Scroll-spy: as the user scrolls, highlight the corresponding nav badge.
+    // Watches sections that are crossing the middle of the viewport.
+    if (nav && "IntersectionObserver" in window) {
+      const navDots = $$(".struct-nav-dot", nav);
+      const setActive = (cat) => {
+        navDots.forEach(d => d.classList.toggle("is-active", d.dataset.cat === cat));
+      };
+      const observer = new IntersectionObserver((entries) => {
+        // Pick the topmost intersecting section and mark its dot active.
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.dataset.cat);
+      }, { rootMargin: "-25% 0px -55% 0px", threshold: 0 });
+      $$(".struct-cat-section", root).forEach(s => observer.observe(s));
+    }
   }
 
   // ---------- conversations ----------
