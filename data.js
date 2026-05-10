@@ -791,7 +791,49 @@ const DATA = {
     { ch: "題", on: "ダイ", kun: "—", en: "topic / problem", strokes: 18, words: ["問題 (mondai) — problem","宿題 (shukudai) — homework"] },
     { ch: "間", on: "カン", kun: "あいだ", en: "interval / between", strokes: 12, words: ["時間 (jikan) — time","人間 (ningen) — human"] },
     { ch: "気", on: "キ", kun: "—", en: "spirit / feeling", strokes: 6, words: ["元気 (genki) — energetic","天気 (tenki) — weather"] },
-    { ch: "元", on: "ゲン", kun: "もと", en: "origin / well", strokes: 4, words: ["元気 (genki) — energetic","元 (moto) — origin"] }
+    { ch: "元", on: "ゲン", kun: "もと", en: "origin / well", strokes: 4, words: ["元気 (genki) — energetic","元 (moto) — origin"] },
+    // ── Phase 4: N5 expansion (numbers, family, directions, weather, time, color) ──
+    { ch: "百", on: "ヒャク", kun: "—", en: "hundred (100)", strokes: 6, words: ["百 (hyaku) — 100","百円 (hyaku-en) — 100 yen"] },
+    { ch: "千", on: "セン", kun: "ち", en: "thousand (1000)", strokes: 3, words: ["千 (sen) — 1000","千円 (sen-en) — 1000 yen"] },
+    { ch: "万", on: "マン・バン", kun: "—", en: "ten thousand (10,000)", strokes: 3, words: ["一万 (ichiman) — 10,000","万年筆 (mannenhitsu) — fountain pen"] },
+    { ch: "父", on: "フ", kun: "ちち・とう", en: "father", strokes: 4, words: ["父 (chichi) — father","お父さん (otōsan) — father (polite)"] },
+    { ch: "母", on: "ボ", kun: "はは・かあ", en: "mother", strokes: 5, words: ["母 (haha) — mother","お母さん (okāsan) — mother (polite)"] },
+    { ch: "兄", on: "ケイ", kun: "あに・にい", en: "older brother", strokes: 5, words: ["兄 (ani) — older brother","お兄さん (oniisan) — older brother (polite)"] },
+    { ch: "姉", on: "シ", kun: "あね・ねえ", en: "older sister", strokes: 8, words: ["姉 (ane) — older sister","お姉さん (onēsan) — older sister (polite)"] },
+    { ch: "弟", on: "ダイ・テイ", kun: "おとうと", en: "younger brother", strokes: 7, words: ["弟 (otōto) — younger brother"] },
+    { ch: "妹", on: "マイ", kun: "いもうと", en: "younger sister", strokes: 8, words: ["妹 (imōto) — younger sister"] },
+    { ch: "男", on: "ダン・ナン", kun: "おとこ", en: "man / male", strokes: 7, words: ["男 (otoko) — man","男性 (dansei) — male"] },
+    { ch: "女", on: "ジョ", kun: "おんな", en: "woman / female", strokes: 3, words: ["女 (onna) — woman","女性 (josei) — female"] },
+    { ch: "子", on: "シ", kun: "こ", en: "child", strokes: 3, words: ["子供 (kodomo) — child","女の子 (onnanoko) — girl"] },
+    { ch: "友", on: "ユウ", kun: "とも", en: "friend", strokes: 4, words: ["友達 (tomodachi) — friend"] },
+    { ch: "多", on: "タ", kun: "おお(い)", en: "many / much", strokes: 6, words: ["多い (ōi) — many","多分 (tabun) — probably"] },
+    { ch: "少", on: "ショウ", kun: "すく(ない)・すこ(し)", en: "few / a little", strokes: 4, words: ["少ない (sukunai) — few","少し (sukoshi) — a little"] },
+    { ch: "長", on: "チョウ", kun: "なが(い)", en: "long / chief", strokes: 8, words: ["長い (nagai) — long","社長 (shachō) — president"] },
+    { ch: "北", on: "ホク", kun: "きた", en: "north", strokes: 5, words: ["北 (kita) — north","北海道 (hokkaidō) — Hokkaido"] },
+    { ch: "南", on: "ナン", kun: "みなみ", en: "south", strokes: 9, words: ["南 (minami) — south"] },
+    { ch: "東", on: "トウ", kun: "ひがし", en: "east", strokes: 8, words: ["東 (higashi) — east","東京 (tōkyō) — Tokyo"] },
+    { ch: "西", on: "セイ・サイ", kun: "にし", en: "west", strokes: 6, words: ["西 (nishi) — west"] },
+    { ch: "天", on: "テン", kun: "あめ・あま", en: "sky / heaven", strokes: 4, words: ["天気 (tenki) — weather","天国 (tengoku) — heaven"] },
+    { ch: "雨", on: "ウ", kun: "あめ", en: "rain", strokes: 8, words: ["雨 (ame) — rain"] },
+    { ch: "雪", on: "セツ", kun: "ゆき", en: "snow", strokes: 11, words: ["雪 (yuki) — snow"] },
+    { ch: "風", on: "フウ", kun: "かぜ", en: "wind", strokes: 9, words: ["風 (kaze) — wind / cold (illness)","台風 (taifū) — typhoon"] },
+    { ch: "週", on: "シュウ", kun: "—", en: "week", strokes: 11, words: ["今週 (konshū) — this week","来週 (raishū) — next week"] },
+    { ch: "毎", on: "マイ", kun: "—", en: "every", strokes: 6, words: ["毎日 (mainichi) — every day","毎朝 (maiasa) — every morning"] },
+    { ch: "半", on: "ハン", kun: "なか(ば)", en: "half", strokes: 5, words: ["半 (han) — half","半分 (hanbun) — half"] },
+    { ch: "午", on: "ゴ", kun: "—", en: "noon", strokes: 4, words: ["午前 (gozen) — AM","午後 (gogo) — PM"] },
+    { ch: "朝", on: "チョウ", kun: "あさ", en: "morning", strokes: 12, words: ["朝 (asa) — morning","毎朝 (maiasa) — every morning"] },
+    { ch: "昼", on: "チュウ", kun: "ひる", en: "noon / daytime", strokes: 9, words: ["昼 (hiru) — noon","昼ご飯 (hirugohan) — lunch"] },
+    { ch: "夜", on: "ヤ", kun: "よる", en: "night", strokes: 8, words: ["夜 (yoru) — night","今夜 (konya) — tonight"] },
+    { ch: "店", on: "テン", kun: "みせ", en: "shop / store", strokes: 8, words: ["店 (mise) — shop","店員 (ten'in) — clerk"] },
+    { ch: "魚", on: "ギョ", kun: "さかな", en: "fish", strokes: 11, words: ["魚 (sakana) — fish","金魚 (kingyo) — goldfish"] },
+    { ch: "肉", on: "ニク", kun: "—", en: "meat", strokes: 6, words: ["肉 (niku) — meat","牛肉 (gyūniku) — beef"] },
+    { ch: "茶", on: "チャ・サ", kun: "—", en: "tea", strokes: 9, words: ["お茶 (ocha) — tea","茶色 (chairo) — brown"] },
+    { ch: "米", on: "ベイ・マイ", kun: "こめ", en: "rice (uncooked) / America", strokes: 6, words: ["米 (kome) — rice","米国 (beikoku) — USA"] },
+    { ch: "色", on: "ショク・シキ", kun: "いろ", en: "color", strokes: 6, words: ["色 (iro) — color","黄色 (kiiro) — yellow"] },
+    { ch: "白", on: "ハク", kun: "しろ・しろ(い)", en: "white", strokes: 5, words: ["白い (shiroi) — white","白色 (hakushoku) — white color"] },
+    { ch: "黒", on: "コク", kun: "くろ・くろ(い)", en: "black", strokes: 11, words: ["黒い (kuroi) — black","黒色 (kokushoku) — black color"] },
+    { ch: "赤", on: "セキ", kun: "あか・あか(い)", en: "red", strokes: 7, words: ["赤い (akai) — red","赤色 (akairo) — red color"] },
+    { ch: "青", on: "セイ", kun: "あお・あお(い)", en: "blue / green", strokes: 8, words: ["青い (aoi) — blue","青色 (aoiro) — blue color"] }
   ],
 
   words: [
@@ -1678,6 +1720,179 @@ const DATA = {
       grammar: [],
       sentences: ["はじめまして、よろしくお願いします。","お疲れさまでした。","また明日。","ありがとうございます。"],
       practice: "Long roleplay with Claude: 5-minute conversation covering intro, work, and small talk. Then ask Claude what to focus on next month."
+    },
+    // ── Week 5 — beyond N5 foundations: plain forms, potential, conditionals ──
+    {
+      day: 31, week: 5, minutes: 30,
+      title: "Plain (dictionary) form — the casual base",
+      goal: "Understand and use the plain dictionary form 飲む / 食べる / 行く. Recognize Group 1, 2, 3.",
+      kana: {},
+      words: ["飲む","食べる","行く","する","来る","話す","書く"],
+      grammar: ["Plain dictionary form — the verb's base shape (飲む / 食べる / する)",
+                "Verb groups — godan, ichidan, irregular"],
+      sentences: ["私はコーヒーを飲む。","毎朝パンを食べる。","明日、東京へ行く。"],
+      practice: "Take 5 ます-form verbs you already know and convert each to plain form. Say them aloud."
+    },
+    {
+      day: 32, week: 5, minutes: 30,
+      title: "Plain negative + Plain past",
+      goal: "Master 〜ない (don't) and 〜た (did). The casual versions of ません and ました.",
+      kana: {},
+      words: ["飲む","食べる","行く","来る","する"],
+      grammar: ["Plain negative — 〜ない (casual 'don't')",
+                "Plain past — 〜た / 〜だ (casual 'did')"],
+      sentences: ["コーヒーを飲まない。","昨日、東京に行った。","もう食べた。"],
+      practice: "Take 3 verbs and form: dict, neg, past, past-neg. Speak each chain aloud."
+    },
+    {
+      day: 33, week: 5, minutes: 30,
+      title: "Potential form — 'I can do X'",
+      goal: "Express ability using 〜eru / 〜られる / できる. Note が replaces を.",
+      kana: {},
+      words: ["話す","食べる","書く","する","来る"],
+      grammar: ["Potential form — 'can do' / 'be able to do'"],
+      sentences: ["日本語が話せます。","コードが書けます。","明日、来られます。"],
+      practice: "Tell Claude 5 things you CAN do in Japanese using the potential form."
+    },
+    {
+      day: 34, week: 5, minutes: 30,
+      title: "Plain volitional — 'let's' (casual)",
+      goal: "Casual 'let's do' / 'I will' with 〜ō / 〜よう. Different from polite ましょう.",
+      kana: {},
+      words: ["飲む","食べる","行く","来る","する"],
+      grammar: ["Plain volitional — 'let's' / 'I will' (casual)"],
+      sentences: ["一緒に行こう。","コーヒーを飲もう。","明日、何を食べよう？"],
+      practice: "Make 3 casual 'let's...' suggestions to a friend in Japanese."
+    },
+    {
+      day: 35, week: 5, minutes: 35,
+      title: "Conditionals — ば / たら / なら / と",
+      goal: "Four ways to say 'if'. Pick the right one for the context.",
+      kana: {},
+      words: ["雨","時間","春","急ぐ"],
+      grammar: ["Conditionals — ば / たら / なら / と (four ways to say 'if')"],
+      sentences: ["雨が降ったら、家にいます。","時間があれば、行きます。","急がないと、遅刻するよ。"],
+      practice: "Make 4 conditional sentences — one for each form (ば, たら, なら, と)."
+    },
+
+    // ── Week 6 — comparison, preferences, giving/receiving, quotations ──
+    {
+      day: 36, week: 6, minutes: 30,
+      title: "Comparison — より, ほうが, 一番",
+      goal: "Compare two things, identify the best, prefer one over another.",
+      kana: {},
+      words: ["犬","猫","東京","大阪","寿司"],
+      grammar: ["Comparison — より / ほうが / 一番 (more, more-of-the-two, most)"],
+      sentences: ["犬より猫のほうが好きです。","東京は大阪より大きいです。","寿司が一番好きです。"],
+      practice: "Compare 3 pairs of things you know — say which one you prefer / which is bigger / etc."
+    },
+    {
+      day: 37, week: 6, minutes: 30,
+      title: "Preferences — 〜が好き / 嫌い / 上手 / 下手",
+      goal: "Talk about likes, dislikes, skills. Critical: use が, NOT を.",
+      kana: {},
+      words: ["寿司","コーヒー","料理","日本語"],
+      grammar: ["〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)"],
+      sentences: ["私は寿司が好きです。","コーヒーが嫌いです。","彼は日本語が上手です。"],
+      practice: "Tell Claude 5 things you like / dislike / are good at, all using が."
+    },
+    {
+      day: 38, week: 6, minutes: 35,
+      title: "Giving and receiving — あげる / もらう / くれる",
+      goal: "Master the direction-sensitive trio. Get this right and you sound natural.",
+      kana: {},
+      words: ["田中","友達","母","上司","本"],
+      grammar: ["Giving / receiving — あげる / もらう / くれる (direction matters!)"],
+      sentences: ["田中さんに本をあげました。","母がプレゼントをくれました。","友達からチョコをもらった。"],
+      practice: "Describe 3 gifts: one you gave, one you received, one someone gave to you. Match the verb to direction."
+    },
+    {
+      day: 39, week: 6, minutes: 30,
+      title: "Quotations — 〜と言う / 〜と思う",
+      goal: "Report what someone said or what you think.",
+      kana: {},
+      words: ["田中","思う","言う","聞く"],
+      grammar: ["Quotations — 〜と言う / 〜と思う / 〜って (saying & thinking)"],
+      sentences: ["雨が降ると思います。","田中さんは「行きます」と言いました。","面白いと思った。"],
+      practice: "Quote yourself or someone else in 3 sentences. Use と言う / と思う."
+    },
+
+    // ── Week 7 — permission, obligation, experience, while, listing, advice ──
+    {
+      day: 40, week: 7, minutes: 30,
+      title: "Permission and prohibition — 〜てもいい / 〜てはいけない",
+      goal: "Ask politely 'may I' and warn 'must not'.",
+      kana: {},
+      words: ["写真","タバコ","スマホ"],
+      grammar: ["〜てもいい / 〜てはいけない — May / Must not"],
+      sentences: ["ここで写真を撮ってもいいですか？","ここでタバコを吸ってはいけません。","コードを見てもいいですか？"],
+      practice: "Ask 3 polite permission questions you'd actually use at work."
+    },
+    {
+      day: 41, week: 7, minutes: 30,
+      title: "Obligation — 〜なければなりません / 〜なきゃ",
+      goal: "Say what you HAVE to do. Use polite full form and the casual contraction.",
+      kana: {},
+      words: ["宿題","薬","電車","テスト"],
+      grammar: ["〜なければなりません — Must do (obligation)"],
+      sentences: ["宿題をしなければなりません。","明日早く起きなければなりません。","薬を飲まなきゃ。"],
+      practice: "List 5 things you must do this week using なければなりません / なきゃ."
+    },
+    {
+      day: 42, week: 7, minutes: 30,
+      title: "Experience — 〜たことがある",
+      goal: "Talk about life experiences. Have you done X? Yes/no.",
+      kana: {},
+      words: ["日本","寿司","富士山","京都"],
+      grammar: ["〜たことがある — Have done X before (experience)"],
+      sentences: ["日本に行ったことがあります。","寿司を食べたことがあります。","彼に会ったことはない。"],
+      practice: "Make 5 statements about experiences — 3 things you have done, 2 things you haven't."
+    },
+    {
+      day: 43, week: 7, minutes: 30,
+      title: "Simultaneous + listing — 〜ながら, 〜たり〜たり",
+      goal: "Two actions at once (ながら) and 'doing things like X and Y' (たり).",
+      kana: {},
+      words: ["音楽","コーヒー","本","映画"],
+      grammar: ["〜ながら — While doing X (simultaneous actions)",
+                "〜たり〜たり する — Doing things like X and Y"],
+      sentences: ["音楽を聞きながら勉強します。","週末は本を読んだり、映画を見たりします。"],
+      practice: "Describe your weekend with 2 ながら sentences and 2 たり sentences."
+    },
+    {
+      day: 44, week: 7, minutes: 35,
+      title: "Advice + intentions — 〜たほうがいい / 〜つもり",
+      goal: "Give advice softly and state your plans.",
+      kana: {},
+      words: ["寝る","薬","新しい","パソコン"],
+      grammar: ["〜たほうがいい — You should do X (advice)",
+                "〜つもり — Intend to / Plan to"],
+      sentences: ["早く寝たほうがいいですよ。","来週、日本に行くつもりです。","新しいパソコンを買うつもりです。"],
+      practice: "Give 3 pieces of advice + state 3 plans you have for next month."
+    },
+    {
+      day: 45, week: 7, minutes: 35,
+      title: "Relative clauses + nuance (やすい/にくい, すぎる, しか, hearsay)",
+      goal: "Modify nouns with verbs. Add nuance with やすい/にくい, すぎる, しか, そう/らしい.",
+      kana: {},
+      words: ["本","コード","コーヒー","千円"],
+      grammar: ["Relative clauses — modifying nouns with verbs (私が読んだ本)",
+                "〜やすい / 〜にくい — Easy / Hard to do",
+                "〜すぎる — Too much / Excessively",
+                "〜しか〜ない / 〜だけ — Only X (restriction)",
+                "そうです / らしい — Hearsay (I heard / it seems)"],
+      sentences: ["私が書いた本","この本は読みやすいです。","食べすぎました。","千円しかありません。","明日、雨が降るそうです。"],
+      practice: "Build a 3-sentence story using AT LEAST a relative clause, やすい/にくい, and a hearsay form."
+    },
+    {
+      day: 46, week: 7, minutes: 40,
+      title: "Keigo intro — 尊敬語 / 謙譲語 (formal Japanese)",
+      goal: "Recognize and use the most-common keigo verb pairs in business contexts.",
+      kana: {},
+      words: ["社長","お客様","参る","申す"],
+      grammar: ["Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)"],
+      sentences: ["社長がいらっしゃいました。","私が参ります。","お客様が召し上がります。","存じております。"],
+      practice: "Practice the 5 most common keigo pairs (来る/行く, 言う, 食べる, 知る, いる) until you can produce them on demand."
     }
   ],
 

@@ -1,0 +1,28 @@
+{
+  "name": "日本語 Lab — Nihongo Lab",
+  "short_name": "Nihongo Lab",
+  "description": "Interactive Japanese learning app — kana, kanji, vocabulary, grammar structures with token-level breakdowns, conversations, and quizzes. With Nepali translations.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#1a1e2c",
+  "theme_color": "#ff7a86",
+  "lang": "ja",
+  "dir": "ltr",
+  "categories": ["education", "books"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='28' fill='%23ff7a86'/%3E%3Ctext x='96' y='118' font-family='Noto Sans JP, sans-serif' font-size='90' font-weight='700' text-anchor='middle' fill='white'%3E日%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='76' fill='%23ff7a86'/%3E%3Ctext x='256' y='320' font-family='Noto Sans JP, sans-serif' font-size='240' font-weight='700' text-anchor='middle' fill='white'%3E日%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
