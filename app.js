@@ -278,16 +278,39 @@
   }
 
   // ---------- tabs ----------
-  function activateTab(name) {
+  // Top-level tabs are <a href="#name"> so right-click → "Open in new tab"
+  // works natively and ctrl/cmd-click opens a new tab. On normal left-click
+  // we prevent default and switch panels SPA-style, also updating the URL
+  // hash so the current tab is reflected in the address bar and bookmarkable.
+  const VALID_TABS = ["today", "chapters", "kana", "phrases", "structures", "kanji", "quiz"];
+
+  function activateTab(name, opts) {
+    opts = opts || {};
+    if (!VALID_TABS.includes(name)) name = "today";
     $$(".tab").forEach(t => t.classList.toggle("is-active", t.dataset.tab === name));
     $$(".panel").forEach(p => p.classList.toggle("is-active", p.id === `panel-${name}`));
     state.lastTab = name;
     localStorage.setItem("jp.tab", name);
+    // Reflect in URL hash (without scrolling/pushing history)
+    if (!opts.skipHash && location.hash.slice(1) !== name) {
+      history.replaceState(null, "", "#" + name);
+    }
   }
+
   $("#tabs").addEventListener("click", (e) => {
-    const btn = e.target.closest(".tab");
-    if (!btn) return;
-    activateTab(btn.dataset.tab);
+    const a = e.target.closest(".tab");
+    if (!a) return;
+    // Let modifier-clicks (cmd / ctrl / shift / middle-click) follow the
+    // link normally — that's how the user gets "open in new tab".
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    activateTab(a.dataset.tab);
+  });
+
+  // React to the URL hash changing (forward/back navigation, manual edits)
+  window.addEventListener("hashchange", () => {
+    const tab = location.hash.slice(1).split("?")[0]; // strip any subtab fragment
+    if (VALID_TABS.includes(tab)) activateTab(tab, { skipHash: true });
   });
 
   // ---------- sub-tabs (segmented control inside Kana / Phrases) ----------
@@ -2528,6 +2551,14 @@ wrangler deploy</pre>
   buildChapters();
   buildConversations();
   buildToday();
+  // If the URL has a tab hash (e.g. #structures), honor it over the saved tab.
+  // Lets users bookmark/share specific tabs and right-click-open them in
+  // new windows that land on the intended tab.
+  const hashTab = location.hash.slice(1).split("?")[0];
+  if (VALID_TABS.includes(hashTab)) {
+    state.lastTab = hashTab;
+  }
+
   // redirect old saved tab names to the new consolidated tabs
   const TAB_REDIRECT = {
     "grammar": "structures",

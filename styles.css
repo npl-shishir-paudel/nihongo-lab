@@ -87,7 +87,13 @@ body {
   border: 1px solid transparent; border-radius: 999px;
   padding: 7px 14px; font: inherit; cursor: pointer;
   transition: background .15s, color .15s, border-color .15s;
+  /* anchors: behave like buttons */
+  text-decoration: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex; align-items: center;
 }
+.tab:visited { color: var(--fg-dim); }
 .tab:hover { color: var(--fg); background: var(--bg-3); }
 .tab.is-active {
   color: var(--fg); background: var(--bg-2);
