@@ -2615,3 +2615,290 @@ button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
   /* footer — keep readable at the bottom */
   .footer { font-size: 11px; padding: 16px 12px 24px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   🎨 CARTOON POLISH — overrides at the bottom so they win
+   without re-writing the chunks above. Applies a "sticker" feel
+   to every surface that wasn't already cartoonified: cards,
+   buttons, inputs, conversation bubbles, quiz, kana cells.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Reusable sticker shadow — soft + a chunky offset = sticker on paper */
+:root {
+  --cartoon-shadow:
+    0 3px 0 0 color-mix(in srgb, black 18%, transparent),
+    0 8px 18px color-mix(in srgb, black 12%, transparent);
+  --cartoon-shadow-lifted:
+    0 1px 0 0 color-mix(in srgb, black 20%, transparent),
+    0 12px 22px color-mix(in srgb, black 18%, transparent);
+  --cartoon-radius: 16px;
+}
+:root[data-theme="light"] {
+  --cartoon-shadow:
+    0 3px 0 0 color-mix(in srgb, black 10%, transparent),
+    0 8px 18px color-mix(in srgb, black 8%, transparent);
+  --cartoon-shadow-lifted:
+    0 1px 0 0 color-mix(in srgb, black 12%, transparent),
+    0 12px 22px color-mix(in srgb, black 12%, transparent);
+}
+
+/* ── KANA CELLS — chunky game-tile feel ──────────────────────── */
+.kana {
+  border-width: 2px !important;
+  border-radius: 14px !important;
+  box-shadow: var(--cartoon-shadow);
+  transition: transform .15s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+}
+.kana:hover {
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: var(--cartoon-shadow-lifted);
+}
+.kana:active { transform: translateY(0) rotate(0); }
+.kana .ch { font-weight: 700; }
+
+/* ── WORD CARDS — sticker style ──────────────────────────────── */
+.word {
+  border-width: 2px !important;
+  border-radius: var(--cartoon-radius) !important;
+  box-shadow: var(--cartoon-shadow);
+  transition: transform .16s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+}
+.word:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cartoon-shadow-lifted);
+}
+.word:nth-child(3n) { transform: rotate(-.25deg); }
+.word:nth-child(3n):hover { transform: translateY(-3px) rotate(0deg); }
+.word:nth-child(5n+2) { transform: rotate(.3deg); }
+.word:nth-child(5n+2):hover { transform: translateY(-3px) rotate(0deg); }
+.word .jp { font-weight: 700; letter-spacing: -.2px; }
+.word .tag {
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 3px 10px;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, black 15%, transparent);
+}
+
+/* ── SENTENCE CARDS — chunky chat-card feel ──────────────────── */
+.sentence {
+  border-width: 2px !important;
+  border-radius: var(--cartoon-radius) !important;
+  box-shadow: var(--cartoon-shadow);
+  transition: transform .16s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+}
+.sentence:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cartoon-shadow-lifted);
+}
+.sentence .scene {
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 3px 10px;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, black 15%, transparent);
+}
+
+/* ── KANJI CARDS — trading-card aesthetic ────────────────────── */
+.kanji {
+  border-width: 2px !important;
+  border-radius: 18px !important;
+  box-shadow: var(--cartoon-shadow);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--accent) 6%, var(--bg-2)) 0%,
+    var(--bg-2) 40%);
+  transition: transform .18s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+}
+.kanji:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--cartoon-shadow-lifted);
+}
+.kanji:nth-child(odd) { transform: rotate(-.4deg); }
+.kanji:nth-child(odd):hover { transform: translateY(-4px) scale(1.02) rotate(0); }
+.kanji:nth-child(even) { transform: rotate(.5deg); }
+.kanji:nth-child(even):hover { transform: translateY(-4px) scale(1.02) rotate(0); }
+.kanji-ch {
+  text-shadow:
+    0 2px 4px rgba(0,0,0,.18),
+    0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+/* ── CONVERSATION — speech-bubble feel ───────────────────────── */
+.convo {
+  border-width: 2px !important;
+  border-radius: 18px !important;
+  box-shadow: var(--cartoon-shadow);
+}
+.convo-bubble {
+  border-width: 2px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, black 14%, transparent);
+  position: relative;
+}
+.convo-avatar {
+  border: 2px solid #fff !important;
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 4px 8px color-mix(in srgb, var(--accent) 35%, transparent);
+  font-weight: 800 !important;
+  transform: rotate(-3deg);
+}
+.convo-turn.from-B .convo-avatar {
+  box-shadow:
+    0 0 0 2px var(--accent-2),
+    0 4px 8px color-mix(in srgb, var(--accent-2) 35%, transparent);
+  transform: rotate(3deg);
+}
+
+/* ── QUIZ — game-show card ───────────────────────────────────── */
+.quiz-card {
+  border-width: 2px !important;
+  border-radius: 20px !important;
+  box-shadow: var(--cartoon-shadow);
+}
+.quiz-opt {
+  border-width: 2px !important;
+  border-radius: 12px !important;
+  font-weight: 700;
+  box-shadow: 0 3px 0 0 color-mix(in srgb, black 15%, transparent);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s;
+}
+.quiz-opt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 0 color-mix(in srgb, black 18%, transparent);
+}
+.quiz-opt:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, black 15%, transparent);
+}
+.quiz-opt.correct {
+  background: var(--good) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 0 0 color-mix(in srgb, var(--good) 50%, black);
+  animation: cartoon-pop .35s ease;
+}
+.quiz-opt.wrong {
+  background: var(--bad) !important;
+  color: #fff !important;
+  box-shadow: 0 3px 0 0 color-mix(in srgb, var(--bad) 50%, black);
+  animation: cartoon-shake .35s ease;
+}
+@keyframes cartoon-pop {
+  0% { transform: scale(.92); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+@keyframes cartoon-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ── BUTTONS — sticker style (offset shadow = 3D button) ─────── */
+button.primary,
+.quiz-listen,
+.continue-btn,
+.quiz-jump-btn,
+.legend-toggle,
+button.ghost,
+.struct-toggle,
+.chapter-toggle,
+#chapReset,
+#structDailyReset,
+#copyTopicBtn,
+#regenTopicBtn,
+#reminderTestBtn {
+  border-radius: 12px;
+  font-weight: 700;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+button.primary {
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--accent) 50%, black);
+}
+button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 0 color-mix(in srgb, var(--accent) 50%, black);
+}
+button.primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--accent) 50%, black);
+}
+button.ghost {
+  border-width: 2px;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, black 18%, transparent);
+}
+button.ghost:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, black 22%, transparent);
+}
+button.ghost:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, black 18%, transparent);
+}
+
+/* ── INPUTS — chunky border + focus glow ─────────────────────── */
+.search,
+.ctrl select,
+input[type="text"],
+input[type="search"] {
+  border-width: 2px !important;
+  border-radius: 12px !important;
+  transition: border-color .15s, box-shadow .15s;
+}
+.search:focus,
+.ctrl select:focus,
+input[type="text"]:focus,
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent),
+    0 3px 0 0 color-mix(in srgb, black 14%, transparent);
+}
+
+/* ── CHIPS — sticker tags ────────────────────────────────────── */
+.chip {
+  border-width: 2px !important;
+  border-radius: 999px !important;
+  font-weight: 700;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, black 12%, transparent);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, black 16%, transparent);
+}
+.chip:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, black 12%, transparent);
+}
+.chip.is-active {
+  box-shadow:
+    0 2px 0 0 color-mix(in srgb, var(--accent) 50%, black),
+    0 4px 12px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* ── SUB-TABS — bouncy too ───────────────────────────────────── */
+.subtab.is-active {
+  box-shadow:
+    0 3px 0 0 color-mix(in srgb, var(--accent) 50%, black),
+    0 6px 14px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.subtab:not(.is-active):hover {
+  transform: translateY(-1px);
+}
+
+/* ── TOPBAR brand: tiny tilt for personality ─────────────────── */
+.brand-jp { display: inline-block; transition: transform .2s; }
+.brand:hover .brand-jp { transform: rotate(-6deg) scale(1.06); }
+
+/* ── On mobile, dial down rotation so columns don't feel crooked ─ */
+@media (max-width: 720px) {
+  .word:nth-child(3n),
+  .word:nth-child(5n+2),
+  .kanji:nth-child(odd),
+  .kanji:nth-child(even) {
+    transform: none;
+  }
+}
+
