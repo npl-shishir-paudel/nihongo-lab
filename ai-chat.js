@@ -7,6 +7,13 @@
 (function () {
   "use strict";
 
+  // Default Worker URL — hardcoded so the app works out-of-the-box on any
+  // device without needing to paste a URL into Settings. Users can still
+  // override via Settings (⚙) to point at a dev Worker. The URL itself
+  // isn't sensitive (visible in DevTools the moment chat fires); abuse
+  // is gated by CORS lockdown on the Worker side (ALLOWED_ORIGIN).
+  const DEFAULT_WORKER_URL = "https://nihongo-lab-reminder.shishirpaudel-sharedsystems.workers.dev";
+
   const LS_URL = "jp.chat.workerUrl";
   const LS_SESSIONS = "jp.chat.sessions";
   const LS_CURRENT = "jp.chat.currentId";
@@ -50,7 +57,7 @@
   }
 
   function getWorkerUrl() {
-    return localStorage.getItem(LS_URL) || "";
+    return localStorage.getItem(LS_URL) || DEFAULT_WORKER_URL;
   }
   function setWorkerUrl(url) {
     if (url && !/^https?:\/\//.test(url)) url = "https://" + url;
@@ -125,8 +132,6 @@
     panel.classList.toggle("is-open", state.open);
     panel.setAttribute("aria-hidden", String(!state.open));
     if (state.open) {
-      // If no URL set yet, auto-open settings on first launch
-      if (!getWorkerUrl()) toggleSettings(true);
       setTimeout(() => document.getElementById("aiInput")?.focus(), 200);
     }
   }

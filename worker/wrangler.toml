@@ -32,9 +32,10 @@ NTFY_TOPIC = "shishir-japanese-CHANGE-THIS-TO-A-RANDOM-STRING"
 # Optional override of the rotating notification title.
 NTFY_TITLE = "🇯🇵 Nihongo Lab"
 
-# CORS allowlist for the /chat endpoint. Use "*" to allow anywhere, or
-# lock to your Pages URL: "https://npl-shishir-paudel.github.io"
-ALLOWED_ORIGIN = "*"
+# CORS allowlist for the /chat endpoint. Locked to the Pages origin so
+# random websites can't make browser-side calls and burn the Gemini quota.
+# (Doesn't stop curl/scripts — but stops casual abuse from other sites.)
+ALLOWED_ORIGIN = "https://npl-shishir-paudel.github.io"
 
 # Triggers section — daily reminder schedule.
 # Format: standard cron, in UTC.
