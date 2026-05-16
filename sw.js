@@ -1,10 +1,11 @@
 /* Nihongo Lab — Service Worker (offline cache) */
-const CACHE_NAME = "nihongo-lab-v2";
+const CACHE_NAME = "nihongo-lab-v6";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./data.js",
+  "./cheat-data.js",
   "./app.js",
   "./manifest.json"
 ];

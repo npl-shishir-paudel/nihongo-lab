@@ -282,11 +282,11 @@
   // works natively and ctrl/cmd-click opens a new tab. On normal left-click
   // we prevent default and switch panels SPA-style, also updating the URL
   // hash so the current tab is reflected in the address bar and bookmarkable.
-  const VALID_TABS = ["today", "chapters", "kana", "phrases", "structures", "kanji", "quiz"];
+  const VALID_TABS = ["kana", "chapters", "quiz", "phrases", "cheat"];
 
   function activateTab(name, opts) {
     opts = opts || {};
-    if (!VALID_TABS.includes(name)) name = "today";
+    if (!VALID_TABS.includes(name)) name = "kana";
     $$(".tab").forEach(t => t.classList.toggle("is-active", t.dataset.tab === name));
     $$(".panel").forEach(p => p.classList.toggle("is-active", p.id === `panel-${name}`));
     state.lastTab = name;
@@ -2383,6 +2383,272 @@ wrangler deploy</pre>
     next();
   }
 
+  // ---------- today calendar widget (top of Chapters) ----------
+  // Interactive month grid. Each calendar date maps to a chapter day
+  // based on a per-user "curriculum start" date stored locally. Each
+  // cell shows status (done / today / missed / planned / future) and
+  // is clickable — clicking jumps to that chapter card and opens it.
+  function getCurriculumStart() {
+    let iso = localStorage.getItem("jp.curriculumStart");
+    if (!iso) {
+      iso = new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD local
+      localStorage.setItem("jp.curriculumStart", iso);
+    }
+    return new Date(iso + "T00:00:00");
+  }
+  function chapDayForDate(date) {
+    const start = getCurriculumStart();
+    const a = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    const b = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+    const diff = Math.floor((a - b) / 86400000) + 1;
+    if (!DATA.chapters || diff < 1 || diff > DATA.chapters.length) return null;
+    return diff;
+  }
+
+  function buildTodayCal() {
+    const root = $("#todayCal");
+    if (!root) return;
+    const now = new Date();
+    const y = now.getFullYear(), m = now.getMonth(), today = now.getDate();
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const dow = ["S","M","T","W","T","F","S"];
+    const first = new Date(y, m, 1).getDay();
+    const daysInMonth = new Date(y, m + 1, 0).getDate();
+    const todayStart = new Date(y, m, today);
+
+    const chapDone = new Set(JSON.parse(localStorage.getItem("jp.chapDone") || "[]"));
+    const totalChaps = (DATA.chapters || []).length;
+    const streak = (typeof computeStreak === "function") ? computeStreak() : 0;
+
+    let cellsHtml = dow.map(d => `<div class="dow">${d}</div>`).join("");
+    for (let i = 0; i < first; i++) cellsHtml += `<div class="cell empty"></div>`;
+    let monthDone = 0;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const cellDate = new Date(y, m, d);
+      const chapDay = chapDayForDate(cellDate);
+      const ch = chapDay !== null ? DATA.chapters.find(c => c.day === chapDay) : null;
+      const isToday = d === today;
+      const isPast = cellDate < todayStart;
+      const isDone = chapDay !== null && chapDone.has(chapDay);
+      if (isDone && cellDate.getMonth() === m) monthDone++;
+
+      let status = "empty";
+      if (isDone)                        status = "done";
+      else if (isToday)                  status = "today";
+      else if (isPast && chapDay !== null) status = "missed";
+      else if (chapDay !== null)         status = "planned";
+
+      const title = ch ? `Day ${chapDay}: ${ch.title}` : (isToday ? "Today" : "");
+      const tipParts = [];
+      if (ch)        tipParts.push(`📖 ${title}`);
+      if (status === "done")    tipParts.push("✅ Completed");
+      if (status === "missed")  tipParts.push("⚠️ Missed — click to catch up");
+      if (status === "today")   tipParts.push("⭐ Today");
+      if (status === "planned") tipParts.push("🗓 Planned");
+      const tip = tipParts.join("\n");
+
+      cellsHtml += `<button type="button"
+        class="cell ${status}"
+        data-chap="${chapDay || ""}"
+        data-day-num="${d}"
+        ${tip ? `title="${escapeHtml(tip)}"` : ""}
+        ${!ch && !isToday ? "tabindex=\"-1\"" : ""}
+      ><span class="n">${d}</span></button>`;
+    }
+    const totalCells = first + daysInMonth;
+    const trail = (7 - (totalCells % 7)) % 7;
+    for (let i = 0; i < trail; i++) cellsHtml += `<div class="cell empty"></div>`;
+
+    const todayChap = chapDayForDate(now);
+    const todayCh = todayChap !== null ? DATA.chapters.find(c => c.day === todayChap) : null;
+    const todayLabel = todayCh
+      ? `Day ${todayChap}: ${todayCh.title}`
+      : (totalChaps && todayChap !== null && todayChap > totalChaps ? "Curriculum complete 🎉" : "Open a chapter to start");
+
+    root.innerHTML = `
+      <div class="today-cal">
+        <div class="today-cal-summary">
+          <div class="today-cal-head">
+            <div class="today-cal-date">${monthNames[m]} ${y}</div>
+            <div class="today-cal-day">${today}</div>
+          </div>
+          <div class="today-cal-target" id="todayTarget" data-chap="${todayChap || ""}">
+            <span class="lbl">Today's target</span>
+            <span class="ttl">${escapeHtml(todayLabel)}</span>
+          </div>
+          <div class="today-cal-stats">
+            <span class="stat">🔥 <b>${streak}</b> streak</span>
+            <span class="stat">✅ <b>${monthDone}</b> this month</span>
+          </div>
+          <div class="today-cal-legend">
+            <span><i class="dot today"></i>today</span>
+            <span><i class="dot done"></i>done</span>
+            <span><i class="dot missed"></i>missed</span>
+            <span><i class="dot planned"></i>planned</span>
+          </div>
+        </div>
+        <div class="today-cal-grid">${cellsHtml}</div>
+      </div>
+    `;
+
+    // Click a target / cell → switch to chapters tab and open that card
+    const goToChap = (day) => {
+      if (!day) return;
+      activateTab("chapters");
+      const card = document.querySelector(`#chapList .chapter[data-day="${day}"]`);
+      if (card) {
+        card.classList.add("is-open");
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    };
+    const targetEl = $("#todayTarget");
+    if (targetEl && targetEl.dataset.chap) {
+      targetEl.addEventListener("click", () => goToChap(parseInt(targetEl.dataset.chap, 10)));
+    }
+    root.querySelectorAll(".today-cal-grid .cell").forEach(cell => {
+      const chap = parseInt(cell.dataset.chap || "0", 10);
+      if (!chap) return;
+      cell.addEventListener("click", () => goToChap(chap));
+    });
+  }
+  // Expose so the chapter handler can refresh after a mark-complete
+  window.refreshTodayDashboard = buildTodayCal;
+
+  // ---------- quick cheat tables ----------
+  // Renders all 6 cheat-sheet tables from the global CHEAT object
+  // (defined in cheat-data.js). Each JP cell is wired for click-to-speak.
+  function buildCheat() {
+    if (typeof CHEAT === "undefined") return;
+    const sp = (jp, ro) => {
+      if (!jp || jp === "—") return jp || "";
+      return `<span class="jp" data-say="${escapeHtml(jp)}" title="Click to hear">${escapeHtml(jp)}</span>`
+           + (ro ? ` <span class="ro">${escapeHtml(ro)}</span>` : "");
+    };
+    const intro = (text) => `<div class="cheat-intro">${escapeHtml(text)}</div>`;
+
+    // ── Tenses ──
+    {
+      const t = CHEAT.tenses;
+      let h = intro(t.intro);
+      h += `<table class="cheat-table"><thead><tr>
+        <th>Tense</th><th>Polite (〜ます)</th><th>Plain (dictionary)</th><th>Copula (です)</th><th>Example</th><th>Nepali</th>
+      </tr></thead><tbody>`;
+      t.rows.forEach(r => {
+        h += `<tr>
+          <td><b>${escapeHtml(r.tense)}</b></td>
+          <td>${sp(r.polite, r.politeRo)}</td>
+          <td>${sp(r.plain, r.plainRo)}</td>
+          <td>${sp(r.copula, r.copulaRo)}</td>
+          <td>${sp(r.example, r.exampleRo)}</td>
+          <td class="ne">${escapeHtml(r.ne)}</td>
+        </tr>`;
+      });
+      h += `</tbody></table>`;
+      $("#cheatTenses").innerHTML = h;
+    }
+
+    // ── Particles ──
+    {
+      const t = CHEAT.particles;
+      let h = intro(t.intro);
+      h += `<table class="cheat-table"><thead><tr>
+        <th>Particle</th><th>Role</th><th>Example</th><th>Nepali</th><th>Note</th>
+      </tr></thead><tbody>`;
+      t.rows.forEach(r => {
+        h += `<tr>
+          <td>${sp(r.p, r.ro)}</td>
+          <td><b>${escapeHtml(r.role)}</b></td>
+          <td>${sp(r.ex, r.exRo)}</td>
+          <td class="ne">${escapeHtml(r.exNe)}</td>
+          <td class="note">${escapeHtml(r.note)}</td>
+        </tr>`;
+      });
+      h += `</tbody></table>`;
+      $("#cheatParticles").innerHTML = h;
+    }
+
+    // ── Persons ──
+    {
+      const t = CHEAT.persons;
+      let h = intro(t.intro);
+      h += `<table class="cheat-table"><thead><tr>
+        <th>Person</th><th>Casual</th><th>Polite</th><th>Plural</th><th>Note</th>
+      </tr></thead><tbody>`;
+      t.rows.forEach(r => {
+        h += `<tr>
+          <td><b>${escapeHtml(r.person)}</b></td>
+          <td>${sp(r.casual, r.casualRo)}</td>
+          <td>${sp(r.polite, r.politeRo)}</td>
+          <td>${sp(r.plural, r.pluralRo)}</td>
+          <td class="note">${escapeHtml(r.note)}</td>
+        </tr>`;
+      });
+      h += `</tbody></table>`;
+      $("#cheatPersons").innerHTML = h;
+    }
+
+    // ── Question words ──
+    {
+      const t = CHEAT.questions;
+      let h = intro(t.intro);
+      h += `<table class="cheat-table"><thead><tr>
+        <th>Word</th><th>Meaning</th><th>Example</th><th>Nepali</th><th>Note</th>
+      </tr></thead><tbody>`;
+      t.rows.forEach(r => {
+        h += `<tr>
+          <td>${sp(r.q, r.ro)}</td>
+          <td><b>${escapeHtml(r.meaning)}</b></td>
+          <td>${sp(r.ex, r.exRo)}</td>
+          <td class="ne">${escapeHtml(r.exNe)}</td>
+          <td class="note">${escapeHtml(r.note)}</td>
+        </tr>`;
+      });
+      h += `</tbody></table>`;
+      $("#cheatQuestions").innerHTML = h;
+    }
+
+    // ── Confusing pairs ──
+    {
+      const t = CHEAT.pairs;
+      let h = intro(t.intro);
+      t.rows.forEach(r => {
+        h += `<table class="cheat-table"><caption>${escapeHtml(r.pair)}</caption><thead><tr>
+          <th style="width:50%">Use it when…</th><th>Example</th>
+        </tr></thead><tbody>
+          <tr><td><b>A.</b> ${escapeHtml(r.a)}</td><td>${sp(r.aEx, r.aRo)}<br><span class="ne">${escapeHtml(r.aNe)}</span></td></tr>
+          <tr><td><b>B.</b> ${escapeHtml(r.b)}</td><td>${sp(r.bEx, r.bRo)}<br><span class="ne">${escapeHtml(r.bNe)}</span></td></tr>
+        </tbody></table>`;
+      });
+      $("#cheatPairs").innerHTML = h;
+    }
+
+    // ── Counters ──
+    {
+      const t = CHEAT.counters;
+      let h = intro(t.intro);
+      h += `<table class="cheat-table"><thead><tr>
+        <th>Counter</th><th>Used for</th><th>1</th><th>2</th><th>3</th><th>Note</th>
+      </tr></thead><tbody>`;
+      t.rows.forEach(r => {
+        h += `<tr>
+          <td>${sp(r.c, r.cRo)}</td>
+          <td><b>${escapeHtml(r.use)}</b></td>
+          <td>${sp(r.one, r.oneRo)}</td>
+          <td>${sp(r.two, r.twoRo)}</td>
+          <td>${sp(r.three, r.threeRo)}</td>
+          <td class="note">${escapeHtml(r.note)}</td>
+        </tr>`;
+      });
+      h += `</tbody></table>`;
+      $("#cheatCounters").innerHTML = h;
+    }
+
+    // Wire click-to-speak on every JP cell
+    document.querySelectorAll(".cheat-table .jp").forEach(el => {
+      el.addEventListener("click", () => speak(el.dataset.say, el));
+    });
+  }
+
   // ---------- quiz ----------
   function pick(arr, n) {
     const copy = arr.slice();
@@ -2545,12 +2811,12 @@ wrangler deploy</pre>
   bindKanaSearch("#searchKata", "#kataGrid");
   buildWords();
   buildSentences();
-  buildStructures();
-  buildStructDailyPlan();
+  if (document.getElementById("structList")) buildStructures();
   buildKanji();
   buildChapters();
   buildConversations();
-  buildToday();
+  buildTodayCal();
+  if (typeof buildCheat === "function") buildCheat();
   // If the URL has a tab hash (e.g. #structures), honor it over the saved tab.
   // Lets users bookmark/share specific tabs and right-click-open them in
   // new windows that land on the intended tab.
@@ -2561,13 +2827,16 @@ wrangler deploy</pre>
 
   // redirect old saved tab names to the new consolidated tabs
   const TAB_REDIRECT = {
-    "grammar": "structures",
+    "today": "kana",
+    "grammar": "cheat", "structures": "cheat",
+    "kanji": "kana",
     "hiragana": "kana", "katakana": "kana",
     "words": "phrases", "sentences": "phrases", "conversations": "phrases"
   };
   // also activate the matching sub-tab so the user lands where they expect
   const SUBTAB_FOR_OLD = {
-    "hiragana": ["kana", "hira"], "katakana": ["kana", "kata"],
+    "hiragana": ["kana", "hira"], "katakana": ["kana", "kata"], "kanji": ["kana", "kanji"],
+    "structures": ["cheat", "structures"], "grammar": ["cheat", "structures"],
     "conversations": ["phrases", "convo"], "sentences": ["phrases", "sent"], "words": ["phrases", "word"]
   };
   if (TAB_REDIRECT[state.lastTab]) {

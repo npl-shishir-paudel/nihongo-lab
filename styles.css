@@ -1,60 +1,81 @@
+/* Default = Vibrant sticker theme (light + rainbow). Pop, personality, fun. */
 :root {
-  /* dark theme — softer navy, lifted cards, kinder contrast */
-  --bg: #1a1e2c;
-  --bg-2: #242a3d;
-  --bg-3: #2d3450;
-  --fg: #f0f3fa;
-  --fg-dim: #aab4cc;
-  --accent: #ff7a86;
-  --accent-2: #7cc0ff;
-  --good: #6fdba8;
-  --bad: #ff7c8c;
-  --line: #38415d;
-  --shadow: 0 6px 28px rgba(0,0,0,.30);
-  --radius: 14px;
-  /* semantic word-role colors (work on dark) */
-  --c-particle: #fbbf24;     /* amber — は を の が に で から も */
-  --c-verb:     #4ade80;     /* green  — action verbs ます/ました/ません */
-  --c-copula:   #22d3ee;     /* cyan   — です/でした/じゃありません */
-  --c-pronoun:  #93b8ff;     /* sky blue — 私 彼 彼女 / proper nouns */
-  --c-noun:     #f0f3fa;     /* default fg — generic noun */
-  --c-adj:      #a3e635;     /* lime  — i-adj / na-adj */
-  --c-question: #f472b6;     /* pink  — 何 誰 どこ いつ いくら か */
-  --c-demo:     #c084fc;     /* violet — これ それ あれ この その あの */
-  --c-time:     #fb923c;     /* orange — 今日 明日 昨日 今 */
-  --c-adverb:   #cbd5e1;     /* slate — adverbs / interjections */
-  --c-honor:    #fcd34d;     /* gold  — さん, お, 〜中 */
-  /* tense/polarity tints applied as background — overlay on top of role color */
-  --t-past:     rgba(192,132,252,0.20);  /* purple wash */
-  --t-negative: rgba(251,113,133,0.20);  /* rose wash */
-  --t-te:       rgba(34,211,238,0.14);   /* cyan wash for て-form / continuous */
-  --t-want:     rgba(250,204,21,0.18);   /* yellow wash for たい */
-  --t-volit:    rgba(96,165,250,0.18);   /* blue wash for ましょう */
-}
-:root[data-theme="light"] {
-  --bg: #f4f6fb;
-  --bg-2: #ffffff;
-  --bg-3: #eaeef7;
-  --fg: #1a1e2c;
-  --fg-dim: #586079;
-  --line: #d3dae8;
-  --shadow: 0 4px 18px rgba(20,30,60,.08);
-  --c-particle: #d97706;     /* amber-700 */
-  --c-verb:     #16a34a;     /* green-600 */
-  --c-copula:   #0891b2;     /* cyan-600 */
-  --c-pronoun:  #2563eb;     /* blue-600 */
-  --c-noun:     #1a1e2c;
-  --c-adj:      #65a30d;     /* lime-700 */
-  --c-question: #db2777;     /* pink-600 */
-  --c-demo:     #7c3aed;     /* violet-600 */
-  --c-time:     #ea580c;     /* orange-600 */
-  --c-adverb:   #475569;     /* slate-600 */
-  --c-honor:    #ca8a04;     /* yellow-600 */
+  --bg: #f6f7fb;            /* clean cool off-white */
+  --bg-2: #ffffff;          /* card paper */
+  --bg-3: #eceef5;          /* recessed cool grey */
+  --fg: #1f1d2c;            /* near-black ink */
+  --fg-dim: #6b6478;
+  --accent: #ff4d8d;        /* vivid magenta-pink */
+  --accent-2: #2cb9ff;      /* bright sky blue */
+  --accent-3: #ff8fb0;      /* soft rose */
+  --accent-4: #57d96a;      /* fresh green */
+  --accent-5: #a86bff;      /* purple */
+  --accent-6: #ff944d;      /* tangerine */
+  --good: #2d9e3e;
+  --bad:  #ff4d6d;
+  --line: #1f1d2c;          /* thick ink borders */
+  --shadow: 4px 4px 0 0 rgba(31,29,44,.18);
+  --radius: 16px;
+  /* semantic word-role colors (saturated on light bg) */
+  --c-particle: #d97706;
+  --c-verb:     #2d9e3e;
+  --c-copula:   #0891b2;
+  --c-pronoun:  #2563eb;
+  --c-noun:     #1f1d2c;
+  --c-adj:      #65a30d;
+  --c-question: #db2777;
+  --c-demo:     #7c3aed;
+  --c-time:     #ea580c;
+  --c-adverb:   #475569;
+  --c-honor:    #ca8a04;
   --t-past:     rgba(124,58,237,0.14);
   --t-negative: rgba(219,39,119,0.14);
   --t-te:       rgba(8,145,178,0.10);
   --t-want:     rgba(202,138,4,0.14);
   --t-volit:    rgba(37,99,235,0.12);
+  /* rainbow sticker palette for card cycling (used by cartoon overlay) */
+  --sticker-1-bg: #ffe1ea;  --sticker-1-edge: #ff4d8d;
+  --sticker-2-bg: #d8f1ff;  --sticker-2-edge: #2cb9ff;
+  --sticker-3-bg: #ffe5d6;  --sticker-3-edge: #d96a1f;  /* peach (was yellow) */
+  --sticker-4-bg: #d9f5dd;  --sticker-4-edge: #2d9e3e;
+  --sticker-5-bg: #ebdcff;  --sticker-5-edge: #7a3dd8;
+  --sticker-6-bg: #ffe2cc;  --sticker-6-edge: #d96a1f;
+}
+/* Opt-in dark — softer navy, kept for users who toggle it */
+:root[data-theme="dark"] {
+  --bg: #1a1e2c;
+  --bg-2: #242a3d;
+  --bg-3: #2d3450;
+  --fg: #f0f3fa;
+  --fg-dim: #aab4cc;
+  --accent: #ff5d8a;
+  --accent-2: #7cc0ff;
+  --good: #6fdba8;
+  --bad: #ff7c8c;
+  --line: #38415d;
+  --shadow: 4px 4px 0 0 rgba(0,0,0,.45);
+  --c-particle: #fbbf24;
+  --c-verb:     #4ade80;
+  --c-copula:   #22d3ee;
+  --c-pronoun:  #93b8ff;
+  --c-noun:     #f0f3fa;
+  --c-adj:      #a3e635;
+  --c-question: #f472b6;
+  --c-demo:     #c084fc;
+  --c-time:     #fb923c;
+  --c-adverb:   #cbd5e1;
+  --c-honor:    #fcd34d;
+  --t-past:     rgba(192,132,252,0.20);
+  --t-negative: rgba(251,113,133,0.20);
+  --t-te:       rgba(34,211,238,0.14);
+  --t-want:     rgba(250,204,21,0.18);
+  --t-volit:    rgba(96,165,250,0.18);
+  --sticker-1-bg: #3a1f2c;  --sticker-1-edge: #ff5d8a;
+  --sticker-2-bg: #1f2e3a;  --sticker-2-edge: #7cc0ff;
+  --sticker-3-bg: #3a311f;  --sticker-3-edge: #fcd34d;
+  --sticker-4-bg: #1f3a26;  --sticker-4-edge: #6fdba8;
+  --sticker-5-bg: #2e1f3a;  --sticker-5-edge: #c084fc;
+  --sticker-6-bg: #3a281f;  --sticker-6-edge: #fb923c;
 }
 
 * { box-sizing: border-box; }
@@ -245,11 +266,11 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-2) 30%, transparent);
 }
 .kana .ch {
-  font-size: 30px; line-height: 1;
+  font-size: 44px; line-height: 1;
   color: color-mix(in srgb, var(--tint) 55%, var(--fg));
-  font-weight: 600;
+  font-weight: 700;
 }
-.kana .ro { font-size: 12px; color: var(--fg-dim); margin-top: 4px; letter-spacing: .04em; }
+.kana .ro { font-size: 14px; color: var(--fg-dim); margin-top: 6px; letter-spacing: .04em; }
 .kana .group {
   position: absolute; top: 6px; left: 8px;
   font-size: 9px; color: color-mix(in srgb, var(--tint) 60%, var(--fg-dim));
@@ -1692,12 +1713,12 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 }
 .kanji.is-hidden { display: none; }
 .kanji-ch {
-  font-size: 56px;
+  font-size: 76px;
   line-height: 1;
   text-align: center;
   color: var(--accent);
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .kanji-meta { display: flex; flex-direction: column; gap: 4px; }
 .kanji-en {
@@ -2054,21 +2075,20 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
   padding: 16px 0 32px;
 }
 
-/* Category section — tinted background, holds header + 2-col card grid */
+/* Category section — tinted background, holds header + 3-col card grid */
 .struct-cat-section {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  padding: 14px 16px 18px;
-  background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--cat-color) 9%, transparent) 0%,
-      color-mix(in srgb, var(--cat-color) 4%, transparent) 60%,
-      transparent 100%);
-  border: 1px solid color-mix(in srgb, var(--cat-color) 25%, var(--line));
-  border-radius: 22px;
-  box-shadow: 0 4px 18px rgba(var(--cat-glow), .08);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px 12px 14px;
+  background: color-mix(in srgb, var(--cat-color) 7%, var(--bg-2));
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 0 var(--line);
   position: relative;
+}
+@media (max-width: 1100px) {
+  .struct-cat-section { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 .struct-cat-section.is-hidden { display: none; }
 
@@ -2080,35 +2100,32 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
 .struct {
   position: relative;
   background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 2px 2px 0 0 var(--line);
   min-width: 0;
   overflow: hidden;
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease;
 }
-/* Decorative top ribbon in the category color (bigger when card is open) */
 .struct::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 6px;
+  top: 0; left: 0; bottom: 0;
+  width: 5px;
   background: var(--cat-color, var(--accent));
   z-index: 1;
   pointer-events: none;
 }
 .struct:hover {
-  transform: translateY(-2px);
-  border-color: var(--cat-color, var(--accent-2));
-  box-shadow: 0 10px 24px rgba(var(--cat-glow, 0, 0, 0), .14);
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 .struct.is-open {
   grid-column: 1 / -1;
   border-color: var(--cat-color, var(--accent));
-  box-shadow: 0 10px 28px rgba(var(--cat-glow, 0, 0, 0), .22);
+  box-shadow: 4px 4px 0 0 var(--line);
   transform: none;
 }
-.struct.is-open::before { height: 8px; }
 .struct.is-hidden { display: none; }
 
 .struct-head {
@@ -2116,45 +2133,49 @@ main { padding: 28px 24px 60px; max-width: 1180px; margin: 0 auto; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 10px;
-  padding: 16px 18px 14px;  /* extra top padding to clear the ribbon */
+  padding: 8px 14px 8px 18px;  /* leaves room for left ribbon */
   cursor: pointer;
   user-select: none;
-  background: linear-gradient(180deg,
-    color-mix(in srgb, var(--cat-color) 8%, transparent),
-    transparent);
 }
 .struct-cat {
-  font-size: 10.5px;
+  font-size: 10px;
   letter-spacing: .5px;
   text-transform: uppercase;
-  font-weight: 700;
-  color: var(--cat-color, var(--accent-2));
-  background: color-mix(in srgb, var(--cat-color) 14%, transparent);
-  border: 1px solid color-mix(in srgb, var(--cat-color) 40%, var(--line));
-  padding: 4px 10px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--cat-color, var(--accent));
+  border: 2px solid var(--line);
+  padding: 2px 8px;
   border-radius: 999px;
   white-space: nowrap;
+  box-shadow: 1px 1px 0 0 var(--line);
 }
 .struct-title {
   margin: 0;
-  font-size: 15.5px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: -.2px;
+  letter-spacing: -.1px;
   line-height: 1.35;
   color: var(--fg);
+  /* Truncate when closed so cards stay one line tall */
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 1; line-clamp: 1; -webkit-box-orient: vertical;
 }
-.struct.is-open .struct-title { font-size: 17px; }
+.struct.is-open .struct-title {
+  font-size: 17px;
+  -webkit-line-clamp: unset; line-clamp: unset; display: block;
+}
 .struct-toggle {
-  background: transparent;
-  border: 1px solid var(--line);
+  background: var(--bg-2);
+  border: 2px solid var(--line);
   border-radius: 8px;
-  color: var(--fg-dim);
-  padding: 3px 9px;
-  font-size: 13px;
-  cursor: pointer;
-  transition: transform .2s;
+  color: var(--fg);
+  width: 28px; height: 26px;
+  padding: 0; font-size: 14px; font-weight: 800; cursor: pointer;
+  transition: transform .18s;
+  box-shadow: 2px 2px 0 0 var(--line);
 }
-.struct.is-open .struct-toggle { transform: rotate(180deg); color: var(--accent); }
+.struct.is-open .struct-toggle { transform: rotate(180deg); background: var(--accent); color: #fff; }
 
 .struct-body {
   display: none;
@@ -2623,60 +2644,75 @@ button, .tab, .subtab, .kana, .word, .sentence, .struct, .struct-sent,
    buttons, inputs, conversation bubbles, quiz, kana cells.
    ═══════════════════════════════════════════════════════════════ */
 
-/* Reusable sticker shadow — soft + a chunky offset = sticker on paper */
+/* Chunky offset shadow + bigger lift = sticker-on-paper that lifts off when hovered */
 :root {
   --cartoon-shadow:
-    0 3px 0 0 color-mix(in srgb, black 18%, transparent),
-    0 8px 18px color-mix(in srgb, black 12%, transparent);
+    0 4px 0 0 var(--line),
+    0 10px 22px color-mix(in srgb, var(--line) 25%, transparent);
   --cartoon-shadow-lifted:
-    0 1px 0 0 color-mix(in srgb, black 20%, transparent),
-    0 12px 22px color-mix(in srgb, black 18%, transparent);
-  --cartoon-radius: 16px;
+    0 7px 0 0 var(--line),
+    0 16px 30px color-mix(in srgb, var(--line) 30%, transparent);
+  --cartoon-radius: 18px;
 }
-:root[data-theme="light"] {
+:root[data-theme="dark"] {
   --cartoon-shadow:
-    0 3px 0 0 color-mix(in srgb, black 10%, transparent),
-    0 8px 18px color-mix(in srgb, black 8%, transparent);
+    0 4px 0 0 #000,
+    0 10px 22px rgba(0,0,0,.35);
   --cartoon-shadow-lifted:
-    0 1px 0 0 color-mix(in srgb, black 12%, transparent),
-    0 12px 22px color-mix(in srgb, black 12%, transparent);
+    0 7px 0 0 #000,
+    0 16px 30px rgba(0,0,0,.45);
 }
+
+/* Rainbow card cycling — each Nth card gets a different sticker color.
+   Applied to word/sentence/kana/kanji cards so the page pops. */
+.kana:nth-child(6n+1), .word:nth-child(6n+1), .sentence:nth-child(6n+1), .kanji:nth-child(6n+1) { background: var(--sticker-1-bg); border-color: var(--sticker-1-edge) !important; }
+.kana:nth-child(6n+2), .word:nth-child(6n+2), .sentence:nth-child(6n+2), .kanji:nth-child(6n+2) { background: var(--sticker-2-bg); border-color: var(--sticker-2-edge) !important; }
+.kana:nth-child(6n+3), .word:nth-child(6n+3), .sentence:nth-child(6n+3), .kanji:nth-child(6n+3) { background: var(--sticker-3-bg); border-color: var(--sticker-3-edge) !important; }
+.kana:nth-child(6n+4), .word:nth-child(6n+4), .sentence:nth-child(6n+4), .kanji:nth-child(6n+4) { background: var(--sticker-4-bg); border-color: var(--sticker-4-edge) !important; }
+.kana:nth-child(6n+5), .word:nth-child(6n+5), .sentence:nth-child(6n+5), .kanji:nth-child(6n+5) { background: var(--sticker-5-bg); border-color: var(--sticker-5-edge) !important; }
+.kana:nth-child(6n+6), .word:nth-child(6n+6), .sentence:nth-child(6n+6), .kanji:nth-child(6n+6) { background: var(--sticker-6-bg); border-color: var(--sticker-6-edge) !important; }
 
 /* ── KANA CELLS — chunky game-tile feel ──────────────────────── */
 .kana {
-  border-width: 2px !important;
-  border-radius: 14px !important;
+  border-width: 3px !important;
+  border-radius: 18px !important;
   box-shadow: var(--cartoon-shadow);
-  transition: transform .15s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+  transition: transform .18s cubic-bezier(.34, 1.8, .6, 1), box-shadow .18s, border-color .12s;
 }
 .kana:hover {
-  transform: translateY(-3px) rotate(-1deg);
+  transform: translateY(-5px) rotate(-2deg) scale(1.04);
   box-shadow: var(--cartoon-shadow-lifted);
+  z-index: 2;
 }
-.kana:active { transform: translateY(0) rotate(0); }
-.kana .ch { font-weight: 700; }
+.kana:active { transform: translateY(1px) rotate(0deg) scale(.98); box-shadow: var(--cartoon-shadow); }
+.kana .ch { font-weight: 800; font-size: 54px; }
+.kana .ro { font-weight: 700; font-size: 15px; }
 
-/* ── WORD CARDS — sticker style ──────────────────────────────── */
+/* ── WORD CARDS — sticker style with rainbow tilt ────────────── */
 .word {
-  border-width: 2px !important;
+  border-width: 3px !important;
   border-radius: var(--cartoon-radius) !important;
   box-shadow: var(--cartoon-shadow);
-  transition: transform .16s cubic-bezier(.34, 1.56, .64, 1), box-shadow .15s, border-color .12s;
+  transition: transform .18s cubic-bezier(.34, 1.8, .6, 1), box-shadow .18s, border-color .12s;
 }
 .word:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.03);
   box-shadow: var(--cartoon-shadow-lifted);
+  z-index: 2;
 }
-.word:nth-child(3n) { transform: rotate(-.25deg); }
-.word:nth-child(3n):hover { transform: translateY(-3px) rotate(0deg); }
-.word:nth-child(5n+2) { transform: rotate(.3deg); }
-.word:nth-child(5n+2):hover { transform: translateY(-3px) rotate(0deg); }
-.word .jp { font-weight: 700; letter-spacing: -.2px; }
+.word:nth-child(3n) { transform: rotate(-1deg); }
+.word:nth-child(3n):hover { transform: translateY(-5px) rotate(0deg) scale(1.03); }
+.word:nth-child(5n+2) { transform: rotate(1.2deg); }
+.word:nth-child(5n+2):hover { transform: translateY(-5px) rotate(0deg) scale(1.03); }
+.word .jp { font-weight: 800; letter-spacing: -.2px; font-size: 1.15em; }
 .word .tag {
-  font-weight: 800;
+  font-weight: 900;
   border-radius: 999px;
-  padding: 3px 10px;
-  box-shadow: 0 2px 0 0 color-mix(in srgb, black 15%, transparent);
+  padding: 3px 12px;
+  box-shadow: 0 3px 0 0 var(--line);
+  border: 2px solid var(--line);
+  background: var(--accent);
+  color: #fff;
 }
 
 /* ── SENTENCE CARDS — chunky chat-card feel ──────────────────── */
@@ -2900,5 +2936,333 @@ input[type="search"]:focus {
   .kanji:nth-child(even) {
     transform: none;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NEW UI bits added for the 5-tab IA: brand-sub, head-sub,
+   curriculum-flow, cheat tables.
+   ═══════════════════════════════════════════════════════════════ */
+.brand-sub {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-size: 16px; font-weight: 600;
+  color: var(--accent);
+  margin-left: 4px;
+  transform: rotate(-3deg); display: inline-block;
+}
+.head-sub {
+  font-size: .55em; font-weight: 600;
+  color: var(--fg-dim); margin-left: 10px; letter-spacing: 0;
+}
+.curriculum-flow {
+  list-style: none; padding: 14px 18px; margin: 12px 0 0;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  background: var(--bg-2); border: 3px solid var(--line);
+  border-radius: var(--cartoon-radius);
+  box-shadow: var(--cartoon-shadow);
+  font-weight: 700; color: var(--fg);
+  counter-reset: flow;
+}
+.curriculum-flow li {
+  counter-increment: flow;
+  background: var(--bg-3); border: 2px solid var(--line);
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 13px;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.curriculum-flow li::before {
+  content: counter(flow);
+  display: inline-grid; place-items: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  border: 2px solid var(--line);
+  margin-right: 6px; font-size: 11px; font-weight: 900;
+}
+.curriculum-flow li:nth-child(2)::before { background: var(--accent-2); }
+.curriculum-flow li:nth-child(3)::before { background: var(--accent-4); }
+.curriculum-flow li:nth-child(4)::before { background: var(--accent-5); }
+.curriculum-flow li:nth-child(5)::before { background: var(--accent-6); }
+.curriculum-flow li:nth-child(6)::before { background: var(--accent-3); }
+
+/* Cheat-sheet tables — sticker-bordered, color-banded */
+.cheat-intro {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-size: 22px; font-weight: 600;
+  color: var(--fg);
+  margin: 12px 0 20px; padding: 14px 18px;
+  background: linear-gradient(135deg, var(--sticker-1-bg), var(--sticker-2-bg));
+  border: 3px solid var(--line);
+  border-radius: var(--cartoon-radius);
+  box-shadow: var(--cartoon-shadow);
+  position: relative;
+}
+.cheat-intro::before {
+  content: "💡"; font-size: 26px;
+  position: absolute; top: -16px; left: 14px;
+  background: var(--bg-2); border: 3px solid var(--line);
+  border-radius: 50%; width: 38px; height: 38px;
+  display: grid; place-items: center;
+  box-shadow: 2px 2px 0 0 var(--line);
+  transform: rotate(-8deg);
+}
+
+.cheat-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  background: var(--bg-2);
+  border: 3px solid var(--line);
+  border-radius: var(--cartoon-radius);
+  overflow: hidden;
+  box-shadow: var(--cartoon-shadow);
+  margin: 0 0 28px;
+  font-size: 15px;
+}
+.cheat-table caption {
+  caption-side: top; text-align: left;
+  font-weight: 900; font-size: 22px;
+  color: var(--fg);
+  padding: 0 4px 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.cheat-table caption::before {
+  content: ""; display: inline-block;
+  width: 24px; height: 24px;
+  background: var(--accent); border: 3px solid var(--line); border-radius: 6px;
+  transform: rotate(-8deg);
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.cheat-table th, .cheat-table td {
+  padding: 12px 14px; text-align: left;
+  border-bottom: 2px solid var(--line);
+  vertical-align: top;
+}
+.cheat-table thead th {
+  background: var(--fg);
+  color: var(--bg-2);
+  font-weight: 800; font-size: 13px;
+  text-transform: uppercase; letter-spacing: .5px;
+  border-bottom: 3px solid var(--line);
+  border-right: 2px solid color-mix(in srgb, var(--bg-2) 20%, transparent);
+}
+.cheat-table thead th:last-child { border-right: 0; }
+.cheat-table tr:last-child td { border-bottom: 0; }
+.cheat-table tbody tr {
+  transition: transform .15s, background .15s;
+}
+.cheat-table tbody tr:nth-child(6n+1) { background: color-mix(in srgb, var(--sticker-1-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:nth-child(6n+2) { background: color-mix(in srgb, var(--sticker-2-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:nth-child(6n+3) { background: color-mix(in srgb, var(--sticker-3-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:nth-child(6n+4) { background: color-mix(in srgb, var(--sticker-4-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:nth-child(6n+5) { background: color-mix(in srgb, var(--sticker-5-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:nth-child(6n+6) { background: color-mix(in srgb, var(--sticker-6-bg) 60%, var(--bg-2)); }
+.cheat-table tbody tr:hover {
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg-2));
+  position: relative; z-index: 1;
+}
+.cheat-table tbody tr td:first-child {
+  border-left: 6px solid transparent;
+  font-weight: 700;
+}
+.cheat-table tbody tr:nth-child(6n+1) td:first-child { border-left-color: var(--sticker-1-edge); }
+.cheat-table tbody tr:nth-child(6n+2) td:first-child { border-left-color: var(--sticker-2-edge); }
+.cheat-table tbody tr:nth-child(6n+3) td:first-child { border-left-color: var(--sticker-3-edge); }
+.cheat-table tbody tr:nth-child(6n+4) td:first-child { border-left-color: var(--sticker-4-edge); }
+.cheat-table tbody tr:nth-child(6n+5) td:first-child { border-left-color: var(--sticker-5-edge); }
+.cheat-table tbody tr:nth-child(6n+6) td:first-child { border-left-color: var(--sticker-6-edge); }
+
+.cheat-table .jp {
+  font-family: "Noto Sans JP", "Yu Gothic UI", sans-serif;
+  font-weight: 800; cursor: pointer;
+  padding: 2px 6px; border-radius: 6px;
+  background: rgba(255,255,255,.55);
+  border: 1px dashed var(--line);
+  transition: background .12s, transform .12s;
+  display: inline-block;
+  font-size: 16px;
+}
+.cheat-table .jp:hover {
+  background: var(--accent); color: #fff;
+  border-style: solid; transform: scale(1.05);
+}
+.cheat-table .ro {
+  display: block; color: var(--fg-dim); font-size: 11px;
+  font-style: italic; margin-top: 2px;
+}
+.cheat-table .ne {
+  color: var(--accent); font-weight: 700;
+  font-family: "Comic Sans MS", "Caveat", cursive; font-size: 17px;
+}
+.cheat-table .note {
+  color: var(--fg-dim); font-size: 12px; line-height: 1.5;
+}
+
+/* Pair tables — each pair gets a special A/B comparison frame */
+#cheatPairs .cheat-table { background: var(--bg-2); }
+#cheatPairs .cheat-table tbody tr td:first-child b {
+  display: inline-block;
+  width: 26px; height: 26px;
+  background: var(--accent); color: #fff;
+  border: 2px solid var(--line); border-radius: 50%;
+  text-align: center; line-height: 22px;
+  font-size: 14px; font-weight: 900;
+  margin-right: 8px;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+#cheatPairs .cheat-table tbody tr:nth-child(2) td:first-child b { background: var(--accent-2); }
+
+/* Calendar widget — compact, interactive, status-coded */
+.today-cal {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 14px;
+  margin: 0 0 14px;
+  padding: 12px;
+  background: var(--bg-2);
+  border: 3px solid var(--line);
+  border-radius: var(--cartoon-radius);
+  box-shadow: var(--cartoon-shadow);
+}
+.today-cal-summary {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.today-cal-head {
+  display: flex; align-items: center; gap: 12px;
+}
+.today-cal-date {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-size: 16px; color: var(--fg-dim);
+  text-transform: uppercase; letter-spacing: 1px;
+  line-height: 1;
+}
+.today-cal-day {
+  font-family: "Patrick Hand", "Comic Sans MS", sans-serif;
+  font-size: 38px; font-weight: 900; line-height: 1;
+  color: var(--accent);
+  background: var(--bg-2); border: 3px solid var(--line);
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  border-radius: 14px;
+  box-shadow: 3px 3px 0 0 var(--line);
+  transform: rotate(-3deg);
+  margin-left: auto;
+}
+.today-cal-target {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 10px 14px;
+  background: var(--sticker-1-bg);
+  border: 2px solid var(--line); border-radius: 12px;
+  box-shadow: 2px 2px 0 0 var(--line);
+  cursor: pointer; transition: transform .12s, box-shadow .12s;
+}
+.today-cal-target:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line); }
+.today-cal-target .lbl {
+  font-family: "Caveat", "Comic Sans MS", cursive;
+  font-size: 14px; color: var(--fg-dim);
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.today-cal-target .ttl {
+  font-size: 15px; font-weight: 800; color: var(--fg);
+  line-height: 1.25;
+}
+.today-cal-stats {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.today-cal-stats .stat {
+  font-size: 12px; font-weight: 700; color: var(--fg);
+  background: var(--bg-3);
+  border: 2px solid var(--line); border-radius: 999px;
+  padding: 3px 10px;
+}
+.today-cal-stats .stat b { color: var(--accent); }
+.today-cal-legend {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  font-size: 11px; color: var(--fg-dim); margin-top: auto;
+}
+.today-cal-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.today-cal-legend .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  border: 1.5px solid var(--line); display: inline-block;
+}
+.today-cal-legend .dot.today   { background: var(--accent); }
+.today-cal-legend .dot.done    { background: var(--sticker-4-edge); }
+.today-cal-legend .dot.missed  { background: var(--bad); }
+.today-cal-legend .dot.planned { background: var(--bg-3); }
+
+.today-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  align-content: start;
+}
+.today-cal-grid .dow {
+  text-align: center; font-weight: 800;
+  color: var(--fg-dim); font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px;
+  padding: 0 0 2px;
+}
+.today-cal-grid .cell {
+  appearance: none; border: 2px solid var(--line);
+  background: var(--bg-2); color: var(--fg);
+  border-radius: 8px;
+  font: 700 12px "Nunito", system-ui, sans-serif;
+  cursor: pointer;
+  padding: 0;
+  aspect-ratio: 1;
+  display: grid; place-items: center;
+  position: relative;
+  transition: transform .12s, box-shadow .12s, background .12s;
+}
+.today-cal-grid .cell .n { line-height: 1; }
+.today-cal-grid .cell.empty {
+  border: 2px dashed color-mix(in srgb, var(--line) 25%, transparent);
+  background: transparent; cursor: default;
+}
+.today-cal-grid .cell.planned {
+  background: var(--bg-3);
+  border-color: color-mix(in srgb, var(--line) 35%, transparent);
+  color: var(--fg-dim);
+}
+.today-cal-grid .cell.done {
+  background: color-mix(in srgb, var(--sticker-4-edge) 18%, var(--bg-2));
+  border-color: var(--sticker-4-edge);
+}
+.today-cal-grid .cell.done::after {
+  content: "✓"; position: absolute;
+  top: -4px; right: -4px;
+  background: var(--sticker-4-edge); color: #fff;
+  border: 2px solid var(--line); border-radius: 50%;
+  width: 16px; height: 16px;
+  display: grid; place-items: center;
+  font-size: 10px; font-weight: 900;
+}
+.today-cal-grid .cell.missed {
+  background: color-mix(in srgb, var(--bad) 14%, var(--bg-2));
+  border-color: var(--bad); color: var(--bad);
+  text-decoration: line-through;
+}
+.today-cal-grid .cell.missed::after {
+  content: "!"; position: absolute;
+  top: -4px; right: -4px;
+  background: var(--bad); color: #fff;
+  border: 2px solid var(--line); border-radius: 50%;
+  width: 16px; height: 16px;
+  display: grid; place-items: center;
+  font-size: 10px; font-weight: 900;
+}
+.today-cal-grid .cell.today {
+  background: var(--accent); color: #fff;
+  box-shadow: 2px 2px 0 0 var(--line);
+  transform: rotate(-3deg) scale(1.08);
+  z-index: 1;
+}
+.today-cal-grid .cell:not(.empty):hover {
+  transform: translate(-1px,-1px);
+  box-shadow: 3px 3px 0 0 var(--line);
+}
+.today-cal-grid .cell.today:hover {
+  transform: rotate(-3deg) scale(1.12);
+}
+@media (max-width: 720px) {
+  .today-cal { grid-template-columns: 1fr; }
+  .today-cal-summary { order: 2; }
+  .today-cal-day { font-size: 30px; width: 46px; height: 46px; }
 }
 

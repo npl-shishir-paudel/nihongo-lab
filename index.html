@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ff7a86" />
-  <meta name="description" content="日本語 Lab — Interactive Japanese learning. Kana, kanji, grammar structures, conversations, quizzes — with Nepali translations." />
+  <meta name="theme-color" content="#f7f3e8" />
+  <meta name="description" content="日本語 Lab — Hand-drawn Japanese learning notebook. Kana, kanji, chapters, quizzes, phrases, and a grammar cheat sheet — with Nepali translations." />
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23ff7a86'/%3E%3Ctext x='16' y='22' font-family='Noto Sans JP, sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='white'%3E日%3C/text%3E%3C/svg%3E" />
-  <title>日本語 Lab — Interactive Japanese</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f7f3e8' stroke='%232a2a2a' stroke-width='2'/%3E%3Ctext x='16' y='22' font-family='Noto Sans JP, sans-serif' font-size='17' font-weight='700' text-anchor='middle' fill='%232a2a2a'%3E日%3C/text%3E%3C/svg%3E" />
+  <title>日本語 Lab — Notebook</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,15 +15,14 @@
     <div class="brand">
       <span class="brand-jp">日本語</span>
       <span class="brand-en">Lab</span>
+      <span class="brand-sub">v2 ✨</span>
     </div>
     <nav class="tabs" id="tabs">
-      <a class="tab is-active" data-tab="today"      href="#today">🏠 Today</a>
-      <a class="tab"           data-tab="chapters"   href="#chapters">Chapters</a>
-      <a class="tab"           data-tab="kana"       href="#kana">Kana</a>
-      <a class="tab"           data-tab="phrases"    href="#phrases">Phrases</a>
-      <a class="tab"           data-tab="structures" href="#structures">Structure</a>
-      <a class="tab"           data-tab="kanji"      href="#kanji">Kanji</a>
-      <a class="tab"           data-tab="quiz"       href="#quiz">Quiz</a>
+      <a class="tab is-active" data-tab="kana"    href="#kana">🖋 Kana + Kanji</a>
+      <a class="tab"           data-tab="chapters" href="#chapters">📖 Chapters</a>
+      <a class="tab"           data-tab="quiz"    href="#quiz">🎯 Quiz</a>
+      <a class="tab"           data-tab="phrases" href="#phrases">💬 Phrases</a>
+      <a class="tab"           data-tab="cheat"   href="#cheat">📋 Quick Cheat</a>
     </nav>
     <div class="controls">
       <label class="ctrl">
@@ -44,36 +43,15 @@
   </header>
 
   <main>
-    <!-- TODAY — homepage / dashboard -->
-    <section class="panel is-active" id="panel-today">
+    <!-- 1. KANA + KANJI -->
+    <section class="panel is-active" id="panel-kana">
       <div class="panel-head">
-        <h1 id="todayGreeting">日本語 Lab — Today</h1>
-        <p class="muted" id="todaySubtitle">Your dashboard. See where you are, jump to your next lesson, review what you've already done.</p>
-      </div>
-      <div id="todayContent"></div>
-    </section>
-
-    <!-- CHAPTERS -->
-    <section class="panel" id="panel-chapters">
-      <div class="panel-head">
-        <h1>30-Day Curriculum 課程</h1>
-        <p class="muted">Each day mixes letters, vocabulary, grammar, and sentences. Click a chapter to expand its plan, hover any item inside to hear it. Mark a day complete to track your streak.</p>
-        <div class="filters">
-          <span class="score" id="chapStreak">Completed: 0 / 30</span>
-          <button class="ghost" id="chapReset" title="Clear all completed marks">Reset progress</button>
-        </div>
-      </div>
-      <div class="chapter-list" id="chapList"></div>
-    </section>
-
-    <!-- KANA — Hiragana + Katakana (sub-tabs) -->
-    <section class="panel" id="panel-kana">
-      <div class="panel-head">
-        <h1>Kana 仮名</h1>
-        <p class="muted">Japan's two phonetic syllabaries. <b>Hiragana</b> for native words and grammar; <b>Katakana</b> for loan-words, names, and IT terms (コンピュータ, バグ, レビュー). Hover any cell to see info, click to hear it.</p>
+        <h1>Kana <span class="head-sub">+ Kanji</span></h1>
+        <p class="muted">Japan's writing system. <b>Hiragana</b> for native words and grammar, <b>Katakana</b> for loan-words/names/IT terms (コンピュータ, バグ, レビュー), <b>Kanji</b> for ideas and roots. Hover any cell for info; click to hear it.</p>
         <div class="subtabs" data-panel="kana">
           <button class="subtab is-active" data-subtab="hira">ひらがな Hiragana</button>
           <button class="subtab" data-subtab="kata">カタカナ Katakana</button>
+          <button class="subtab" data-subtab="kanji">漢字 Kanji</button>
         </div>
       </div>
 
@@ -86,87 +64,40 @@
         <input class="search" id="searchKata" placeholder="Search katakana, romaji, group…" />
         <div class="kana-grid" id="kataGrid"></div>
       </div>
-    </section>
 
-    <!-- PHRASES — Conversations + Sentences + Words (sub-tabs) -->
-    <section class="panel" id="panel-phrases">
-      <div class="panel-head">
-        <h1>Phrases 会話・文・単語</h1>
-        <p class="muted">Everything you can speak. <b>Conversations</b> are full multi-turn dialogues; the <b>Sentences</b> and <b>Words</b> tabs collect the building blocks — useful when a phrase isn't in any conversation, or you want to drill it alone.</p>
-        <div class="subtabs" data-panel="phrases">
-          <button class="subtab is-active" data-subtab="convo">💬 Conversations</button>
-          <button class="subtab" data-subtab="sent">📝 Sentences</button>
-          <button class="subtab" data-subtab="word">📚 Words</button>
-        </div>
-      </div>
-
-      <div class="subpanel is-active" id="subpanel-convo">
-        <p class="muted small">Multi-turn dialogues for real situations. Click a line to hear it, or use <b>▶ Play all</b> to listen end-to-end. Toggle <b>Hide JP</b> to test your listening before reading.</p>
-        <div class="convo-list" id="convoList"></div>
-      </div>
-
-      <div class="subpanel" id="subpanel-sent">
-        <p class="muted small">Real, natural standalone phrases. Click a sentence to hear it; click any individual word inside to play just that word.</p>
-        <div class="filters">
-          <input class="search" id="searchSent" placeholder="Search sentence, scene, meaning…" />
-          <div class="chips" id="sentChips"></div>
-        </div>
-        <div class="sentence-list" id="sentList"></div>
-      </div>
-
-      <div class="subpanel" id="subpanel-word">
-        <p class="muted small">Daily-life + IT/workplace vocabulary. Click a card to hear it and reveal usage notes.</p>
-        <div class="filters">
-          <input class="search" id="searchWord" placeholder="Search word, meaning, romaji…" />
-          <div class="chips" id="wordChips"></div>
-        </div>
-        <div class="word-grid" id="wordGrid"></div>
-      </div>
-    </section>
-
-    <!-- SENTENCE STRUCTURES -->
-    <section class="panel" id="panel-structures">
-      <div class="panel-head">
-        <h1>Sentence Structure 文の構造</h1>
-        <p class="muted">Beginner-friendly chart of every essential Japanese sentence pattern. Each structure has a <b>formula</b>, full <b>token-by-token breakdown</b>, and 7 example sentences. Two ways to learn: <b>Browse</b> all 60 patterns by category, or follow the <b>Daily plan</b> to learn one structure per day, snake-timeline style.</p>
-        <div class="subtabs" data-panel="structures">
-          <button class="subtab is-active" data-subtab="browse">🗂️ Browse</button>
-          <button class="subtab" data-subtab="daily">📅 Daily plan</button>
-        </div>
-      </div>
-
-      <div class="subpanel is-active" id="subpanel-browse">
-        <div class="filters">
-          <input class="search" id="searchStruct" placeholder="Search formula, role, pattern, meaning…" />
-          <div class="chips" id="structChips"></div>
-        </div>
-        <div class="struct-list" id="structList"></div>
-      </div>
-
-      <div class="subpanel" id="subpanel-daily">
-        <p class="muted small">A 45-day structure-only curriculum. Each day focuses on 1–3 closely-related patterns with a practice prompt. Click a day to expand its structure cards. Mark days complete to track your progress.</p>
-        <div class="filters">
-          <span class="score" id="structDailyStreak">Completed: 0 / 45</span>
-          <button class="ghost" id="structDailyReset" title="Clear completion marks">Reset progress</button>
-        </div>
-        <div class="chapter-list struct-daily-list" id="structDailyList"></div>
-      </div>
-    </section>
-
-    <!-- KANJI -->
-    <section class="panel" id="panel-kanji">
-      <div class="panel-head">
-        <h1>Kanji 漢字</h1>
-        <p class="muted">Top ~60 high-utility kanji with <b>on'yomi</b> (Chinese-derived reading), <b>kun'yomi</b> (native Japanese reading), English meaning, stroke count, and 1–2 example compound words. Click any card to hear the kanji pronounced (uses on'yomi).</p>
+      <div class="subpanel" id="subpanel-kanji">
+        <p class="muted small">Top high-utility kanji with <b>on'yomi</b> (Chinese-derived reading), <b>kun'yomi</b> (native reading), meaning, stroke count, and example compounds. Click a card to hear the kanji (uses on'yomi).</p>
         <input class="search" id="searchKanji" placeholder="Search kanji, reading, meaning…" />
+        <div class="kanji-grid" id="kanjiGrid"></div>
       </div>
-      <div class="kanji-grid" id="kanjiGrid"></div>
     </section>
 
-    <!-- QUIZ -->
+    <!-- 2. CHAPTERS — main curriculum -->
+    <section class="panel" id="panel-chapters">
+      <div id="todayCal"></div>
+      <div class="panel-head">
+        <h1>Chapters <span class="head-sub">課程</span></h1>
+        <p class="muted">Your learning spine. Each chapter teaches one grammar concept: <b>formula</b>, <b>token-by-token breakdown</b>, <b>5–7 example sentences</b>, and the new vocab it uses. Curriculum flow:</p>
+        <ol class="curriculum-flow">
+          <li>Kana foundations</li>
+          <li>Nouns &amp; pronouns &amp; demonstratives</li>
+          <li>Particles (は, を, の, に, で…)</li>
+          <li>Verbs (ます, dictionary, て-form, ない-form)</li>
+          <li>Tenses (past, negative, want, can, must)</li>
+          <li>Real scenarios (questions, answers, requests)</li>
+        </ol>
+        <div class="filters">
+          <span class="score" id="chapStreak">Completed: 0 / 0</span>
+          <button class="ghost" id="chapReset" title="Clear all completed marks">Reset progress</button>
+        </div>
+      </div>
+      <div class="chapter-list" id="chapList"></div>
+    </section>
+
+    <!-- 3. QUIZ -->
     <section class="panel" id="panel-quiz">
       <div class="panel-head">
-        <h1>Quiz クイズ</h1>
+        <h1>Quiz <span class="head-sub">クイズ</span></h1>
         <p class="muted">Listen, read, and pick the right answer. Score is saved locally.</p>
         <div class="filters">
           <label class="ctrl">
@@ -188,13 +119,81 @@
         <p class="muted">Press <b>New question</b> to begin.</p>
       </div>
     </section>
+
+    <!-- 4. PHRASES — drill library -->
+    <section class="panel" id="panel-phrases">
+      <div class="panel-head">
+        <h1>Phrases <span class="head-sub">会話・文・単語</span></h1>
+        <p class="muted">Everything you can speak. <b>Conversations</b> = multi-turn dialogues for real situations. <b>Sentences</b> and <b>Words</b> = standalone drills.</p>
+        <div class="subtabs" data-panel="phrases">
+          <button class="subtab is-active" data-subtab="convo">💬 Conversations</button>
+          <button class="subtab" data-subtab="sent">📝 Sentences</button>
+          <button class="subtab" data-subtab="word">📚 Words</button>
+        </div>
+      </div>
+
+      <div class="subpanel is-active" id="subpanel-convo">
+        <p class="muted small">Click a line to hear it, or use <b>▶ Play all</b>. Toggle <b>Hide JP</b> to test your listening before reading.</p>
+        <div class="convo-list" id="convoList"></div>
+      </div>
+
+      <div class="subpanel" id="subpanel-sent">
+        <p class="muted small">Real, natural standalone phrases. Click a sentence to hear it; click any word inside to play just that word.</p>
+        <div class="filters">
+          <input class="search" id="searchSent" placeholder="Search sentence, scene, meaning…" />
+          <div class="chips" id="sentChips"></div>
+        </div>
+        <div class="sentence-list" id="sentList"></div>
+      </div>
+
+      <div class="subpanel" id="subpanel-word">
+        <p class="muted small">Daily-life + IT/workplace vocabulary. Click a card to hear it and reveal usage notes.</p>
+        <div class="filters">
+          <input class="search" id="searchWord" placeholder="Search word, meaning, romaji…" />
+          <div class="chips" id="wordChips"></div>
+        </div>
+        <div class="word-grid" id="wordGrid"></div>
+      </div>
+    </section>
+
+    <!-- 5. QUICK CHEAT — reference tables -->
+    <section class="panel" id="panel-cheat">
+      <div class="panel-head">
+        <h1>Quick Cheat <span class="head-sub">早見表</span></h1>
+        <p class="muted">Reference tables you can scan in seconds. Tenses, particles, persons, question words, confusing pairs, counters — everything that's easy to forget mid-sentence. Click any Japanese cell to hear it.</p>
+        <div class="subtabs" data-panel="cheat">
+          <button class="subtab is-active" data-subtab="tenses">⏳ Tenses</button>
+          <button class="subtab" data-subtab="particles">🔗 Particles</button>
+          <button class="subtab" data-subtab="persons">👥 Persons</button>
+          <button class="subtab" data-subtab="questions">❓ Question words</button>
+          <button class="subtab" data-subtab="pairs">⚖️ Confusing pairs</button>
+          <button class="subtab" data-subtab="counters">🔢 Counters</button>
+          <button class="subtab" data-subtab="structures">🧩 Structures</button>
+        </div>
+      </div>
+      <div class="subpanel is-active" id="subpanel-tenses"><div id="cheatTenses"></div></div>
+      <div class="subpanel" id="subpanel-particles"><div id="cheatParticles"></div></div>
+      <div class="subpanel" id="subpanel-persons"><div id="cheatPersons"></div></div>
+      <div class="subpanel" id="subpanel-questions"><div id="cheatQuestions"></div></div>
+      <div class="subpanel" id="subpanel-pairs"><div id="cheatPairs"></div></div>
+      <div class="subpanel" id="subpanel-counters"><div id="cheatCounters"></div></div>
+      <div class="subpanel" id="subpanel-structures">
+        <p class="muted small">Every essential sentence pattern with a <b>formula</b>, <b>token-by-token breakdown</b>, and example sentences. Filter by category or search by formula.</p>
+        <div class="filters">
+          <input class="search" id="searchStruct" placeholder="Search formula, role, pattern, meaning…" />
+          <div class="chips" id="structChips"></div>
+        </div>
+        <div class="struct-list" id="structList"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
-    <span><b>Hover</b> any card to see grammar info · <b>Click</b> any card or word to hear it. ⓘ Sound uses your system's Japanese voice — install one in Windows Settings → Time &amp; Language → Speech if silent.</span>
+    <span><b>Hover</b> any card for grammar info · <b>Click</b> any card or word to hear it. ⓘ Sound uses your system's Japanese voice — install one in Windows Settings → Time &amp; Language → Speech if silent.</span>
   </footer>
 
   <script src="data.js"></script>
+  <script src="cheat-data.js"></script>
   <script src="app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
