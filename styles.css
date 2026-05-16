@@ -3592,20 +3592,22 @@ input[type="search"]:focus {
 /* ── "Explain this" buttons on content cards ───────────────────── */
 .ai-explain-btn {
   position: absolute;
-  top: 4px; right: 4px;
+  top: 6px; right: 6px;
   width: 22px; height: 22px;
-  background: linear-gradient(135deg, var(--accent-5), var(--accent-2));
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
   color: #fff;
-  border: 2px solid var(--line);
+  border: 1.5px solid var(--line);
   border-radius: 50%;
-  display: grid; place-items: center;
-  font-size: 11px;
+  display: inline-grid; place-items: center;
   cursor: pointer;
-  box-shadow: 1px 1px 0 0 var(--line);
-  opacity: 0; transition: opacity .15s, transform .15s, box-shadow .15s;
+  box-shadow: 1px 1px 0 0 rgba(31,29,44,.5), 0 2px 8px rgba(124,58,237,.35);
+  opacity: 0;
+  transform: scale(.85);
+  transition: opacity .18s, transform .18s cubic-bezier(.34,1.8,.6,1), box-shadow .18s;
   padding: 0;
   z-index: 5;
 }
+.ai-explain-btn svg { display: block; }
 /* Reveal on card hover; always visible on touch (no hover) */
 .kana:hover .ai-explain-btn,
 .word:hover .ai-explain-btn,
@@ -3613,23 +3615,45 @@ input[type="search"]:focus {
 .kanji:hover .ai-explain-btn,
 .struct:hover .ai-explain-btn,
 .struct.is-open .ai-explain-btn,
+.chapter-sentence:hover .ai-explain-btn,
+.convo-bubble:hover .ai-explain-btn,
+.struct-sent:hover .ai-explain-btn,
 .ai-explain-btn:focus {
   opacity: 1;
+  transform: scale(1);
 }
 @media (hover: none) {
-  .ai-explain-btn { opacity: 1; }
+  .ai-explain-btn { opacity: 1; transform: scale(1); }
 }
 .ai-explain-btn:hover {
-  transform: scale(1.15) rotate(-6deg);
-  box-shadow: 2px 2px 0 0 var(--line);
+  transform: scale(1.18) rotate(-8deg);
+  box-shadow: 2px 2px 0 0 rgba(31,29,44,.6), 0 4px 12px rgba(124,58,237,.5);
 }
 
-/* Struct cards: position the explain button inside the head, not overlapping toggle */
-.struct .ai-explain-btn {
-  position: relative; top: auto; right: auto;
-  margin-right: 4px;
-  opacity: 1;
+/* Inline variant — sits at end of a text line, not absolutely positioned.
+   Used for dense items where top-right corner would overlap content. */
+.ai-explain-btn.is-inline {
+  position: static;
+  width: 18px; height: 18px;
+  margin-left: 6px;
+  vertical-align: middle;
+  /* always visible in inline mode — it's tied to a specific text line */
+  opacity: 1; transform: scale(1);
 }
+.ai-explain-btn.is-inline svg { width: 9px; height: 9px; }
+
+/* Struct cards: explain button inside the head (next to category chip),
+   not floating top-right where it'd hit the toggle button. */
+.struct .struct-head > .ai-explain-btn {
+  position: relative; top: auto; right: auto;
+  margin: 0 4px 0 auto;
+  opacity: 1; transform: scale(1);
+}
+
+/* Make sure parents of inline/absolute explain buttons are positioned */
+.struct-sent { position: relative; }
+.chapter-sentence { position: relative; }
+.convo-bubble { position: relative; }
 
 /* On mobile the floating toggle gets smaller */
 @media (max-width: 640px) {

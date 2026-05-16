@@ -870,9 +870,14 @@
         sents.forEach(s => {
           const item = document.createElement("div");
           item.className = "chapter-sentence";
-          item.innerHTML = `<div class="jp">${s.jp}</div><div class="ro">${s.ro}</div><div class="en">${s.en}</div>`;
+          const explainCtx = `Sentence: ${s.jp} (${s.ro}) — ${s.en}.`;
+          const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
+          item.innerHTML = `${explainBtn}<div class="jp">${s.jp}</div><div class="ro">${s.ro}</div><div class="en">${s.en}</div>`;
           bindHoverInfo(item, () => infoForSentence(s));
-          item.addEventListener("click", () => speak(s.jp, item));
+          item.addEventListener("click", (e) => {
+            if (e.target.closest(".ai-explain-btn")) return;
+            speak(s.jp, item);
+          });
           list.appendChild(item);
         });
         sec.appendChild(list);
@@ -1244,9 +1249,11 @@
   function renderSentenceBlock(s, label, extraClass) {
     const np = (typeof NEPALI !== "undefined" && NEPALI[s.jp]) || "";
     const cls = "struct-sent" + (extraClass ? " " + extraClass : "");
+    const explainCtx = `Example sentence: ${s.jp} (${s.ro || ""}) — ${s.en || ""}.`;
+    const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx, { inline: true }) : "";
     return `
       <div class="${cls}" data-say="${escapeHtml(s.jp)}">
-        ${label ? `<div class="struct-sent-label">${escapeHtml(label)}</div>` : ""}
+        ${label ? `<div class="struct-sent-label">${escapeHtml(label)} ${explainBtn}</div>` : explainBtn}
         <div class="struct-sent-jp">${renderColoredJp(s.jp, s.tokens)}</div>
         <div class="struct-sent-ro">${escapeHtml(s.ro || "")}</div>
         <div class="struct-sent-en"><b>EN</b>${escapeHtml(s.en || "")}</div>
@@ -2505,9 +2512,12 @@ wrangler deploy</pre>
         t.dataset.idx = i;
         const speakerInfo = turn.s === "A" ? c.a : c.b;
         const initial = (speakerInfo?.name || turn.s).slice(0, 1);
+        const explainCtx = `Conversation turn (${speakerInfo?.name || turn.s} / ${speakerInfo?.role || ""}): ${turn.jp} (${turn.ro}) — ${turn.en}.`;
+        const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
         t.innerHTML = `
           <div class="convo-avatar">${initial}</div>
           <div class="convo-bubble">
+            ${explainBtn}
             <div class="speaker">${speakerInfo?.name || turn.s} · ${speakerInfo?.role || ""}</div>
             <div class="jp">${turn.jp}</div>
             <div class="ro">${turn.ro}</div>
@@ -2515,7 +2525,8 @@ wrangler deploy</pre>
           </div>
         `;
         bindHoverInfo(t, () => infoForConvoTurn(turn, c));
-        t.addEventListener("click", () => {
+        t.addEventListener("click", (e) => {
+          if (e.target.closest(".ai-explain-btn")) return;
           t.classList.add("revealed");
           speak(turn.jp, t);
         });

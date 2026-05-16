@@ -368,8 +368,15 @@
       input.value = `Explain this for me as a beginner Japanese learner:\n\n${context}`;
       document.getElementById("aiInputForm").dispatchEvent(new Event("submit"));
     },
-    // Build the standard explain-button HTML (used by card renderers)
-    explainButtonHtml: (context) =>
-      `<button class="ai-explain-btn" data-explain="${escapeHtml(context)}" title="Ask the AI tutor about this">✨</button>`,
+    // Build the standard explain-button HTML (used by card renderers).
+    // The SVG sparkle reads as a small "AI / magic" icon — cleaner than the
+    // emoji and renders consistently across fonts. Pass `inline: true` for
+    // dense items where absolute-positioning would clip (e.g. struct example
+    // grid cells, chapter sentences); default is absolute top-right.
+    explainButtonHtml: (context, opts) => {
+      const inline = opts && opts.inline;
+      const cls = "ai-explain-btn" + (inline ? " is-inline" : "");
+      return `<button class="${cls}" data-explain="${escapeHtml(context)}" title="Ask the AI tutor about this" aria-label="Ask AI"><svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M8 0l1.5 5.5L16 7l-6 1.5L9 13l-1-2-1 2-1-4.5L0 7l6.5-1.5z" fill="currentColor"/><circle cx="13" cy="2.5" r="1" fill="currentColor"/><circle cx="2.5" cy="13.5" r=".8" fill="currentColor"/></svg></button>`;
+    },
   };
 })();
