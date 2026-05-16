@@ -2697,122 +2697,197 @@ wrangler deploy</pre>
     };
     const intro = (text) => `<div class="cheat-intro">${escapeHtml(text)}</div>`;
 
-    // ── Tenses ──
-    {
-      const t = CHEAT.tenses;
-      let h = intro(t.intro);
-      h += `<table class="cheat-table"><thead><tr>
-        <th>Tense</th><th>Polite (〜ます)</th><th>Plain (dictionary)</th><th>Copula (です)</th><th>Example</th><th>Nepali</th>
-      </tr></thead><tbody>`;
-      t.rows.forEach(r => {
-        h += `<tr>
-          <td><b>${escapeHtml(r.tense)}</b></td>
-          <td>${sp(r.polite, r.politeRo)}</td>
-          <td>${sp(r.plain, r.plainRo)}</td>
-          <td>${sp(r.copula, r.copulaRo)}</td>
-          <td>${sp(r.example, r.exampleRo)}</td>
-          <td class="ne">${escapeHtml(r.ne)}</td>
-        </tr>`;
+    // ── Shared slider renderer ──
+    // Generic helper used by every cheat section. Takes:
+    //   - rootSel: CSS selector for the panel target div
+    //   - data:    CHEAT.<section> — must have { intro, sets: [...] }
+    //   - tablesFor(set): function returning the HTML for that set's table(s)
+    // Renders intro + dot tabs + stacked sets (only first visible), wires dot clicks.
+    const dotLabelFor = (set) => {
+      if (set.verb)  return escapeHtml(set.verb);   // tenses: show the JP verb
+      if (set.title) return escapeHtml(set.title);  // others: show the category title
+      return escapeHtml(set.label || "");
+    };
+    const dotMeaningFor = (set) => set.meaning ? `(${escapeHtml(set.meaning)})` : "";
+    const renderSlider = (cfg) => {
+      const root = document.querySelector(cfg.rootSel);
+      if (!root) return;
+      const sets = (cfg.data && cfg.data.sets) || [];
+      const id = cfg.rootSel.replace("#", "");
+      let h = cfg.data.intro ? intro(cfg.data.intro) : "";
+      h += `<div class="cheat-slider">`;
+      h += `<div class="cheat-slider-tabs" role="tablist">`;
+      sets.forEach((set, i) => {
+        h += `<button type="button" class="cheat-slider-dot ${i === 0 ? "is-active" : ""}"
+          data-set="${i}" role="tab" aria-selected="${i === 0}" aria-controls="${id}Set${i}">
+          <span class="dot-num">${escapeHtml(set.label || String(i + 1))}</span>
+          <span class="dot-label">${dotLabelFor(set)}</span>
+          <span class="dot-meaning">${dotMeaningFor(set)}</span>
+        </button>`;
       });
-      h += `</tbody></table>`;
-      $("#cheatTenses").innerHTML = h;
-    }
+      h += `</div>`;
+      h += `<div class="cheat-slider-track">`;
+      sets.forEach((set, i) => {
+        h += `<div class="cheat-slider-set ${i === 0 ? "is-active" : ""}" data-set="${i}" id="${id}Set${i}" role="tabpanel">`;
+        const captionParts = [];
+        if (set.verb)    captionParts.push(`<b>${escapeHtml(set.verb)}</b>`);
+        if (set.verbRo)  captionParts.push(`<span class="ro">${escapeHtml(set.verbRo)}</span>`);
+        if (set.meaning) captionParts.push(`<span class="meaning">— ${escapeHtml(set.meaning)}</span>`);
+        if (set.title && !set.verb) captionParts.push(`<b>${escapeHtml(set.title)}</b>`);
+        if (set.caption) captionParts.push(`<span class="caption-text">${escapeHtml(set.caption)}</span>`);
+        if (set.group)   captionParts.push(`<span class="group-tag">${escapeHtml(set.group)}</span>`);
+        if (captionParts.length) {
+          h += `<div class="cheat-slider-caption">${captionParts.join(" ")}</div>`;
+        }
+        h += cfg.tablesFor(set);
+        h += `</div>`;
+      });
+      h += `</div></div>`;
+      root.innerHTML = h;
+
+      const dots = root.querySelectorAll(".cheat-slider-dot");
+      const setsDom = root.querySelectorAll(".cheat-slider-set");
+      dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+          const idx = dot.dataset.set;
+          dots.forEach(d => {
+            const on = d.dataset.set === idx;
+            d.classList.toggle("is-active", on);
+            d.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          setsDom.forEach(s => s.classList.toggle("is-active", s.dataset.set === idx));
+        });
+      });
+    };
+
+    // ── Tenses ──
+    renderSlider({
+      rootSel: "#cheatTenses",
+      data: CHEAT.tenses,
+      tablesFor: (set) => {
+        let body = `<table class="cheat-table"><thead><tr>
+          <th>Tense</th><th>Polite (〜ます)</th><th>Plain (dictionary)</th><th>Copula (です)</th><th>Example</th><th>Nepali</th>
+        </tr></thead><tbody>`;
+        set.rows.forEach(r => {
+          body += `<tr>
+            <td><b>${escapeHtml(r.tense)}</b></td>
+            <td>${sp(r.polite, r.politeRo)}</td>
+            <td>${sp(r.plain, r.plainRo)}</td>
+            <td>${sp(r.copula, r.copulaRo)}</td>
+            <td>${sp(r.example, r.exampleRo)}</td>
+            <td class="ne">${escapeHtml(r.ne)}</td>
+          </tr>`;
+        });
+        return body + `</tbody></table>`;
+      },
+    });
 
     // ── Particles ──
-    {
-      const t = CHEAT.particles;
-      let h = intro(t.intro);
-      h += `<table class="cheat-table"><thead><tr>
-        <th>Particle</th><th>Role</th><th>Example</th><th>Nepali</th><th>Note</th>
-      </tr></thead><tbody>`;
-      t.rows.forEach(r => {
-        h += `<tr>
-          <td>${sp(r.p, r.ro)}</td>
-          <td><b>${escapeHtml(r.role)}</b></td>
-          <td>${sp(r.ex, r.exRo)}</td>
-          <td class="ne">${escapeHtml(r.exNe)}</td>
-          <td class="note">${escapeHtml(r.note)}</td>
-        </tr>`;
-      });
-      h += `</tbody></table>`;
-      $("#cheatParticles").innerHTML = h;
-    }
+    renderSlider({
+      rootSel: "#cheatParticles",
+      data: CHEAT.particles,
+      tablesFor: (set) => {
+        let body = `<table class="cheat-table"><thead><tr>
+          <th>Particle</th><th>Role</th><th>Example</th><th>Nepali</th><th>Note</th>
+        </tr></thead><tbody>`;
+        set.rows.forEach(r => {
+          body += `<tr>
+            <td>${sp(r.p, r.ro)}</td>
+            <td><b>${escapeHtml(r.role)}</b></td>
+            <td>${sp(r.ex, r.exRo)}</td>
+            <td class="ne">${escapeHtml(r.exNe)}</td>
+            <td class="note">${escapeHtml(r.note)}</td>
+          </tr>`;
+        });
+        return body + `</tbody></table>`;
+      },
+    });
 
     // ── Persons ──
-    {
-      const t = CHEAT.persons;
-      let h = intro(t.intro);
-      h += `<table class="cheat-table"><thead><tr>
-        <th>Person</th><th>Casual</th><th>Polite</th><th>Plural</th><th>Note</th>
-      </tr></thead><tbody>`;
-      t.rows.forEach(r => {
-        h += `<tr>
-          <td><b>${escapeHtml(r.person)}</b></td>
-          <td>${sp(r.casual, r.casualRo)}</td>
-          <td>${sp(r.polite, r.politeRo)}</td>
-          <td>${sp(r.plural, r.pluralRo)}</td>
-          <td class="note">${escapeHtml(r.note)}</td>
-        </tr>`;
-      });
-      h += `</tbody></table>`;
-      $("#cheatPersons").innerHTML = h;
-    }
+    renderSlider({
+      rootSel: "#cheatPersons",
+      data: CHEAT.persons,
+      tablesFor: (set) => {
+        let body = `<table class="cheat-table"><thead><tr>
+          <th>Person</th><th>Casual</th><th>Polite</th><th>Plural</th><th>Example</th><th>Nepali</th><th>Note</th>
+        </tr></thead><tbody>`;
+        set.rows.forEach(r => {
+          body += `<tr>
+            <td><b>${escapeHtml(r.person)}</b></td>
+            <td>${sp(r.casual, r.casualRo)}</td>
+            <td>${sp(r.polite, r.politeRo)}</td>
+            <td>${sp(r.plural, r.pluralRo)}</td>
+            <td>${r.ex ? sp(r.ex, r.exRo) : ""}</td>
+            <td class="ne">${escapeHtml(r.exNe || "")}</td>
+            <td class="note">${escapeHtml(r.note)}</td>
+          </tr>`;
+        });
+        return body + `</tbody></table>`;
+      },
+    });
 
     // ── Question words ──
-    {
-      const t = CHEAT.questions;
-      let h = intro(t.intro);
-      h += `<table class="cheat-table"><thead><tr>
-        <th>Word</th><th>Meaning</th><th>Example</th><th>Nepali</th><th>Note</th>
-      </tr></thead><tbody>`;
-      t.rows.forEach(r => {
-        h += `<tr>
-          <td>${sp(r.q, r.ro)}</td>
-          <td><b>${escapeHtml(r.meaning)}</b></td>
-          <td>${sp(r.ex, r.exRo)}</td>
-          <td class="ne">${escapeHtml(r.exNe)}</td>
-          <td class="note">${escapeHtml(r.note)}</td>
-        </tr>`;
-      });
-      h += `</tbody></table>`;
-      $("#cheatQuestions").innerHTML = h;
-    }
+    renderSlider({
+      rootSel: "#cheatQuestions",
+      data: CHEAT.questions,
+      tablesFor: (set) => {
+        let body = `<table class="cheat-table"><thead><tr>
+          <th>Word</th><th>Meaning</th><th>Example</th><th>Nepali</th><th>Note</th>
+        </tr></thead><tbody>`;
+        set.rows.forEach(r => {
+          body += `<tr>
+            <td>${sp(r.q, r.ro)}</td>
+            <td><b>${escapeHtml(r.meaning)}</b></td>
+            <td>${sp(r.ex, r.exRo)}</td>
+            <td class="ne">${escapeHtml(r.exNe)}</td>
+            <td class="note">${escapeHtml(r.note)}</td>
+          </tr>`;
+        });
+        return body + `</tbody></table>`;
+      },
+    });
 
-    // ── Confusing pairs ──
-    {
-      const t = CHEAT.pairs;
-      let h = intro(t.intro);
-      t.rows.forEach(r => {
-        h += `<table class="cheat-table"><caption>${escapeHtml(r.pair)}</caption><thead><tr>
-          <th style="width:50%">Use it when…</th><th>Example</th>
-        </tr></thead><tbody>
-          <tr><td><b>A.</b> ${escapeHtml(r.a)}</td><td>${sp(r.aEx, r.aRo)}<br><span class="ne">${escapeHtml(r.aNe)}</span></td></tr>
-          <tr><td><b>B.</b> ${escapeHtml(r.b)}</td><td>${sp(r.bEx, r.bRo)}<br><span class="ne">${escapeHtml(r.bNe)}</span></td></tr>
-        </tbody></table>`;
-      });
-      $("#cheatPairs").innerHTML = h;
-    }
+    // ── Confusing pairs (each row → its own A/B comparison table) ──
+    renderSlider({
+      rootSel: "#cheatPairs",
+      data: CHEAT.pairs,
+      tablesFor: (set) => {
+        let body = "";
+        set.rows.forEach(r => {
+          body += `<table class="cheat-table"><caption>${escapeHtml(r.pair)}</caption><thead><tr>
+            <th style="width:50%">Use it when…</th><th>Example</th>
+          </tr></thead><tbody>
+            <tr><td><b>A.</b> ${escapeHtml(r.a)}</td><td>${sp(r.aEx, r.aRo)}<br><span class="ne">${escapeHtml(r.aNe)}</span></td></tr>
+            <tr><td><b>B.</b> ${escapeHtml(r.b)}</td><td>${sp(r.bEx, r.bRo)}<br><span class="ne">${escapeHtml(r.bNe)}</span></td></tr>
+          </tbody></table>`;
+        });
+        return body;
+      },
+    });
 
     // ── Counters ──
-    {
-      const t = CHEAT.counters;
-      let h = intro(t.intro);
-      h += `<table class="cheat-table"><thead><tr>
-        <th>Counter</th><th>Used for</th><th>1</th><th>2</th><th>3</th><th>Note</th>
-      </tr></thead><tbody>`;
-      t.rows.forEach(r => {
-        h += `<tr>
-          <td>${sp(r.c, r.cRo)}</td>
-          <td><b>${escapeHtml(r.use)}</b></td>
-          <td>${sp(r.one, r.oneRo)}</td>
-          <td>${sp(r.two, r.twoRo)}</td>
-          <td>${sp(r.three, r.threeRo)}</td>
-          <td class="note">${escapeHtml(r.note)}</td>
-        </tr>`;
-      });
-      h += `</tbody></table>`;
-      $("#cheatCounters").innerHTML = h;
-    }
+    renderSlider({
+      rootSel: "#cheatCounters",
+      data: CHEAT.counters,
+      tablesFor: (set) => {
+        let body = `<table class="cheat-table"><thead><tr>
+          <th>Counter</th><th>Used for</th><th>1</th><th>2</th><th>3</th><th>Example</th><th>Nepali</th><th>Note</th>
+        </tr></thead><tbody>`;
+        set.rows.forEach(r => {
+          body += `<tr>
+            <td>${sp(r.c, r.cRo)}</td>
+            <td><b>${escapeHtml(r.use)}</b></td>
+            <td>${sp(r.one, r.oneRo)}</td>
+            <td>${sp(r.two, r.twoRo)}</td>
+            <td>${sp(r.three, r.threeRo)}</td>
+            <td>${r.ex ? sp(r.ex, r.exRo) : ""}</td>
+            <td class="ne">${escapeHtml(r.exNe || "")}</td>
+            <td class="note">${escapeHtml(r.note)}</td>
+          </tr>`;
+        });
+        return body + `</tbody></table>`;
+      },
+    });
 
     // Wire click-to-speak on every JP cell
     document.querySelectorAll(".cheat-table .jp").forEach(el => {

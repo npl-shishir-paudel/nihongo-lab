@@ -1,5 +1,5 @@
 /* Nihongo Lab — Service Worker (offline cache) */
-const CACHE_NAME = "nihongo-lab-v7";
+const CACHE_NAME = "nihongo-lab-v11";
 const ASSETS = [
   "./",
   "./index.html",

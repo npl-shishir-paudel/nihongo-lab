@@ -1414,349 +1414,343 @@ const DATA = {
   // sentence jp, grammar title). The renderer resolves them at runtime.
   // ──────────────────────────────────────────────────────────────────
   chapters: [
-    // ── Week 1 — hiragana foundations + survival greetings ──────────
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 1 — Kana foundations (Days 1-8)
+    // 8 days, 92 kana characters total. Each day adds rows + a survival
+    // grammar bit so you can speak immediately, but the focus is reading.
+    // ──────────────────────────────────────────────────────────────────
     {
       day: 1, week: 1, minutes: 25,
-      title: "Vowels & first hello",
-      goal: "Learn the 5 vowels あいうえお and say hello / thank you naturally.",
+      title: "Vowels + first hello",
+      goal: "Learn the 5 vowels あいうえお and say hello / thank you / sorry.",
       kana: { hira: ["あ","い","う","え","お"] },
       words: ["こんにちは","ありがとうございます","すみません","はい","いいえ"],
       grammar: ["🧠 です-family vs ます-family — the two sentence types"],
       sentences: ["おはようございます！","また明日。","おやすみなさい。"],
-      practice: "Hover each vowel 3× until you can sing them in a row. On a whiteboard, write each vowel 5 times. Record yourself saying them and compare to the audio."
+      practice: "Hover each vowel 3× until you can sing them in a row. Greet 3 imaginary people: morning, afternoon, evening."
     },
     {
-      day: 2, week: 1, minutes: 25,
-      title: "K-row + first self-intro",
-      goal: "Add かきくけこ and introduce yourself as 'I am Shishir'.",
-      kana: { hira: ["か","き","く","け","こ"] },
-      words: ["私","僕","学生","先生","エンジニア"],
-      grammar: ["Aは Bです — A is B","1st person — 私 / 僕 / 自分","A は B です — Present affirmative identity"],
-      sentences: ["私はシシルです。","私はエンジニアです。","はじめまして、よろしくお願いします。"],
-      practice: "Roleplay: introduce yourself in 3 sentences. Use one new K-row kana in your speech ('こんにちは')."
+      day: 2, week: 1, minutes: 30,
+      title: "K + S + T rows + question か",
+      goal: "Add かきくけこ・さしすせそ・たちつてと, introduce yourself, ask yes/no with か.",
+      kana: { hira: ["か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と"] },
+      words: ["私","僕","学生","先生","エンジニア","これ","それ","あれ"],
+      grammar: ["A は B です — Present affirmative identity","[Statement] か？— Yes/No question","はい / いいえ — Affirmative & negative answers"],
+      sentences: ["私はシシルです。","私はエンジニアです。","学生ですか？","はい、そうです。"],
+      practice: "Introduce yourself in 3 sentences, then ask the listener 'are you a student?' with か."
     },
     {
-      day: 3, week: 1, minutes: 25,
-      title: "S-row + asking questions",
-      goal: "Add さしすせそ and turn statements into questions with か.",
-      kana: { hira: ["さ","し","す","せ","そ"] },
-      words: ["はい","いいえ","そうです","違います"],
-      grammar: ["Question with か","🧠 Confusing particles cheat sheet — は を の が に で から も","[Statement] か？— Yes/No question","はい / いいえ — Affirmative & negative answers"],
-      sentences: ["お元気ですか？","はい、元気です。","学生ですか？"],
-      practice: "Ask Claude 3 yes/no questions about yourself in Japanese. Get them all right before moving on."
+      day: 3, week: 1, minutes: 30,
+      title: "N + H + M rows + は as 'wa'",
+      goal: "Finish なにぬねの・はひふへほ・まみむめも. Feel the は = 'wa' topic-marker rule.",
+      kana: { hira: ["な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ","ま","み","む","め","も"] },
+      words: ["何","名前","友達","家族","今日","明日","昨日"],
+      grammar: ["🧠 Confusing particles cheat sheet — は を の が に で から も","A の B — Possession & noun connector"],
+      sentences: ["お元気ですか？","今日は月曜日です。","私の名前はシシルです。"],
+      practice: "Read each sentence aloud paying attention to は → 'wa'. Build 3 'X の Y' phrases about yourself."
     },
     {
-      day: 4, week: 1, minutes: 25,
-      title: "T-row + これ・それ・あれ",
-      goal: "Add たちつてと and learn the こ/そ/あ demonstrative system for things.",
-      kana: { hira: ["た","ち","つ","て","と"] },
-      words: ["これ","それ","あれ","どれ","本"],
+      day: 4, week: 1, minutes: 30,
+      title: "Y + R + W rows + ん + を + dakuten G/Z",
+      goal: "Finish base hiragana, add first voiced rows, and use を as direct object.",
+      kana: { hira: ["や","ゆ","よ","ら","り","る","れ","ろ","わ","を","ん","が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ"] },
+      words: ["コーヒー","お茶","水","食べる","飲む","行く"],
+      grammar: ["[Subject]は [Object]を [Verb]ます — Present/Future action"],
+      sentences: ["水を飲みます。","コーヒーを飲みますか？","ご飯を食べます。"],
+      practice: "Write 3 sentences using を: 'I drink/eat X'. Speak each aloud."
+    },
+    {
+      day: 5, week: 1, minutes: 30,
+      title: "Dakuten D/B + handakuten P + yōon — hiragana complete",
+      goal: "All voiced rows + small-ゃゅょ combos. You can now read 100% hiragana.",
+      kana: { hira: ["だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ","きゃ","きゅ","きょ","しゃ","しゅ","しょ","ちゃ","ちゅ","ちょ","じゃ","じゅ","じょ","にゃ","ひゃ","みゃ","りゃ","ぎゃ","びゃ","ぴゃ"] },
+      words: ["書く","読む","話す","聞く","電話","会社"],
       grammar: [],
-      sentences: ["これは何ですか？","それは本です。"],
-      practice: "Pick 5 objects on your desk — name each one with これは___です。"
+      sentences: ["メールを書きます。","電話を借りてもいいですか？","音楽を聞きます。"],
+      practice: "Quiz tab → 'Hiragana → romaji' until 90%+ on 20 rounds."
     },
     {
-      day: 5, week: 1, minutes: 25,
-      title: "N-row + 'what is this?'",
-      goal: "Add なにぬねの and ask 何ですか about anything.",
-      kana: { hira: ["な","に","ぬ","ね","の"] },
-      words: ["何","名前","友達","家族"],
-      grammar: ["Possessive / connecting の","A の B — Possession & noun connector","Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)","2nd person — [Name]さん (avoid あなた)"],
-      sentences: ["これは何ですか？","名前は何ですか？","私の名前はシシルです。"],
-      practice: "Build 5 'X の Y' phrases (e.g. 私の会社, 友達の名前). Hover each to confirm pronunciation."
+      day: 6, week: 2, minutes: 30,
+      title: "Katakana A-T rows + IT loanwords",
+      goal: "Start katakana: アイウエオ・カキクケコ・サシスセソ・タチツテト. Recognize IT loans.",
+      kana: { kata: ["ア","イ","ウ","エ","オ","カ","キ","ク","ケ","コ","サ","シ","ス","セ","ソ","タ","チ","ツ","テ","ト"] },
+      words: ["コード","コンピュータ","データ","ファイル","バグ","パソコン"],
+      grammar: [],
+      sentences: ["バグを見つけました。","コードレビューをお願いします。","パソコンが壊れました。"],
+      practice: "Find 5 katakana words on your phone or laptop screen. Read each aloud."
     },
     {
-      day: 6, week: 1, minutes: 25,
-      title: "H-row + は as topic marker",
-      goal: "Add はひふへほ and feel the は = 'wa' rule in real sentences.",
-      kana: { hira: ["は","ひ","ふ","へ","ほ"] },
-      words: ["今日","明日","昨日"],
-      grammar: ["Aは Bです — A is B","🧠 ません vs ありません vs ではありません — the three negatives","[Topic]は [i-adjective]です — i-adjective sentence"],
-      sentences: ["今日は月曜日です。","今日は楽しかったです。"],
-      practice: "Read each sentence aloud paying attention to は → 'wa'. Record yourself."
+      day: 7, week: 2, minutes: 30,
+      title: "Katakana N-W rows + workplace nouns",
+      goal: "Add ナニヌネノ・ハヒフヘホ・マミムメモ・ヤユヨ・ラリルレロ・ワヲン. Workplace vocab.",
+      kana: { kata: ["ナ","ニ","ヌ","ネ","ノ","ハ","ヒ","フ","ヘ","ホ","マ","ミ","ム","メ","モ","ヤ","ユ","ヨ","ラ","リ","ル","レ","ロ","ワ","ヲ","ン"] },
+      words: ["レビュー","ミーティング","チーム","会議","上司","同僚"],
+      grammar: [],
+      sentences: ["レビューをお願いします。","会議は何時からですか？","チームのミーティングです。"],
+      practice: "Watch シ vs ツ, ソ vs ン. Read 'コンピュータのバグをレビューします' 3× — pure mixed-kana practice."
     },
     {
-      day: 7, week: 1, minutes: 30,
-      title: "★ Week 1 review",
-      goal: "Re-test all of week 1. Go to the Quiz tab → 'Hiragana → romaji'. Aim for 90% on 20 rounds.",
-      kana: { hira: ["あ","い","う","え","お","か","き","く","け","こ","さ","し","す","せ","そ","た","ち","つ","て","と","な","に","ぬ","ね","の","は","ひ","ふ","へ","ほ"] },
-      words: [],
-      grammar: ["Aは Bです — A is B","Question with か","Possessive / connecting の"],
-      sentences: ["私はシシルです。","お元気ですか？","これは何ですか？","名前は何ですか？"],
-      practice: "On a whiteboard, write all 30 hiragana you've learned. Take a screenshot and ask Claude to grade it."
+      day: 8, week: 2, minutes: 35,
+      title: "★ Katakana dakuten + small chars — KANA COMPLETE",
+      goal: "Finish ガザダバパ rows + small ァィゥェォ. Mix hiragana + katakana freely.",
+      kana: { kata: ["ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","ヂ","ヅ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ","ァ","ィ","ゥ","ェ","ォ"] },
+      words: ["メール","インターネット","サーバー","テスト"],
+      grammar: [],
+      sentences: ["メールを送りました。","サーバーが落ちています。","インターネットが遅いです。"],
+      practice: "Quiz tab → Katakana until 90%+. Then mix-quiz both kana. Handwrite all 46 base hiragana on a whiteboard → screenshot → Claude review."
     },
 
-    // ── Week 2 — finish hiragana + dakuten + numbers / verbs ─────────
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 2 — Building blocks: pronouns, demonstratives, question words (Days 9-11)
+    // ──────────────────────────────────────────────────────────────────
     {
-      day: 8, week: 2, minutes: 25,
-      title: "M-row + numbers 1–10",
-      goal: "Add まみむめも and count 1 through 10.",
-      kana: { hira: ["ま","み","む","め","も"] },
-      words: ["一","二","三","四","五","六","七","八","九","十"],
-      grammar: ["Counters — counting things, people, time"],
-      sentences: ["今、何時ですか？","少し遅れます。"],
-      practice: "Count 1→10 out loud, then count backwards. Quiz yourself on prices: いくらですか？— answer in yen."
-    },
-    {
-      day: 9, week: 2, minutes: 25,
-      title: "Y-row + R-row + days of the week",
-      goal: "Add やゆよ・らりるれろ and the seven 曜日.",
-      kana: { hira: ["や","ゆ","よ","ら","り","る","れ","ろ"] },
-      words: ["月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日"],
-      grammar: [],
-      sentences: ["今日は月曜日です。","また明日。"],
-      practice: "Say what day each of the next 7 days is, starting with today."
+      day: 9, week: 2, minutes: 30,
+      title: "Pronouns — 1st / 2nd / 3rd person",
+      goal: "Confidently refer to yourself, the listener, and a third party. Polite + casual forms.",
+      kana: {},
+      words: ["私","僕","彼","彼女","友達","学生","先生","エンジニア"],
+      grammar: ["1st person — 私 / 僕 / 自分","2nd person — [Name]さん (avoid あなた)","3rd person — 彼 / 彼女 / あの人 / [Name]さん"],
+      sentences: ["私はシシルです。","彼は田中さんです。","彼女は先生です。","あの人は誰ですか？"],
+      practice: "Introduce yourself, then describe one friend in 3rd person. 30 seconds, no notes."
     },
     {
       day: 10, week: 2, minutes: 25,
-      title: "W-row + ん + を particle",
-      goal: "Finish the last hiragana row わ・を・ん and learn を = direct object.",
-      kana: { hira: ["わ","を","ん"] },
-      words: ["コーヒー","お茶","水"],
-      grammar: ["Object marker を","[Subject]は [Object]を [Verb]ます — Present/Future action"],
-      sentences: ["コーヒーを飲みますか？","水を飲みます。"],
-      practice: "Make 3 sentences using を + a verb you know."
+      title: "Demonstratives — これ・それ・あれ + どれ",
+      goal: "Point at things: これ (near me), それ (near you), あれ (over there), どれ (which).",
+      kana: {},
+      words: ["これ","それ","あれ","どれ","本","ペン"],
+      grammar: ["A は B です — Present affirmative identity"],
+      sentences: ["これは何ですか？","それは本です。","あれは何ですか？","どれが好きですか？"],
+      practice: "Point at 3 things in your room. Identify each: 'これは___です'. Then ask 'それは何ですか？' for 2 more."
     },
     {
       day: 11, week: 2, minutes: 30,
-      title: "Dakuten G & Z + first verbs",
-      goal: "Add the voiced rows がぎぐげご・ざじずぜぞ and basic verbs.",
-      kana: { hira: ["が","ぎ","ぐ","げ","ご","ざ","じ","ず","ぜ","ぞ"] },
-      words: ["食べる","飲む","行く","来る","する"],
-      grammar: ["Verb groups — godan, ichidan, irregular"],
-      sentences: ["お昼ごはんを食べに行きませんか？"],
-      practice: "On the Hiragana chart, click each ★voiced★ kana once and say the unvoiced parent (が→か, ざ→さ…)."
-    },
-    {
-      day: 12, week: 2, minutes: 30,
-      title: "Dakuten D & B + handakuten P",
-      goal: "Finish all dakuten/handakuten — だぢづでど・ばびぶべぼ・ぱぴぷぺぽ.",
-      kana: { hira: ["だ","ぢ","づ","で","ど","ば","び","ぶ","べ","ぼ","ぱ","ぴ","ぷ","ぺ","ぽ"] },
-      words: ["バグ","プログラム","パソコン"],
-      grammar: [],
-      sentences: ["バグを見つけました。","このバグは難しいです。"],
-      practice: "Read each new kana out loud. Then read these IT words: バグ・プログラム・データ・パソコン."
-    },
-    {
-      day: 13, week: 2, minutes: 30,
-      title: "Yōon combos + ます polite form",
-      goal: "Learn the small-ゃゅょ contractions and use ます for polite present tense.",
-      kana: { hira: ["きゃ","きゅ","きょ","しゃ","しゅ","しょ","ちゃ","ちゅ","ちょ"] },
-      words: ["書く","読む","話す","聞く"],
-      grammar: ["Object marker を","と (to) — With (companion) / and (listing)","へ (e) — Direction marker (formal alternative to に)"],
-      sentences: ["メールを書きます。","コードをレビューします。","毎日、コードを書きます。"],
-      practice: "Take 3 dictionary-form verbs (食べる, 飲む, 書く) and rewrite in ます form. Say them aloud."
-    },
-    {
-      day: 14, week: 2, minutes: 35,
-      title: "★ Week 2 review",
-      goal: "All hiragana mastered. 95% on the Hiragana quiz. Build & say 5 original ます-form sentences.",
-      kana: { hira: ["ま","み","む","め","も","や","ゆ","よ","ら","り","る","れ","ろ","わ","を","ん","が","ざ","だ","ば","ぱ"] },
-      words: [],
-      grammar: ["Aは Bです — A is B","Question with か","Object marker を"],
-      sentences: ["これは何ですか？","コーヒーを飲みますか？","お昼ごはんを食べに行きませんか？"],
-      practice: "Final hiragana drill: handwrite all 46 base kana on a whiteboard. Screenshot → Claude review."
+      title: "Wh-question words — 何 / 誰 / どこ / いつ / いくら",
+      goal: "Ask for information with every major Wh-word.",
+      kana: {},
+      words: ["何","誰","名前","友達","家族"],
+      grammar: ["Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)"],
+      sentences: ["これは何ですか？","名前は何ですか？","誕生日はいつですか？","トイレはどこですか？","いくらですか？"],
+      practice: "Ask 5 questions: one each with 何, 誰, どこ, いつ, いくら. Answer each yourself."
     },
 
-    // ── Week 3 — katakana + work vocabulary + verb conjugation ──────
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 3 — Particles, one concept per day (Days 12-17)
+    // ──────────────────────────────────────────────────────────────────
+    {
+      day: 12, week: 3, minutes: 35,
+      title: "は vs が — topic vs subject (the #1 confusion)",
+      goal: "Know when to use は (what we're talking about) vs が (new info / answer to 'who?').",
+      kana: {},
+      words: ["私","学生","エンジニア","友達"],
+      grammar: ["🧠 Confusing particles cheat sheet — は を の が に で から も","A は B です — Present affirmative identity"],
+      sentences: ["私はシシルです。","誰がシシルですか？","猫がいます。","あの人は誰ですか？"],
+      practice: "Say 'I am Shishir' three ways: with は (intro), with が (answer to 'who?'), and explain when each is right."
+    },
+    {
+      day: 13, week: 3, minutes: 25,
+      title: "を — direct object marker",
+      goal: "Use を to mark WHAT the verb acts on.",
+      kana: {},
+      words: ["食べる","飲む","読む","書く","水","本","メール"],
+      grammar: ["[Subject]は [Object]を [Verb]ます — Present/Future action"],
+      sentences: ["水を飲みます。","本を読みます。","メールを書きます。","コードをレビューします。"],
+      practice: "Pair 5 verbs you know with an object via を. Speak each sentence aloud."
+    },
+    {
+      day: 14, week: 3, minutes: 30,
+      title: "の — possessive + noun connector",
+      goal: "Chain nouns: 私の会社の同僚 = 'my company's colleague'.",
+      kana: {},
+      words: ["会社","同僚","家","本","コード"],
+      grammar: ["A の B — Possession & noun connector"],
+      sentences: ["私の本です。","シシルさんの会社","これは私の家ではありません。"],
+      practice: "Build a 3-deep の-chain about yourself (e.g., 私の会社のチームのリーダー). Say it aloud."
+    },
     {
       day: 15, week: 3, minutes: 30,
-      title: "Katakana A & K + first IT loanwords",
-      goal: "Start katakana with アイウエオ・カキクケコ and recognize IT loanwords.",
-      kana: { kata: ["ア","イ","ウ","エ","オ","カ","キ","ク","ケ","コ"] },
-      words: ["コード","コンピュータ","データ","ファイル"],
-      grammar: [],
-      sentences: ["コードレビューをお願いします。"],
-      practice: "Find 3 katakana words on your phone or laptop screen. Read them aloud."
+      title: "に vs で — target vs location-of-action",
+      goal: "に = destination / time / existence. で = where ACTION happens.",
+      kana: {},
+      words: ["学校","公園","会社","駅","働く"],
+      grammar: ["[Place]で / [Place]に — Action vs destination","あります / います — Existence ('there is')"],
+      sentences: ["学校に行きます。","公園で食べます。","会社で働きます。","駅はどこですか？"],
+      practice: "Make 3 sentences: one X-で-action, one X-に-go, one X-に-exist."
     },
     {
       day: 16, week: 3, minutes: 30,
-      title: "Katakana S/T/N + workplace nouns",
-      goal: "Add サシスセソ・タチツテト・ナニヌネノ and workplace vocab.",
-      kana: { kata: ["サ","シ","ス","セ","ソ","タ","チ","ツ","テ","ト","ナ","ニ","ヌ","ネ","ノ"] },
-      words: ["会社","仕事","会議","上司","同僚"],
-      grammar: ["Aは Bです — A is B"],
-      sentences: ["私はエンジニアです。","会議は何時からですか？"],
-      practice: "Watch out: シ vs ツ, ソ vs ン. Hover each pair 3× to lock the difference."
+      title: "へ + と + や + も — direction, with/and, also",
+      goal: "Four high-frequency particles you'll use every conversation.",
+      kana: {},
+      words: ["友達","家族","東京"],
+      grammar: ["へ (e) — Direction marker (formal alternative to に)","と (to) — With (companion) / and (listing)","や (ya) — And (non-exhaustive 'and others')"],
+      sentences: ["東京へ行きます。","友達と話します。","りんごやバナナを食べます。","私も学生です。"],
+      practice: "Build one sentence each with へ, と, や, も."
     },
     {
-      day: 17, week: 3, minutes: 30,
-      title: "Katakana H/M/Y + ません negative",
-      goal: "Add ハヒフヘホ・マミムメモ・ヤユヨ and learn negative ません.",
-      kana: { kata: ["ハ","ヒ","フ","ヘ","ホ","マ","ミ","ム","メ","モ","ヤ","ユ","ヨ"] },
-      words: ["分かる","話す"],
-      grammar: ["Negation with ません","Adjective conjugation — i-adj vs na-adj","[Verb]ません — Present/Future negative","A は B じゃありません — Present negative identity","[Topic]は [na-adjective]です — na-adjective sentence"],
-      sentences: ["すみません、ちょっと分かりません。","コーヒーを飲みません。"],
-      practice: "Take 3 ます verbs from yesterday and flip each to ません. Say each pair aloud."
-    },
-    {
-      day: 18, week: 3, minutes: 30,
-      title: "Katakana R/W + ました past tense",
-      goal: "Add ラリルレロ・ワヲン and use ました for past actions.",
-      kana: { kata: ["ラ","リ","ル","レ","ロ","ワ","ヲ","ン"] },
-      words: ["直す","送る"],
-      grammar: ["Past tense with ました / でした","[Verb]ました — Past affirmative","A は B でした — Past affirmative identity","[Verb]ませんでした — Past negative","3rd person — 彼 / 彼女 / あの人 / [Name]さん"],
-      sentences: ["バグを直しました。","プルリクを送りました。","昨日は会議でした。"],
-      practice: "Tell Claude (in Japanese) three things you did yesterday using ました."
-    },
-    {
-      day: 19, week: 3, minutes: 30,
-      title: "Katakana dakuten + て-form intro",
-      goal: "Add ガザダバパ rows in katakana. Learn て-form for connecting actions.",
-      kana: { kata: ["ガ","ギ","グ","ゲ","ゴ","ザ","ジ","ズ","ゼ","ゾ","ダ","デ","ド","バ","ビ","ブ","ベ","ボ","パ","ピ","プ","ペ","ポ"] },
-      words: ["バグ","レビュー","ミーティング"],
-      grammar: ["て-form + います = ongoing / state"],
-      sentences: ["コードを書いています。","今、会議をしています。"],
-      practice: "Use 〜ています to describe what you're doing right now (in Japanese)."
-    },
-    {
-      day: 20, week: 3, minutes: 30,
-      title: "ています ongoing + IT phrase pack",
-      goal: "Solidify ongoing-action ています with workplace IT phrases.",
-      kana: { kata: [] },
-      words: ["サーバー","テスト","メール"],
-      grammar: ["て-form + います = ongoing / state","ので (node) — Because (politer than から)","[Verb-て]います — Ongoing / Continuous","[Reason]から、[Result] — Because (cause-and-effect)"],
-      sentences: ["サーバーが落ちています。","テストが失敗しています。","コードを書いています。"],
-      practice: "Voice-record yourself describing 3 things happening at work right now using ています."
-    },
-    {
-      day: 21, week: 3, minutes: 35,
-      title: "★ Week 3 review",
-      goal: "All katakana mastered. Mix hiragana + katakana in the Quiz tab.",
+      day: 17, week: 3, minutes: 35,
+      title: "から + まで + より + よ + ね — range + sentence-end",
+      goal: "Express ranges (from/to/than) and add nuance with よ (informing) / ね (agreement).",
       kana: {},
       words: [],
-      grammar: ["Negation with ません","Past tense with ました / でした","て-form + います = ongoing / state"],
-      sentences: ["バグを直しました。","コードを書いています。","すみません、ちょっと分かりません。"],
-      practice: "Read 5 random katakana cards from the chart with hover-play OFF. Then check yourself."
+      grammar: ["よ (yo) — Sentence-end emphasis (informing / asserting)","ね (ne) — Sentence-end agreement-seeking"],
+      sentences: ["9時から働きます。","5時までです。","おいしいですよ。","暑いですね。","犬より猫が好き。"],
+      practice: "Make 2 sentences ending in よ (informing) and 2 ending in ね (seeking agreement)."
     },
 
-    // ── Week 4 — particles, requests, real conversation ─────────────
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 4 — Verbs (Days 18-21)
+    // ──────────────────────────────────────────────────────────────────
     {
-      day: 22, week: 4, minutes: 30,
-      title: "Location particles で and に",
-      goal: "Use で for action-location and に for destination / existence.",
+      day: 18, week: 4, minutes: 30,
+      title: "ます-form — polite present / future",
+      goal: "Use ます to say what you do (politely). Same form covers present AND future.",
       kana: {},
-      words: ["駅","電車","家","学校","働く"],
-      grammar: ["Location with で and に","や (ya) — And (non-exhaustive 'and others')","[Place]で / [Place]に — Action vs destination","あります / います — Existence ('there is')"],
-      sentences: ["駅はどこですか？","会議は何時からですか？"],
-      practice: "Make 3 sentences: one with X で work, one with に go, one with に exist."
+      words: ["行く","来る","する","食べる","飲む","書く","話す"],
+      grammar: ["[Subject]は [Object]を [Verb]ます — Present/Future action","Verb groups — godan, ichidan, irregular"],
+      sentences: ["私は会社に行きます。","お昼ごはんを食べます。","明日、ミーティングをします。"],
+      practice: "List 5 things you'll do tomorrow, each ending in ます."
     },
     {
-      day: 23, week: 4, minutes: 30,
-      title: "の possessive deep-dive",
-      goal: "Chain nouns smoothly: 私の会社の同僚 (my company's colleague).",
+      day: 19, week: 4, minutes: 35,
+      title: "て-form — linking actions + てください request",
+      goal: "Connect verbs (eat AND drink) and ask politely with てください.",
       kana: {},
-      words: ["私","会社","コード","同僚"],
-      grammar: ["Possessive / connecting の","A の B — Possession & noun connector"],
-      sentences: ["私の名前はシシルです。"],
-      practice: "Build a 3-noun chain about yourself (e.g. 私の家族の写真)."
+      words: ["送る","話す","直す","待つ"],
+      grammar: ["[Verb-て]、[Verb] — Linking actions (and / then)","[Verb-て]ください — Polite request"],
+      sentences: ["食べて、行きます。","ちょっと待ってください。","ゆっくり話してください。","もう一度説明してください。"],
+      practice: "Chain 3 actions in sequence (eat → leave → arrive). Then ask one favor with てください."
     },
     {
-      day: 24, week: 4, minutes: 30,
-      title: "Want to do with たい",
-      goal: "Express your own wishes with たいです.",
+      day: 20, week: 4, minutes: 30,
+      title: "〜ています — ongoing / right now",
+      goal: "Say what you're doing right now and what state things are in.",
       kana: {},
-      words: ["勉強する","食べる","飲む"],
-      grammar: ["Want to do — たい","よ (yo) — Sentence-end emphasis (informing / asserting)","ね (ne) — Sentence-end agreement-seeking","[Verb-stem]たいです — 'I want to do'"],
-      sentences: ["コーヒーを飲みたいです。","日本語を話したいです。","早く帰りたいです。"],
-      practice: "Tell Claude 5 things you want to do this weekend in Japanese."
+      words: ["サーバー","テスト","メール"],
+      grammar: ["[Verb-て]います — Ongoing / Continuous"],
+      sentences: ["今、コードを書いています。","会社で働いています。","サーバーが落ちています。","テストが失敗しています。"],
+      practice: "Describe 3 things you're doing RIGHT NOW with ています."
     },
     {
-      day: 25, week: 4, minutes: 30,
-      title: "Polite requests with てください",
-      goal: "Ask people to do things politely in real situations.",
-      kana: {},
-      words: ["送る","話す","直す"],
-      grammar: ["Polite request — てください","[Verb-て]ください — Polite request"],
-      sentences: ["ゆっくり話してください。","もう一度説明してください。","このファイルを送ってください。"],
-      practice: "Make 3 requests you'd actually use at work. Say each aloud."
-    },
-    {
-      day: 26, week: 4, minutes: 35,
-      title: "Workplace dialog mastery",
-      goal: "Run a 60-second mock standup in Japanese.",
-      kana: {},
-      words: ["会議","上司","同僚","バグ"],
-      grammar: ["て-form + います = ongoing / state","Past tense with ました / でした","けど / が — But / however (contrast)","[Verb-て]、[Verb] — Linking actions (and / then)"],
-      sentences: ["お疲れさまでした。","お先に失礼します。","コードレビューをお願いします。","バグを直しました。","少し遅れます。"],
-      practice: "Roleplay with Claude: standup update — 'yesterday I…, today I'm working on…, blocked by…'"
-    },
-    {
-      day: 27, week: 4, minutes: 35,
-      title: "Daily-life dialog mastery",
-      goal: "Survive a café and a station entirely in Japanese.",
-      kana: {},
-      words: ["駅","コーヒー","お茶","ご飯"],
-      grammar: ["Question with か","Object marker を","[Verb-stem]ませんか / ましょう — Invitation & 'let's'"],
-      sentences: ["駅はどこですか？","これはいくらですか？","コーヒーを飲みますか？","ゆっくり話してください。","もう一度お願いします。"],
-      practice: "Roleplay: order coffee + ask the way to the station. Switch roles."
-    },
-    {
-      day: 28, week: 4, minutes: 35,
-      title: "Self-introduction speech",
-      goal: "Deliver a 90-second self-introduction (jikoshōkai) without notes.",
-      kana: {},
-      words: ["私","エンジニア","日本語","勉強する"],
-      grammar: ["Aは Bです — A is B","Possessive / connecting の","Want to do — たい"],
-      sentences: ["はじめまして、よろしくお願いします。","私はシシルです。","私はエンジニアです。","ネパールから来ました。","日本語を勉強しています。","日本語を話したいです。"],
-      practice: "Record your full intro. Listen back. Re-record until it flows."
-    },
-    {
-      day: 29, week: 4, minutes: 40,
-      title: "Cumulative review",
-      goal: "Run 30 quiz questions across all 4 modes. Identify weak spots.",
-      kana: {},
-      words: [],
-      grammar: ["Aは Bです — A is B","Question with か","Object marker を","Location with で and に","Possessive / connecting の","Negation with ません","Past tense with ました / でした","て-form + います = ongoing / state","Polite request — てください","Want to do — たい"],
-      sentences: [],
-      practice: "Quiz tab → run 10 of each mode. Note any below 80% — those are tomorrow's drills."
-    },
-    {
-      day: 30, week: 4, minutes: 45,
-      title: "★ Final test & next-month plan",
-      goal: "Pass the cumulative test with ≥85%. Plan the next 30 days.",
-      kana: {},
-      words: [],
-      grammar: [],
-      sentences: ["はじめまして、よろしくお願いします。","お疲れさまでした。","また明日。","ありがとうございます。"],
-      practice: "Long roleplay with Claude: 5-minute conversation covering intro, work, and small talk. Then ask Claude what to focus on next month."
-    },
-    // ── Week 5 — beyond N5 foundations: plain forms, potential, conditionals ──
-    {
-      day: 31, week: 5, minutes: 30,
-      title: "Plain (dictionary) form — the casual base",
-      goal: "Understand and use the plain dictionary form 飲む / 食べる / 行く. Recognize Group 1, 2, 3.",
+      day: 21, week: 4, minutes: 35,
+      title: "Plain forms — dictionary / ない / た + verb groups",
+      goal: "Drop the polite ます. Use the casual base forms with friends and inner-monologue.",
       kana: {},
       words: ["飲む","食べる","行く","する","来る","話す","書く"],
-      grammar: ["Plain dictionary form — the verb's base shape (飲む / 食べる / する)",
-                "Verb groups — godan, ichidan, irregular"],
-      sentences: ["私はコーヒーを飲む。","毎朝パンを食べる。","明日、東京へ行く。"],
-      practice: "Take 5 ます-form verbs you already know and convert each to plain form. Say them aloud."
+      grammar: ["Plain dictionary form — the verb's base shape (飲む / 食べる / する)","Plain negative — 〜ない (casual 'don't')","Plain past — 〜た / 〜だ (casual 'did')","Verb groups — godan, ichidan, irregular"],
+      sentences: ["食べる。","行く。","食べない。","行った。","コーヒーを飲まない。"],
+      practice: "Take 5 ます-form verbs. Convert each to plain dict + ない + た. Read aloud."
     },
+
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 5 — Tenses + Adjectives + Modals (Days 22-26)
+    // ──────────────────────────────────────────────────────────────────
     {
-      day: 32, week: 5, minutes: 30,
-      title: "Plain negative + Plain past",
-      goal: "Master 〜ない (don't) and 〜た (did). The casual versions of ません and ました.",
+      day: 22, week: 5, minutes: 30,
+      title: "Past tense — ました + でした",
+      goal: "Talk about yesterday: actions (ました) and identity/state (でした).",
       kana: {},
-      words: ["飲む","食べる","行く","来る","する"],
-      grammar: ["Plain negative — 〜ない (casual 'don't')",
-                "Plain past — 〜た / 〜だ (casual 'did')"],
-      sentences: ["コーヒーを飲まない。","昨日、東京に行った。","もう食べた。"],
-      practice: "Take 3 verbs and form: dict, neg, past, past-neg. Speak each chain aloud."
+      words: ["昨日","直す","送る"],
+      grammar: ["[Verb]ました — Past affirmative","A は B でした — Past affirmative identity"],
+      sentences: ["昨日、肉を食べました。","昨日は月曜日でした。","会議に行きました。","バグを直しました。"],
+      practice: "Tell 3 things you did yesterday: 2 actions (ました) + 1 state (でした)."
     },
     {
-      day: 33, week: 5, minutes: 30,
-      title: "Potential form — 'I can do X'",
-      goal: "Express ability using 〜eru / 〜られる / できる. Note が replaces を.",
+      day: 23, week: 5, minutes: 35,
+      title: "🧠 The three negatives — ません vs ありません vs ではありません",
+      goal: "Stop confusing them. ません = action neg, ありません = existence neg, ではありません = identity neg.",
       kana: {},
-      words: ["話す","食べる","書く","する","来る"],
-      grammar: ["Potential form — 'can do' / 'be able to do'"],
-      sentences: ["日本語が話せます。","コードが書けます。","明日、来られます。"],
-      practice: "Tell Claude 5 things you CAN do in Japanese using the potential form."
+      words: ["分かる","話す"],
+      grammar: ["🧠 ません vs ありません vs ではありません — the three negatives","[Verb]ません — Present/Future negative","A は B じゃありません — Present negative identity","[Verb]ませんでした — Past negative"],
+      sentences: ["肉を食べません。","お金がありません。","私は学生ではありません。","昨日、行きませんでした。","すみません、ちょっと分かりません。"],
+      practice: "Write ONE sentence with EACH of the three negatives. Read aloud, focus on the pattern."
     },
     {
-      day: 34, week: 5, minutes: 30,
-      title: "Plain volitional — 'let's' (casual)",
+      day: 24, week: 5, minutes: 30,
+      title: "Adjectives — i-adj + na-adj (all 4 forms)",
+      goal: "Use 暑い / 静か(な) correctly in present, past, positive, negative.",
+      kana: {},
+      words: [],
+      grammar: ["[Topic]は [i-adjective]です — i-adjective sentence","[Topic]は [na-adjective]です — na-adjective sentence","Adjective conjugation — i-adj vs na-adj"],
+      sentences: ["このコーヒーは熱いです。","暑かったです。","あまり暑くないです。","静かです。","親切な人です。"],
+      practice: "Describe today's weather: 1 i-adj (past) and 1 na-adj (present)."
+    },
+    {
+      day: 25, week: 5, minutes: 30,
+      title: "Wants & Invites — たい / ませんか / ましょう",
+      goal: "Express your wish, invite someone, suggest doing something together.",
+      kana: {},
+      words: ["勉強する"],
+      grammar: ["[Verb-stem]たいです — 'I want to do'","[Verb-stem]ませんか / ましょう — Invitation & 'let's'"],
+      sentences: ["寿司を食べたいです。","お昼ごはんを食べに行きませんか？","コーヒーを飲みましょう。","日本語を話したいです。"],
+      practice: "Say one wish (たい), one invitation (ませんか), one let's-do (ましょう). Real 30-sec dialog."
+    },
+    {
+      day: 26, week: 5, minutes: 35,
+      title: "Potential 'can do' + Preferences 'I like'",
+      goal: "Say what you can/can't do and what you like — essential for self-intro.",
+      kana: {},
+      words: ["寿司","コーヒー","料理","日本語"],
+      grammar: ["Potential form — 'can do' / 'be able to do'","〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)"],
+      sentences: ["日本語が話せます。","辛い物が食べられます。","音楽が好きです。","プログラミングが得意です。"],
+      practice: "List 3 things you CAN do + 3 things you LIKE — practice for self-intro."
+    },
+
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 6 — Fluency boosters (Days 27-29)
+    // ──────────────────────────────────────────────────────────────────
+    {
+      day: 27, week: 6, minutes: 30,
+      title: "Existence あります / います + Counters",
+      goal: "Say what exists / where things are. Count them with the right counter.",
+      kana: {},
+      words: ["一","二","三","四","五","六","七","八","九","十"],
+      grammar: ["あります / います — Existence ('there is')","Counters — counting things, people, time"],
+      sentences: ["猫がいます。","お金がありません。","三人います。","本が二冊あります。","今、何時ですか？"],
+      practice: "Count 3 things around you using different counters: 〜つ / 〜人 / 〜本. Say each aloud."
+    },
+    {
+      day: 28, week: 6, minutes: 30,
+      title: "Connectors — から / ので / けど / が — make speech flow",
+      goal: "Stop sounding choppy. Chain reasons (because) and contrasts (but).",
+      kana: {},
+      words: [],
+      grammar: ["[Reason]から、[Result] — Because (cause-and-effect)","ので (node) — Because (politer than から)","けど / が — But / however (contrast)"],
+      sentences: ["寒いから、帰ります。","忙しいので、後で。","美味しいけど、高いです。","行きたいですが、時間がないです。"],
+      practice: "Make 2 'because' sentences (one casual, one polite) and 1 'but' sentence."
+    },
+    {
+      day: 29, week: 6, minutes: 30,
+      title: "The Q&A system — か + はい/いいえ + Wh-words",
+      goal: "Run a full ask-and-answer loop in either direction.",
+      kana: {},
+      words: [],
+      grammar: ["[Statement] か？— Yes/No question","はい / いいえ — Affirmative & negative answers","Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)"],
+      sentences: ["学生ですか？","はい、学生です。","いいえ、エンジニアです。","これは何ですか？","誰がシシルさんですか？"],
+      practice: "Practice 5 yes/no Q+A exchanges and 5 Wh-question Q+A exchanges. Out loud."
+    },
+
+    // ──────────────────────────────────────────────────────────────────
+    // PHASE 7 — Dialog mastery (Day 30)
+    // ──────────────────────────────────────────────────────────────────
+    {
+      day: 30, week: 6, minutes: 45,
+      title: "★ Dialog mastery — workplace + daily-life",
+      goal: "Run a 60-second workplace standup AND order at a café — both in Japanese.",
+      kana: {},
+      words: ["会議","上司","同僚","駅","コーヒー","ご飯"],
+      grammar: [],
+      sentences: ["おはようございます！","お疲れさまでした。","お先に失礼します。","コードレビューをお願いします。","バグを直しました。","駅はどこですか？","これはいくらですか？","コーヒーをください。"],
+      practice: "1) Run a 60-sec standup (yesterday → today → blockers). 2) Order at an imaginary café. Record both."
+    },
+
+    // ──────────────────────────────────────────────────────────────────
+    // BONUS — Beyond N5 (Days 31-43) — each chapter teaches one
+    // intermediate concept. Take these in order or pick what you need.
+    // ──────────────────────────────────────────────────────────────────
+    {
+      day: 31, week: 7, minutes: 30,
+      title: "Plain volitional — casual 'let's'",
       goal: "Casual 'let's do' / 'I will' with 〜ō / 〜よう. Different from polite ましょう.",
       kana: {},
       words: ["飲む","食べる","行く","来る","する"],
@@ -1765,49 +1759,37 @@ const DATA = {
       practice: "Make 3 casual 'let's...' suggestions to a friend in Japanese."
     },
     {
-      day: 35, week: 5, minutes: 35,
+      day: 32, week: 7, minutes: 35,
       title: "Conditionals — ば / たら / なら / と",
       goal: "Four ways to say 'if'. Pick the right one for the context.",
       kana: {},
       words: ["雨","時間","春","急ぐ"],
       grammar: ["Conditionals — ば / たら / なら / と (four ways to say 'if')"],
       sentences: ["雨が降ったら、家にいます。","時間があれば、行きます。","急がないと、遅刻するよ。"],
-      practice: "Make 4 conditional sentences — one for each form (ば, たら, なら, と)."
+      practice: "Make 4 conditional sentences — one each with ば, たら, なら, と."
     },
-
-    // ── Week 6 — comparison, preferences, giving/receiving, quotations ──
     {
-      day: 36, week: 6, minutes: 30,
-      title: "Comparison — より, ほうが, 一番",
+      day: 33, week: 7, minutes: 30,
+      title: "Comparison — より / ほうが / 一番",
       goal: "Compare two things, identify the best, prefer one over another.",
       kana: {},
       words: ["犬","猫","東京","大阪","寿司"],
       grammar: ["Comparison — より / ほうが / 一番 (more, more-of-the-two, most)"],
       sentences: ["犬より猫のほうが好きです。","東京は大阪より大きいです。","寿司が一番好きです。"],
-      practice: "Compare 3 pairs of things you know — say which one you prefer / which is bigger / etc."
+      practice: "Compare 3 pairs of things — say which one you prefer / which is bigger / etc."
     },
     {
-      day: 37, week: 6, minutes: 30,
-      title: "Preferences — 〜が好き / 嫌い / 上手 / 下手",
-      goal: "Talk about likes, dislikes, skills. Critical: use が, NOT を.",
-      kana: {},
-      words: ["寿司","コーヒー","料理","日本語"],
-      grammar: ["〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)"],
-      sentences: ["私は寿司が好きです。","コーヒーが嫌いです。","彼は日本語が上手です。"],
-      practice: "Tell Claude 5 things you like / dislike / are good at, all using が."
-    },
-    {
-      day: 38, week: 6, minutes: 35,
+      day: 34, week: 7, minutes: 35,
       title: "Giving and receiving — あげる / もらう / くれる",
       goal: "Master the direction-sensitive trio. Get this right and you sound natural.",
       kana: {},
       words: ["田中","友達","母","上司","本"],
       grammar: ["Giving / receiving — あげる / もらう / くれる (direction matters!)"],
       sentences: ["田中さんに本をあげました。","母がプレゼントをくれました。","友達からチョコをもらった。"],
-      practice: "Describe 3 gifts: one you gave, one you received, one someone gave to you. Match the verb to direction."
+      practice: "Describe 3 gifts: one you gave, one you received, one someone gave you. Match the verb to direction."
     },
     {
-      day: 39, week: 6, minutes: 30,
+      day: 35, week: 8, minutes: 30,
       title: "Quotations — 〜と言う / 〜と思う",
       goal: "Report what someone said or what you think.",
       kana: {},
@@ -1816,10 +1798,8 @@ const DATA = {
       sentences: ["雨が降ると思います。","田中さんは「行きます」と言いました。","面白いと思った。"],
       practice: "Quote yourself or someone else in 3 sentences. Use と言う / と思う."
     },
-
-    // ── Week 7 — permission, obligation, experience, while, listing, advice ──
     {
-      day: 40, week: 7, minutes: 30,
+      day: 36, week: 8, minutes: 30,
       title: "Permission and prohibition — 〜てもいい / 〜てはいけない",
       goal: "Ask politely 'may I' and warn 'must not'.",
       kana: {},
@@ -1829,9 +1809,9 @@ const DATA = {
       practice: "Ask 3 polite permission questions you'd actually use at work."
     },
     {
-      day: 41, week: 7, minutes: 30,
+      day: 37, week: 8, minutes: 30,
       title: "Obligation — 〜なければなりません / 〜なきゃ",
-      goal: "Say what you HAVE to do. Use polite full form and the casual contraction.",
+      goal: "Say what you HAVE to do. Polite full form + casual contraction.",
       kana: {},
       words: ["宿題","薬","電車","テスト"],
       grammar: ["〜なければなりません — Must do (obligation)"],
@@ -1839,7 +1819,7 @@ const DATA = {
       practice: "List 5 things you must do this week using なければなりません / なきゃ."
     },
     {
-      day: 42, week: 7, minutes: 30,
+      day: 38, week: 8, minutes: 30,
       title: "Experience — 〜たことがある",
       goal: "Talk about life experiences. Have you done X? Yes/no.",
       kana: {},
@@ -1849,50 +1829,54 @@ const DATA = {
       practice: "Make 5 statements about experiences — 3 things you have done, 2 things you haven't."
     },
     {
-      day: 43, week: 7, minutes: 30,
+      day: 39, week: 9, minutes: 30,
       title: "Simultaneous + listing — 〜ながら, 〜たり〜たり",
       goal: "Two actions at once (ながら) and 'doing things like X and Y' (たり).",
       kana: {},
       words: ["音楽","コーヒー","本","映画"],
-      grammar: ["〜ながら — While doing X (simultaneous actions)",
-                "〜たり〜たり する — Doing things like X and Y"],
+      grammar: ["〜ながら — While doing X (simultaneous actions)","〜たり〜たり する — Doing things like X and Y"],
       sentences: ["音楽を聞きながら勉強します。","週末は本を読んだり、映画を見たりします。"],
       practice: "Describe your weekend with 2 ながら sentences and 2 たり sentences."
     },
     {
-      day: 44, week: 7, minutes: 35,
+      day: 40, week: 9, minutes: 35,
       title: "Advice + intentions — 〜たほうがいい / 〜つもり",
       goal: "Give advice softly and state your plans.",
       kana: {},
       words: ["寝る","薬","新しい","パソコン"],
-      grammar: ["〜たほうがいい — You should do X (advice)",
-                "〜つもり — Intend to / Plan to"],
+      grammar: ["〜たほうがいい — You should do X (advice)","〜つもり — Intend to / Plan to"],
       sentences: ["早く寝たほうがいいですよ。","来週、日本に行くつもりです。","新しいパソコンを買うつもりです。"],
       practice: "Give 3 pieces of advice + state 3 plans you have for next month."
     },
     {
-      day: 45, week: 7, minutes: 35,
-      title: "Relative clauses + nuance (やすい/にくい, すぎる, しか, hearsay)",
+      day: 41, week: 9, minutes: 35,
+      title: "Relative clauses + nuance — やすい/にくい, すぎる, しか, hearsay",
       goal: "Modify nouns with verbs. Add nuance with やすい/にくい, すぎる, しか, そう/らしい.",
       kana: {},
       words: ["本","コード","コーヒー","千円"],
-      grammar: ["Relative clauses — modifying nouns with verbs (私が読んだ本)",
-                "〜やすい / 〜にくい — Easy / Hard to do",
-                "〜すぎる — Too much / Excessively",
-                "〜しか〜ない / 〜だけ — Only X (restriction)",
-                "そうです / らしい — Hearsay (I heard / it seems)"],
+      grammar: ["Relative clauses — modifying nouns with verbs (私が読んだ本)","〜やすい / 〜にくい — Easy / Hard to do","〜すぎる — Too much / Excessively","〜しか〜ない / 〜だけ — Only X (restriction)","そうです / らしい — Hearsay (I heard / it seems)"],
       sentences: ["私が書いた本","この本は読みやすいです。","食べすぎました。","千円しかありません。","明日、雨が降るそうです。"],
-      practice: "Build a 3-sentence story using AT LEAST a relative clause, やすい/にくい, and a hearsay form."
+      practice: "Build a 3-sentence story using a relative clause, やすい/にくい, and a hearsay form."
     },
     {
-      day: 46, week: 7, minutes: 40,
-      title: "Keigo intro — 尊敬語 / 謙譲語 (formal Japanese)",
+      day: 42, week: 10, minutes: 40,
+      title: "Keigo intro — 尊敬語 / 謙譲語",
       goal: "Recognize and use the most-common keigo verb pairs in business contexts.",
       kana: {},
       words: ["社長","お客様","参る","申す"],
       grammar: ["Keigo intro — 尊敬語 (raise others) vs 謙譲語 (lower self)"],
       sentences: ["社長がいらっしゃいました。","私が参ります。","お客様が召し上がります。","存じております。"],
       practice: "Practice the 5 most common keigo pairs (来る/行く, 言う, 食べる, 知る, いる) until you can produce them on demand."
+    },
+    {
+      day: 43, week: 10, minutes: 45,
+      title: "★ Cumulative review + next-month plan",
+      goal: "Run a 5-minute conversation. Identify weak spots. Plan what's next.",
+      kana: {},
+      words: [],
+      grammar: [],
+      sentences: ["はじめまして、よろしくお願いします。","お疲れさまでした。","また明日。","ありがとうございます。"],
+      practice: "Long roleplay with Claude: 5-min conversation covering intro, work, small talk. Then ask what to focus on next."
     }
   ],
 
