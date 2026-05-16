@@ -756,8 +756,8 @@
           <span class="week">Week ${ch.week}</span>
         </div>
         <div class="chapter-title">
-          <h3>${ch.title}</h3>
-          <span class="goal">${ch.goal}</span>
+          <h3>${escapeHtml(annotateJP(ch.title))}</h3>
+          <span class="goal">${escapeHtml(annotateJP(ch.goal))}</span>
         </div>
         <div class="chapter-meta">
           <span class="meta-pill">📖 ${(ch.kana?.hira?.length || 0) + (ch.kana?.kata?.length || 0)} kana</span>
@@ -841,9 +841,9 @@
             if (!g) return;
             const item = document.createElement("div");
             item.className = "chapter-grammar";
-            item.innerHTML = `<b>${escapeHtml(g.title)}</b>
-              <div class="pat">${escapeHtml(g.pattern || "")}</div>
-              <div class="rule">${escapeHtml(g.rule || "")}</div>`;
+            item.innerHTML = `<b>${escapeHtml(annotateJP(g.title))}</b>
+              <div class="pat">${escapeHtml(annotateJP(g.pattern || ""))}</div>
+              <div class="rule">${escapeHtml(annotateJP(g.rule || "")).replace(/\n/g, "<br>")}</div>`;
             sec.appendChild(item);
           }
         });
@@ -873,7 +873,7 @@
         const sec = mkSection("Practice");
         const p = document.createElement("div");
         p.className = "chapter-practice";
-        p.innerHTML = `<b>→</b> ${ch.practice}`;
+        p.innerHTML = `<b>→</b> ${escapeHtml(annotateJP(ch.practice))}`;
         sec.appendChild(p);
         body.appendChild(sec);
       }
@@ -978,6 +978,177 @@
     return String(s)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  // ---------- kana → romaji (for auto-annotating JP in grammar notes) ----------
+  // Pure character mapping for hiragana + katakana including dakuten,
+  // handakuten, yoon (small ゃゅょ), sokuon (っ doubles next consonant),
+  // and katakana long mark (ー extends previous vowel). Kanji is not
+  // converted — runs that contain kanji are left untouched.
+  const KANA_MAP = (() => {
+    const m = new Map();
+    // 2-char yōon — must match before single chars
+    const yoon = {
+      "きゃ":"kya","きゅ":"kyu","きょ":"kyo","しゃ":"sha","しゅ":"shu","しょ":"sho",
+      "ちゃ":"cha","ちゅ":"chu","ちょ":"cho","にゃ":"nya","にゅ":"nyu","にょ":"nyo",
+      "ひゃ":"hya","ひゅ":"hyu","ひょ":"hyo","みゃ":"mya","みゅ":"myu","みょ":"myo",
+      "りゃ":"rya","りゅ":"ryu","りょ":"ryo","ぎゃ":"gya","ぎゅ":"gyu","ぎょ":"gyo",
+      "じゃ":"ja","じゅ":"ju","じょ":"jo","びゃ":"bya","びゅ":"byu","びょ":"byo",
+      "ぴゃ":"pya","ぴゅ":"pyu","ぴょ":"pyo",
+      "キャ":"kya","キュ":"kyu","キョ":"kyo","シャ":"sha","シュ":"shu","ショ":"sho",
+      "チャ":"cha","チュ":"chu","チョ":"cho","ニャ":"nya","ニュ":"nyu","ニョ":"nyo",
+      "ヒャ":"hya","ヒュ":"hyu","ヒョ":"hyo","ミャ":"mya","ミュ":"myu","ミョ":"myo",
+      "リャ":"rya","リュ":"ryu","リョ":"ryo","ギャ":"gya","ギュ":"gyu","ギョ":"gyo",
+      "ジャ":"ja","ジュ":"ju","ジョ":"jo","ビャ":"bya","ビュ":"byu","ビョ":"byo",
+      "ピャ":"pya","ピュ":"pyu","ピョ":"pyo",
+      "ティ":"ti","ディ":"di","ファ":"fa","フィ":"fi","フェ":"fe","フォ":"fo",
+      "ウィ":"wi","ウェ":"we","ウォ":"wo","ヴァ":"va","ヴィ":"vi","ヴェ":"ve","ヴォ":"vo",
+    };
+    // Particle phrase overrides — は after these is read "wa", not "ha"
+    const phrases = {
+      "ではありません":"de wa arimasen","ではない":"de wa nai","では":"de wa",
+      "には":"ni wa","とは":"to wa","へは":"e wa","からは":"kara wa",
+      "ありません":"arimasen","ありました":"arimashita",
+      "ません":"masen","ました":"mashita","ましょう":"mashō","ましょうか":"mashō ka",
+      "じゃありません":"ja arimasen","じゃない":"ja nai",
+      "です":"desu","でした":"deshita","ですか":"desu ka","ですね":"desu ne","ですよ":"desu yo",
+      "ください":"kudasai","ますか":"masu ka","ますね":"masu ne",
+      "こんにちは":"konnichiwa","こんばんは":"konbanwa",
+    };
+    // single chars
+    const mono = {
+      "あ":"a","い":"i","う":"u","え":"e","お":"o",
+      "か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
+      "さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
+      "た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to",
+      "な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no",
+      "は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho",
+      "ま":"ma","み":"mi","む":"mu","め":"me","も":"mo",
+      "や":"ya","ゆ":"yu","よ":"yo",
+      "ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro",
+      "わ":"wa","を":"o","ん":"n",
+      "が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go",
+      "ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo",
+      "だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do",
+      "ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo",
+      "ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po",
+      "ア":"a","イ":"i","ウ":"u","エ":"e","オ":"o",
+      "カ":"ka","キ":"ki","ク":"ku","ケ":"ke","コ":"ko",
+      "サ":"sa","シ":"shi","ス":"su","セ":"se","ソ":"so",
+      "タ":"ta","チ":"chi","ツ":"tsu","テ":"te","ト":"to",
+      "ナ":"na","ニ":"ni","ヌ":"nu","ネ":"ne","ノ":"no",
+      "ハ":"ha","ヒ":"hi","フ":"fu","ヘ":"he","ホ":"ho",
+      "マ":"ma","ミ":"mi","ム":"mu","メ":"me","モ":"mo",
+      "ヤ":"ya","ユ":"yu","ヨ":"yo",
+      "ラ":"ra","リ":"ri","ル":"ru","レ":"re","ロ":"ro",
+      "ワ":"wa","ヲ":"o","ン":"n",
+      "ガ":"ga","ギ":"gi","グ":"gu","ゲ":"ge","ゴ":"go",
+      "ザ":"za","ジ":"ji","ズ":"zu","ゼ":"ze","ゾ":"zo",
+      "ダ":"da","ヂ":"ji","ヅ":"zu","デ":"de","ド":"do",
+      "バ":"ba","ビ":"bi","ブ":"bu","ベ":"be","ボ":"bo",
+      "パ":"pa","ピ":"pi","プ":"pu","ペ":"pe","ポ":"po",
+      "ヴ":"vu",
+    };
+    Object.entries(phrases).forEach(([k, v]) => m.set(k, v));
+    Object.entries(yoon).forEach(([k, v]) => m.set(k, v));
+    Object.entries(mono).forEach(([k, v]) => m.set(k, v));
+    return m;
+  })();
+  // Sorted by length descending so longest match wins (e.g. "ではありません" before "では" before "で")
+  const KANA_KEYS = [...KANA_MAP.keys()].sort((a, b) => b.length - a.length);
+
+  // Detect a single kana character (hiragana or katakana, excludes long mark and sokuon)
+  function isKana(ch) {
+    if (!ch) return false;
+    const c = ch.codePointAt(0);
+    // Hiragana: U+3041–U+3096, Katakana: U+30A1–U+30FA + the long mark U+30FC + small katakana
+    return (c >= 0x3041 && c <= 0x3096) || (c >= 0x30A1 && c <= 0x30FA) || ch === "ー" || ch === "っ" || ch === "ッ";
+  }
+  function isKanji(ch) {
+    const c = ch.codePointAt(0);
+    return c >= 0x4E00 && c <= 0x9FFF;
+  }
+
+  // Convert a pure-kana string to romaji. Kanji is left as-is.
+  // Greedy longest-match against KANA_KEYS (sorted by length descending)
+  // so multi-char phrase overrides like "ではありません" win over single chars.
+  function kanaToRomaji(s) {
+    if (!s) return "";
+    let out = "";
+    let i = 0;
+    outer: while (i < s.length) {
+      const one = s[i];
+      // sokuon — doubles next consonant
+      if (one === "っ" || one === "ッ") {
+        const next2 = s.slice(i + 1, i + 3);
+        const next = KANA_MAP.get(next2) || KANA_MAP.get(s[i + 1]);
+        if (next) out += next[0];
+        i += 1;
+        continue;
+      }
+      // long mark — repeat the last vowel
+      if (one === "ー") {
+        const last = out[out.length - 1];
+        if (last && "aiueo".includes(last)) out += last;
+        i += 1;
+        continue;
+      }
+      // greedy longest match against the dictionary
+      for (const key of KANA_KEYS) {
+        if (key.length === 1) break; // bail to single-char path below
+        if (s.startsWith(key, i)) {
+          out += KANA_MAP.get(key);
+          i += key.length;
+          continue outer;
+        }
+      }
+      if (KANA_MAP.has(one)) {
+        out += KANA_MAP.get(one);
+        i += 1;
+        continue;
+      }
+      // Not in map (kanji or punctuation) — leave it; caller decides whether to annotate
+      out += one;
+      i += 1;
+    }
+    return out;
+  }
+
+  // Find each run of pure-kana characters and append ` (romaji)` after it.
+  // - Skips runs that contain any kanji (mixed words like 食べません stay as-is)
+  // - Skips if the run is already followed by `(` (avoids double-annotation)
+  // - Operates on raw text BEFORE escapeHtml; safe to use on user content
+  function annotateJP(text) {
+    if (!text) return "";
+    let out = "";
+    let i = 0;
+    while (i < text.length) {
+      const ch = text[i];
+      if (isKana(ch)) {
+        // collect the full kana run
+        let j = i;
+        while (j < text.length && isKana(text[j])) j++;
+        const run = text.slice(i, j);
+        out += run;
+        // peek: skip annotation if already followed by " (" or "("
+        const after = text.slice(j, j + 2);
+        if (after !== "( " && text[j] !== "(") {
+          const ro = kanaToRomaji(run);
+          if (ro && ro !== run) out += ` (${ro})`;
+        }
+        i = j;
+        continue;
+      }
+      if (isKanji(ch)) {
+        // pass kanji-containing tokens through untouched (we'd need a dict)
+        out += ch;
+        i++;
+        continue;
+      }
+      out += ch;
+      i++;
+    }
+    return out;
   }
 
   // Map a free-text role string to CSS classes for color-coding.
@@ -1196,13 +1367,13 @@
       </header>
       <div class="struct-body">
         <div class="struct-meta">
-          <div class="struct-formula"><b>Formula:</b> <code>${escapeHtml(s.formula || "")}</code></div>
+          <div class="struct-formula"><b>Formula:</b> <code>${escapeHtml(annotateJP(s.formula || ""))}</code></div>
           <div class="struct-tags">
             ${s.person ? `<span class="struct-tag"><b>Person:</b> ${escapeHtml(s.person)}</span>` : ""}
             ${s.tense ? `<span class="struct-tag"><b>Tense:</b> ${escapeHtml(s.tense)}</span>` : ""}
           </div>
         </div>
-        ${s.description ? `<p class="struct-desc">${escapeHtml(s.description)}</p>` : ""}
+        ${s.description ? `<p class="struct-desc">${escapeHtml(annotateJP(s.description)).replace(/\n/g, "<br>")}</p>` : ""}
 
         <div class="struct-section-h">📌 Main pattern + 📚 Similar examples (compact chart)</div>
         <div class="struct-grid">${gridParts.join("")}</div>
