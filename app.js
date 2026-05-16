@@ -385,15 +385,18 @@
     const id = `${kind}:${item.ch}`;
     if (state.learned.has(id)) card.classList.add("learned");
 
+    const explainCtx = `${kind === "kata" ? "Katakana" : "Hiragana"} character ${item.ch} (romaji "${item.ro}", group: ${item.group}).`;
+    const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
     card.innerHTML = `
       <span class="group">${item.group}</span>
       <button class="learn" title="Mark as learned">✓</button>
+      ${explainBtn}
       <span class="ch">${item.ch}</span>
       <span class="ro">${item.ro}</span>
     `;
     bindHoverInfo(card, () => infoForKana(item));
     card.addEventListener("click", (e) => {
-      if (e.target.closest(".learn")) return;
+      if (e.target.closest(".learn") || e.target.closest(".ai-explain-btn")) return;
       speak(item.ch, card);
     });
     card.querySelector(".learn").addEventListener("click", (e) => {
@@ -532,15 +535,19 @@
       card.dataset.search = `${w.jp} ${w.ro} ${w.en} ${w.tag}`.toLowerCase();
       card.dataset.tag = w.tag;
       const em = (typeof EMOJI !== "undefined" && EMOJI[w.jp]) || "";
+      const explainCtx = `Japanese word: ${w.jp} (${w.ro}) — ${w.en}.${w.ex ? ` Example: ${w.ex}.` : ""}`;
+      const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
       card.innerHTML = `
         <span class="tag">${w.tag}</span>
+        ${explainBtn}
         <div class="jp">${em ? `<span class="emoji">${em}</span>` : ""}${w.jp}</div>
         <div class="ro">${w.ro}</div>
         <div class="en">${w.en}</div>
         ${w.ex ? `<div class="ex">${w.ex}</div>` : ""}
       `;
       bindHoverInfo(card, () => infoForWord(w));
-      card.addEventListener("click", () => {
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".ai-explain-btn")) return;
         card.classList.toggle("is-open");
         speak(w.jp, card);
       });
@@ -596,14 +603,18 @@
         jpHtml = s.jp;
       }
 
+      const explainCtx = `Japanese sentence: ${s.jp} (${s.ro}) — ${s.en}. Scene: ${s.scene}.`;
+      const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
       card.innerHTML = `
         <span class="scene">${s.scene}</span>
+        ${explainBtn}
         <div class="jp">${jpHtml}</div>
         <div class="ro">${s.ro}</div>
         <div class="en">${s.en}</div>
       `;
       bindHoverInfo(card, () => infoForSentence(s));
       card.addEventListener("click", (e) => {
+        if (e.target.closest(".ai-explain-btn")) return;
         // if clicking a token, only play that token
         const tok = e.target.closest(".tok");
         if (tok) {
@@ -935,7 +946,10 @@
       const card = document.createElement("div");
       card.className = "kanji";
       card.dataset.search = `${k.ch} ${k.on} ${k.kun} ${k.en} ${(k.words || []).join(" ")}`.toLowerCase();
+      const explainCtx = `Kanji: ${k.ch} (meaning: ${k.en}). On'yomi: ${k.on}. Kun'yomi: ${k.kun}. Strokes: ${k.strokes}.${(k.words && k.words.length) ? " Example words: " + k.words.join(", ") + "." : ""}`;
+      const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
       card.innerHTML = `
+        ${explainBtn}
         <div class="kanji-ch">${escapeHtml(k.ch)}</div>
         <div class="kanji-meta">
           <div class="kanji-en">${escapeHtml(k.en)}</div>
@@ -962,7 +976,10 @@
         </div>
         ${tipFooter()}
       `);
-      card.addEventListener("click", () => speak(k.ch, card));
+      card.addEventListener("click", (e) => {
+        if (e.target.closest(".ai-explain-btn")) return;
+        speak(k.ch, card);
+      });
       root.appendChild(card);
     });
     $("#searchKanji").addEventListener("input", (e) => {
@@ -1359,10 +1376,13 @@
         }</div>`
       : "";
 
+    const explainCtx = `Japanese grammar structure: ${s.title || ""}. Formula: ${s.formula || ""}.${s.description ? " " + s.description : ""}`;
+    const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
     card.innerHTML = `
       <header class="struct-head">
         <span class="struct-cat">${escapeHtml(s.category || "")}</span>
         <h3 class="struct-title">${escapeHtml(s.title || "")}</h3>
+        ${explainBtn}
         <button class="struct-toggle" title="Expand / collapse">▼</button>
       </header>
       <div class="struct-body">
@@ -1385,6 +1405,7 @@
     // expand / collapse on header click
     const head = $(".struct-head", card);
     head.addEventListener("click", (e) => {
+      if (e.target.closest(".ai-explain-btn")) return;
       if (e.target.closest(".struct-toggle, .struct-cat")) {
         card.classList.toggle("is-open");
         return;

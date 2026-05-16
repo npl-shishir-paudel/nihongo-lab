@@ -2,3 +2,6 @@ _tunnel.log
 node_modules/
 .DS_Store
 .claude/
+# Wrangler local state (auth tokens, build cache) — must never be committed
+worker/.wrangler/
+.wrangler/

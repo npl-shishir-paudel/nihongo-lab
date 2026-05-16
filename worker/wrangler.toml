@@ -1,19 +1,25 @@
-# Nihongo Lab — daily-reminder Worker
-# Runs once a day on a cron trigger and POSTs a reminder to ntfy.sh,
-# which delivers a free push notification to your phone via the ntfy app.
+# Nihongo Lab — Worker
+#
+# Two things this Worker does:
+#   1. Daily reminder (cron) — POSTs to ntfy.sh, push notification on phone
+#   2. AI chat proxy (POST /chat) — proxies Gemini 2.0 Flash so the key
+#      stays as a Worker secret, never in the repo or in the browser
 #
 # Setup:
 #   1. Install Wrangler:        npm install -g wrangler
 #   2. Login to Cloudflare:     wrangler login
 #   3. Edit `vars.NTFY_TOPIC` below to YOUR private topic name
-#      (something nobody else can guess — like "shishir-japanese-7f3k2")
-#   4. Optional: edit `crons` to your preferred reminder time (UTC!)
-#   5. Deploy:                  wrangler deploy
-#   6. Install ntfy app on phone, subscribe to the same topic name
-#   7. Wait until the cron fires — your phone gets a push.
+#   4. Get a Gemini API key (free) at https://aistudio.google.com/apikey
+#   5. Add it as a secret:      wrangler secret put GEMINI_API_KEY
+#                               (paste the key when prompted)
+#   6. Optional: edit `crons` to your preferred reminder time (UTC!)
+#   7. Deploy:                  wrangler deploy
+#   8. The Worker URL is shown after deploy — paste it into the chat
+#      widget's Settings (⚙) in the app the first time you open chat.
 #
 # The Worker is COMPLETELY SEPARATE from your Pages site. Free tier covers
-# 100k requests/day and unlimited cron invocations.
+# 100k requests/day and unlimited cron invocations. Gemini free tier is
+# 15 RPM / 1500 RPD / 1M tokens per day — more than enough for personal use.
 
 name = "nihongo-lab-reminder"
 main = "index.js"
@@ -21,12 +27,14 @@ compatibility_date = "2025-01-01"
 
 [vars]
 # Your private ntfy topic name. Pick something unguessable.
-# Anyone who knows the topic can read your notifications, so keep it secret.
 NTFY_TOPIC = "shishir-japanese-CHANGE-THIS-TO-A-RANDOM-STRING"
 
-# Override default messages here if you want, otherwise the Worker rotates
-# through a built-in set.
+# Optional override of the rotating notification title.
 NTFY_TITLE = "🇯🇵 Nihongo Lab"
+
+# CORS allowlist for the /chat endpoint. Use "*" to allow anywhere, or
+# lock to your Pages URL: "https://npl-shishir-paudel.github.io"
+ALLOWED_ORIGIN = "*"
 
 # Triggers section — daily reminder schedule.
 # Format: standard cron, in UTC.

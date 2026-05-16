@@ -3349,3 +3349,292 @@ input[type="search"]:focus {
   .today-cal-day { font-size: 30px; width: 46px; height: 46px; }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   AI CHAT WIDGET — floating ✨ button + slide-in side panel
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Floating toggle (always visible bottom-right) ─────────────── */
+.ai-toggle {
+  position: fixed; right: 18px; bottom: 18px; z-index: 200;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-5));
+  color: #fff;
+  border: 3px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 18px 10px 14px;
+  font: 800 14px "Nunito", system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 0 var(--line);
+  transition: transform .15s cubic-bezier(.34,1.8,.6,1), box-shadow .15s;
+}
+.ai-toggle:hover {
+  transform: translate(-2px, -2px) rotate(-2deg);
+  box-shadow: 6px 6px 0 0 var(--line);
+}
+.ai-toggle .ai-spark { font-size: 18px; animation: ai-twinkle 2.4s ease-in-out infinite; }
+@keyframes ai-twinkle {
+  0%, 100% { transform: rotate(0) scale(1); }
+  50%      { transform: rotate(15deg) scale(1.15); }
+}
+
+/* ── Side panel ────────────────────────────────────────────────── */
+.ai-panel {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(440px, 100vw);
+  background: var(--bg-2);
+  border-left: 3px solid var(--line);
+  box-shadow: -6px 0 0 0 var(--line);
+  z-index: 250;
+  display: flex; flex-direction: column;
+  transform: translateX(105%);
+  transition: transform .25s cubic-bezier(.34,1.4,.6,1);
+}
+.ai-panel.is-open { transform: translateX(0); }
+
+.ai-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 3px solid var(--line);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-5) 100%);
+  color: #fff;
+}
+.ai-head-title {
+  font-family: "Patrick Hand", "Caveat", system-ui, sans-serif;
+  font-size: 22px; font-weight: 700;
+  margin-right: auto;
+}
+.ai-session-pick {
+  background: rgba(255,255,255,.9);
+  color: var(--fg);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 8px;
+  font: 600 12px "Nunito", system-ui, sans-serif;
+  max-width: 130px;
+}
+.ai-icon {
+  background: rgba(255,255,255,.9);
+  color: var(--fg);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 0;
+  width: 30px; height: 30px;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.ai-icon:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line); }
+
+/* ── Settings pane ─────────────────────────────────────────────── */
+.ai-settings {
+  padding: 14px;
+  background: var(--bg-3);
+  border-bottom: 2px dashed var(--line);
+}
+.ai-field {
+  display: flex; flex-direction: column; gap: 4px;
+  font: 700 12px "Nunito", system-ui, sans-serif; color: var(--fg);
+}
+.ai-field input {
+  padding: 8px 10px;
+  border: 2px solid var(--line); border-radius: 8px;
+  background: var(--bg-2); color: var(--fg);
+  font: 400 13px "Nunito", system-ui, sans-serif;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.ai-field input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 3px 3px 0 0 var(--line);
+}
+.ai-hint {
+  font-size: 11px; color: var(--fg-dim); margin: 8px 0 10px;
+  line-height: 1.4;
+}
+.ai-hint code {
+  background: var(--bg-2); padding: 1px 4px;
+  border: 1px solid var(--line); border-radius: 4px;
+  font-size: 11px;
+}
+.ai-primary {
+  background: var(--accent); color: #fff;
+  border: 2px solid var(--line); border-radius: 8px;
+  padding: 6px 14px; cursor: pointer;
+  font: 800 13px "Nunito", system-ui, sans-serif;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.ai-primary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line); }
+
+/* ── Messages area ─────────────────────────────────────────────── */
+.ai-messages {
+  flex: 1; overflow-y: auto;
+  padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 4%, transparent), transparent 40%),
+    radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--accent-2) 4%, transparent), transparent 40%);
+}
+.ai-msg {
+  max-width: 88%;
+  padding: 10px 14px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  font-size: 14px; line-height: 1.5;
+  box-shadow: 2px 2px 0 0 var(--line);
+  word-wrap: break-word;
+}
+.ai-msg.ai-user {
+  align-self: flex-end;
+  background: var(--accent); color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.ai-msg.ai-assistant {
+  align-self: flex-start;
+  background: var(--bg-2);
+  border-bottom-left-radius: 4px;
+}
+.ai-msg.ai-sys {
+  align-self: center;
+  background: var(--sticker-3-bg); color: var(--fg);
+  border-style: dashed;
+  font-size: 12px; font-style: italic;
+  padding: 6px 12px;
+}
+.ai-msg-head {
+  font-size: 11px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .5px;
+  opacity: .8; margin-bottom: 4px;
+}
+.ai-msg-body code {
+  background: rgba(0,0,0,.08); padding: 1px 4px;
+  border-radius: 3px; font-size: 13px;
+}
+.ai-msg.ai-user .ai-msg-body code { background: rgba(255,255,255,.18); }
+.ai-msg-body pre {
+  background: rgba(0,0,0,.06); padding: 8px;
+  border-radius: 6px; overflow-x: auto;
+  font-size: 12px; margin: 4px 0;
+}
+.ai-msg-body b { font-weight: 800; }
+
+/* Empty state */
+.ai-empty {
+  text-align: center; padding: 20px 12px;
+  color: var(--fg-dim);
+}
+.ai-empty-emoji { font-size: 40px; margin-bottom: 8px; }
+.ai-empty p { margin: 4px 0; }
+.ai-empty-tips { margin-top: 12px !important; font-weight: 800; color: var(--fg); }
+.ai-empty-prompts {
+  list-style: none; padding: 0; margin: 8px 0 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.ai-prompt-pill {
+  background: var(--bg-2); color: var(--fg);
+  border: 2px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; cursor: pointer;
+  font: 600 13px "Nunito", system-ui, sans-serif;
+  box-shadow: 2px 2px 0 0 var(--line);
+  text-align: left;
+}
+.ai-prompt-pill:hover {
+  background: var(--accent); color: #fff;
+  transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line);
+}
+.ai-empty-hint { font-size: 12px; font-style: italic; }
+
+/* ── Toolbar (new / rename / clear / delete) ───────────────────── */
+.ai-toolbar {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding: 8px 14px;
+  border-top: 2px dashed var(--line);
+  background: var(--bg-3);
+}
+.ai-tool {
+  background: var(--bg-2); color: var(--fg);
+  border: 2px solid var(--line); border-radius: 8px;
+  padding: 4px 10px; cursor: pointer;
+  font: 700 11px "Nunito", system-ui, sans-serif;
+  box-shadow: 1px 1px 0 0 var(--line);
+}
+.ai-tool:hover { transform: translate(-1px,-1px); box-shadow: 2px 2px 0 0 var(--line); }
+.ai-tool.danger { color: var(--bad); }
+
+/* ── Input row ─────────────────────────────────────────────────── */
+.ai-input-row {
+  display: flex; gap: 8px;
+  padding: 10px 14px 14px;
+  border-top: 2px solid var(--line);
+  background: var(--bg-2);
+}
+.ai-input {
+  flex: 1;
+  resize: vertical; min-height: 44px; max-height: 200px;
+  padding: 10px 12px;
+  border: 2px solid var(--line); border-radius: 10px;
+  background: var(--bg-2); color: var(--fg);
+  font: 400 14px "Nunito", system-ui, sans-serif;
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+.ai-input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 3px 3px 0 0 var(--line);
+}
+.ai-send {
+  background: var(--accent); color: #fff;
+  border: 2px solid var(--line); border-radius: 10px;
+  padding: 0 18px; cursor: pointer;
+  font-size: 16px; font-weight: 800;
+  box-shadow: 2px 2px 0 0 var(--line);
+  align-self: stretch;
+}
+.ai-send:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line); }
+
+/* ── "Explain this" buttons on content cards ───────────────────── */
+.ai-explain-btn {
+  position: absolute;
+  top: 4px; right: 4px;
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, var(--accent-5), var(--accent-2));
+  color: #fff;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 0 var(--line);
+  opacity: 0; transition: opacity .15s, transform .15s, box-shadow .15s;
+  padding: 0;
+  z-index: 5;
+}
+/* Reveal on card hover; always visible on touch (no hover) */
+.kana:hover .ai-explain-btn,
+.word:hover .ai-explain-btn,
+.sentence:hover .ai-explain-btn,
+.kanji:hover .ai-explain-btn,
+.struct:hover .ai-explain-btn,
+.struct.is-open .ai-explain-btn,
+.ai-explain-btn:focus {
+  opacity: 1;
+}
+@media (hover: none) {
+  .ai-explain-btn { opacity: 1; }
+}
+.ai-explain-btn:hover {
+  transform: scale(1.15) rotate(-6deg);
+  box-shadow: 2px 2px 0 0 var(--line);
+}
+
+/* Struct cards: position the explain button inside the head, not overlapping toggle */
+.struct .ai-explain-btn {
+  position: relative; top: auto; right: auto;
+  margin-right: 4px;
+  opacity: 1;
+}
+
+/* On mobile the floating toggle gets smaller */
+@media (max-width: 640px) {
+  .ai-toggle { padding: 8px 14px 8px 12px; font-size: 13px; }
+  .ai-toggle .ai-lbl { display: none; }
+  .ai-panel { width: 100vw; }
+}
+
