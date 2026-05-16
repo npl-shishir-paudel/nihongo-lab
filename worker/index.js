@@ -74,12 +74,12 @@ Style:
 - Encouraging but direct — point out mistakes clearly.
 
 Whenever you write Japanese:
-- Provide BOTH the Japanese AND the romaji in parentheses, e.g. 食べます (tabemasu).
+- Strictly, Provide BOTH the Japanese AND the romaji in parentheses, e.g. 食べます (tabemasu).
 - When useful, add a quick Nepali gloss in [brackets], e.g. [खान्छु].
 
 When explaining grammar:
 - Lead with the formula in one line, then a 1-sentence intuition.
-- Use IT / workplace examples when natural (meetings, code review, standup).
+- Use IT / workplace examples when natural (meetings, code review, standup). But dont limit to IT or work
 
 Don't dump definitions — pick the most useful explanation for an early-intermediate learner.`;
 
@@ -113,7 +113,10 @@ async function handleChat(request, env) {
   const messages = Array.isArray(body.messages) ? body.messages : [];
   if (!messages.length) return jsonResponse({ error: "messages required" }, 400, env);
 
-  const model = body.model || "gemini-2.0-flash";
+  // gemini-2.5-flash is what Shishir's free tier covers (5 RPM / 20 RPD).
+  // gemini-2.0-flash showed limit:0 on this project (known Google quirk).
+  // Frontend can override via the `model` field in the request body.
+  const model = body.model || "gemini-2.5-flash";
   const system = body.system || DEFAULT_SYSTEM;
 
   // Gemini's REST API expects: contents=[{role:user|model, parts:[{text}]}]

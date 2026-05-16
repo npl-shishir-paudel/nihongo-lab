@@ -194,8 +194,10 @@
 
   <script src="data.js"></script>
   <script src="cheat-data.js"></script>
-  <script src="app.js"></script>
+  <!-- ai-chat.js must load BEFORE app.js so window.NihongoAI exists when
+       the card renderers in app.js inject the ✨ explain buttons. -->
   <script src="ai-chat.js"></script>
+  <script src="app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
