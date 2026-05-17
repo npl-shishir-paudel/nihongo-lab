@@ -88,7 +88,25 @@
             <input id="aiWorkerUrl" type="url" placeholder="https://nihongo-lab-reminder.YOUR-ACCOUNT.workers.dev" />
           </label>
           <p class="ai-hint">Deploy the worker in <code>application/worker/</code> (see <code>AI_SETUP.md</code>), then paste its URL here. Stored in your browser only.</p>
-          <button id="aiSaveSettings" class="ai-primary">Save</button>
+
+          <hr class="ai-divider" />
+          <div class="ai-field">
+            <span>Daily reminder time (your local time)</span>
+            <input id="aiReminderTime" type="time" />
+          </div>
+          <div class="ai-field-row">
+            <label class="ai-toggle-row">
+              <input id="aiChannelNtfy" type="checkbox" />
+              <span>📱 Phone push (ntfy)</span>
+            </label>
+            <label class="ai-toggle-row">
+              <input id="aiChannelEmail" type="checkbox" />
+              <span>✉ Email</span>
+            </label>
+          </div>
+          <p class="ai-hint" id="aiReminderStatus">Reminder time is stored on the Worker (in Cloudflare KV). The hourly cron fires only when this hour matches.</p>
+
+          <button id="aiSaveSettings" class="ai-primary">Save settings</button>
         </div>
         <div id="aiMessages" class="ai-messages"></div>
         <div class="ai-toolbar">
@@ -141,13 +159,83 @@
     pane.hidden = !show;
     if (show) {
       document.getElementById("aiWorkerUrl").value = getWorkerUrl();
+      // Hydrate the reminder fields from the Worker's KV state
+      hydrateReminderFields();
     }
   }
-  function saveSettings() {
+  async function hydrateReminderFields() {
+    const url = getWorkerUrl();
+    if (!url) return;
+    try {
+      const resp = await fetch(url + "/state");
+      if (!resp.ok) return;
+      const state = await resp.json();
+      const utcHour = (state.prefs?.reminderUtcHour ?? 13) | 0;
+      // Convert UTC hour to local HH:MM for the <input type="time">
+      const d = new Date(); d.setUTCHours(utcHour, 0, 0, 0);
+      const hh = String(d.getHours()).padStart(2, "0");
+      const mm = String(d.getMinutes()).padStart(2, "0");
+      document.getElementById("aiReminderTime").value = `${hh}:${mm}`;
+      document.getElementById("aiChannelNtfy").checked  = !!state.prefs?.channelNtfy;
+      document.getElementById("aiChannelEmail").checked = !!state.prefs?.channelEmail;
+    } catch (_) { /* offline / not deployed — leave defaults */ }
+  }
+  async function saveSettings() {
     const url = document.getElementById("aiWorkerUrl").value.trim();
     setWorkerUrl(url);
+
+    // Read reminder fields → convert local HH:MM back to UTC hour
+    const timeVal = document.getElementById("aiReminderTime").value;
+    let utcHour = null;
+    if (timeVal) {
+      const [hh, mm] = timeVal.split(":").map(n => parseInt(n, 10));
+      const d = new Date();
+      d.setHours(hh, mm || 0, 0, 0);
+      utcHour = d.getUTCHours();
+    }
+    const channelNtfy = document.getElementById("aiChannelNtfy").checked;
+    const channelEmail = document.getElementById("aiChannelEmail").checked;
+
+    // Push prefs to the Worker KV
+    let pushedOk = false;
+    if (getWorkerUrl() && utcHour !== null) {
+      try {
+        const resp = await fetch(getWorkerUrl() + "/state", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prefs: { reminderUtcHour: utcHour, channelNtfy, channelEmail },
+          }),
+        });
+        pushedOk = resp.ok;
+      } catch (_) { /* network down */ }
+    }
+
     toggleSettings(false);
-    appendSystemMessage(url ? "✓ Worker URL saved." : "Worker URL cleared.");
+    const bits = [];
+    if (url) bits.push("Worker URL saved");
+    if (pushedOk) bits.push(`reminder set to ${timeVal} local`);
+    if (!pushedOk && utcHour !== null) bits.push("⚠ reminder NOT synced (worker offline?)");
+    appendSystemMessage(bits.length ? `✓ ${bits.join(" · ")}.` : "Settings saved locally.");
+  }
+
+  // Sync local progress to the Worker's KV. Called by app.js when the
+  // user marks a chapter complete or when the curriculum start date is set.
+  // Best-effort — silently ignores network failures.
+  async function syncProgress() {
+    const url = getWorkerUrl();
+    if (!url) return;
+    try {
+      const chapDone = JSON.parse(localStorage.getItem("jp.chapDone") || "[]");
+      const curriculumStart = localStorage.getItem("jp.curriculumStart") || null;
+      await fetch(url + "/state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          progress: { chapDone, curriculumStart },
+        }),
+      });
+    } catch (_) { /* offline — sync on next change */ }
   }
 
   // ── Session management ──────────────────────────────────────────────
@@ -368,6 +456,9 @@
       input.value = `Explain this for me as a beginner Japanese learner:\n\n${context}`;
       document.getElementById("aiInputForm").dispatchEvent(new Event("submit"));
     },
+    // Push current progress (chapDone + curriculumStart from localStorage)
+    // to the Worker KV. Called by app.js on chapter mark-complete.
+    syncProgress,
     // Build the standard explain-button HTML (used by card renderers).
     // The SVG sparkle reads as a small "AI / magic" icon — cleaner than the
     // emoji and renders consistently across fonts. Pass `inline: true` for
@@ -375,8 +466,16 @@
     // grid cells, chapter sentences); default is absolute top-right.
     explainButtonHtml: (context, opts) => {
       const inline = opts && opts.inline;
-      const cls = "ai-explain-btn" + (inline ? " is-inline" : "");
-      return `<button class="${cls}" data-explain="${escapeHtml(context)}" title="Ask the AI tutor about this" aria-label="Ask AI"><svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M8 0l1.5 5.5L16 7l-6 1.5L9 13l-1-2-1 2-1-4.5L0 7l6.5-1.5z" fill="currentColor"/><circle cx="13" cy="2.5" r="1" fill="currentColor"/><circle cx="2.5" cy="13.5" r=".8" fill="currentColor"/></svg></button>`;
+      const variant = (opts && opts.variant) ? ` is-${opts.variant}` : "";
+      const cls = "ai-explain-btn" + (inline ? " is-inline" : "") + variant;
+      // Two-sparkle mark (Gemini-style): big symmetric sparkle + smaller one.
+      // Reads as "AI / magic" even at 9-12px, and is more distinctive than a
+      // single 4-point star at small sizes.
+      const svg = `<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
+        <path d="M5.6 1.2 L6.3 5.3 L10.4 6 L6.3 6.7 L5.6 10.8 L4.9 6.7 L0.8 6 L4.9 5.3 Z" fill="currentColor"/>
+        <path d="M11.4 9 L11.85 11 L13.85 11.45 L11.85 11.9 L11.4 13.9 L10.95 11.9 L8.95 11.45 L10.95 11 Z" fill="currentColor"/>
+      </svg>`;
+      return `<button class="${cls}" data-explain="${escapeHtml(context)}" title="Ask the AI tutor about this" aria-label="Ask AI">${svg}</button>`;
     },
   };
 })();

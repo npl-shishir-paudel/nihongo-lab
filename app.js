@@ -385,8 +385,8 @@
     const id = `${kind}:${item.ch}`;
     if (state.learned.has(id)) card.classList.add("learned");
 
-    const explainCtx = `${kind === "kata" ? "Katakana" : "Hiragana"} character ${item.ch} (romaji "${item.ro}", group: ${item.group}).`;
-    const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx) : "";
+    const explainCtx = `${kind === "kata" ? "Katakana" : "Hiragana"} character ${item.ch} (romaji "${item.ro}", group: ${item.group}). Give a tiny mnemonic and one example word using it.`;
+    const explainBtn = window.NihongoAI ? window.NihongoAI.explainButtonHtml(explainCtx, { variant: "kana" }) : "";
     card.innerHTML = `
       <span class="group">${item.group}</span>
       <button class="learn" title="Mark as learned">✓</button>
@@ -791,6 +791,11 @@
         e.currentTarget.textContent = done.has(ch.day) ? "✓" : "○";
         refreshStreak();
         if (typeof window.refreshTodayDashboard === "function") window.refreshTodayDashboard();
+        // Push progress to the Worker KV so the daily email/ntfy can
+        // personalize ("you've missed Day 2", "today is Day 4: ...")
+        if (window.NihongoAI && typeof window.NihongoAI.syncProgress === "function") {
+          window.NihongoAI.syncProgress();
+        }
       });
       card.appendChild(head);
 
@@ -2596,6 +2601,10 @@ wrangler deploy</pre>
     if (!iso) {
       iso = new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD local
       localStorage.setItem("jp.curriculumStart", iso);
+      // First-time start — push to Worker so the daily email knows the date
+      if (window.NihongoAI && typeof window.NihongoAI.syncProgress === "function") {
+        window.NihongoAI.syncProgress();
+      }
     }
     return new Date(iso + "T00:00:00");
   }

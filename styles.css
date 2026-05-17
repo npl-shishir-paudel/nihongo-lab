@@ -3460,8 +3460,26 @@ input[type="search"]:focus {
   padding: 6px 14px; cursor: pointer;
   font: 800 13px "Nunito", system-ui, sans-serif;
   box-shadow: 2px 2px 0 0 var(--line);
+  margin-top: 10px;
 }
 .ai-primary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 0 var(--line); }
+.ai-divider {
+  border: 0; border-top: 2px dashed var(--line);
+  margin: 12px 0 10px;
+}
+.ai-field-row {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-top: 6px;
+}
+.ai-toggle-row {
+  display: inline-flex; align-items: center; gap: 6px;
+  font: 600 12px "Nunito", system-ui, sans-serif;
+  color: var(--fg); cursor: pointer;
+}
+.ai-toggle-row input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 16px; height: 16px;
+}
 
 /* ── Messages area ─────────────────────────────────────────────── */
 .ai-messages {
@@ -3654,6 +3672,27 @@ input[type="search"]:focus {
 .struct-sent { position: relative; }
 .chapter-sentence { position: relative; }
 .convo-bubble { position: relative; }
+
+/* ── Overlap fixes — move ✨ to bottom-right on cards whose top-right is
+   already occupied by another control (kana ✓, word/sentence tag). ───── */
+.kana .ai-explain-btn,
+.word .ai-explain-btn,
+.sentence .ai-explain-btn {
+  top: auto; right: 6px;
+  bottom: 6px;
+}
+
+/* Larger tap targets on touch / mobile so accidental sibling clicks
+   don't fire (was the kana ✓/✨ collision issue). */
+@media (hover: none), (max-width: 720px) {
+  .ai-explain-btn {
+    width: 26px; height: 26px;
+    opacity: 1; transform: scale(1);
+  }
+  .ai-explain-btn svg { width: 13px; height: 13px; }
+  /* Kana cells: pull ✓ a tiny bit so the two never share a press radius */
+  .kana .learn { top: 4px; right: 4px; }
+}
 
 /* On mobile the floating toggle gets smaller */
 @media (max-width: 640px) {

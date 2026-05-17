@@ -1,19 +1,151 @@
 /**
  * Nihongo Lab — Worker
  *
- * Two responsibilities:
- *   1. Daily reminder (scheduled) — POSTs to ntfy.sh on a cron trigger
- *   2. AI chat proxy (fetch /chat) — proxies the frontend to Gemini 2.0
- *      Flash, keeping the API key as a Worker secret (never in the repo)
+ * Responsibilities:
+ *   1. Hourly reminder cron — fires at every hour, reads user's preferred
+ *      hour from KV, sends ntfy push + Resend email only when it matches.
+ *      Reminder body is personalised with today's chapter + missed days.
+ *   2. AI chat proxy (fetch /chat) — proxies the frontend to Gemini,
+ *      keeping the API key as a Worker secret (never in the repo).
+ *   3. State sync (GET/POST /state) — reads/writes the user's progress
+ *      + reminder prefs to KV so the cron can personalise the reminder
+ *      and so the user can change reminder time from the app.
  *
- * Secrets required (set with `wrangler secret put NAME`):
- *   - GEMINI_API_KEY   — your Google AI Studio key (free tier)
+ * Secrets (set with `wrangler secret put NAME`):
+ *   - GEMINI_API_KEY   — Google AI Studio key (free tier)
+ *   - RESEND_API_KEY   — Resend.com key (free tier)
  *
  * Vars (in wrangler.toml):
- *   - NTFY_TOPIC       — your private ntfy topic for daily reminders
- *   - NTFY_TITLE       — optional, defaults to per-message rotating title
- *   - ALLOWED_ORIGIN   — optional CORS allowlist (defaults to "*")
+ *   - NTFY_TOPIC       — private ntfy topic for daily phone reminders
+ *   - NTFY_TITLE       — optional title override
+ *   - ALLOWED_ORIGIN   — CORS allowlist (locked to Pages origin)
+ *   - REMINDER_EMAIL   — destination Gmail
+ *   - REMINDER_NAME    — display name for the recipient
+ *
+ * KV bindings:
+ *   - STATE            — single key "user" holds { progress, prefs, meta }
  */
+
+// ──────────────────────────────────────────────────────────────────────
+// Chapter manifest — kept slim (day + title only). Manually mirrored from
+// data.js. The cron uses this to say "today is Day X: <title>" in the
+// reminder body. If chapters change in data.js, update this list and
+// redeploy the Worker.
+// ──────────────────────────────────────────────────────────────────────
+const CHAPTERS = [
+  { d: 1,  t: "Vowels + first hello" },
+  { d: 2,  t: "K + S + T rows + question か" },
+  { d: 3,  t: "N + H + M rows + は as 'wa'" },
+  { d: 4,  t: "Y + R + W rows + ん + を + dakuten G/Z" },
+  { d: 5,  t: "Dakuten D/B + handakuten P + yōon — hiragana complete" },
+  { d: 6,  t: "Katakana A-T rows + IT loanwords" },
+  { d: 7,  t: "Katakana N-W rows + workplace nouns" },
+  { d: 8,  t: "★ Katakana dakuten + small chars — KANA COMPLETE" },
+  { d: 9,  t: "Pronouns — 1st / 2nd / 3rd person" },
+  { d: 10, t: "Demonstratives — これ・それ・あれ + どれ" },
+  { d: 11, t: "Wh-question words — 何 / 誰 / どこ / いつ / いくら" },
+  { d: 12, t: "は vs が — topic vs subject" },
+  { d: 13, t: "を — direct object marker" },
+  { d: 14, t: "の — possessive + noun connector" },
+  { d: 15, t: "に vs で — target vs location-of-action" },
+  { d: 16, t: "へ + と + や + も — direction, with/and, also" },
+  { d: 17, t: "から + まで + より + よ + ね — range + sentence-end" },
+  { d: 18, t: "ます-form — polite present / future" },
+  { d: 19, t: "て-form — linking actions + てください request" },
+  { d: 20, t: "〜ています — ongoing / right now" },
+  { d: 21, t: "Plain forms — dictionary / ない / た + verb groups" },
+  { d: 22, t: "Past tense — ました + でした" },
+  { d: 23, t: "🧠 The three negatives — ません vs ありません vs ではありません" },
+  { d: 24, t: "Adjectives — i-adj + na-adj (all 4 forms)" },
+  { d: 25, t: "Wants & Invites — たい / ませんか / ましょう" },
+  { d: 26, t: "Potential 'can do' + Preferences 'I like'" },
+  { d: 27, t: "Existence あります / います + Counters" },
+  { d: 28, t: "Connectors — から / ので / けど / が" },
+  { d: 29, t: "The Q&A system — か + はい/いいえ + Wh-words" },
+  { d: 30, t: "★ Dialog mastery — workplace + daily-life" },
+  { d: 31, t: "Plain volitional — casual 'let's'" },
+  { d: 32, t: "Conditionals — ば / たら / なら / と" },
+  { d: 33, t: "Comparison — より / ほうが / 一番" },
+  { d: 34, t: "Giving and receiving — あげる / もらう / くれる" },
+  { d: 35, t: "Quotations — 〜と言う / 〜と思う" },
+  { d: 36, t: "Permission and prohibition" },
+  { d: 37, t: "Obligation — 〜なければなりません" },
+  { d: 38, t: "Experience — 〜たことがある" },
+  { d: 39, t: "Simultaneous + listing — 〜ながら, 〜たり〜たり" },
+  { d: 40, t: "Advice + intentions — 〜たほうがいい / 〜つもり" },
+  { d: 41, t: "Relative clauses + nuance" },
+  { d: 42, t: "Keigo intro — 尊敬語 / 謙譲語" },
+  { d: 43, t: "★ Cumulative review + next-month plan" },
+];
+
+// ──────────────────────────────────────────────────────────────────────
+// State (KV-backed): progress + reminder preferences
+// ──────────────────────────────────────────────────────────────────────
+const STATE_KEY = "user";
+const DEFAULT_STATE = {
+  progress: {
+    curriculumStart: null,   // ISO date string YYYY-MM-DD
+    chapDone: [],            // array of completed day numbers
+  },
+  prefs: {
+    reminderUtcHour: 13,     // 0-23, UTC. 13 ≈ 18:45 NPT (legacy default)
+    channelNtfy: true,
+    channelEmail: true,
+  },
+  meta: { updatedAt: 0, version: 1 },
+};
+
+async function getState(env) {
+  try {
+    const raw = await env.STATE?.get(STATE_KEY, { type: "json" });
+    if (!raw) return DEFAULT_STATE;
+    // Defensive merge so old shapes still work after schema additions
+    return {
+      progress: { ...DEFAULT_STATE.progress, ...(raw.progress || {}) },
+      prefs:    { ...DEFAULT_STATE.prefs,    ...(raw.prefs    || {}) },
+      meta:     { ...DEFAULT_STATE.meta,     ...(raw.meta     || {}) },
+    };
+  } catch (e) {
+    console.error("KV read failed:", e);
+    return DEFAULT_STATE;
+  }
+}
+async function saveState(env, state) {
+  state.meta = { ...state.meta, updatedAt: Date.now() };
+  await env.STATE.put(STATE_KEY, JSON.stringify(state));
+  return state;
+}
+
+// Compute which curriculum day "today" should be based on the start date.
+// Returns null if no start date or out of range.
+function todaysChapterDay(state) {
+  const start = state.progress.curriculumStart;
+  if (!start) return null;
+  const startMs = new Date(start + "T00:00:00Z").getTime();
+  if (isNaN(startMs)) return null;
+  const todayUtc = new Date();
+  // Floor to UTC day boundary for both dates so DST etc. doesn't shift it
+  const todayMs = Date.UTC(todayUtc.getUTCFullYear(), todayUtc.getUTCMonth(), todayUtc.getUTCDate());
+  const dayN = Math.floor((todayMs - startMs) / 86400000) + 1;
+  if (dayN < 1 || dayN > CHAPTERS.length) return null;
+  return dayN;
+}
+
+function progressSummary(state) {
+  const todayDay = todaysChapterDay(state);
+  const todayCh = todayDay ? CHAPTERS.find(c => c.d === todayDay) : null;
+  const done = new Set(state.progress.chapDone || []);
+  const missed = [];
+  if (todayDay) {
+    for (let d = 1; d < todayDay; d++) {
+      if (!done.has(d)) {
+        const ch = CHAPTERS.find(c => c.d === d);
+        missed.push(ch ? `Day ${d}: ${ch.t}` : `Day ${d}`);
+      }
+    }
+  }
+  return { todayDay, todayCh, missed, doneCount: done.size, totalDays: CHAPTERS.length };
+}
 
 // ──────────────────────────────────────────────────────────────────────
 // Daily reminder
@@ -33,7 +165,7 @@ function pickMessage() {
   return MESSAGES[dayOfYear % MESSAGES.length];
 }
 
-async function sendReminder(env) {
+async function sendReminder(env, state) {
   const topic = env.NTFY_TOPIC;
   if (!topic || topic.includes("CHANGE-THIS")) {
     console.error("NTFY_TOPIC not configured — edit wrangler.toml.");
@@ -42,9 +174,21 @@ async function sendReminder(env) {
   const msg = pickMessage();
   const title = env.NTFY_TITLE || msg.title;
 
+  // Personalise body with today's chapter + missed-days if state available
+  let body = msg.body;
+  if (state) {
+    const sum = progressSummary(state);
+    if (sum.todayCh) {
+      body = `📖 Today — Day ${sum.todayDay}: ${sum.todayCh.t}\n${msg.body}`;
+    }
+    if (sum.missed.length) {
+      body += `\n⚠ Catch up: ${sum.missed.length} missed day${sum.missed.length > 1 ? "s" : ""}`;
+    }
+  }
+
   const res = await fetch(`https://ntfy.sh/${topic}`, {
     method: "POST",
-    body: msg.body,
+    body,
     headers: {
       "Title": title,
       "Tags": "books,jp,sparkles",
@@ -68,7 +212,7 @@ async function sendReminder(env) {
 // On Resend's free tier, sending from the shared sender works ONLY to
 // the email address you signed up with — perfect for personal reminders.
 // ──────────────────────────────────────────────────────────────────────
-async function sendEmail(env) {
+async function sendEmail(env, state) {
   if (!env.RESEND_API_KEY) {
     console.error("RESEND_API_KEY not set — skipping email reminder.");
     return;
@@ -82,21 +226,45 @@ async function sendEmail(env) {
   const msg = pickMessage();
   const siteUrl = "https://npl-shishir-paudel.github.io/nihongo-lab/";
 
+  // Personalise with today's chapter + missed-days (if state available)
+  let todayBlock = "", missedBlock = "", progressBlock = "";
+  if (state) {
+    const sum = progressSummary(state);
+    if (sum.todayCh) {
+      todayBlock = `<div style="background:#fff5cc;border:2px solid #1f1d2c;border-radius:12px;padding:14px;margin:0 0 16px;box-shadow:3px 3px 0 0 #1f1d2c"><div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#6b6478;font-weight:800">Today · Day ${sum.todayDay} of ${sum.totalDays}</div><div style="font-size:17px;font-weight:800;margin-top:4px">${escapeHtmlEmail(sum.todayCh.t)}</div></div>`;
+    }
+    if (sum.missed.length) {
+      const list = sum.missed.slice(0, 5).map(s => `<li style="margin:2px 0">${escapeHtmlEmail(s)}</li>`).join("");
+      const more = sum.missed.length > 5 ? `<li style="margin:2px 0;color:#6b6478">+ ${sum.missed.length - 5} more</li>` : "";
+      missedBlock = `<div style="background:#ffe1ea;border:2px solid #c75450;border-radius:12px;padding:12px 14px;margin:0 0 16px"><div style="font-weight:800;color:#c75450;font-size:13px;margin-bottom:6px">⚠ Catch up — ${sum.missed.length} missed day${sum.missed.length > 1 ? "s" : ""}</div><ul style="margin:0;padding:0 0 0 18px;font-size:13px">${list}${more}</ul></div>`;
+    }
+    progressBlock = `<div style="font-size:11px;color:#6b6478;margin:12px 0 0">📊 ${sum.doneCount}/${sum.totalDays} chapters done${sum.todayDay ? ` · Day ${sum.todayDay} today` : ""}</div>`;
+  }
+
   const html = `<!doctype html>
 <html><body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f6f7fb;margin:0;padding:24px;color:#1f1d2c">
   <div style="max-width:520px;margin:0 auto;background:#fff;border:3px solid #1f1d2c;border-radius:16px;padding:28px;box-shadow:4px 4px 0 0 #1f1d2c">
     <div style="font-size:34px;line-height:1;margin-bottom:6px">🇯🇵</div>
     <h1 style="margin:0 0 4px;font-size:22px;font-weight:800">${msg.title}</h1>
     <p style="margin:0 0 18px;color:#6b6478;font-size:14px">Hey ${escapeHtmlEmail(recipientName)} — daily nudge from Nihongo Lab.</p>
+    ${todayBlock}
+    ${missedBlock}
     <p style="font-size:15px;line-height:1.55;margin:0 0 20px">${msg.body}</p>
     <a href="${siteUrl}" style="display:inline-block;background:#ff4d8d;color:#fff;text-decoration:none;font-weight:800;padding:10px 18px;border:2px solid #1f1d2c;border-radius:10px;box-shadow:3px 3px 0 0 #1f1d2c">Open today's chapter →</a>
+    ${progressBlock}
     <hr style="border:0;border-top:1px dashed #d6cdb5;margin:24px 0 12px"/>
     <p style="font-size:11px;color:#6b6478;margin:0">Quick links · <a href="${siteUrl}#chapters" style="color:#ff4d8d">Chapters</a> · <a href="${siteUrl}#quiz" style="color:#ff4d8d">Quiz</a> · <a href="${siteUrl}#cheat" style="color:#ff4d8d">Quick Cheat</a></p>
-    <p style="font-size:11px;color:#6b6478;margin:6px 0 0">If this email is annoying, edit <code>REMINDER_EMAIL</code> in your Cloudflare Worker config.</p>
+    <p style="font-size:11px;color:#6b6478;margin:6px 0 0">Adjust reminder time in the app's AI Settings (⚙).</p>
   </div>
 </body></html>`;
 
-  const text = `${msg.title}\n\nHey ${recipientName} — ${msg.body}\n\nOpen Nihongo Lab: ${siteUrl}`;
+  let textBody = `${msg.title}\n\nHey ${recipientName} — ${msg.body}`;
+  if (state) {
+    const sum = progressSummary(state);
+    if (sum.todayCh) textBody = `Today is Day ${sum.todayDay} of ${sum.totalDays}: ${sum.todayCh.t}\n\n${textBody}`;
+    if (sum.missed.length) textBody += `\n\nMissed: ${sum.missed.slice(0, 5).join(", ")}${sum.missed.length > 5 ? "…" : ""}`;
+  }
+  const text = `${textBody}\n\nOpen Nihongo Lab: ${siteUrl}`;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -229,11 +397,21 @@ async function handleChat(request, env) {
 // ──────────────────────────────────────────────────────────────────────
 export default {
   async scheduled(event, env, ctx) {
-    // Fire both reminders in parallel — phone push + email
-    ctx.waitUntil(Promise.allSettled([
-      sendReminder(env),
-      sendEmail(env),
-    ]));
+    // Cron now runs hourly. Read user state + only fire if the current
+    // UTC hour matches the preferred reminder hour.
+    ctx.waitUntil((async () => {
+      const state = await getState(env);
+      const nowHourUtc = new Date().getUTCHours();
+      const wantHourUtc = state.prefs.reminderUtcHour ?? 13;
+      if (nowHourUtc !== wantHourUtc) {
+        console.log(`Cron tick: hour ${nowHourUtc} UTC, user wants ${wantHourUtc}. Skipping.`);
+        return;
+      }
+      const channels = [];
+      if (state.prefs.channelNtfy)  channels.push(sendReminder(env, state));
+      if (state.prefs.channelEmail) channels.push(sendEmail(env, state));
+      await Promise.allSettled(channels);
+    })());
   },
 
   async fetch(request, env) {
@@ -249,15 +427,35 @@ export default {
       return handleChat(request, env);
     }
 
-    // /test — fire a manual ntfy reminder
+    // /state — sync user progress + reminder prefs to KV
+    if (url.pathname === "/state" && request.method === "GET") {
+      const state = await getState(env);
+      return jsonResponse(state, 200, env);
+    }
+    if (url.pathname === "/state" && request.method === "POST") {
+      let body;
+      try { body = await request.json(); }
+      catch { return jsonResponse({ error: "Body must be JSON" }, 400, env); }
+      const current = await getState(env);
+      const merged = {
+        progress: { ...current.progress, ...(body.progress || {}) },
+        prefs:    { ...current.prefs,    ...(body.prefs    || {}) },
+      };
+      const saved = await saveState(env, merged);
+      return jsonResponse({ ok: true, state: saved }, 200, env);
+    }
+
+    // /test — fire a manual ntfy reminder (with KV personalisation)
     if (url.pathname === "/test") {
-      await sendReminder(env);
+      const state = await getState(env);
+      await sendReminder(env, state);
       return new Response("Test reminder sent! Check your phone.", { status: 200 });
     }
 
-    // /test-email — fire a manual email reminder
+    // /test-email — fire a manual email reminder (with KV personalisation)
     if (url.pathname === "/test-email") {
-      await sendEmail(env);
+      const state = await getState(env);
+      await sendEmail(env, state);
       return new Response("Test email sent! Check your inbox (and spam).", { status: 200 });
     }
 

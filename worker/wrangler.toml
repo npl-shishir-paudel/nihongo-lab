@@ -42,12 +42,16 @@ ALLOWED_ORIGIN = "https://npl-shishir-paudel.github.io"
 REMINDER_EMAIL = "shishirmaidenrocklife@gmail.com"
 REMINDER_NAME = "Shishir"
 
-# Triggers section — daily reminder schedule.
-# Format: standard cron, in UTC.
-# Examples:
-#   "0 12 * * *"  = 12:00 UTC daily  (e.g. 21:00 JST = 17:45 NPT)
-#   "0 13 * * *"  = 13:00 UTC daily  (e.g. 18:45 NPT)
-#   "30 13 * * *" = 13:30 UTC daily  (e.g. 19:15 NPT)
-# Convert your local desired time to UTC. Nepal is UTC+5:45.
+# KV namespace — stores user progress + reminder preferences. Read at every
+# cron run; written when the app syncs (chapter complete, settings change).
+# Created with: wrangler kv namespace create STATE
+[[kv_namespaces]]
+binding = "STATE"
+id = "da93ea93fb884a2183826f6dc76aa0c1"
+
+# Triggers — runs every hour. The Worker checks the user's preferred hour
+# from KV (set via the app's Settings panel) and sends ONLY when current
+# UTC hour matches. This way "reminder time" is changeable from the app
+# without redeploying the Worker.
 [triggers]
-crons = ["0 13 * * *"]
+crons = ["0 * * * *"]
