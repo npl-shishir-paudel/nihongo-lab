@@ -24,6 +24,16 @@ wrangler secret put GEMINI_API_KEY
 
 Paste the key when prompted. (If you don't have `wrangler` yet: `npm install -g wrangler`, then `wrangler login`.)
 
+## 2b. Create the KV namespace (first time only)
+
+The reminder feature needs a Cloudflare KV store to remember your preferred reminder hour + progress. One command:
+
+```bash
+wrangler kv namespace create STATE
+```
+
+It prints an `id` — paste it into `wrangler.toml` under the existing `[[kv_namespaces]]` block. (Already filled in for Shishir's deployment.)
+
 ## 3. Re-deploy the Worker
 
 ```bash
@@ -102,10 +112,34 @@ wrangler deploy
 - Open the email in Spam → click **"Report not spam"** (Gmail) or move it to Inbox
 - All future emails go straight to Inbox
 
-## 4. Change the schedule (optional)
-- Edit `crons = ["0 13 * * *"]` in `wrangler.toml`. Format is standard cron in **UTC**.
-- `0 13 * * *` = 13:00 UTC daily = ~18:45 Nepal time. For 7am NPT, use `15 1 * * *`.
-- Redeploy after editing.
+## What the email contains (after the first chapter is marked complete)
+- "Today is Day X of 43: <chapter title>" pulled from the Worker's chapter manifest
+- "Catch up: N missed days" with up to 5 listed (if any past chapters weren't completed)
+- A primary button linking straight to the live app
+- A progress summary line: "📊 X/43 chapters done · Day Y today"
+
+Before you've marked anything complete, the email just sends the generic rotating message + link. As soon as you mark Day 1 done in the app (and the chapter mark-complete handler POSTs to `/state`), the email becomes personalised.
+
+## 4. Change the reminder time (from the app, no redeploy)
+The Worker's cron now runs **every hour** and checks Cloudflare KV for your preferred hour. Change it without touching the Worker:
+
+1. Open the live site → ✨ AI Tutor → ⚙ Settings
+2. **Daily reminder time** → pick your local HH:MM
+3. Toggle **Phone push (ntfy)** and/or **Email** to control channels independently
+4. **Save settings**
+
+The app converts your local time → UTC, POSTs `{ prefs: { reminderUtcHour, channelNtfy, channelEmail } }` to `/state`, and the Worker stores it in KV (key `"user"`). At the next matching hour, the cron fires.
+
+To inspect the stored state, hit `GET /state` on the Worker URL — you'll see something like:
+```json
+{
+  "progress": { "curriculumStart": "2026-05-17", "chapDone": [1, 3] },
+  "prefs":    { "reminderUtcHour": 13, "channelNtfy": true, "channelEmail": true },
+  "meta":     { "updatedAt": 1716000000000, "version": 1 }
+}
+```
+
+If you ever want to revert to fixed-time cron (no app control), edit `crons` in `wrangler.toml` to a specific UTC time (e.g. `"0 13 * * *"`) and remove the hour-check in `worker/index.js`.
 
 ## 5. Rotate the key later
 The Resend key is a SECRET. If it leaks (pasted into chat, committed to repo, screenshot, etc.), revoke immediately:
