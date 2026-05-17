@@ -6,26 +6,26 @@ Short context for humans and AI assistants joining the project.
 - Static Japanese-learning web app (HTML + vanilla JS + CSS, no build step)
 - Single-user (Shishir, Nepali IT professional)
 - Deployed on **GitHub Pages**: https://npl-shishir-paudel.github.io/nihongo-lab/
-- AI tutor chat backed by **Gemini 2.0 Flash** via a **Cloudflare Worker** proxy
+- AI tutor chat backed by **Gemini 2.5 Flash** via a **Cloudflare Worker** proxy
+- Daily reminders on phone (ntfy.sh) AND email (Resend) on a cron
 
 ## Architecture
 ```
-                                 (free tier, ~15 RPM)
-  Browser                                                Google
-  ┌─────────────────┐    POST /chat    ┌───────────────┐ Gemini
-  │  GitHub Pages   │ ───────────────▶ │  Cloudflare   │   API
-  │  (static site)  │                  │   Worker      │ ───▶ Gemini 2.0 Flash
-  │  ai-chat.js     │ ◀─────────────── │ index.js      │ ◀───
-  └─────────────────┘    JSON {text}   └───────────────┘
-                                            │ secret: GEMINI_API_KEY
-                                            │ cron: daily ntfy reminder
-                                            ▼
-                                       ntfy.sh → phone push
+  Browser                              Google
+  ┌─────────────────┐  POST /chat  ┌──────────────┐  Gemini 2.5 Flash
+  │  GitHub Pages   │ ───────────▶ │  Cloudflare  │ ─────▶ generateContent
+  │  (static site)  │              │   Worker     │ ◀─────
+  │  ai-chat.js     │ ◀─────────── │  index.js    │
+  └─────────────────┘  JSON {text} └──────────────┘
+                                        │ secrets: GEMINI_API_KEY, RESEND_API_KEY
+                                        │ cron: 13:00 UTC daily
+                                        ├────▶ ntfy.sh    (phone push)
+                                        └────▶ Resend API (Gmail reminder)
 ```
-- Pages site is the whole UI. No backend except for chat.
-- Worker holds the Gemini API key as a Cloudflare secret — never in the repo.
+- Pages site is the whole UI. No backend except for `/chat`.
+- Worker holds API keys as Cloudflare secrets — never in the repo.
 - CORS on `/chat` is locked to the Pages origin.
-- The same Worker also sends a daily ntfy reminder on a cron.
+- One cron fires every day at 13:00 UTC, sending BOTH a phone push (ntfy) and an email (Resend).
 
 ## Repos & accounts
 - **Pages repo:** `github.com/npl-shishir-paudel/nihongo-lab` (push to `main` = deploy)

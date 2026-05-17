@@ -70,7 +70,54 @@ Stored in your browser's localStorage — never sent anywhere. You only do this 
 - You haven't run `wrangler secret put GEMINI_API_KEY` yet — go back to step 2.
 
 **"⚠ Gemini API 429":**
-- You hit the free-tier rate limit (15 requests/minute). Wait a minute.
+- You hit the free-tier rate limit (15 RPM / ~20 RPD on the free tier for `gemini-2.5-flash`). Wait a few minutes / a day.
 
 **CORS error in console:**
 - Set `ALLOWED_ORIGIN` in `wrangler.toml` to your Pages URL, then `wrangler deploy`.
+
+---
+
+# Daily email reminder — also one-time setup
+
+The same Worker also fires a daily email reminder to your Gmail via **Resend** (free tier: 3000 emails/month). Independent of the ntfy phone push.
+
+## 1. Get a Resend API key (2 minutes)
+1. Go to https://resend.com/signup
+2. Sign up with the Gmail you want to receive reminders at
+3. Verify your email (Resend sends a confirmation link — click it)
+4. Dashboard → **API Keys** → **Create API Key** → permission "Full access" → copy (starts with `re_…`)
+
+## 2. Upload as Worker secret + deploy
+```bash
+cd application/worker
+wrangler secret put RESEND_API_KEY   # paste the key
+wrangler deploy
+```
+
+## 3. Verify it works
+- Open `https://<your-worker>.workers.dev/test-email` in a browser → should respond "Test email sent!"
+- Check your Gmail inbox → AND the **Spam** folder
+
+**⚠ First-time gotcha:** the first email almost always lands in **Spam** because the sender (`onboarding@resend.dev`) is new to your inbox. To fix forever:
+- Open the email in Spam → click **"Report not spam"** (Gmail) or move it to Inbox
+- All future emails go straight to Inbox
+
+## 4. Change the schedule (optional)
+- Edit `crons = ["0 13 * * *"]` in `wrangler.toml`. Format is standard cron in **UTC**.
+- `0 13 * * *` = 13:00 UTC daily = ~18:45 Nepal time. For 7am NPT, use `15 1 * * *`.
+- Redeploy after editing.
+
+## 5. Rotate the key later
+The Resend key is a SECRET. If it leaks (pasted into chat, committed to repo, screenshot, etc.), revoke immediately:
+- Resend dashboard → API Keys → ⋯ → **Revoke**
+- Generate a new one
+- `wrangler secret put RESEND_API_KEY` (paste new) → `wrangler deploy`
+
+## Troubleshooting (email)
+
+**No email at all (not even in spam):**
+- Worker logs: Cloudflare dashboard → Workers & Pages → nihongo-lab-reminder → **Logs (Live)** — hit `/test-email` and watch for the error message
+- Most common: `RESEND_API_KEY not set` → re-run step 2
+
+**"You can only send testing emails to your own email address":**
+- Resend's anti-abuse rule. You can only send TO the email you signed up with, unless you verify a custom domain. For personal reminders to yourself, this is exactly what you want.

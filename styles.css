@@ -3662,3 +3662,20 @@ input[type="search"]:focus {
   .ai-panel { width: 100vw; }
 }
 
+/* ── Mobile typography overrides ─────────────────────────────────
+   Put at the very end so they win over the cartoon overlay rules
+   that bumped kana/kanji to 54px / 76px on desktop. */
+@media (max-width: 720px) {
+  .kana .ch    { font-size: 36px; }
+  .kana .ro    { font-size: 13px; margin-top: 4px; }
+  .kanji-ch    { font-size: 56px; }
+  .panel-head h1 { font-size: 28px; }
+}
+@media (max-width: 480px) {
+  .kana .ch    { font-size: 30px; }
+  .kana .ro    { font-size: 12px; margin-top: 3px; }
+  .kanji-ch    { font-size: 46px; }
+  .panel-head h1 { font-size: 24px; }
+  .kana, .word, .sentence, .kanji { padding: 10px 10px 8px; }
+}
+

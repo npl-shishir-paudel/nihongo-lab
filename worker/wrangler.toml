@@ -37,6 +37,11 @@ NTFY_TITLE = "🇯🇵 Nihongo Lab"
 # (Doesn't stop curl/scripts — but stops casual abuse from other sites.)
 ALLOWED_ORIGIN = "https://npl-shishir-paudel.github.io"
 
+# Daily email reminder via Resend (free tier, sends to yourself only).
+# RESEND_API_KEY is a Worker SECRET — set with `wrangler secret put RESEND_API_KEY`.
+REMINDER_EMAIL = "shishirmaidenrocklife@gmail.com"
+REMINDER_NAME = "Shishir"
+
 # Triggers section — daily reminder schedule.
 # Format: standard cron, in UTC.
 # Examples:
