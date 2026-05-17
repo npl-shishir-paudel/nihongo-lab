@@ -1531,6 +1531,7 @@ const DATA = {
       words: ["何","誰","名前","友達","家族"],
       grammar: ["Wh-questions (何 / 誰 / どこ / いつ / なぜ / いくら)"],
       sentences: ["これは何ですか？","名前は何ですか？","誕生日はいつですか？","トイレはどこですか？","いくらですか？"],
+      notes: ["どのくらい (dono kurai) — 'how long / how much / how far'. Use it for DURATION (どのくらいかかりますか — how long does it take?), DISTANCE (駅までどのくらいですか — how far to the station?), or QUANTITY. Different from いくら (price-only) and いくつ (count of items)."],
       practice: "Ask 5 questions: one each with 何, 誰, どこ, いつ, いくら. Answer each yourself."
     },
 
@@ -1585,7 +1586,11 @@ const DATA = {
       words: ["友達","家族","東京"],
       grammar: ["へ (e) — Direction marker (formal alternative to に)","と (to) — With (companion) / and (listing)","や (ya) — And (non-exhaustive 'and others')"],
       sentences: ["東京へ行きます。","友達と話します。","りんごやバナナを食べます。","私も学生です。"],
-      practice: "Build one sentence each with へ, と, や, も."
+      notes: [
+        "🧠 へ vs に — both can mark direction. へ = vague 'toward' (東京へ行きます = heading toward Tokyo). に = specific 'arrival point' (東京に着きます = arriving AT Tokyo). For everyday movement they're often interchangeable; for emphasis on arrival, use に.",
+        "🧠 と vs や — both mean 'and' when listing nouns. と = complete list (only these). や = open list (these AND others). りんごとバナナ = just apple and banana. りんごやバナナ = apple, banana, and other stuff."
+      ],
+      practice: "Build one sentence each with へ, と, や, も. Then say one sentence with へ and rephrase using に — notice the nuance."
     },
     {
       day: 17, week: 3, minutes: 35,
@@ -1609,7 +1614,8 @@ const DATA = {
       words: ["行く","来る","する","食べる","飲む","書く","話す"],
       grammar: ["[Subject]は [Object]を [Verb]ます — Present/Future action","Verb groups — godan, ichidan, irregular"],
       sentences: ["私は会社に行きます。","お昼ごはんを食べます。","明日、ミーティングをします。"],
-      practice: "List 5 things you'll do tomorrow, each ending in ます."
+      notes: ["🧠 行く (iku) vs 来る (kuru) — both are motion verbs but DIRECTION-SENSITIVE. 行く = go (AWAY from where the speaker is). 来る = come (TOWARD where the speaker or listener is). 'I'll go to the meeting' = 会議に行きます. 'Please come to my desk' = 私のデスクに来てください. Both are irregular: 来る has 3 reading forms (く・き・こ) depending on conjugation."],
+      practice: "List 5 things you'll do tomorrow, each ending in ます. Include at least one 行く and one 来る — say each from where you are physically standing."
     },
     {
       day: 19, week: 4, minutes: 35,
@@ -1629,7 +1635,8 @@ const DATA = {
       words: ["サーバー","テスト","メール"],
       grammar: ["[Verb-て]います — Ongoing / Continuous"],
       sentences: ["今、コードを書いています。","会社で働いています。","サーバーが落ちています。","テストが失敗しています。"],
-      practice: "Describe 3 things you're doing RIGHT NOW with ています."
+      notes: ["🧠 〜ている vs 〜てある — both describe states, BUT different doer. 〜ている = the SUBJECT is doing it / is in that state (本を読んでいます = I'm reading a book). 〜てある = somebody PUT IT in this state, and it stays that way (ドアが開けてあります = the door has been opened [by someone, and stays open]). 〜てある only works with TRANSITIVE verbs (someone acts on something)."],
+      practice: "Describe 3 things you're doing RIGHT NOW with ています. Then describe 1 state in your room using 〜てある (e.g. 窓が開けてあります = the window has been left open)."
     },
     {
       day: 21, week: 4, minutes: 35,
@@ -1693,7 +1700,8 @@ const DATA = {
       words: ["寿司","コーヒー","料理","日本語"],
       grammar: ["Potential form — 'can do' / 'be able to do'","〜が好き / 嫌い / 上手 / 下手 — preferences and skills (use が, not を)"],
       sentences: ["日本語が話せます。","辛い物が食べられます。","音楽が好きです。","プログラミングが得意です。"],
-      practice: "List 3 things you CAN do + 3 things you LIKE — practice for self-intro."
+      notes: ["🧠 上手 (jōzu) vs 得意 (tokui) — both mean 'good at', but the RULE: 上手 = praise OTHERS (saying it about yourself sounds boastful in Japanese). 得意 = neutral, fine for yourself. So '日本語が上手ですね' is great to say TO someone, but for yourself say '日本語が得意です'. Mirror this in self-intro: 数学が得意です ✓, NOT 数学が上手です."],
+      practice: "List 3 things you CAN do (potential) + 3 things you LIKE (好き) + 1 thing you're 得意 at (about yourself) — practice for self-intro. Avoid 上手 for yourself."
     },
 
     // ──────────────────────────────────────────────────────────────────
@@ -1856,7 +1864,8 @@ const DATA = {
       words: ["本","コード","コーヒー","千円"],
       grammar: ["Relative clauses — modifying nouns with verbs (私が読んだ本)","〜やすい / 〜にくい — Easy / Hard to do","〜すぎる — Too much / Excessively","〜しか〜ない / 〜だけ — Only X (restriction)","そうです / らしい — Hearsay (I heard / it seems)"],
       sentences: ["私が書いた本","この本は読みやすいです。","食べすぎました。","千円しかありません。","明日、雨が降るそうです。"],
-      practice: "Build a 3-sentence story using a relative clause, やすい/にくい, and a hearsay form."
+      notes: ["🧠 だけ vs しか — both mean 'only', but DIFFERENT FEELING. だけ = neutral 'only this' (水だけ飲みます = I drink only water — fine). しか〜ない = 'only this, NOTHING ELSE' with a regret/limitation tone, and ALWAYS pairs with a NEGATIVE verb (水しか飲みません = I drink nothing but water / I only have water). Use しか when you want to convey 'that's all I've got' — 千円しかありません = I only have 1000 yen (and it's not enough)."],
+      practice: "Build a 3-sentence story using a relative clause, やすい/にくい, and a hearsay form. Then write 2 sentences using だけ and しか each — feel the difference in tone."
     },
     {
       day: 42, week: 10, minutes: 40,

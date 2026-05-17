@@ -889,6 +889,23 @@
         body.appendChild(sec);
       }
 
+      // also-know notes — short contrast / nuance call-outs that pair the
+      // chapter's main topic with a related distinction the cheat-sheet
+      // covers but chapters wouldn't otherwise teach explicitly
+      if (ch.notes && ch.notes.length) {
+        const sec = mkSection("🧠 Also know");
+        const list = document.createElement("div");
+        list.className = "chapter-notes";
+        ch.notes.forEach(n => {
+          const item = document.createElement("div");
+          item.className = "chapter-note";
+          item.innerHTML = escapeHtml(annotateJP(n)).replace(/\n/g, "<br>");
+          list.appendChild(item);
+        });
+        sec.appendChild(list);
+        body.appendChild(sec);
+      }
+
       // practice
       if (ch.practice) {
         const sec = mkSection("Practice");
